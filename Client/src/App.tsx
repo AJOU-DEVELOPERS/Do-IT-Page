@@ -1,5 +1,11 @@
 import React from "react";
+import { Route, Switch } from "react-router-dom";
 import styled from "styled-components";
+import MainPage from "src/Page/Main";
+import BoardPage from "src/Page/Board";
+import LoginPage from "./Page/Login";
+import MyPage from "./Page/MyPage";
+import ErrorPage from "./Page/Error";
 
 const Container = styled.div`
   width: 100px;
@@ -8,7 +14,18 @@ const Container = styled.div`
 `;
 
 function App() {
-  return <Container>ttt</Container>;
+  return (
+    <>
+      <Container>hi</Container>
+      <Switch>
+        <Route path="/" component={MainPage} exact />
+        <Route path="/board" component={BoardPage} exact />
+        <Route path="/login" component={LoginPage} exact />
+        <Route path="/mypage" component={MyPage} exact />
+        <Route path="*" component={ErrorPage} exact />
+      </Switch>
+    </>
+  );
 }
 
 export default App;
