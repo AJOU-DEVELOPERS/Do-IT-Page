@@ -3,9 +3,9 @@ import { Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 import MainPage from "src/Page/Main";
 import BoardPage from "src/Page/Board";
-import LoginPage from "./Page/Login";
-import MyPage from "./Page/MyPage";
-import ErrorPage from "./Page/Error";
+import LoginPage from "src/Page/Login";
+import MyPage from "src/Page/MyPage";
+import ErrorPage from "src/Page/Error";
 
 const Container = styled.div`
   width: 100px;
