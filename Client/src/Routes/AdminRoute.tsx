@@ -1,7 +1,6 @@
-import ErrorPage from "@Pages/Error";
 import { Redirect, Route } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import { testAtom } from "State/test";
+import { testAtom } from "Recoil/test";
 
 interface Props {
   component: () => JSX.Element;
