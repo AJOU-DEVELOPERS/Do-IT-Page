@@ -1,14 +1,14 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import styled from "styled-components";
-import MainPage from "src/Page/Main";
-import BoardPage from "src/Page/Board";
-import LoginPage from "src/Page/Login";
-import MyPage from "src/Page/MyPage";
-import ErrorPage from "src/Page/Error";
-import AdminPage from "src/Page/Admin";
+import AdminPage from "@Pages/Admin";
+import BoardPage from "@Pages/Board";
+import ErrorPage from "@Pages/Error";
+import LoginPage from "@Pages/Login";
+import MainPage from "@Pages/Main";
+import MyPage from "@Pages/MyPage";
 
-const Container = styled.div`
+const Header = styled.div`
   width: 100px;
   height: 100px;
   background-color: pink;
@@ -17,7 +17,7 @@ const Container = styled.div`
 function App() {
   return (
     <>
-      <Container>hi</Container>
+      <Header>hi</Header>
       <Switch>
         <Route path="/" component={MainPage} exact />
         <Route path="/board" component={BoardPage} exact />

@@ -1,6 +1,6 @@
-import { sayHello } from "src/Common/util";
+import { sayHello } from "@Util/.";
 
 export default function MainPage() {
   const root = sayHello();
-  return root;
+  return <div>{root}</div>;
 }

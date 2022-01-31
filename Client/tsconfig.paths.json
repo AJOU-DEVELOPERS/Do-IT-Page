@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@Atoms/*": ["./Components/Atoms/*"],
+      "@Molecules/*": ["./Components/Molecules/*"],
+      "@Organisms/*": ["./Components/Organisms/*"],
+      "@Templates/*": ["./Components/Templates/*"],
+      "@Pages/*": ["./Components/Pages/*"],
+      "@Constant/*": ["./Common/Constant/*"],
+      "@Util/*": ["./Common/Util/*"],
+      "@Hooks/*": ["./Hooks/*"],
+      "@Recoil/*": ["./Recoil/*"]
+    }
+  }
+}
