@@ -14,7 +14,7 @@ const Header = styled.div`
   background-color: pink;
 `;
 
-function App() {
+const App = () => {
   return (
     <>
       <Header>hi</Header>
@@ -28,6 +28,6 @@ function App() {
       </Switch>
     </>
   );
-}
+};
 
 export default App;
