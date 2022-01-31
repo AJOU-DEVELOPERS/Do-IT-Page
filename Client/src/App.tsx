@@ -6,6 +6,7 @@ import BoardPage from "src/Page/Board";
 import LoginPage from "src/Page/Login";
 import MyPage from "src/Page/MyPage";
 import ErrorPage from "src/Page/Error";
+import AdminPage from "src/Page/Admin";
 
 const Container = styled.div`
   width: 100px;
@@ -22,6 +23,7 @@ function App() {
         <Route path="/board" component={BoardPage} exact />
         <Route path="/login" component={LoginPage} exact />
         <Route path="/mypage" component={MyPage} exact />
+        <Route path="/admin" component={AdminPage} exact />
         <Route path="*" component={ErrorPage} exact />
       </Switch>
     </>
