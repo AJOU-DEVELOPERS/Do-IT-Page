@@ -7,6 +7,8 @@ import ErrorPage from "@Pages/Error";
 import LoginPage from "@Pages/Login";
 import MainPage from "@Pages/Main";
 import MyPage from "@Pages/MyPage";
+import PrivateRoute from "Routes/PrivateRoute";
+import AdminRoute from "Routes/AdminRoute";
 
 const Header = styled.div`
   width: 100px;
@@ -14,7 +16,7 @@ const Header = styled.div`
   background-color: pink;
 `;
 
-function App() {
+const App = () => {
   return (
     <>
       <Header>hi</Header>
@@ -22,12 +24,12 @@ function App() {
         <Route path="/" component={MainPage} exact />
         <Route path="/board" component={BoardPage} exact />
         <Route path="/login" component={LoginPage} exact />
-        <Route path="/mypage" component={MyPage} exact />
-        <Route path="/admin" component={AdminPage} exact />
+        <PrivateRoute path="/mypage" component={MyPage} />
+        <AdminRoute path="/admin" component={AdminPage} />
         <Route path="*" component={ErrorPage} exact />
       </Switch>
     </>
   );
-}
+};
 
 export default App;

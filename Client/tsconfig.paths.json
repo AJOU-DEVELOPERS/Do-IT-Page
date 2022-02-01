@@ -8,9 +8,7 @@
       "@Templates/*": ["./Components/Templates/*"],
       "@Pages/*": ["./Components/Pages/*"],
       "@Constant/*": ["./Common/Constant/*"],
-      "@Util/*": ["./Common/Util/*"],
-      "@Hooks/*": ["./Hooks/*"],
-      "@Recoil/*": ["./Recoil/*"]
+      "@Util/*": ["./Common/Util/*"]
     }
   }
 }
