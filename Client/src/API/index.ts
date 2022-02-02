@@ -1,6 +1,6 @@
 interface Props {
   api: any;
-  data: any;
+  data?: any;
 }
 
 export const API = async ({ api, data }: Props) => {
