@@ -8,20 +8,20 @@ interface Props {
   exact: boolean;
 }
 
-const PrivateRoute = ({
+const PublicRoute = ({
   component: Component,
   path,
   exact,
 }: Props): JSX.Element => {
   const user = useRecoilValue(checkLoginSelector);
-
+  console.log(user);
   return (
     <Route
       exact={exact}
       path={path}
-      render={() => (user ? <Component /> : <Redirect to="/login" />)}
+      render={() => (user ? <Redirect to="/main" /> : <Component />)}
     />
   );
 };
 
-export default PrivateRoute;
+export default PublicRoute;

@@ -1,34 +1,60 @@
 import { Suspense } from "react";
-import { Oval } from "react-loader-spinner";
 import { Route, Switch } from "react-router-dom";
 
+import Page from "@Pages/.";
 import AdminPage from "@Pages/Admin";
 import BoardPage from "@Pages/Board";
 import ErrorPage from "@Pages/Error";
 import LoginPage from "@Pages/Login";
 import MainPage from "@Pages/Main";
 import MyPage from "@Pages/MyPage";
+import NoticePage from "@Pages/Notice";
+import ProjectPage from "@Pages/Project";
+import StudyPage from "@Pages/Study";
+import ReservePage from "@Pages/Reserve";
+import RankingPage from "@Pages/Ranking";
 
-import Header from "@Organisms/Header";
-
+import PublicRoute from "@Route/PublicRoute";
 import PrivateRoute from "@Route/PrivateRoute";
 import AdminRoute from "@Route/AdminRoute";
 
+import Button from "@Atoms/Button";
+import Spin from "@Atoms/Spinner";
+import {
+  SmallButtonType,
+  MediumButtonType,
+  LargeButtonType,
+} from "@Constant/.";
+
 const App = () => {
+  const type = {
+    width: 100,
+    height: 200,
+  };
   return (
-    <>
-      <Header />
-      <Suspense fallback={<Oval color="blue" width={100} height={100} />}>
-        <Switch>
-          <Route path="/" component={MainPage} exact />
-          <Route path="/board" component={BoardPage} exact />
-          <Route path="/login" component={LoginPage} exact />
-          <PrivateRoute path="/mypage" component={MyPage} />
-          <AdminRoute path="/admin" component={AdminPage} />
-          <Route path="/error" component={ErrorPage} />
-        </Switch>
-      </Suspense>
-    </>
+    <Suspense fallback={<Spin />}>
+      <Button {...SmallButtonType} title={"hihi"} />
+      <Button {...MediumButtonType} title="컴포넌트 확장" />
+      <Button {...LargeButtonType} />
+      <Switch>
+        <PublicRoute path="/" component={Page} exact />
+        <PublicRoute path="/login" component={LoginPage} exact />
+
+        <PrivateRoute path="/main" component={MainPage} exact />
+        <PrivateRoute path="/board" component={BoardPage} exact />
+        <PrivateRoute path="/notice" component={NoticePage} exact />
+
+        <PrivateRoute path="/project" component={ProjectPage} exact />
+        <PrivateRoute path="/study" component={StudyPage} exact />
+
+        <PrivateRoute path="/mypage" component={MyPage} exact />
+        <PrivateRoute path="/reserve" component={ReservePage} exact />
+        <PrivateRoute path="/rank" component={RankingPage} exact />
+
+        <AdminRoute path="/admin" component={AdminPage} />
+        <Route path="*" component={ErrorPage} exact />
+      </Switch>
+    </Suspense>
   );
 };
 
