@@ -1,23 +1,16 @@
 import { Redirect, Route } from "react-router-dom";
-import { useRecoilValue } from "recoil";
-import { testAtom } from "Recoil/test";
 
 interface Props {
   component: () => JSX.Element;
-  path: String;
+  path: string;
 }
 
-const AdminRoute = ({
-  component: Component,
-  path,
-  ...rest
-}: Props): JSX.Element => {
-  const admin = useRecoilValue(testAtom);
+const AdminRoute = ({ component: Component, path }: Props): JSX.Element => {
+  const admin = false;
 
   return (
     <Route
-      {...rest}
-      exact
+      path={path}
       render={() => (admin ? <Component /> : <Redirect to="/error" />)}
     />
   );
