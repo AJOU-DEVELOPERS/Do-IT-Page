@@ -8,7 +8,11 @@
       "@Templates/*": ["./Components/Templates/*"],
       "@Pages/*": ["./Components/Pages/*"],
       "@Constant/*": ["./Common/Constant/*"],
-      "@Util/*": ["./Common/Util/*"]
+      "@Util/*": ["./Common/Util/*"],
+      "@API/*": ["./API/*"],
+      "@Route/*": ["./Routes/*"],
+      "@Recoil/*": ["./Recoil/*"],
+      "@src/*": ["./*"]
     }
   }
 }
