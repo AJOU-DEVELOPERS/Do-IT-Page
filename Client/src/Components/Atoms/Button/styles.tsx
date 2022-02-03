@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { Props } from ".";
 
-const ButtonContainer = styled.div<Props>`
-  width: ${({ width }) => width}px;
-  height: ${({ height }) => height}px;
+const ButtonContainer = styled.button<Props>`
+  width: ${({ width }) => width};
+  height: ${({ height }) => height};
   border: 1px solid ${({ borderColor }) => borderColor};
   border-radius: 10px;
   display: flex;

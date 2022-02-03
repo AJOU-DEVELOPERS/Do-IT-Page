@@ -25,16 +25,18 @@ import {
   MediumButtonType,
   LargeButtonType,
 } from "@Constant/.";
+import { sayHello } from "@Util/.";
 
 const App = () => {
-  const type = {
-    width: 100,
-    height: 200,
-  };
+  const handleMediumButtonClick = () => console.log(sayHello());
   return (
     <Suspense fallback={<Spin />}>
       <Button {...SmallButtonType} title={"hihi"} />
-      <Button {...MediumButtonType} title="컴포넌트 확장" />
+      <Button
+        {...MediumButtonType}
+        title="컴포넌트 확장"
+        onClick={handleMediumButtonClick}
+      />
       <Button {...LargeButtonType} />
       <Switch>
         <PublicRoute path="/" component={Page} exact />

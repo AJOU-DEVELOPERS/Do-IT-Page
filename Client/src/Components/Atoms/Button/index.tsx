@@ -1,11 +1,12 @@
 import ButtonContainer from "./styles";
 
 export interface Props {
-  width?: number;
-  height?: number;
+  width?: string;
+  height?: string;
   borderColor?: string;
   backGroundColor?: string;
   title?: string;
+  onClick?: () => void;
 }
 
 const Button = ({
@@ -14,6 +15,7 @@ const Button = ({
   borderColor,
   backGroundColor,
   title,
+  onClick,
 }: Props) => {
   return (
     <ButtonContainer
@@ -21,6 +23,7 @@ const Button = ({
       height={height}
       borderColor={borderColor}
       backGroundColor={backGroundColor}
+      onClick={onClick}
     >
       {title}
     </ButtonContainer>
