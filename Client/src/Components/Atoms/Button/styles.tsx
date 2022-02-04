@@ -5,7 +5,9 @@ const ButtonContainer = styled.button<Props>`
   width: ${({ width }) => width};
   height: ${({ height }) => height};
   border: 1px solid ${({ borderColor }) => borderColor};
-  border-radius: 10px;
+  color: ${({ color }) => color};
+  font-size: ${({ fontSize }) => fontSize};
+  border-radius: ${({ radius }) => radius};
   display: flex;
   justify-content: center;
   align-items: center;
