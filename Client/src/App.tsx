@@ -23,28 +23,26 @@ import GlobalStyle from "@Util/reset";
 
 const App = () => {
   return (
-    <>
-      <Suspense fallback={<Spin />}>
-        <Switch>
-          <PublicRoute path="/" component={Page} exact />
-          <PublicRoute path="/login" component={LoginPage} exact />
+    <Suspense fallback={<Spin />}>
+      <Switch>
+        <PublicRoute path="/" component={Page} exact />
+        <PublicRoute path="/login" component={LoginPage} exact />
 
-          <PrivateRoute path="/main" component={MainPage} exact />
-          <PrivateRoute path="/board" component={BoardPage} exact />
-          <PrivateRoute path="/notice" component={NoticePage} exact />
+        <PrivateRoute path="/main" component={MainPage} exact />
+        <PrivateRoute path="/board" component={BoardPage} exact />
+        <PrivateRoute path="/notice" component={NoticePage} exact />
 
-          <PrivateRoute path="/project" component={ProjectPage} exact />
-          <PrivateRoute path="/study" component={StudyPage} exact />
+        <PrivateRoute path="/project" component={ProjectPage} exact />
+        <PrivateRoute path="/study" component={StudyPage} exact />
 
-          <PrivateRoute path="/mypage" component={MyPage} exact />
-          <PrivateRoute path="/reserve" component={ReservePage} exact />
-          <PrivateRoute path="/rank" component={RankingPage} exact />
+        <PrivateRoute path="/mypage" component={MyPage} exact />
+        <PrivateRoute path="/reserve" component={ReservePage} exact />
+        <PrivateRoute path="/rank" component={RankingPage} exact />
 
-          <AdminRoute path="/admin" component={AdminPage} />
-          <Route path="*" component={ErrorPage} exact />
-        </Switch>
-      </Suspense>
-    </>
+        <AdminRoute path="/admin" component={AdminPage} />
+        <Route path="*" component={ErrorPage} exact />
+      </Switch>
+    </Suspense>
   );
 };
 
