@@ -1,3 +1,4 @@
+import GlobalStyle from "@Util/reset";
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
@@ -8,6 +9,7 @@ ReactDOM.render(
   <React.StrictMode>
     <RecoilRoot>
       <Router>
+        <GlobalStyle />
         <App />
       </Router>
     </RecoilRoot>
