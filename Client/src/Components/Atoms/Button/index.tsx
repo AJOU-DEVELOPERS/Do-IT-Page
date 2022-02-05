@@ -6,35 +6,25 @@ export interface Props {
   borderColor?: string;
   backGroundColor?: string;
   title?: string;
+  color?: string;
+  fontSize?: string;
+  radius?: string;
   onClick?: () => void;
 }
 
-const Button = ({
-  width,
-  height,
-  borderColor,
-  backGroundColor,
-  title,
-  onClick,
-}: Props) => {
-  return (
-    <ButtonContainer
-      width={width}
-      height={height}
-      borderColor={borderColor}
-      backGroundColor={backGroundColor}
-      onClick={onClick}
-    >
-      {title}
-    </ButtonContainer>
-  );
+const Button = (props: Props) => {
+  const { title } = props;
+  return <ButtonContainer {...props}>{title}</ButtonContainer>;
 };
 
 Button.defaultProps = {
   width: 150,
   height: 50,
+  color: "#000000",
+  fontSize: "16px",
   borderColor: "#000000",
   backGroundColor: "#ffffff",
+  radius: "10px",
   title: "Click !",
 };
 export default Button;
