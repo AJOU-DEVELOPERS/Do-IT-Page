@@ -2,6 +2,10 @@ export const API_GET_OPTION = {
   withCredentials: true,
 };
 
+// carousel
+export const CAROUSEL_URL = ["/loginBg.jpeg", "/loginL.png", "/loginR.png"];
+export const CAROUSEL_TIME = 3000;
+
 // 버튼
 
 export const SmallButtonType = {
@@ -23,4 +27,25 @@ export const LargeButtonType = {
   height: "150px",
   borderColor: "#000000",
   backGroundColor: "#ffffff",
+};
+
+export const LoginButtonType = {
+  width: "320px",
+  height: "48px",
+  borderColor: "#0c218b",
+  backGroundColor: "#0c218b",
+  color: "#fff",
+  fontSize: "18px",
+  radius: "0px",
+};
+
+// Input
+
+export const LoginInputType = {
+  width: "320px",
+  height: "45px",
+  borderColor: "#e8f0fe",
+  margin: "0 0 10px 0",
+  padding: "0 0 0 10px",
+  background: "#e8f0fe",
 };

@@ -1,5 +1,5 @@
-const Page = () => {
-  return <div>로그인 전 페이지</div>;
-};
+import PageTemplate from "@Templates/Page";
+
+const Page = () => <PageTemplate />;
 
 export default Page;

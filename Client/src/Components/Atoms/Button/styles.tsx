@@ -1,7 +1,7 @@
+import { BasicButtonProps, LoginButtonProps } from "@src/Common/Type";
 import styled from "styled-components";
-import { Props } from ".";
 
-const ButtonContainer = styled.button<Props>`
+const ButtonContainer = styled.button<BasicButtonProps>`
   width: ${({ width }) => width};
   height: ${({ height }) => height};
   border: 1px solid ${({ borderColor }) => borderColor};
@@ -13,4 +13,10 @@ const ButtonContainer = styled.button<Props>`
   cursor: pointer;
 `;
 
-export default ButtonContainer;
+const LoginContainer = styled(ButtonContainer)<LoginButtonProps>`
+  color: ${({ color }) => color};
+  font-size: ${({ fontSize }) => fontSize};
+  border-radius: ${({ radius }) => radius};
+`;
+
+export { ButtonContainer, LoginContainer };

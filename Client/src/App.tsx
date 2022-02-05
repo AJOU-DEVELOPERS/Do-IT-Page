@@ -18,26 +18,12 @@ import PublicRoute from "@Route/PublicRoute";
 import PrivateRoute from "@Route/PrivateRoute";
 import AdminRoute from "@Route/AdminRoute";
 
-import Button from "@Atoms/Button";
 import Spin from "@Atoms/Spinner";
-import {
-  SmallButtonType,
-  MediumButtonType,
-  LargeButtonType,
-} from "@Constant/.";
-import { sayHello } from "@Util/.";
+import GlobalStyle from "@Util/reset";
 
 const App = () => {
-  const handleMediumButtonClick = () => console.log(sayHello());
   return (
     <Suspense fallback={<Spin />}>
-      <Button {...SmallButtonType} title={"hihi"} />
-      <Button
-        {...MediumButtonType}
-        title="컴포넌트 확장"
-        onClick={handleMediumButtonClick}
-      />
-      <Button {...LargeButtonType} />
       <Switch>
         <PublicRoute path="/" component={Page} exact />
         <PublicRoute path="/login" component={LoginPage} exact />
