@@ -1,18 +1,7 @@
-import ButtonContainer from "./styles";
+import { BasicButtonProps } from "@src/Common/Type";
+import { ButtonContainer } from "./styles";
 
-export interface Props {
-  width?: string;
-  height?: string;
-  borderColor?: string;
-  backGroundColor?: string;
-  title?: string;
-  color?: string;
-  fontSize?: string;
-  radius?: string;
-  onClick?: () => void;
-}
-
-const Button = (props: Props) => {
+const Button = (props: BasicButtonProps) => {
   const { title } = props;
   return <ButtonContainer {...props}>{title}</ButtonContainer>;
 };
@@ -20,11 +9,8 @@ const Button = (props: Props) => {
 Button.defaultProps = {
   width: 150,
   height: 50,
-  color: "#000000",
-  fontSize: "16px",
   borderColor: "#000000",
   backGroundColor: "#ffffff",
-  radius: "10px",
   title: "Click !",
 };
 export default Button;

@@ -1,7 +1,9 @@
-import Button from "@Atoms/Button";
-import Input from "@Atoms/Input";
-import { LoginButtonType, LoginInputType } from "@Constant/.";
 import { useRef } from "react";
+
+import LoginButton from "@Atoms/Button/Login";
+import Input from "@Atoms/Input";
+
+import { LoginButtonType, LoginInputType } from "@Constant/.";
 import { InputContainer, Title } from "./styles";
 
 const LoginInput = () => {
@@ -36,7 +38,11 @@ const LoginInput = () => {
         type="password"
         inputRef={pwRef}
       />
-      <Button {...LoginButtonType} title="로그인" onClick={handleLoginClick} />
+      <LoginButton
+        {...LoginButtonType}
+        title="로그인"
+        onClick={handleLoginClick}
+      />
     </InputContainer>
   );
 };

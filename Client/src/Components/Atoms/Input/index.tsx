@@ -1,19 +1,7 @@
+import { BasicInputProps } from "@src/Common/Type";
 import Container from "./styles";
 
-export interface Props {
-  width?: string;
-  height?: string;
-  borderColor?: string;
-  margin?: string;
-  padding?: string;
-  placeholder?: string;
-  background?: string;
-  type?: string;
-  inputRef?: any;
-  onChange?: () => void;
-}
-
-const Input = (props: Props) => {
+const Input = (props: BasicInputProps) => {
   const { inputRef } = props;
   return <Container {...props} ref={inputRef} />;
 };
