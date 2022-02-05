@@ -1,7 +1,7 @@
-import HeaderContainer from "./styles";
+import Container from "./styles";
 
 const Header = () => {
-  return <HeaderContainer>hi</HeaderContainer>;
+  return <Container>hi</Container>;
 };
 
 export default Header;

@@ -2,6 +2,10 @@ export const API_GET_OPTION = {
   withCredentials: true,
 };
 
+// carousel
+export const CAROUSEL_URL = ["/loginBg.jpeg", "/loginL.png", "/loginR.png"];
+export const CAROUSEL_TIME = 3000;
+
 // 버튼
 
 export const SmallButtonType = {
@@ -34,6 +38,9 @@ export const LoginButtonType = {
   fontSize: "18px",
   radius: "0px",
 };
+
+// Input
+
 export const LoginInputType = {
   width: "320px",
   height: "45px",
