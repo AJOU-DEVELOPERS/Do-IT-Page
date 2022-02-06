@@ -1,3 +1,7 @@
+export interface ImgProps {
+  url: string;
+}
+
 interface BasicAtomProps {
   width?: string;
   height?: string;

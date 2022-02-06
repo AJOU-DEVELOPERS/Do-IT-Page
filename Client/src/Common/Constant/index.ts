@@ -3,9 +3,59 @@ export const API_GET_OPTION = {
 };
 
 // carousel
-export const CAROUSEL_URL = ["/loginBg.jpeg", "/loginL.png", "/loginR.png"];
+export const CAROUSEL_URL = [
+  "/loginBg.jpeg",
+  "/carousel1.jpeg",
+  "/carousel2.jpeg",
+];
 export const CAROUSEL_TIME = 3000;
 
+// content
+
+export const MIDDLE_IMG_URL = [
+  "/process_logo.png",
+  "/study_logo.png",
+  "/room_logo.png",
+];
+
+export const CONTENT = [
+  {
+    title: "두잇은 어떤 동아리인가요 ?",
+    text: `두잇은 아주대학교 학생들을 바탕으로 
+개발, 디자인, 기획을 함께 진행하여
+꿈을 실현하기 위해 노력하는
+아주대학교 대표 IT 동아리 입니다.
+`,
+  },
+  {
+    title: "실무에 가까운 프로세스",
+    text: "실무에 가까운 프로세스 설명",
+  },
+  {
+    title: "자기계발 및 스터디 진행",
+    text: "자기계발 및 스터디 진행 설명",
+  },
+  {
+    title: "동아리방 예약 신청",
+    text: "동아리방 예약 신청 설명",
+  },
+  {
+    title: "Develop",
+    text: "Develop에 대한 설명",
+  },
+  {
+    title: "Own",
+    text: "Own에 대한 설명",
+  },
+  {
+    title: "Interact",
+    text: "Interact에 대한 설명",
+  },
+  {
+    title: "Trend",
+    text: "Trend에 대한 설명",
+  },
+];
 // 버튼
 
 export const SmallButtonType = {
