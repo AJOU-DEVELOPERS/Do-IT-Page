@@ -1,7 +1,7 @@
+import { BasicInputProps } from "@src/Common/Type";
 import styled from "styled-components";
-import { Props } from ".";
 
-const Container = styled.input<Props>`
+const Container = styled.input<BasicInputProps>`
   width: ${({ width }) => width};
   height: ${({ height }) => height};
 
