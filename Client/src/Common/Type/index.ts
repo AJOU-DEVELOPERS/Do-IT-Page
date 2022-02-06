@@ -4,7 +4,7 @@ interface BasicAtomProps {
   borderColor?: string;
 }
 
-interface BasicButtonProps extends BasicAtomProps {
+export interface BasicButtonProps extends BasicAtomProps {
   backGroundColor?: string;
   title?: string;
   onClick?: () => void;

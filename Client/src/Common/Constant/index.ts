@@ -39,6 +39,15 @@ export const LoginButtonType = {
   radius: "0px",
 };
 
+export const SmallLoginButtonType = {
+  width: "150px",
+  height: "50px",
+  borderColor: "#ffffff",
+  backGroundColor: "#8ECBF8",
+  fontSize: "18px",
+  radius: "0px",
+};
+
 // Input
 
 export const LoginInputType = {
