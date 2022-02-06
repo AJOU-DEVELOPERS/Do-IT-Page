@@ -1,10 +1,14 @@
+export interface ImgProps {
+  url: string;
+}
+
 interface BasicAtomProps {
   width?: string;
   height?: string;
   borderColor?: string;
 }
 
-interface BasicButtonProps extends BasicAtomProps {
+export interface BasicButtonProps extends BasicAtomProps {
   backGroundColor?: string;
   title?: string;
   onClick?: () => void;

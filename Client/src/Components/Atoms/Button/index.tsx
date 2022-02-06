@@ -7,8 +7,8 @@ const Button = (props: BasicButtonProps) => {
 };
 
 Button.defaultProps = {
-  width: 150,
-  height: 50,
+  width: "150px",
+  height: "50px",
   borderColor: "#000000",
   backGroundColor: "#ffffff",
   title: "Click !",

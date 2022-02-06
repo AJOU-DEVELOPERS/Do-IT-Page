@@ -19,7 +19,6 @@ import PrivateRoute from "@Route/PrivateRoute";
 import AdminRoute from "@Route/AdminRoute";
 
 import Spin from "@Atoms/Spinner";
-import GlobalStyle from "@Util/reset";
 
 const App = () => {
   return (
