@@ -18,6 +18,13 @@ export const MIDDLE_IMG_URL = [
   "/room_logo.png",
 ];
 
+export const LAST_IMG_URL = [
+  "/secondContent.png",
+  "/secondContent.png",
+  "/secondContent.png",
+  "/secondContent.png",
+];
+
 export const CONTENT = [
   {
     title: "두잇은 어떤 동아리인가요 ?",
@@ -29,31 +36,56 @@ export const CONTENT = [
   },
   {
     title: "실무에 가까운 프로세스",
-    text: "실무에 가까운 프로세스 설명",
+    text: `실무에 가까운 프로세스 설명
+실무에 가까운 프로세스 설명
+실무에 가까운 프로세스 설명
+실무에 가까운 프로세스 설명`,
   },
   {
     title: "자기계발 및 스터디 진행",
-    text: "자기계발 및 스터디 진행 설명",
+    text: `자기계발 및 스터디 진행 설명
+자기계발 및 스터디 진행 설명
+자기계발 및 스터디 진행 설명
+자기계발 및 스터디 진행 설명`,
   },
   {
     title: "동아리방 예약 신청",
-    text: "동아리방 예약 신청 설명",
+    text: `동아리방 예약 신청 설명
+동아리방 예약 신청 설명
+동아리방 예약 신청 설명
+동아리방 예약 신청 설명`,
   },
   {
     title: "Develop",
-    text: "Develop에 대한 설명",
+    text: `Develop에 대한 설명
+Develop에 대한 설명
+Develop에 대한 설명
+Develop에 대한 설명`,
   },
   {
     title: "Own",
-    text: "Own에 대한 설명",
+    text: `Own에 대한 설명
+Own에 대한 설명
+Own에 대한 설명
+Own에 대한 설명`,
   },
   {
     title: "Interact",
-    text: "Interact에 대한 설명",
+    text: `Interact에 대한 설명
+Interact에 대한 설명
+Interact에 대한 설명
+Interact에 대한 설명`,
   },
   {
     title: "Trend",
-    text: "Trend에 대한 설명",
+    text: `Trend에 대한 설명
+Trend에 대한 설명
+Trend에 대한 설명
+Trend에 대한 설명`,
+  },
+  {
+    title: "두잇에 대해 더 알고 싶으신가요?",
+    text: `두잇은 언제나 열정 넘치는 기획자, 개발자, 디자이너를 기다립니다!`,
   },
 ];
 // 버튼
@@ -98,6 +130,12 @@ export const SmallLoginButtonType = {
   radius: "0px",
 };
 
+export const MainPageLastButtonType = {
+  width: "320px",
+  height: "70px",
+  borderColor: "#ffffff",
+  backGroundColor: "#8ECBF8",
+};
 // Input
 
 export const LoginInputType = {

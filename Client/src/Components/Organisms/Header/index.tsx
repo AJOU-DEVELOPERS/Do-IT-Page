@@ -1,6 +1,5 @@
-import { useCallback } from "react";
-import { withRouter } from "react-router-dom";
-import { History } from "history";
+import { useRecoilValue } from "recoil";
+import { checkLoginSelector } from "@Recoil/CheckLogin";
 
 import { SmallLoginButtonType } from "@Constant/.";
 
@@ -8,21 +7,19 @@ import Button from "@Atoms/Button";
 import Container from "./styles";
 import HeaderLeftSide from "@Molecules/Header";
 
-const Header = ({ history }: { history: History }) => {
-  const handleLoginClick = useCallback(() => {
-    history.push("/login");
-  }, []);
+const Header = ({ onClick }: { onClick: () => void }) => {
+  const user = useRecoilValue(checkLoginSelector);
 
   return (
     <Container>
       <HeaderLeftSide />
-      <Button
-        {...SmallLoginButtonType}
-        title="로그인"
-        onClick={handleLoginClick}
-      />
+      {user ? (
+        <img src="/user_icon.png" alt="유저아이콘" />
+      ) : (
+        <Button {...SmallLoginButtonType} title="로그인" onClick={onClick} />
+      )}
     </Container>
   );
 };
 
-export default withRouter(Header);
+export default Header;

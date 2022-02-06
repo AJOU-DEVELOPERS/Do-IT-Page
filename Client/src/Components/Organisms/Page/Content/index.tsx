@@ -10,15 +10,19 @@ interface Props extends ImgProps {
 const Content = ({ type, url, text }: Props) => {
   return (
     <Container type={type}>
-      {type === "middle" && (
+      {type === "basic" && (
         <MiddleBox>
           <MiddleImg url={url} />
         </MiddleBox>
       )}
-      {type !== "middle" && <Img alt="contentImage" url={url} />}
+      {type !== "basic" && <Img alt="contentImage" url={url} />}
       {text()}
     </Container>
   );
+};
+
+Content.defaultProps = {
+  type: "basic",
 };
 
 export default Content;

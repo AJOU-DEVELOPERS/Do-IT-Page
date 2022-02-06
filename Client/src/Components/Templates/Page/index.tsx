@@ -1,16 +1,29 @@
+import { useCallback } from "react";
+import { withRouter } from "react-router-dom";
+import { History } from "history";
+
 import FirstContent from "@Organisms/Page/FirstContent";
 import Header from "@Organisms/Header";
 import Content from "@Organisms/Page/Content";
-import Context from "@Molecules/Content";
-import { CONTENT } from "@Constant/.";
-import { Year } from "@Atoms/ContentImg/styles";
 import MiddleContent from "@Organisms/Page/MiddleContent";
+import LastContent from "@Organisms/Page/LastContent";
+import Last from "@Organisms/Page/Last";
+
+import Context from "@Molecules/Content";
+import { Year } from "@Atoms/ContentImg/styles";
+
 import ContentContainer from "./styles";
 
-const PageTemplate = () => {
+import { CONTENT } from "@Constant/.";
+
+const PageTemplate = ({ history }: { history: History }) => {
+  const handleLoginClick = useCallback(() => {
+    history.push("/login");
+  }, []);
+
   return (
     <>
-      <Header />
+      <Header onClick={handleLoginClick} />
       <FirstContent />
 
       <ContentContainer>
@@ -27,22 +40,11 @@ const PageTemplate = () => {
 
       <MiddleContent />
 
-      <ContentContainer>
-        <Content
-          text={() => Context(CONTENT[1])}
-          type="false"
-          url="/secondContent.png"
-        />
-      </ContentContainer>
-      <ContentContainer>
-        <Content
-          text={() => Context(CONTENT[1])}
-          type="true"
-          url="/secondContent.png"
-        />
-      </ContentContainer>
+      <LastContent />
+
+      <Last onClick={handleLoginClick} />
     </>
   );
 };
 
-export default PageTemplate;
+export default withRouter(PageTemplate);

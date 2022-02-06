@@ -15,14 +15,9 @@ const FalseStyle = css`
   justify-content: space-around;
 `;
 
-const MiddleStyle = css`
-  /* width: 10%; */
-`;
-
 const Container = styled.div<Props>`
   ${({ type }) => type === "true" && TrueStyle}
   ${({ type }) => type === "false" && FalseStyle}
-  ${({ type }) => type === "middle" && MiddleStyle}
 `;
 
 export { Container };
