@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import React, { useRef } from "react";
 import { Slider, Container } from "./styles";
 
 // carousel 다른 프로젝트에서도 재사용 가능 판단하여 interface를 추출하지 않음.
@@ -35,4 +35,4 @@ const calCurrentNum = ({ total, prev }: { total: number; prev: number }) => {
   return prev + 1;
 };
 
-export default Carousel;
+export default React.memo(Carousel);

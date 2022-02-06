@@ -1,28 +1,22 @@
-export interface LoginButtonProps {
+interface BasicAtomProps {
   width?: string;
   height?: string;
   borderColor?: string;
+}
+
+interface BasicButtonProps extends BasicAtomProps {
   backGroundColor?: string;
   title?: string;
+  onClick?: () => void;
+}
+
+export interface LoginButtonProps extends BasicButtonProps {
   color?: string;
   fontSize?: string;
   radius?: string;
-  onClick?: () => void;
 }
 
-export interface BasicButtonProps {
-  width?: string;
-  height?: string;
-  borderColor?: string;
-  backGroundColor?: string;
-  title?: string;
-  onClick?: () => void;
-}
-
-export interface BasicInputProps {
-  width?: string;
-  height?: string;
-  borderColor?: string;
+export interface BasicInputProps extends BasicAtomProps {
   margin?: string;
   padding?: string;
   placeholder?: string;
