@@ -1,13 +1,9 @@
 import styled from "styled-components";
 
 const Container = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 5vmin;
+  height: 5vmin;
   content: url("/Hamburger.svg");
-  cursor: pointer;
-  :hover {
-    opacity: 50%;
-  }
 `;
 
 export default Container;

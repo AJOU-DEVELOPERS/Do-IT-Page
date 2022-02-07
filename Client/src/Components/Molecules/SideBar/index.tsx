@@ -1,15 +1,9 @@
 import { ADMIN_CATEGORY } from "@Constant/index";
 import { Container, CategoryButton } from "./styles";
 
-const SideBar = ({
-  handleCategory,
-  hamburgerOnOff,
-}: {
-  handleCategory: (number: number) => void;
-  hamburgerOnOff: Boolean;
-}) => {
+const SideBar = ({ handleCategory }: { handleCategory: (number: number) => void }) => {
   return (
-    <Container style={hamburgerOnOff ? { transform: "translateX(0%)" } : {}}>
+    <Container>
       {ADMIN_CATEGORY.map((element, index) => (
         <CategoryButton key={index} onClick={() => handleCategory(index)}>
           {element}

@@ -1,5 +1,5 @@
 import Container from "./styles";
 
-const Hamburger = ({ handleClick }: { handleClick: () => void }) => <Container alt="hamburger" onClick={handleClick} />;
+const Hamburger = () => <Container alt="hamburger" />;
 
 export default Hamburger;

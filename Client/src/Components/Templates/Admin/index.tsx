@@ -2,24 +2,29 @@ import { useState } from "react";
 
 import SideBar from "@Molecules/SideBar";
 import Section from "@Molecules/Section";
-
+import Hamburger from "@Atoms/Hamburger";
+import Logo from "@Atoms/Logo";
 import Header from "@Organisms/Header/admin";
 
+import { Container, AdminLogo, Title } from "./styles";
+
 const AdminTemp = () => {
-  const [hamburgerOnOff, setHamburgerOnOff] = useState<Boolean>(false);
   const [category, setCategory] = useState<number>(0);
 
-  const handleClickHamburger = () => setHamburgerOnOff((v) => (v === true ? false : true));
   const handleCategory = (number: number) => {
     setCategory(number);
-    setHamburgerOnOff(false);
   };
   return (
-    <>
-      <Header handleClickHamburger={handleClickHamburger} />
-      <SideBar handleCategory={handleCategory} hamburgerOnOff={hamburgerOnOff} />
-      <Section category={category} />
-    </>
+    <Container>
+      <AdminLogo>
+        <Logo />
+        <Title>Do-IT</Title>
+        <Hamburger />
+      </AdminLogo>
+      <Header category={category} />
+      <SideBar handleCategory={handleCategory} />
+      <Section />
+    </Container>
   );
 };
 
