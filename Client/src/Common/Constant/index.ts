@@ -6,6 +6,9 @@ export const API_GET_OPTION = {
 export const CAROUSEL_URL = ["/loginBg.jpeg", "/loginL.png", "/loginR.png"];
 export const CAROUSEL_TIME = 3000;
 
+//admin category
+export const ADMIN_CATEGORY = ["동아리원 모집", "동아리 신청 관리", "과방 신청 관리", "공지사항 관리"];
+
 // 버튼
 
 export const SmallButtonType = {
