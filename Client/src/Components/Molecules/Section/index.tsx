@@ -1,18 +1,18 @@
-import { Container, Title, Wrapper, SubSection } from "./styles";
-import { ADMIN_CATEGORY } from "@Constant/index";
+import { Container, Wrapper, SubSection, SearchButton } from "./styles";
 import Input from "@Atoms/Input";
 
 const AdminInputProps = {
+  width: "200px",
   borderColor: "black",
   padding: "0.4vw",
 };
 
-const Section = ({ category }: { category: number }) => {
+const Section = () => {
   return (
     <Container>
       <Wrapper>
-        <Title>{ADMIN_CATEGORY[category]}</Title>
         <Input {...AdminInputProps} />
+        <SearchButton />
       </Wrapper>
       <SubSection></SubSection>
     </Container>

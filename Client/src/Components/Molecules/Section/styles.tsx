@@ -1,25 +1,32 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  width: 100vw;
-  height: 70vh;
-  padding: 2vw;
-`;
-
-const Title = styled.div`
-  font-size: 2rem;
+  grid-area: section;
+  height: 100%;
 `;
 
 const Wrapper = styled.div`
   padding: 2vh 4vh;
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: flex-end;
 `;
 
 const SubSection = styled.div`
   margin: 2vh;
-  height: 100%;
+  height: 80%;
   border: 1px solid;
 `;
 
-export { Container, Title, Wrapper, SubSection };
+const SearchButton = styled.div`
+  width: 45px;
+  border: 1px solid;
+  border-left: none;
+  content: url("/coolicon.svg");
+  cursor: pointer;
+  :hover {
+    opacity: 50%;
+  }
+`;
+
+export { Container, Wrapper, SubSection, SearchButton };

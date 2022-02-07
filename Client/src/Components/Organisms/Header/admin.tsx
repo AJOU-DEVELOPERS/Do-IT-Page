@@ -1,26 +1,20 @@
 import Button from "@Atoms/Button/Login";
-import Hamburger from "@Atoms/Hamburger";
-import Logo from "@Atoms/Logo";
-
-import { Title, AdminContainer, LeftAdminContainer } from "./styles";
+import { ADMIN_CATEGORY } from "@Constant/index";
+import { Title, AdminContainer } from "./styles";
 
 const SmallLoginButtonType = {
-  width: "150px",
-  height: "50px",
-  borderColor: "#ffffff",
-  backGroundColor: "#8ECBF8",
+  width: "100px",
+  height: "30px",
+  borderColor: "#FCF9EF",
+  backGroundColor: "#FCF9EF",
   fontSize: "18px",
   radius: "20px",
 };
 
-const AdminHeader = ({ handleClickHamburger }: { handleClickHamburger: () => void }) => {
+const AdminHeader = ({ category }: { category: number }) => {
   return (
     <AdminContainer>
-      <LeftAdminContainer>
-        <Hamburger handleClick={handleClickHamburger} />
-        <Logo />
-        <Title>Do-IT</Title>
-      </LeftAdminContainer>
+      <Title>{ADMIN_CATEGORY[category]}</Title>
       <Button {...SmallLoginButtonType} title={"로그아웃"} />
     </AdminContainer>
   );
