@@ -14,7 +14,7 @@ const PublicRoute = ({
   exact,
 }: Props): JSX.Element => {
   const user = useRecoilValue(checkLoginSelector);
-  console.log(user);
+
   return (
     <Route
       exact={exact}

@@ -1,4 +1,6 @@
 import { useRef } from "react";
+import { withRouter } from "react-router-dom";
+import { History } from "history";
 
 import LoginButton from "@Atoms/Button/Login";
 import Input from "@Atoms/Input";
@@ -6,7 +8,7 @@ import Input from "@Atoms/Input";
 import { LoginButtonType, LoginInputType } from "@Constant/.";
 import { InputContainer, Title } from "./styles";
 
-const LoginInput = () => {
+const LoginInput = ({ history }: { history: History }) => {
   const idRef = useRef<HTMLInputElement>();
   const pwRef = useRef<HTMLInputElement>();
 
@@ -21,7 +23,7 @@ const LoginInput = () => {
       current: { value: pwValue },
     } = pwRef;
 
-    console.log(idValue, pwValue);
+    history.push("/main");
   };
 
   return (
@@ -47,4 +49,4 @@ const LoginInput = () => {
   );
 };
 
-export default LoginInput;
+export default withRouter(LoginInput);
