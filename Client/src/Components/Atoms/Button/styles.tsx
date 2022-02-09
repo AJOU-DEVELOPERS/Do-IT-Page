@@ -9,6 +9,7 @@ const ButtonContainer = styled.button<BasicButtonProps>`
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #ffffff;
   background-color: ${({ backGroundColor }) => backGroundColor};
   cursor: pointer;
 `;

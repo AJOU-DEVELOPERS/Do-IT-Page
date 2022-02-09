@@ -1,13 +1,33 @@
+import { ImgProps } from "@src/Common/Type";
 import styled from "styled-components";
 
-interface Props {
-  url: string;
-}
-const FirstContainer = styled.div<Props>`
-  width: 100vw;
-  height: 80vh;
-  background-image: url(${({ url }) => url});
-  background-repeat: no-repeat;
+const Container = styled.div`
+  position: relative;
 `;
 
-export default FirstContainer;
+const FirstContainer = styled.div<ImgProps>`
+  width: 100vw;
+  height: 70vh;
+  background-image: url(${({ url }) => url});
+  background-repeat: no-repeat;
+  background-size: cover;
+`;
+
+const MainTitle = styled.div`
+  position: absolute;
+  top: 40%;
+  left: 20%;
+  font-size: 24px;
+  width: 30%;
+  height: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  span {
+    color: #ffffff;
+    padding: 10px;
+  }
+`;
+
+export { Container, FirstContainer, MainTitle };

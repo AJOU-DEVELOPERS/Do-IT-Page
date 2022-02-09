@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -9,10 +9,12 @@ const Container = styled.div`
 `;
 
 const BackGround = styled.img`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background-image: url("/loginBg.jpeg");
   background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   position: fixed;
   top: 0;
   left: 0;
