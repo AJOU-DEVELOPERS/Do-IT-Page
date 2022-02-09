@@ -6,14 +6,9 @@ interface Props {
 }
 
 const AdminRoute = ({ component: Component, path }: Props): JSX.Element => {
-  const admin = false;
+  const admin = true;
 
-  return (
-    <Route
-      path={path}
-      render={() => (admin ? <Component /> : <Redirect to="/error" />)}
-    />
-  );
+  return <Route path={path} render={() => (admin ? <Component /> : <Redirect to="/error" />)} />;
 };
 
 export default AdminRoute;

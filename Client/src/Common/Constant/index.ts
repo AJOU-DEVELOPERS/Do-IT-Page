@@ -3,27 +3,17 @@ export const API_GET_OPTION = {
 };
 
 // carousel
-export const CAROUSEL_URL = [
-  "/loginBg.jpeg",
-  "/carousel1.jpeg",
-  "/carousel2.jpeg",
-];
+export const CAROUSEL_URL = ["/loginBg.jpeg", "/carousel1.jpeg", "/carousel2.jpeg"];
 export const CAROUSEL_TIME = 3000;
+
+//admin category
+export const ADMIN_CATEGORY = ["동아리원 모집", "동아리 신청 관리", "과방 신청 관리", "공지사항 관리"];
 
 // content
 
-export const MIDDLE_IMG_URL = [
-  "/process_logo.png",
-  "/study_logo.png",
-  "/room_logo.png",
-];
+export const MIDDLE_IMG_URL = ["/process_logo.png", "/study_logo.png", "/room_logo.png"];
 
-export const LAST_IMG_URL = [
-  "/secondContent.png",
-  "/secondContent.png",
-  "/secondContent.png",
-  "/secondContent.png",
-];
+export const LAST_IMG_URL = ["/secondContent.png", "/secondContent.png", "/secondContent.png", "/secondContent.png"];
 
 export const CONTENT = [
   {

@@ -7,8 +7,8 @@ const Input = (props: BasicInputProps) => {
 };
 
 Input.defaultProps = {
-  width: 150,
-  height: 50,
+  width: "150px",
+  height: "50px",
   borderColor: "#ffffff",
   margin: "0",
   padding: "0",
