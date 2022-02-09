@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-import SideBar from "@Molecules/SideBar";
-import Section from "@Molecules/Section";
 import Hamburger from "@Atoms/Hamburger";
 import Logo from "@Atoms/Logo";
+import SideBar from "@Molecules/SideBar";
+import Section from "@Molecules/Section";
 import Header from "@Organisms/Header/admin";
 
 import { Container, AdminLogo, Title } from "./styles";

@@ -1,15 +1,6 @@
 import Button from "@Atoms/Button/Login";
-import { ADMIN_CATEGORY } from "@Constant/index";
+import { ADMIN_CATEGORY, SmallLoginButtonType } from "@Constant/index";
 import { Title, AdminContainer } from "./styles";
-
-const SmallLoginButtonType = {
-  width: "100px",
-  height: "30px",
-  borderColor: "#FCF9EF",
-  backGroundColor: "#FCF9EF",
-  fontSize: "18px",
-  radius: "20px",
-};
 
 const AdminHeader = ({ category }: { category: number }) => {
   return (
