@@ -38,3 +38,8 @@ export interface BoardContentType {
   images: string[];
   writer: string;
 }
+
+export interface BoardType {
+  boardType: string;
+  apiSrc: string;
+}

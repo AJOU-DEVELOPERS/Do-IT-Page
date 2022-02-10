@@ -1,7 +1,39 @@
+import { BoardType } from "../Type";
+
 export const API_GET_OPTION = {
   withCredentials: true,
 };
 
+export const GET_CHECK_LOGIN_URL = "/checkLogin.json";
+
+export const GET_NOTICE_CONTENT_URL = "/NoticeBoardContent.json";
+
+export const GET_FREE_CONTENT_URL = "/FreeBoardContent.json";
+
+export const GET_STUDY_CONTENT_URL = "/StudyBoardContent.json";
+
+export const GET_PROJECT_CONTENT_URL = "/ProjectBoardContent.json";
+
+export const GET_ROOM_CONTENT_URL = "/RoomBoardContent.json";
+
+export const BOARD_INFOS: BoardType[] = [
+  {
+    boardType: "자유게시판",
+    apiSrc: GET_FREE_CONTENT_URL,
+  },
+  {
+    boardType: "스터디",
+    apiSrc: GET_STUDY_CONTENT_URL,
+  },
+  {
+    boardType: "프로젝트",
+    apiSrc: GET_PROJECT_CONTENT_URL,
+  },
+  {
+    boardType: "과방 대여",
+    apiSrc: GET_ROOM_CONTENT_URL,
+  },
+];
 // carousel
 export const CAROUSEL_URL = [
   "/loginBg.jpeg",
