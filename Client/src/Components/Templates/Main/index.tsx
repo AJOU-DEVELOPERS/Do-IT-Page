@@ -1,7 +1,10 @@
 import Header from "@Organisms/Header";
+import { useCallback } from "react";
 
 const MainPageTemplate = () => {
-  const handleUserIconClick = () => {};
+  const handleUserIconClick = useCallback(() => {
+    console.log("click userIcon");
+  }, []);
 
   return (
     <>
