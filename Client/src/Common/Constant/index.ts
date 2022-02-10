@@ -57,6 +57,12 @@ export const LAST_IMG_URL = [
   "/secondContent.png",
 ];
 
+export const RANKING_IMG_URL = [
+  "/gold_icon.png",
+  "/silver_icon.png",
+  "/bronze_icon.png",
+];
+
 export const CONTENT = [
   {
     title: "두잇은 어떤 동아리인가요 ?",
