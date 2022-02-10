@@ -6,6 +6,7 @@ import NoticeContent from "@Organisms/Main/NoticeContent";
 import { BOARD_INFOS } from "@Constant/.";
 import BoardContent from "@Organisms/Main/BoardContent";
 import { BoardsContainer } from "./style";
+import RainkingContent from "@Organisms/Main/RankingContent";
 
 const MainPageTemplate = () => {
   const handleUserIconClick = useCallback(() => {
@@ -22,6 +23,7 @@ const MainPageTemplate = () => {
           <BoardContent boardType={boardType} apiSrc={apiSrc} />
         ))}
       </BoardsContainer>
+      <RainkingContent />
     </>
   );
 };
