@@ -1,11 +1,16 @@
+import { useRecoilValue } from "recoil";
+
 import BoardPreview from "@Molecules/BoardPreview";
 import ContentTitle from "@Molecules/ContentTitle";
 import { noticeContentSelector } from "@Recoil/NoticeContent";
-import { useRecoilValue } from "recoil";
+
 import { ContenTitleContainer, ContentContainer } from "./style";
+import { BoardContentType } from "@src/Common/Type";
 
 const NoticeContent = () => {
-  const noticeContents = useRecoilValue(noticeContentSelector);
+  const noticeContents = useRecoilValue<BoardContentType[]>(
+    noticeContentSelector
+  );
   return (
     <>
       <ContenTitleContainer>
