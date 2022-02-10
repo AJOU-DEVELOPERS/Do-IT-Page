@@ -13,8 +13,7 @@ const PrivateRoute = ({
   path,
   exact,
 }: Props): JSX.Element => {
-  let user = useRecoilValue(checkLoginSelector);
-  user = true;
+  const user = useRecoilValue(checkLoginSelector);
 
   return (
     <Route

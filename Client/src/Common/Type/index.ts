@@ -29,3 +29,12 @@ export interface BasicInputProps extends BasicAtomProps {
   inputRef?: any;
   onChange?: () => void;
 }
+
+export interface BoardContentType {
+  board: string;
+  title: string;
+  text: string;
+  date: string;
+  images: string[];
+  writer: string;
+}
