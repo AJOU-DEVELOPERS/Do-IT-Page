@@ -11,10 +11,12 @@ const NoticeContent = () => {
   const noticeContents = useRecoilValue<BoardContentType[]>(
     noticeContentSelector
   );
+
+  const handleMoreInfoClick = () => {};
   return (
     <>
       <ContenTitleContainer>
-        <ContentTitle title="공지사항" />
+        <ContentTitle title="공지사항" onClick={handleMoreInfoClick} />
       </ContenTitleContainer>
       <ContentContainer>
         {noticeContents.slice(0, 4).map(({ title, date }) => (

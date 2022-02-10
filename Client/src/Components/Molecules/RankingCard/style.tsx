@@ -1,4 +1,4 @@
-import { AlignCenterAround } from "@Style/.";
+import { AlignCenterAround, HoverPointer } from "@Style/.";
 import { ImgAltProps } from "@Type/.";
 import styled from "styled-components";
 
@@ -8,6 +8,7 @@ export const CardContainer = styled.div`
   width: 75%;
   height: 25%;
   ${AlignCenterAround}
+  ${HoverPointer}
 `;
 
 export const Name = styled.p`

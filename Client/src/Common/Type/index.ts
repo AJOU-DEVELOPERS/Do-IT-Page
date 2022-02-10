@@ -56,4 +56,5 @@ export interface RankingContentType {
 
 export interface RankingCardProps extends RankingContentType {
   ranking: number;
+  onClick: () => void;
 }

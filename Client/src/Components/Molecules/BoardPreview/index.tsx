@@ -6,8 +6,10 @@ interface Props {
   type: string;
 }
 const BoardPreview = ({ title, date, type }: Props) => {
+  const handleBoardClick = () => {};
+
   return (
-    <Container type={type}>
+    <Container type={type} onClick={handleBoardClick}>
       <Title>{title}</Title>
       <Date>{date}</Date>
     </Container>
