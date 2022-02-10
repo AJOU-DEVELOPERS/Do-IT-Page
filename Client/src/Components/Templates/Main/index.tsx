@@ -5,8 +5,10 @@ import FirstContent from "@Organisms/Page/FirstContent";
 import NoticeContent from "@Organisms/Main/NoticeContent";
 import { BOARD_INFOS } from "@Constant/.";
 import BoardContent from "@Organisms/Main/BoardContent";
-import { BoardsContainer } from "./style";
 import RainkingContent from "@Organisms/Main/RankingContent";
+import PhotoContent from "@Organisms/Main/PhotoContent";
+
+import { BoardsContainer } from "./style";
 
 const MainPageTemplate = () => {
   const handleUserIconClick = useCallback(() => {
@@ -24,6 +26,7 @@ const MainPageTemplate = () => {
         ))}
       </BoardsContainer>
       <RainkingContent />
+      <PhotoContent />
     </>
   );
 };

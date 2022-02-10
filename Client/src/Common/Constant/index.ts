@@ -18,6 +18,10 @@ export const GET_ROOM_CONTENT_URL = "/RoomBoardContent.json";
 
 export const GET_RANKING_URL = "/BaekJoonRanking.json";
 
+export const GET_PHOTO_CONTENT_URL = "/PhotoBoardContent.json";
+
+export const NOTICE_URL = "/notice";
+
 export const FREE_BOARD_URL = "/board";
 
 export const STUDY_BOARD_URL = "/study";
@@ -25,6 +29,8 @@ export const STUDY_BOARD_URL = "/study";
 export const PROJECT_BOARD_URL = "/project";
 
 export const ROOM_BOARD_URL = "/room";
+
+export const PHOTO_BOARD_URL = "/photos";
 
 export const GET_SOLVED_CARD_URL = (id: string) =>
   `http://mazassumnida.wtf/api/v2/generate_badge?boj=${id}`;

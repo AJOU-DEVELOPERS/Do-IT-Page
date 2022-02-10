@@ -10,10 +10,9 @@ export const ContenTitleContainer = styled.div`
 export const ContentContainer = styled.div`
   width: 100vw;
   height: 50vh;
-  background: ${GreyColor};
   display: flex;
+  flex-wrap: wrap;
   padding: 0px 7vw;
   margin: 30px auto;
-  flex-direction: column;
   ${AlignCenterAround}
 `;
