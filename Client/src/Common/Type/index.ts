@@ -1,6 +1,9 @@
 export interface ImgProps {
   url: string;
 }
+export interface ImgAltProps extends ImgProps {
+  alt: string;
+}
 
 interface BasicAtomProps {
   width?: string;
@@ -30,6 +33,12 @@ export interface BasicInputProps extends BasicAtomProps {
   onChange?: () => void;
 }
 
+export interface BoardType {
+  boardType: string;
+  apiSrc: string;
+  pageSrc?: string;
+}
+
 export interface BoardContentType {
   board: string;
   title: string;
@@ -39,7 +48,12 @@ export interface BoardContentType {
   writer: string;
 }
 
-export interface BoardType {
-  boardType: string;
-  apiSrc: string;
+export interface RankingContentType {
+  rating: number;
+  tier: string;
+  name: string;
+}
+
+export interface RankingCardProps extends RankingContentType {
+  ranking: number;
 }
