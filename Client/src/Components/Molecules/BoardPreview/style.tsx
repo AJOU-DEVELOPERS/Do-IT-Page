@@ -5,12 +5,15 @@ interface Props {
 }
 
 export const Container = styled.div<Props>`
-  ${({ type }) => (type === "box" ? BoxContainer : LineContainer)}
+  ${({ type }) => (type === "card" ? CardContainer : LineContainer)}
 `;
-const BoxContainer = styled.div`
+const CardContainer = `
   background-color: white;
-  width: 20%;
+  width: 15%;
+  height: 80%;
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 const LineContainer = styled.div``;
 export const Title = styled.p`

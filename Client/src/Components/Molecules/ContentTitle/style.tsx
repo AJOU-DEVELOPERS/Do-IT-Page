@@ -12,8 +12,9 @@ export const Title = styled.p`
   font-size: 25px;
 `;
 
-export const Text = styled.p`
+export const Text = styled.button`
   font-size: 15px;
+  background: none;
   &:hover {
     cursor: pointer;
   }
