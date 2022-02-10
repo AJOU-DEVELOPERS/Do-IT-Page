@@ -1,3 +1,4 @@
+import { AlignCenterAround, HoverPointer } from "@Style/.";
 import styled from "styled-components";
 
 interface Props {
@@ -5,17 +6,20 @@ interface Props {
 }
 
 export const Container = styled.div<Props>`
+  display: flex;
+  ${HoverPointer}
   ${({ type }) => (type === "card" ? CardContainer : LineContainer)}
 `;
 const CardContainer = `
   background-color: white;
   width: 15%;
   height: 80%;
-  display: flex;
   flex-direction: column;
   justify-content: space-between;
 `;
-const LineContainer = styled.div``;
+const LineContainer = `
+  ${AlignCenterAround}
+`;
 export const Title = styled.p`
   font-size: 18px;
   line-height: 32px;

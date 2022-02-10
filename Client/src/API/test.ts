@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_GET_OPTION } from "@Constant/.";
+import { API_GET_OPTION, GET_NOTICE_CONTENT_URL } from "@Constant/.";
 
 export const getLoginInfo = async () => {
   const { data } = await axios.get("/checkLogin.json", API_GET_OPTION);
@@ -7,7 +7,7 @@ export const getLoginInfo = async () => {
 };
 
 export const getNoticeContents = async () => {
-  const { data } = await axios.get("/NoticeBoardContent.json", API_GET_OPTION);
+  const { data } = await axios.get(GET_NOTICE_CONTENT_URL, API_GET_OPTION);
   return data;
 };
 

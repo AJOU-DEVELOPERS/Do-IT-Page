@@ -1,3 +1,4 @@
+import { HoverPointer } from "@Style/.";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -15,7 +16,5 @@ export const Title = styled.p`
 export const Text = styled.button`
   font-size: 15px;
   background: none;
-  &:hover {
-    cursor: pointer;
-  }
+  ${HoverPointer}
 `;

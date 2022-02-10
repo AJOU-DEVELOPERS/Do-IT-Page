@@ -12,7 +12,7 @@ const NoticeContent = () => {
         <ContentTitle title="공지사항" />
       </ContenTitleContainer>
       <ContentContainer>
-        {noticeContents.map(({ title, date }) => (
+        {noticeContents.slice(0, 4).map(({ title, date }) => (
           <BoardPreview type="card" title={title} date={date} />
         ))}
       </ContentContainer>
