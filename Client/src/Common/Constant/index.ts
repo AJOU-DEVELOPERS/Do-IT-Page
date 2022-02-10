@@ -16,6 +16,8 @@ export const GET_PROJECT_CONTENT_URL = "/ProjectBoardContent.json";
 
 export const GET_ROOM_CONTENT_URL = "/RoomBoardContent.json";
 
+export const GET_RANKING_URL = "/BaekJoonRanking.json";
+
 export const BOARD_INFOS: BoardType[] = [
   {
     boardType: "자유게시판",
