@@ -13,7 +13,4 @@ export const checkLoginSelector = selector<Boolean | any>({
     const res = await API({ api: getLoginInfo });
     return res;
   },
-  set: ({ set, get }, checkLogin) => {
-    set(checkLoginAtom, checkLogin);
-  },
 });
