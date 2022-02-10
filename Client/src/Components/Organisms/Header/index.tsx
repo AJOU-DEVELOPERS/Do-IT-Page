@@ -1,7 +1,7 @@
 import { useRecoilValue } from "recoil";
 import { checkLoginSelector } from "@Recoil/CheckLogin";
 
-import { SmallLoginButtonType } from "@Constant/.";
+import { SmallLoginButtonType } from "@Style/.";
 
 import Button from "@Atoms/Button";
 import Container from "./styles";

@@ -5,7 +5,7 @@ import { History } from "history";
 import LoginButton from "@Atoms/Button/Login";
 import Input from "@Atoms/Input";
 
-import { LoginButtonType, LoginInputType } from "@Constant/.";
+import { LoginButtonType, LoginInputType } from "@Style/.";
 import { InputContainer, Title } from "./styles";
 
 const LoginInput = ({ history }: { history: History }) => {
