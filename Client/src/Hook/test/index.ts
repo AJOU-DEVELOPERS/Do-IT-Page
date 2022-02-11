@@ -30,7 +30,9 @@ export const useChangeCalendarView = (
 ) => {
   const changeView = () => {
     calendarRef.current?.getInstance().changeView(view, true);
+    calendarRef.current?.getInstance().prev();
   };
+
   useEffect(() => {
     changeView();
   }, [calendarRef.current]);
