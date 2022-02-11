@@ -23,8 +23,12 @@ const MainPageTemplate = () => {
       <FirstContent />
       <NoticeContent />
       <BoardsContainer>
-        {BOARD_INFOS.map(({ boardType, apiSrc }) => (
-          <BoardContent boardType={boardType} apiSrc={apiSrc} />
+        {BOARD_INFOS.map(({ boardType, apiSrc }, idx) => (
+          <BoardContent
+            boardType={boardType}
+            apiSrc={apiSrc}
+            key={`${boardType} ${idx}`}
+          />
         ))}
       </BoardsContainer>
       <RainkingContent />

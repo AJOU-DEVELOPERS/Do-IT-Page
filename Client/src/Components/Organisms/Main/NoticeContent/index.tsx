@@ -19,8 +19,13 @@ const NoticeContent = () => {
         <ContentTitle title="공지사항" onClick={handleMoreInfoClick} />
       </ContenTitleContainer>
       <ContentContainer>
-        {noticeContents.slice(0, 4).map(({ title, date }) => (
-          <BoardPreview type="card" title={title} date={date} />
+        {noticeContents.slice(0, 4).map(({ title, date }, idx) => (
+          <BoardPreview
+            type="card"
+            title={title}
+            date={date}
+            key={`${title + date} ${idx}`}
+          />
         ))}
       </ContentContainer>
     </>

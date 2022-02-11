@@ -16,8 +16,13 @@ const BoardContent = ({ boardType, apiSrc }: BoardType) => {
       <ContenTitleContainer>
         <ContentTitle title={boardType} onClick={handleMoreInfoClick} />
       </ContenTitleContainer>
-      {BoardContents.slice(0, 4).map(({ title, date }) => (
-        <BoardPreview type="line" title={title} date={date} />
+      {BoardContents.slice(0, 4).map(({ title, date }, idx) => (
+        <BoardPreview
+          type="line"
+          title={title}
+          date={date}
+          key={`${title + date} ${idx}`}
+        />
       ))}
     </BoardContainer>
   );

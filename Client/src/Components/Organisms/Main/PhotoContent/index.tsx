@@ -19,8 +19,8 @@ const PhotoContent = () => {
         <ContentTitle title="우리들의 사진" onClick={handleMoreInfoClick} />
       </ContenTitleContainer>
       <ContentContainer>
-        {photoContents.slice(0, 8).map(({ images, title }) => (
-          <PhotoCard url={images[0]} alt={title} />
+        {photoContents.slice(0, 8).map(({ images, title }, idx) => (
+          <PhotoCard url={images[0]} alt={title} key={`${title} ${idx}`} />
         ))}
       </ContentContainer>
     </>

@@ -26,6 +26,7 @@ const RainkingContent = () => {
             tier={tier}
             ranking={ranking}
             onClick={handleRankingCardClick}
+            key={`${name} ${rating} ${tier}`}
           />
         ))}
       </ContentContainer>
