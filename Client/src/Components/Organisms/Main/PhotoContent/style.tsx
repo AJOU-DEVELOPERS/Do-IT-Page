@@ -9,7 +9,7 @@ export const ContenTitleContainer = styled.div`
 
 export const ContentContainer = styled.div`
   width: 100vw;
-  height: 50vh;
+  height: 100vh;
   display: flex;
   flex-wrap: wrap;
   padding: 0px 7vw;
