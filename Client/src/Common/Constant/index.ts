@@ -86,6 +86,10 @@ export const RANKING_IMG_URL = [
   "/bronze_icon.png",
 ];
 
+export const MANAGER_INFO = "민태홍 김영진";
+
+export const INTRODUCTION = "안녕하세요 김연진 입니다";
+
 export const CONTENT = [
   {
     title: "두잇은 어떤 동아리인가요 ?",

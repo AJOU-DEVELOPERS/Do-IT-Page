@@ -10,6 +10,7 @@ import PhotoContent from "@Organisms/Main/PhotoContent";
 
 import { BoardsContainer, CalendarContainer } from "./style";
 import Calendar from "@Organisms/Calendar";
+import Footer from "@Organisms/Footer";
 
 const MainPageTemplate = () => {
   const handleUserIconClick = useCallback(() => {
@@ -31,6 +32,7 @@ const MainPageTemplate = () => {
       <CalendarContainer>
         <Calendar />
       </CalendarContainer>
+      <Footer />
     </>
   );
 };
