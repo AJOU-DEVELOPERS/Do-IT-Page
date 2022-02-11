@@ -2,8 +2,8 @@ import { ImgProps } from "@Type/.";
 import styled from "styled-components";
 
 const Container = styled.img<ImgProps>`
-  width: 50px;
-  height: 50px;
+  width: 5vmin;
+  height: 5vmin;
   content: url(${({ url }) => url})});
 `;
 

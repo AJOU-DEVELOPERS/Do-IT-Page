@@ -1,5 +1,7 @@
+import AdminTemp from "@Templates/Admin";
+
 const AdminPage = () => {
-  return <div>관리자 페이지 입니다.</div>;
+  return <AdminTemp />;
 };
 
 export default AdminPage;

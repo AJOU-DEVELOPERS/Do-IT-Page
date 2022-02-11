@@ -4,7 +4,7 @@ import { checkLoginSelector } from "@Recoil/CheckLogin";
 import { SmallLoginButtonType } from "@Style/.";
 
 import Button from "@Atoms/Button";
-import Container from "./styles";
+import { Container } from "./styles";
 import HeaderLeftSide from "@Molecules/Header";
 
 const Header = ({ onClick }: { onClick: () => void }) => {
