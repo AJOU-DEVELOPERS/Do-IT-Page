@@ -8,7 +8,8 @@ import BoardContent from "@Organisms/Main/BoardContent";
 import RainkingContent from "@Organisms/Main/RankingContent";
 import PhotoContent from "@Organisms/Main/PhotoContent";
 
-import { BoardsContainer } from "./style";
+import { BoardsContainer, CalendarContainer } from "./style";
+import Calendar from "@Organisms/Calendar";
 
 const MainPageTemplate = () => {
   const handleUserIconClick = useCallback(() => {
@@ -27,6 +28,9 @@ const MainPageTemplate = () => {
       </BoardsContainer>
       <RainkingContent />
       <PhotoContent />
+      <CalendarContainer>
+        <Calendar />
+      </CalendarContainer>
     </>
   );
 };
