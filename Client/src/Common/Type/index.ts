@@ -5,6 +5,15 @@ export interface ImgAltProps extends ImgProps {
   alt: string;
 }
 
+export interface DateProps {
+  year: number;
+  month: number;
+}
+
+export interface DateAction {
+  type: "increment" | "decrement";
+}
+
 interface BasicAtomProps {
   width?: string;
   height?: string;
