@@ -6,10 +6,11 @@ import {
   MaxLength,
   IsString,
   IsArray,
+  isArray,
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { BaseResponse } from 'src/common/dto/response-common.dto';
-import { extend } from 'joi';
+import { BaseResponse } from 'src/commons/dto/response-common.dto';
+import { extend, object } from 'joi';
 
 export class CreateUserDto {
   @IsString()
@@ -46,7 +47,7 @@ export class CreateUserDto {
   })
   email: string;
   @IsArray()
-  @ApiProperty()
+  @ApiProperty({ isArray: true, type: () => [Department] })
   department: Department[];
 }
 export class Department {
@@ -58,8 +59,8 @@ export class Department {
   name: string;
   @IsString()
   @ApiProperty({
-    description: '전공 여부 ',
-    example: 'major : 전공, pluralMajor : 복수전공, minor : 부전공',
+    description: '전공 종류',
+    example: 'major',
   })
   sort: string;
 }

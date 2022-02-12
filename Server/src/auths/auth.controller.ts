@@ -15,7 +15,7 @@ import {
   ApiTags,
   ApiOkResponse,
 } from '@nestjs/swagger';
-import { BaseResponse } from 'src/common/dto/response-common.dto';
+import { BaseResponse } from 'src/commons/dto/response-common.dto';
 @Controller('auths')
 @ApiTags('Auth API')
 export class AuthController {

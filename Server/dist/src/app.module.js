@@ -16,7 +16,7 @@ const config_1 = require("@nestjs/config");
 const Joi = require("joi");
 const mailer_1 = require("@nestjs-modules/mailer");
 const handlebars_adapter_1 = require("@nestjs-modules/mailer/dist/adapters/handlebars.adapter");
-const auth_module_1 = require("./auth/auth.module");
+const auth_module_1 = require("./auths/auth.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([

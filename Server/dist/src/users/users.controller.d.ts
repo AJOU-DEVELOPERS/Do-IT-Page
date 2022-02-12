@@ -1,6 +1,6 @@
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { BaseResponse } from 'src/common/dto/response-common.dto';
+import { BaseResponse } from 'src/commons/dto/response-common.dto';
 export declare class UsersController {
     private readonly usersService;
     constructor(usersService: UsersService);

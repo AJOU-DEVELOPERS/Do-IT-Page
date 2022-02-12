@@ -7,7 +7,7 @@ import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
-import { AuthsModule } from './auth/auth.module';
+import { AuthsModule } from './auths/auth.module';
 import { User } from './users/entities/user.entity';
 @Module({
   imports: [

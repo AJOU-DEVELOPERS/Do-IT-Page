@@ -17,7 +17,7 @@ const common_1 = require("@nestjs/common");
 const users_service_1 = require("./users.service");
 const create_user_dto_1 = require("./dto/create-user.dto");
 const swagger_1 = require("@nestjs/swagger");
-const response_common_dto_1 = require("../common/dto/response-common.dto");
+const response_common_dto_1 = require("../commons/dto/response-common.dto");
 let UsersController = class UsersController {
     constructor(usersService) {
         this.usersService = usersService;

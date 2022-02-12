@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.createUserResponse = exports.Department = exports.CreateUserDto = void 0;
 const class_validator_1 = require("class-validator");
 const swagger_1 = require("@nestjs/swagger");
-const response_common_dto_1 = require("../../common/dto/response-common.dto");
+const response_common_dto_1 = require("../../commons/dto/response-common.dto");
 class CreateUserDto {
 }
 __decorate([
@@ -59,7 +59,7 @@ __decorate([
 ], CreateUserDto.prototype, "email", void 0);
 __decorate([
     (0, class_validator_1.IsArray)(),
-    (0, swagger_1.ApiProperty)(),
+    (0, swagger_1.ApiProperty)({ isArray: true, type: () => [Department] }),
     __metadata("design:type", Array)
 ], CreateUserDto.prototype, "department", void 0);
 exports.CreateUserDto = CreateUserDto;
@@ -76,8 +76,8 @@ __decorate([
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, swagger_1.ApiProperty)({
-        description: '전공 여부 ',
-        example: 'major : 전공, pluralMajor : 복수전공, minor : 부전공',
+        description: '전공 종류',
+        example: 'major',
     }),
     __metadata("design:type", String)
 ], Department.prototype, "sort", void 0);
