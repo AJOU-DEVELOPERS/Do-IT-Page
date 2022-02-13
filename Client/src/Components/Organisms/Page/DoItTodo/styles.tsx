@@ -4,7 +4,7 @@ const Box = styled.div`
   margin-top: 200px;
   background-color: #f3f6f8;
   width: 100%;
-  height: 400px;
+  height: 500px;
 `;
 
 const Container = styled.div`

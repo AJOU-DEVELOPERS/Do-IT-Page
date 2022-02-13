@@ -3,7 +3,7 @@ import Context from "@Molecules/Content";
 import Content from "@Organisms/Page/Content";
 import ContentContainer from "./styles";
 
-const LastContent = () => {
+const DoItInfo = () => {
   return (
     <>
       {LAST_IMG_URL.map((url, idx) => (
@@ -20,4 +20,4 @@ const LastContent = () => {
   );
 };
 
-export default LastContent;
+export default DoItInfo;

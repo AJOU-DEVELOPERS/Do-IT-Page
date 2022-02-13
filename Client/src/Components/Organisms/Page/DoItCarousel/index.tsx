@@ -2,7 +2,7 @@ import { CAROUSEL_TIME, CAROUSEL_URL } from "@Constant/.";
 import Carousel from "@Molecules/Carousel";
 import { Container, FirstContainer, MainTitle } from "./styles";
 
-const FirstContent = () => {
+const DoItCarousel = () => {
   return (
     <Container>
       <Carousel timer={Number(CAROUSEL_TIME)}>
@@ -18,4 +18,4 @@ const FirstContent = () => {
   );
 };
 
-export default FirstContent;
+export default DoItCarousel;

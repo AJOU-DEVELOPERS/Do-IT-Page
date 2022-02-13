@@ -3,7 +3,7 @@ import Context from "@Molecules/Content";
 import Content from "@Organisms/Page/Content";
 import { Box, Container } from "./styles";
 
-const MiddleContent = () => {
+const DoItTodo = () => {
   return (
     <Box>
       <Container>
@@ -15,4 +15,4 @@ const MiddleContent = () => {
   );
 };
 
-export default MiddleContent;
+export default DoItTodo;
