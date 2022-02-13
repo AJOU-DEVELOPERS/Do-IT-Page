@@ -1,10 +1,14 @@
 import { Inject, Injectable, CACHE_MANAGER } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
+import { SignupUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Connection } from 'typeorm';
 import { User } from './entities/user.entity';
-import { BaseResponse } from 'src/commons/dto/response-common.dto';
+import {
+  BaseSuccessResponse,
+  ResultSuccessResponse,
+  BaseFailResponse,
+} from 'src/commons/dto/response-common.dto';
 
 //미완성
 @Injectable()
@@ -13,7 +17,7 @@ export class UsersService {
     @InjectRepository(User) private userRepository: Repository<User>,
     private connection: Connection,
   ) {}
-  async createUser(createUserDto: CreateUserDto) {
+  async createUser(createUserDto: SignupUserDto) {
     const user = new User();
     const queryRunner = this.connection.createQueryRunner();
     user.studentId = createUserDto.studentId;
@@ -31,7 +35,7 @@ export class UsersService {
       await queryRunner.release();
     }
     await this.userRepository.save(user);
-    return BaseResponse;
+    return new BaseSuccessResponse();
   }
 
   findAll() {

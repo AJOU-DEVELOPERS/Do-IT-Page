@@ -3,7 +3,6 @@ import { UsersService } from './users.service';
 import { UsersController } from './users.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import {
-  Department,
   TechStack,
   User,
   UserDepartment,
@@ -18,7 +17,6 @@ import { ConfigService } from '@nestjs/config';
       UserTechStack,
       TechStack,
       UserDepartment,
-      Department,
       UserSocial,
     ]),
     ConfigService,

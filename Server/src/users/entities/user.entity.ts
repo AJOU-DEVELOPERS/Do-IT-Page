@@ -1,3 +1,4 @@
+import { Department } from 'src/departments/entities/department.entity';
 import {
   Column,
   Entity,
@@ -7,35 +8,50 @@ import {
   ManyToMany,
   BeforeInsert,
   BaseEntity,
+  JoinColumn,
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { InternalServerErrorException } from '@nestjs/common';
+import { ApiProperty } from '@nestjs/swagger';
+
 @Entity('User')
 export class User extends BaseEntity {
+  @ApiProperty()
   @PrimaryGeneratedColumn()
   userIdx: number;
 
+  @ApiProperty()
   @Column()
   password: string;
+  @ApiProperty()
   @Column()
   studentId: number;
+  @ApiProperty()
   @Column()
   name: string;
+  @ApiProperty()
   @Column()
   phoneNumber: string;
+  @ApiProperty()
   @Column()
   email: string;
+  @ApiProperty()
   @Column()
   createdAt: string;
+  @ApiProperty()
   @Column()
   updatedAt: string;
+  @ApiProperty()
   @Column()
   status: string;
 
   @OneToMany((_type) => UserTechStack, (_type) => _type.user)
   userTechStacks: UserTechStack[];
 
-  @OneToMany((_type) => UserDepartment, (_type) => _type.user)
+  @OneToMany(
+    (_type) => UserDepartment,
+    (userDepartments) => userDepartments.user,
+  )
   userDepartments: UserDepartment[];
 
   @OneToMany((_type) => UserSocial, (_type) => _type.user)
@@ -54,9 +70,10 @@ export class User extends BaseEntity {
 
 @Entity()
 export class TechStack extends BaseEntity {
+  @ApiProperty()
   @PrimaryGeneratedColumn()
   techStackIdx: number;
-
+  @ApiProperty()
   @Column()
   name: string;
 
@@ -65,24 +82,14 @@ export class TechStack extends BaseEntity {
 }
 
 @Entity()
-export class Department extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  departmentIdx: number;
-
-  @Column()
-  name: string;
-
-  @OneToMany((_type) => UserDepartment, (_type) => _type.department)
-  userDepartments: UserDepartment[];
-}
-
-@Entity()
 export class UserTechStack extends BaseEntity {
+  @ApiProperty()
   @PrimaryGeneratedColumn()
   userTechStack: number;
+  @ApiProperty()
   @Column()
   userIdx: number;
-
+  @ApiProperty()
   @Column()
   techStackIdx: number;
 
@@ -95,43 +102,49 @@ export class UserTechStack extends BaseEntity {
 
 @Entity()
 export class UserDepartment extends BaseEntity {
+  @ApiProperty()
   @PrimaryGeneratedColumn()
   userDepartmentIdx: number;
+  @ApiProperty()
   @Column()
   userIdx: number;
-
+  @ApiProperty()
   @Column()
   departmentIdx: number;
+  @ApiProperty()
   @Column()
   sort: string;
 
-  @ManyToOne((_type) => User, (_type) => _type.userDepartments)
+  @ManyToOne(() => User, (user) => user.userDepartments)
+  @JoinColumn({ name: 'userIdx', referencedColumnName: 'userIdx' })
   user: User;
 
-  @ManyToOne((_type) => Department, (_type) => _type.userDepartments)
+  @ManyToOne(() => Department, (department) => department.userDepartments)
+  @JoinColumn({ name: 'departmentIdx', referencedColumnName: 'departmentIdx' })
   department: Department;
 }
 
 @Entity()
 export class UserSocial extends BaseEntity {
+  @ApiProperty()
   @PrimaryGeneratedColumn()
   userSocialIdx: number;
-
+  @ApiProperty()
   @Column()
   userIdx: number;
-
+  @ApiProperty()
   @Column()
   name: string;
-
+  @ApiProperty()
   @Column()
   id: string;
-
+  @ApiProperty()
   @Column()
   status: string;
-
+  @ApiProperty()
   @Column()
   createdAt: string;
-
+  @ApiProperty()
   @Column()
   updatedAt: string;
 

@@ -9,11 +9,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createUserResponse = exports.Department = exports.CreateUserDto = void 0;
+exports.SignupUserDepartmentDto = exports.Department = exports.SignupUserDto = void 0;
 const class_validator_1 = require("class-validator");
 const swagger_1 = require("@nestjs/swagger");
-const response_common_dto_1 = require("../../commons/dto/response-common.dto");
-class CreateUserDto {
+class SignupUserDto {
 }
 __decorate([
     (0, class_validator_1.IsString)(),
@@ -24,7 +23,7 @@ __decorate([
         example: '곽영일',
     }),
     __metadata("design:type", String)
-], CreateUserDto.prototype, "name", void 0);
+], SignupUserDto.prototype, "name", void 0);
 __decorate([
     (0, class_validator_1.IsInt)(),
     (0, class_validator_1.Length)(9, 9),
@@ -33,14 +32,14 @@ __decorate([
         example: '201823815',
     }),
     __metadata("design:type", Number)
-], CreateUserDto.prototype, "studentId", void 0);
+], SignupUserDto.prototype, "studentId", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
         description: '유저 비밀번호',
         example: 'ASDJ123sa',
     }),
     __metadata("design:type", String)
-], CreateUserDto.prototype, "password", void 0);
+], SignupUserDto.prototype, "password", void 0);
 __decorate([
     (0, class_validator_1.Length)(11, 11),
     (0, swagger_1.ApiProperty)({
@@ -48,7 +47,7 @@ __decorate([
         example: '01012345678',
     }),
     __metadata("design:type", String)
-], CreateUserDto.prototype, "phoneNumber", void 0);
+], SignupUserDto.prototype, "phoneNumber", void 0);
 __decorate([
     (0, class_validator_1.IsEmail)(),
     (0, swagger_1.ApiProperty)({
@@ -56,15 +55,23 @@ __decorate([
         example: 'kyi9592@ajou.ac.kr',
     }),
     __metadata("design:type", String)
-], CreateUserDto.prototype, "email", void 0);
+], SignupUserDto.prototype, "email", void 0);
 __decorate([
     (0, class_validator_1.IsArray)(),
-    (0, swagger_1.ApiProperty)({ isArray: true, type: () => [Department] }),
+    (0, swagger_1.ApiProperty)({ isArray: true, type: () => [SignupUserDepartmentDto] }),
     __metadata("design:type", Array)
-], CreateUserDto.prototype, "department", void 0);
-exports.CreateUserDto = CreateUserDto;
+], SignupUserDto.prototype, "department", void 0);
+exports.SignupUserDto = SignupUserDto;
 class Department {
 }
+__decorate([
+    (0, class_validator_1.IsInt)(),
+    (0, swagger_1.ApiProperty)({
+        description: '학과 인덱스',
+        example: 1,
+    }),
+    __metadata("design:type", Number)
+], Department.prototype, "departmentIdx", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, swagger_1.ApiProperty)({
@@ -73,6 +80,12 @@ __decorate([
     }),
     __metadata("design:type", String)
 ], Department.prototype, "name", void 0);
+exports.Department = Department;
+class SignupUserDepartmentDto extends Department {
+    constructor() {
+        super();
+    }
+}
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, swagger_1.ApiProperty)({
@@ -80,12 +93,6 @@ __decorate([
         example: 'major',
     }),
     __metadata("design:type", String)
-], Department.prototype, "sort", void 0);
-exports.Department = Department;
-class createUserResponse extends response_common_dto_1.BaseResponse {
-    constructor() {
-        super();
-    }
-}
-exports.createUserResponse = createUserResponse;
+], SignupUserDepartmentDto.prototype, "sort", void 0);
+exports.SignupUserDepartmentDto = SignupUserDepartmentDto;
 //# sourceMappingURL=create-user.dto.js.map

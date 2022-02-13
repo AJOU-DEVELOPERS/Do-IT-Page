@@ -1,10 +1,10 @@
 import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { BaseResponse } from 'src/commons/dto/response-common.dto';
+import { SignupUserDto } from './dto/create-user.dto';
+import { BaseSuccessResponse } from 'src/commons/dto/response-common.dto';
 export declare class UsersController {
     private readonly usersService;
     constructor(usersService: UsersService);
-    create(createUserDto: CreateUserDto): Promise<true | typeof BaseResponse>;
+    create(createUserDto: SignupUserDto): Promise<true | BaseSuccessResponse>;
     findAll(): string;
     findOne(id: string): string;
     remove(id: string): string;

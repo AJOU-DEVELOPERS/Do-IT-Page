@@ -1,16 +1,17 @@
-import { BaseResponse } from 'src/commons/dto/response-common.dto';
-export declare class CreateUserDto {
+export declare class SignupUserDto {
     name: string;
     studentId: number;
     password: string;
     phoneNumber: string;
     email: string;
-    department: Department[];
+    department: SignupUserDepartmentDto[];
 }
 export declare class Department {
+    departmentIdx: number;
     name: string;
-    sort: string;
+    userDepartments: any;
 }
-export declare class createUserResponse extends BaseResponse {
+export declare class SignupUserDepartmentDto extends Department {
     constructor();
+    sort: string;
 }

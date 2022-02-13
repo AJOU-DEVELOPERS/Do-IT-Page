@@ -17,6 +17,7 @@ const Joi = require("joi");
 const mailer_1 = require("@nestjs-modules/mailer");
 const handlebars_adapter_1 = require("@nestjs-modules/mailer/dist/adapters/handlebars.adapter");
 const auth_module_1 = require("./auths/auth.module");
+const departments_module_1 = require("./departments/departments.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -68,6 +69,7 @@ AppModule = __decorate([
             }),
             users_module_1.UsersModule,
             auth_module_1.AuthsModule,
+            departments_module_1.DepartmentsModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

@@ -1,3 +1,4 @@
+import { Department } from 'src/departments/entities/department.entity';
 import { BaseEntity } from 'typeorm';
 export declare class User extends BaseEntity {
     userIdx: number;
@@ -18,11 +19,6 @@ export declare class TechStack extends BaseEntity {
     techStackIdx: number;
     name: string;
     userTechStacks: UserTechStack[];
-}
-export declare class Department extends BaseEntity {
-    departmentIdx: number;
-    name: string;
-    userDepartments: UserDepartment[];
 }
 export declare class UserTechStack extends BaseEntity {
     userTechStack: number;

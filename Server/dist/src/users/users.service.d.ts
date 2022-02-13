@@ -1,12 +1,12 @@
-import { CreateUserDto } from './dto/create-user.dto';
+import { SignupUserDto } from './dto/create-user.dto';
 import { Repository, Connection } from 'typeorm';
 import { User } from './entities/user.entity';
-import { BaseResponse } from 'src/commons/dto/response-common.dto';
+import { BaseSuccessResponse } from 'src/commons/dto/response-common.dto';
 export declare class UsersService {
     private userRepository;
     private connection;
     constructor(userRepository: Repository<User>, connection: Connection);
-    createUser(createUserDto: CreateUserDto): Promise<true | typeof BaseResponse>;
+    createUser(createUserDto: SignupUserDto): Promise<true | BaseSuccessResponse>;
     findAll(): string;
     findOne(id: number): string;
     remove(id: number): string;

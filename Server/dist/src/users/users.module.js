@@ -23,7 +23,6 @@ UsersModule = __decorate([
                 user_entity_1.UserTechStack,
                 user_entity_1.TechStack,
                 user_entity_1.UserDepartment,
-                user_entity_1.Department,
                 user_entity_1.UserSocial,
             ]),
             config_1.ConfigService,

@@ -9,6 +9,8 @@ import { MailerModule } from '@nestjs-modules/mailer';
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 import { AuthsModule } from './auths/auth.module';
 import { User } from './users/entities/user.entity';
+import { Department } from './departments/entities/department.entity';
+import { DepartmentsModule } from './departments/departments.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -57,6 +59,7 @@ import { User } from './users/entities/user.entity';
     }),
     UsersModule,
     AuthsModule,
+    DepartmentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

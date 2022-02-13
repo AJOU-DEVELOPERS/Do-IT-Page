@@ -8,7 +8,7 @@ import {
   Delete,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
+import { SignupUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import {
   ApiBody,
@@ -17,7 +17,7 @@ import {
   ApiTags,
   ApiOkResponse,
 } from '@nestjs/swagger';
-import { BaseResponse } from 'src/commons/dto/response-common.dto';
+import { BaseSuccessResponse } from 'src/commons/dto/response-common.dto';
 
 @Controller('users')
 @ApiTags('User API')
@@ -26,9 +26,9 @@ export class UsersController {
 
   @Post('sign-up')
   @ApiOperation({ summary: '회원가입 API', description: 'true false 반환' })
-  @ApiBody({ type: CreateUserDto })
-  @ApiOkResponse({ description: '회원가입 성공', type: BaseResponse })
-  create(@Body() createUserDto: CreateUserDto) {
+  @ApiBody({ type: SignupUserDto })
+  @ApiOkResponse({ description: '회원가입 성공', type: BaseSuccessResponse })
+  create(@Body() createUserDto: SignupUserDto) {
     return this.usersService.createUser(createUserDto);
   }
 

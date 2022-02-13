@@ -9,10 +9,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserSocial = exports.UserDepartment = exports.UserTechStack = exports.Department = exports.TechStack = exports.User = void 0;
+exports.UserSocial = exports.UserDepartment = exports.UserTechStack = exports.TechStack = exports.User = void 0;
+const department_entity_1 = require("../../departments/entities/department.entity");
 const typeorm_1 = require("typeorm");
 const bcrypt = require("bcrypt");
 const common_1 = require("@nestjs/common");
+const swagger_1 = require("@nestjs/swagger");
 let User = class User extends typeorm_1.BaseEntity {
     async hashPassword() {
         try {
@@ -25,38 +27,47 @@ let User = class User extends typeorm_1.BaseEntity {
     }
 };
 __decorate([
+    (0, swagger_1.ApiProperty)(),
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
 ], User.prototype, "userIdx", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)(),
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], User.prototype, "password", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)(),
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
 ], User.prototype, "studentId", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)(),
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], User.prototype, "name", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)(),
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], User.prototype, "phoneNumber", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)(),
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], User.prototype, "email", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)(),
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], User.prototype, "createdAt", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)(),
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], User.prototype, "updatedAt", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)(),
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], User.prototype, "status", void 0);
@@ -65,7 +76,7 @@ __decorate([
     __metadata("design:type", Array)
 ], User.prototype, "userTechStacks", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)((_type) => UserDepartment, (_type) => _type.user),
+    (0, typeorm_1.OneToMany)((_type) => UserDepartment, (userDepartments) => userDepartments.user),
     __metadata("design:type", Array)
 ], User.prototype, "userDepartments", void 0);
 __decorate([
@@ -85,10 +96,12 @@ exports.User = User;
 let TechStack = class TechStack extends typeorm_1.BaseEntity {
 };
 __decorate([
+    (0, swagger_1.ApiProperty)(),
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
 ], TechStack.prototype, "techStackIdx", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)(),
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], TechStack.prototype, "name", void 0);
@@ -100,35 +113,20 @@ TechStack = __decorate([
     (0, typeorm_1.Entity)()
 ], TechStack);
 exports.TechStack = TechStack;
-let Department = class Department extends typeorm_1.BaseEntity {
-};
-__decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)(),
-    __metadata("design:type", Number)
-], Department.prototype, "departmentIdx", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Department.prototype, "name", void 0);
-__decorate([
-    (0, typeorm_1.OneToMany)((_type) => UserDepartment, (_type) => _type.department),
-    __metadata("design:type", Array)
-], Department.prototype, "userDepartments", void 0);
-Department = __decorate([
-    (0, typeorm_1.Entity)()
-], Department);
-exports.Department = Department;
 let UserTechStack = class UserTechStack extends typeorm_1.BaseEntity {
 };
 __decorate([
+    (0, swagger_1.ApiProperty)(),
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
 ], UserTechStack.prototype, "userTechStack", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)(),
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
 ], UserTechStack.prototype, "userIdx", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)(),
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
 ], UserTechStack.prototype, "techStackIdx", void 0);
@@ -147,28 +145,34 @@ exports.UserTechStack = UserTechStack;
 let UserDepartment = class UserDepartment extends typeorm_1.BaseEntity {
 };
 __decorate([
+    (0, swagger_1.ApiProperty)(),
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
 ], UserDepartment.prototype, "userDepartmentIdx", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)(),
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
 ], UserDepartment.prototype, "userIdx", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)(),
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
 ], UserDepartment.prototype, "departmentIdx", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)(),
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], UserDepartment.prototype, "sort", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)((_type) => User, (_type) => _type.userDepartments),
+    (0, typeorm_1.ManyToOne)(() => User, (user) => user.userDepartments),
+    (0, typeorm_1.JoinColumn)({ name: 'userIdx', referencedColumnName: 'userIdx' }),
     __metadata("design:type", User)
 ], UserDepartment.prototype, "user", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)((_type) => Department, (_type) => _type.userDepartments),
-    __metadata("design:type", Department)
+    (0, typeorm_1.ManyToOne)(() => department_entity_1.Department, (department) => department.userDepartments),
+    (0, typeorm_1.JoinColumn)({ name: 'departmentIdx', referencedColumnName: 'departmentIdx' }),
+    __metadata("design:type", department_entity_1.Department)
 ], UserDepartment.prototype, "department", void 0);
 UserDepartment = __decorate([
     (0, typeorm_1.Entity)()
@@ -177,30 +181,37 @@ exports.UserDepartment = UserDepartment;
 let UserSocial = class UserSocial extends typeorm_1.BaseEntity {
 };
 __decorate([
+    (0, swagger_1.ApiProperty)(),
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
 ], UserSocial.prototype, "userSocialIdx", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)(),
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
 ], UserSocial.prototype, "userIdx", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)(),
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], UserSocial.prototype, "name", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)(),
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], UserSocial.prototype, "id", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)(),
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], UserSocial.prototype, "status", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)(),
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], UserSocial.prototype, "createdAt", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)(),
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], UserSocial.prototype, "updatedAt", void 0);

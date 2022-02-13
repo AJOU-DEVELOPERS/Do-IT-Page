@@ -43,7 +43,7 @@ let UsersService = class UsersService {
             await queryRunner.release();
         }
         await this.userRepository.save(user);
-        return response_common_dto_1.BaseResponse;
+        return new response_common_dto_1.BaseSuccessResponse();
     }
     findAll() {
         return `This action returns all users`;
