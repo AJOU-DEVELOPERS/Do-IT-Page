@@ -46,10 +46,10 @@ export class ResultSuccessResponse extends BaseSuccessResponse {
 }
 
 export class BaseFailResponse extends BaseSuccessResponse {
-  constructor(isSuccess = false, code = 400, message = '실패') {
+  constructor(message = '실패') {
     super();
-    this.isSuccess = isSuccess;
-    this.code = code;
+    this.isSuccess = false;
+    this.code = 400;
     this.message = message;
   }
 }

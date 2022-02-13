@@ -34,7 +34,10 @@ export class DepartmentsController {
 
   @Get('')
   @ApiOperation({ summary: '학과 목록 조회 API', description: '' })
-  @ApiOkResponse({ description: '회원가입 성공', type: ResultSuccessResponse })
+  @ApiOkResponse({
+    description: '학과별 인덱스, 이름',
+    type: ResultSuccessResponse,
+  })
   findAll() {
     return this.departmentsService.findAll();
   }

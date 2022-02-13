@@ -4,7 +4,7 @@ import { BaseSuccessResponse } from 'src/commons/dto/response-common.dto';
 export declare class UsersController {
     private readonly usersService;
     constructor(usersService: UsersService);
-    create(createUserDto: SignupUserDto): Promise<true | BaseSuccessResponse>;
+    create(createUserDto: SignupUserDto): Promise<BaseSuccessResponse>;
     findAll(): string;
     findOne(id: string): string;
     remove(id: string): string;

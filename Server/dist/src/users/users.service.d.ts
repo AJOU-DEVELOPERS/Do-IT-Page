@@ -6,7 +6,7 @@ export declare class UsersService {
     private userRepository;
     private connection;
     constructor(userRepository: Repository<User>, connection: Connection);
-    createUser(createUserDto: SignupUserDto): Promise<true | BaseSuccessResponse>;
+    createUser(createUserDto: SignupUserDto): Promise<BaseSuccessResponse>;
     findAll(): string;
     findOne(id: number): string;
     remove(id: number): string;

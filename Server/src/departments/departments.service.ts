@@ -8,12 +8,12 @@ import {
 } from 'src/commons/dto/response-common.dto';
 import { Repository, Connection } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Department } from 'src/users/dto/create-user.dto';
+import { Department } from './entities/department.entity';
 @Injectable()
 export class DepartmentsService {
   constructor(
     @InjectRepository(Department)
-    private userRepository: Repository<Department>,
+    private departmentRepository: Repository<Department>,
     private connection: Connection,
   ) {}
   create(createDepartmentDto: CreateDepartmentDto) {
@@ -28,11 +28,7 @@ export class DepartmentsService {
       return new ResultSuccessResponse(departmentList);
     } catch (error) {
       console.log(error);
-      return new BaseFailResponse(
-        false,
-        400,
-        '학과 목록을 불러오는데 실패하였습니다.',
-      );
+      return new BaseFailResponse('학과 목록을 불러오는데 실패하였습니다.');
     } finally {
       await queryRunner.release();
     }

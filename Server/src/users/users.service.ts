@@ -10,7 +10,6 @@ import {
   BaseFailResponse,
 } from 'src/commons/dto/response-common.dto';
 
-//미완성
 @Injectable()
 export class UsersService {
   constructor(
@@ -28,14 +27,14 @@ export class UsersService {
     await queryRunner.connect();
     try {
       await queryRunner.manager.save(user);
-      return true;
+      return new BaseSuccessResponse();
     } catch (error) {
       console.log(error);
+      return new BaseFailResponse('회원가입에 실패하였습니다.');
     } finally {
       await queryRunner.release();
     }
     await this.userRepository.save(user);
-    return new BaseSuccessResponse();
   }
 
   findAll() {

@@ -34,16 +34,16 @@ let UsersService = class UsersService {
         await queryRunner.connect();
         try {
             await queryRunner.manager.save(user);
-            return true;
+            return new response_common_dto_1.BaseSuccessResponse();
         }
         catch (error) {
             console.log(error);
+            return new response_common_dto_1.BaseFailResponse('회원가입에 실패하였습니다.');
         }
         finally {
             await queryRunner.release();
         }
         await this.userRepository.save(user);
-        return new response_common_dto_1.BaseSuccessResponse();
     }
     findAll() {
         return `This action returns all users`;

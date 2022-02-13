@@ -10,7 +10,7 @@ import {
 } from 'typeorm';
 import { UserDepartment } from 'src/users/entities/user.entity';
 import { ApiProperty } from '@nestjs/swagger';
-@Entity()
+@Entity('Department')
 export class Department extends BaseEntity {
   @ApiProperty()
   @PrimaryGeneratedColumn()
