@@ -1,10 +1,10 @@
 import Logo from "@Atoms/Logo";
-import { LeftContainer, Title } from "./styles";
+import { LeftContainer, Title } from "./style";
 
 const HeaderLeftSide = () => {
   return (
     <LeftContainer>
-      <Logo />
+      <Logo url="/Logo.svg" alt="Logo" />
       <Title>Do-IT</Title>
     </LeftContainer>
   );

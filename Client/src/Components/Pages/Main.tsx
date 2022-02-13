@@ -1,8 +1,5 @@
-import { sayHello } from "@Util/.";
+import MainPageTemplate from "@Templates/Main";
 
-const MainPage = () => {
-  const root = sayHello();
-  return <div>{root}</div>;
-};
+const MainPage = () => <MainPageTemplate />;
 
 export default MainPage;

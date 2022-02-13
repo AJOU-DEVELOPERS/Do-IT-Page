@@ -7,12 +7,17 @@ interface Props {
 const TrueStyle = css`
   display: flex;
   flex-direction: row-reverse;
-  justify-content: space-around;
+  justify-content: space-between;
 `;
 
 const FalseStyle = css`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+`;
+
+const Box = styled.div`
+  width: 10%;
+  height: 100%;
 `;
 
 const Container = styled.div<Props>`
@@ -20,4 +25,4 @@ const Container = styled.div<Props>`
   ${({ type }) => type === "false" && FalseStyle}
 `;
 
-export { Container };
+export { Container, Box };

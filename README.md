@@ -66,3 +66,7 @@
 <br />
 
 [Click](https://github.com/AJOU-DEVELOPERS/Do-IT-Page/wiki/%EA%B8%B0%EC%88%A0-%EC%8A%A4%ED%83%9D)
+
+## 💓 Design
+
+[Click](https://www.figma.com/file/r77c3Ps8mxVKVhjriACroN/Doit_web?node-id=0%3A1)
