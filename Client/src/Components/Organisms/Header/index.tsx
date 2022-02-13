@@ -1,7 +1,7 @@
 import { useRecoilValue } from "recoil";
 import { checkLoginSelector } from "@Recoil/CheckLogin";
 
-import { SmallLoginButtonType } from "@Constant/.";
+import { SmallLoginButtonType } from "@Style/.";
 
 import Button from "@Atoms/Button";
 import { Container } from "./styles";
@@ -14,7 +14,7 @@ const Header = ({ onClick }: { onClick: () => void }) => {
     <Container>
       <HeaderLeftSide />
       {user ? (
-        <img src="/user_icon.png" alt="유저아이콘" />
+        <img src="/user_icon.png" alt="유저아이콘" onClick={onClick} />
       ) : (
         <Button {...SmallLoginButtonType} title="로그인" onClick={onClick} />
       )}

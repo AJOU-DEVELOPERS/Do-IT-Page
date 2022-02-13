@@ -17,7 +17,7 @@ const AdminTemp = () => {
   return (
     <Container>
       <AdminLogo>
-        <Logo />
+        <Logo url="./Logo.svg" alt="Logo" />
         <Title>Do-IT</Title>
         <Hamburger />
       </AdminLogo>

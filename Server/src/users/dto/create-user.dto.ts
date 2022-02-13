@@ -6,12 +6,13 @@ import {
   MaxLength,
   IsString,
   IsArray,
+  isArray,
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { BaseResponse } from 'src/common/dto/response-common.dto';
-import { extend } from 'joi';
+import { extend, object } from 'joi';
 
-export class CreateUserDto {
+// 회원가입 Request body data
+export class SignupUserDto {
   @IsString()
   @MinLength(2)
   @MaxLength(5)
@@ -46,25 +47,33 @@ export class CreateUserDto {
   })
   email: string;
   @IsArray()
-  @ApiProperty()
-  department: Department[];
+  @ApiProperty({ isArray: true, type: () => [SignupUserDepartmentDto] })
+  department: SignupUserDepartmentDto[];
 }
 export class Department {
+  @IsInt()
+  @ApiProperty({
+    description: '학과 인덱스',
+    example: 1,
+  })
+  departmentIdx: number;
   @IsString()
   @ApiProperty({
     description: '학과 이름',
     example: '미디어학과',
   })
   name: string;
-  @IsString()
-  @ApiProperty({
-    description: '전공 여부 ',
-    example: 'major : 전공, pluralMajor : 복수전공, minor : 부전공',
-  })
-  sort: string;
+  userDepartments: any;
 }
-export class createUserResponse extends BaseResponse {
+// 회원가입 Request 학과 object data
+export class SignupUserDepartmentDto extends Department {
   constructor() {
     super();
   }
+  @IsString()
+  @ApiProperty({
+    description: '전공 종류',
+    example: 'major',
+  })
+  sort: string;
 }

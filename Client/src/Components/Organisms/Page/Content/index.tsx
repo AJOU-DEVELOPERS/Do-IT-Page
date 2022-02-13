@@ -1,6 +1,6 @@
 import { Img, MiddleBox, MiddleImg } from "@Atoms/ContentImg/styles";
 import { ImgProps } from "@src/Common/Type";
-import { Container } from "./styles";
+import { Box, Container } from "./styles";
 
 interface Props extends ImgProps {
   type: string;
@@ -17,6 +17,7 @@ const Content = ({ type, url, text }: Props) => {
       )}
       {type !== "basic" && <Img alt="contentImage" url={url} />}
       {text()}
+      {type === "false" && <Box />}
     </Container>
   );
 };
