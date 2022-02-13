@@ -1,5 +1,6 @@
+import { ImgAltProps } from "@Type/.";
 import Container from "./styles";
 
-const Logo = () => <Container alt="logo" />;
+const Logo = ({ url, alt }: ImgAltProps) => <Container alt={alt} url={url} />;
 
 export default Logo;

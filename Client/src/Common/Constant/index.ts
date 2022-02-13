@@ -1,7 +1,62 @@
+import { BoardType } from "../Type";
+
 export const API_GET_OPTION = {
   withCredentials: true,
 };
 
+export const GET_CHECK_LOGIN_URL = "/checkLogin.json";
+
+export const GET_NOTICE_CONTENT_URL = "/NoticeBoardContent.json";
+
+export const GET_FREE_CONTENT_URL = "/FreeBoardContent.json";
+
+export const GET_STUDY_CONTENT_URL = "/StudyBoardContent.json";
+
+export const GET_PROJECT_CONTENT_URL = "/ProjectBoardContent.json";
+
+export const GET_ROOM_CONTENT_URL = "/RoomBoardContent.json";
+
+export const GET_RANKING_URL = "/BaekJoonRanking.json";
+
+export const GET_PHOTO_CONTENT_URL = "/PhotoBoardContent.json";
+
+export const NOTICE_URL = "/notice";
+
+export const FREE_BOARD_URL = "/board";
+
+export const STUDY_BOARD_URL = "/study";
+
+export const PROJECT_BOARD_URL = "/project";
+
+export const ROOM_BOARD_URL = "/room";
+
+export const PHOTO_BOARD_URL = "/photos";
+
+export const GET_SOLVED_CARD_URL = (id: string) =>
+  `http://mazassumnida.wtf/api/v2/generate_badge?boj=${id}`;
+
+export const BOARD_INFOS: BoardType[] = [
+  {
+    boardType: "자유게시판",
+    apiSrc: GET_FREE_CONTENT_URL,
+    pageSrc: FREE_BOARD_URL,
+  },
+  {
+    boardType: "스터디",
+    apiSrc: GET_STUDY_CONTENT_URL,
+    pageSrc: STUDY_BOARD_URL,
+  },
+  {
+    boardType: "프로젝트",
+    apiSrc: GET_PROJECT_CONTENT_URL,
+    pageSrc: PROJECT_BOARD_URL,
+  },
+  {
+    boardType: "과방 대여",
+    apiSrc: GET_ROOM_CONTENT_URL,
+    pageSrc: ROOM_BOARD_URL,
+  },
+];
 // carousel
 export const CAROUSEL_URL = ["/loginBg.jpeg", "/carousel1.jpeg", "/carousel2.jpeg"];
 export const CAROUSEL_TIME = 3000;
@@ -14,6 +69,16 @@ export const ADMIN_CATEGORY = ["동아리원 모집", "동아리 신청 관리",
 export const MIDDLE_IMG_URL = ["/process_logo.png", "/study_logo.png", "/room_logo.png"];
 
 export const LAST_IMG_URL = ["/secondContent.png", "/secondContent.png", "/secondContent.png", "/secondContent.png"];
+
+export const RANKING_IMG_URL = [
+  "/gold_icon.png",
+  "/silver_icon.png",
+  "/bronze_icon.png",
+];
+
+export const MANAGER_INFO = "민태홍 김영진";
+
+export const INTRODUCTION = "안녕하세요 김연진 입니다";
 
 export const CONTENT = [
   {
@@ -79,60 +144,3 @@ Trend에 대한 설명`,
   },
 ];
 // 버튼
-
-export const SmallButtonType = {
-  width: "150px",
-  height: "50px",
-  borderColor: "#000000",
-  backGroundColor: "#ffffff",
-};
-
-export const MediumButtonType = {
-  width: "200px",
-  height: "100px",
-  borderColor: "#000000",
-  backGroundColor: "#ffffff",
-};
-
-export const LargeButtonType = {
-  width: "300px",
-  height: "150px",
-  borderColor: "#000000",
-  backGroundColor: "#ffffff",
-};
-
-export const LoginButtonType = {
-  width: "320px",
-  height: "48px",
-  borderColor: "#0c218b",
-  backGroundColor: "#0c218b",
-  color: "#fff",
-  fontSize: "18px",
-  radius: "0px",
-};
-
-export const SmallLoginButtonType = {
-  width: "150px",
-  height: "50px",
-  borderColor: "#ffffff",
-  backGroundColor: "#8ECBF8",
-  fontSize: "18px",
-  radius: "0px",
-};
-
-export const MainPageLastButtonType = {
-  width: "320px",
-  height: "70px",
-  borderColor: "#ffffff",
-  backGroundColor: "#8ECBF8",
-};
-// Input
-
-export const LoginInputType = {
-  width: "320px",
-  height: "45px",
-  borderColor: "#e8f0fe",
-  margin: "0 0 10px 0",
-  padding: "0 0 0 10px",
-  background: "#e8f0fe",
-};

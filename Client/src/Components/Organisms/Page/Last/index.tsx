@@ -1,7 +1,9 @@
 import Button from "@Atoms/Button";
 import Context from "@Molecules/Content";
-import { CONTENT, MainPageLastButtonType } from "@Constant/.";
+import { CONTENT } from "@Constant/.";
+
 import { Box, ButtonContainer, Container } from "./styles";
+import { MainPageLastButtonType } from "@Style/.";
 
 const Last = ({ onClick }: { onClick: () => void }) => {
   const { title, text } = CONTENT[8];
