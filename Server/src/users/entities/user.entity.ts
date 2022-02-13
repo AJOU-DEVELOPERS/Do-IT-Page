@@ -33,7 +33,7 @@ export class User extends BaseEntity {
   @Column()
   phoneNumber: string;
   @ApiProperty()
-  @Column()
+  @Column({ unique: true })
   email: string;
   @ApiProperty()
   @Column()
@@ -65,6 +65,9 @@ export class User extends BaseEntity {
       console.log(error);
       throw new InternalServerErrorException();
     }
+  }
+  async comparePassword(password: string, hashedPassword: string) {
+    return await bcrypt.compare(password, hashedPassword);
   }
 }
 

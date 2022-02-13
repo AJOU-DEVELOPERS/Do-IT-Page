@@ -9,12 +9,15 @@ import {
   ResultSuccessResponse,
   BaseFailResponse,
 } from 'src/commons/dto/response-common.dto';
-
+import { LoginUserDto } from './dto/login-user.dto';
+import { AuthsService } from 'src/auths/auth.service';
+import { compare } from 'bcrypt';
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User) private userRepository: Repository<User>,
     private connection: Connection,
+    private readonly authsService: AuthsService,
   ) {}
   async createUser(createUserDto: SignupUserDto) {
     const user = new User();
@@ -43,6 +46,14 @@ export class UsersService {
     }
   }
 
+  async login(loginUserDto: LoginUserDto) {
+    const userInfo = await User.findOne({ email: loginUserDto.email });
+    if (!userInfo)
+      return new BaseFailResponse('이미 존재하지 않는 이메일입니다.');
+    if (!(await compare(loginUserDto.password, userInfo.password)))
+      return new BaseFailResponse('비밀번호가 틀렸습니다.');
+    return this.authsService.getCookieWithJwtToken(userInfo.userIdx);
+  }
   findAll() {
     return `This action returns all users`;
   }

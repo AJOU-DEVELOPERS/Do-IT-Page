@@ -10,6 +10,7 @@ import {
   UserTechStack,
 } from './entities/user.entity';
 import { ConfigService } from '@nestjs/config';
+import { AuthsModule } from 'src/auths/auth.module';
 @Module({
   imports: [
     TypeOrmModule.forFeature([
@@ -21,6 +22,7 @@ import { ConfigService } from '@nestjs/config';
     ]),
     ConfigService,
     CacheModule.register(),
+    AuthsModule,
   ],
   controllers: [UsersController],
   providers: [UsersService],
