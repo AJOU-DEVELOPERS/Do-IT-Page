@@ -1,33 +1,48 @@
-import React from "react";
+import { Suspense } from "react";
 import { Route, Switch } from "react-router-dom";
-import styled from "styled-components";
+
+import Page from "@Pages/.";
 import AdminPage from "@Pages/Admin";
 import BoardPage from "@Pages/Board";
 import ErrorPage from "@Pages/Error";
 import LoginPage from "@Pages/Login";
 import MainPage from "@Pages/Main";
 import MyPage from "@Pages/MyPage";
+import NoticePage from "@Pages/Notice";
+import ProjectPage from "@Pages/Project";
+import StudyPage from "@Pages/Study";
+import ReservePage from "@Pages/Reserve";
+import RankingPage from "@Pages/Ranking";
 
-const Header = styled.div`
-  width: 100px;
-  height: 100px;
-  background-color: pink;
-`;
+import PublicRoute from "@Route/PublicRoute";
+import PrivateRoute from "@Route/PrivateRoute";
+import AdminRoute from "@Route/AdminRoute";
 
-function App() {
+import Spin from "@Atoms/Spinner";
+
+const App = () => {
   return (
-    <>
-      <Header>hi</Header>
+    <Suspense fallback={<Spin />}>
       <Switch>
-        <Route path="/" component={MainPage} exact />
-        <Route path="/board" component={BoardPage} exact />
-        <Route path="/login" component={LoginPage} exact />
-        <Route path="/mypage" component={MyPage} exact />
-        <Route path="/admin" component={AdminPage} exact />
+        <PublicRoute path="/" component={Page} exact />
+        <PublicRoute path="/login" component={LoginPage} exact />
+
+        <PrivateRoute path="/main" component={MainPage} exact />
+        <PrivateRoute path="/board" component={BoardPage} exact />
+        <PrivateRoute path="/notice" component={NoticePage} exact />
+
+        <PrivateRoute path="/project" component={ProjectPage} exact />
+        <PrivateRoute path="/study" component={StudyPage} exact />
+
+        <PrivateRoute path="/mypage" component={MyPage} exact />
+        <PrivateRoute path="/reserve" component={ReservePage} exact />
+        <PrivateRoute path="/rank" component={RankingPage} exact />
+
+        <AdminRoute path="/admin" component={AdminPage} />
         <Route path="*" component={ErrorPage} exact />
       </Switch>
-    </>
+    </Suspense>
   );
-}
+};
 
 export default App;

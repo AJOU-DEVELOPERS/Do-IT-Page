@@ -1,6 +1,8 @@
 import { sayHello } from "@Util/.";
 
-export default function MainPage() {
+const MainPage = () => {
   const root = sayHello();
   return <div>{root}</div>;
-}
+};
+
+export default MainPage;

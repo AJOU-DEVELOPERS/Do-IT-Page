@@ -9,8 +9,10 @@
       "@Pages/*": ["./Components/Pages/*"],
       "@Constant/*": ["./Common/Constant/*"],
       "@Util/*": ["./Common/Util/*"],
-      "@Hooks/*": ["./Hooks/*"],
-      "@Recoil/*": ["./Recoil/*"]
+      "@API/*": ["./API/*"],
+      "@Route/*": ["./Routes/*"],
+      "@Recoil/*": ["./Recoil/*"],
+      "@src/*": ["./*"]
     }
   }
 }

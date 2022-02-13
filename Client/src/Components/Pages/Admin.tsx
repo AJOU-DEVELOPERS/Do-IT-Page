@@ -1,3 +1,7 @@
-export default function AdminPage() {
-  return <div>관리자 페이지 입니다.</div>;
-}
+import AdminTemp from "@Templates/Admin";
+
+const AdminPage = () => {
+  return <AdminTemp />;
+};
+
+export default AdminPage;
