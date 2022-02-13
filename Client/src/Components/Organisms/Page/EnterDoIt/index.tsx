@@ -5,7 +5,7 @@ import { CONTENT } from "@Constant/.";
 import { Box, ButtonContainer, Container } from "./styles";
 import { MainPageLastButtonType } from "@Style/.";
 
-const Last = ({ onClick }: { onClick: () => void }) => {
+const EnterDoIt = ({ onClick }: { onClick: () => void }) => {
   const { title, text } = CONTENT[8];
   return (
     <Container>
@@ -19,4 +19,4 @@ const Last = ({ onClick }: { onClick: () => void }) => {
   );
 };
 
-export default Last;
+export default EnterDoIt;

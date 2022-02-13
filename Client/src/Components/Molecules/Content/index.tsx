@@ -6,9 +6,18 @@ interface Props {
 }
 
 const Context = ({ title, text }: Props) => {
+  const [colorText, nonColorText] = title.split("/");
+
   return (
     <div>
-      <Title>{title}</Title>
+      {nonColorText ? (
+        <Title>
+          <span>{colorText}</span>
+          {nonColorText}
+        </Title>
+      ) : (
+        <Title>{title}</Title>
+      )}
       <div>
         {text.split(`\n`).map((item) => (
           <Text>{item}</Text>

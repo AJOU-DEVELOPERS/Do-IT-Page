@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 
 import Header from "@Organisms/Header";
-import FirstContent from "@Organisms/Page/FirstContent";
+import DoItCarousel from "@Organisms/Page/DoItCarousel";
 import NoticeContent from "@Organisms/Main/NoticeContent";
 import { BOARD_INFOS } from "@Constant/.";
 import BoardContent from "@Organisms/Main/BoardContent";
@@ -20,7 +20,7 @@ const MainPageTemplate = () => {
   return (
     <>
       <Header onClick={handleUserIconClick}></Header>
-      <FirstContent />
+      <DoItCarousel />
       <NoticeContent />
       <BoardsContainer>
         {BOARD_INFOS.map(({ boardType, apiSrc }, idx) => (
