@@ -1,15 +1,12 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import {setupSwagger} from '../config/swagger'
+import { setupSwagger } from '../config/swagger';
 async function bootstrap() {
   await makeOrmConfig();
 
   const app = await NestFactory.create(AppModule);
-  setupSwagger(app)
+  setupSwagger(app);
   await app.listen(3000);
 }
-
-async function makeOrmConfig(){
-
-}
+async function makeOrmConfig() {}
 bootstrap();

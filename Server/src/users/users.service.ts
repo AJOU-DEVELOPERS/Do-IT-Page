@@ -25,16 +25,22 @@ export class UsersService {
     user.password = createUserDto.password;
     user.email = createUserDto.email;
     await queryRunner.connect();
+    await queryRunner.startTransaction();
     try {
+      const userInfo = await queryRunner.manager.findOne(User, {
+        email: user.email,
+      });
+      if (userInfo) return new BaseFailResponse('이미 존재하는 이메일입니다.');
       await queryRunner.manager.save(user);
+      await queryRunner.commitTransaction();
       return new BaseSuccessResponse();
     } catch (error) {
       console.log(error);
+      await queryRunner.rollbackTransaction();
       return new BaseFailResponse('회원가입에 실패하였습니다.');
     } finally {
       await queryRunner.release();
     }
-    await this.userRepository.save(user);
   }
 
   findAll() {

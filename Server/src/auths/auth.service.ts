@@ -17,14 +17,10 @@ export class AuthsService {
     private connection: Connection,
   ) {}
   async sendMail(SendMailDto: SendMailDto) {
-    const queryRunner = this.connection.createQueryRunner();
     try {
       let authNum: string = '';
       let cacheKey: string = '';
-      await queryRunner.connect();
-      const userInfo = await queryRunner.manager.findOne(User, {
-        email: SendMailDto.email,
-      });
+      const userInfo = await User.findOne({ email: SendMailDto.email });
       if (userInfo) return new BaseFailResponse('이미 존재하는 이메일입니다.');
 
       const chars: string =
@@ -34,7 +30,6 @@ export class AuthsService {
         const rnum = Math.floor(Math.random() * chars.length);
         cacheKey += chars.substring(rnum, rnum + 1);
       }
-      const number: string = authNum;
       await this.mailerService.sendMail({
         to: SendMailDto.email, // list of receivers
         from: 'Do.IT.AJOU@gmail.com', // sender address
@@ -42,19 +37,17 @@ export class AuthsService {
         html: '6자리 인증 코드 : ' + `<b> ${authNum}</b>`, // HTML body content
       });
       await this.cacheManager.set(cacheKey, authNum, { ttl: 180 });
-      return { cacheKey: cacheKey };
+      return new ResultSuccessResponse({ cacheKey: cacheKey });
     } catch (err) {
       console.log(err);
       return new BaseFailResponse();
-    } finally {
-      await queryRunner.release();
     }
   }
   async verifyMail(verifyMailDto: VerifyMailDto) {
     const cacheValue: number = await this.cacheManager.get(
       verifyMailDto.cacheKey,
     );
-    if (cacheValue !== verifyMailDto.authNum) return false;
-    return true;
+    if (cacheValue !== verifyMailDto.authNum) return new BaseFailResponse();
+    return new BaseSuccessResponse();
   }
 }
