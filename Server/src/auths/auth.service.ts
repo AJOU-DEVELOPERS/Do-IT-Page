@@ -18,7 +18,6 @@ export class AuthsService {
     private readonly mailerService: MailerService,
     @Inject(CACHE_MANAGER) private cacheManager: Cache,
     private connection: Connection,
-    private readonly usersService: UsersService,
     private readonly jwtService: JwtService,
     private readonly configService: ConfigService,
   ) {}

@@ -52,7 +52,7 @@ export class UsersController {
   })
   @ApiBody({ type: LoginUserDto })
   @ApiOkResponse({ description: '로그인 성공', type: BaseSuccessResponse })
-  @UseGuards(AuthGuard('local'))
+  //@UseGuards(AuthGuard('local'))
   async logIn(
     @Body() loginUserDto: LoginUserDto,
     @Res({ passthrough: true }) res: Response,
