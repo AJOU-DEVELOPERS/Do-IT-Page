@@ -11,7 +11,7 @@ const Container = styled.div`
 const BackGround = styled.img`
   width: 100%;
   height: 100%;
-  background-image: url("/loginBg.jpeg");
+  background-image: url("/assets/Login/loginBg.jpeg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

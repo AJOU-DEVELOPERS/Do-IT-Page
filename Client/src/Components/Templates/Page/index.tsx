@@ -30,12 +30,12 @@ const PageTemplate = ({ history }: { history: History }) => {
         <Content
           text={() => Context(CONTENT[0])}
           type="true"
-          url="/secondContent.png"
+          url="/assets/Content/secondContent.png"
         />
       </ContentContainer>
 
       <Year>
-        <img src="/year.png" />
+        <img src="/assets/Content/year.png" />
       </Year>
 
       <DoItTodo />
