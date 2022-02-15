@@ -10,11 +10,14 @@ interface Props extends ImgProps {
 const Content = ({ type, url, text }: Props) => {
   return (
     <Container type={type}>
-      {type === "basic" && (
-        <MiddleBox>
-          <MiddleImg url={url} />
-        </MiddleBox>
-      )}
+      {type === "basic" &&
+        (url ? (
+          <MiddleBox>
+            <MiddleImg url={url} />
+          </MiddleBox>
+        ) : (
+          <></>
+        ))}
       {type !== "basic" && <Img alt="contentImage" url={url} />}
       {text()}
       {type === "false" && <Box />}

@@ -14,7 +14,11 @@ const Header = ({ onClick }: { onClick: () => void }) => {
     <Container>
       <HeaderLeftSide />
       {user ? (
-        <img src="/user_icon.png" alt="유저아이콘" onClick={onClick} />
+        <img
+          src="/assets/Header/user_icon.png"
+          alt="유저아이콘"
+          onClick={onClick}
+        />
       ) : (
         <Button {...SmallLoginButtonType} title="로그인" onClick={onClick} />
       )}

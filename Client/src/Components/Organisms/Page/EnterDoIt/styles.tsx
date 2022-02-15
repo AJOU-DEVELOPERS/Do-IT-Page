@@ -1,10 +1,7 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  width: 100%;
-  height: 400px;
-  background: #f3f6f8;
-  margin-top: 200px;
+  margin: 100px 0;
 `;
 
 const Box = styled.div`

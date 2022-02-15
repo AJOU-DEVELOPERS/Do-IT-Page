@@ -20,4 +20,11 @@ const LoginContainer = styled(ButtonContainer)<LoginButtonProps>`
   border-radius: ${({ radius }) => radius};
 `;
 
-export { ButtonContainer, LoginContainer };
+const EnterContainer = styled(ButtonContainer)`
+  color: #6c6c6c;
+  box-shadow: 0px 0px 6px #00000029;
+  border-radius: 16px;
+  font-size: 32px;
+`;
+
+export { ButtonContainer, LoginContainer, EnterContainer };

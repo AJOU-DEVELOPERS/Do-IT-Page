@@ -1,12 +1,12 @@
 import { LoginButtonProps } from "@src/Common/Type";
-import { LoginContainer } from "./styles";
+import { EnterContainer } from "./styles";
 
-const LoginButton = (props: LoginButtonProps) => {
+const EnterButton = (props: LoginButtonProps) => {
   const { title } = props;
-  return <LoginContainer {...props}>{title}</LoginContainer>;
+  return <EnterContainer {...props}>{title}</EnterContainer>;
 };
 
-LoginButton.defaultProps = {
+EnterButton.defaultProps = {
   width: "150px",
   height: "50px",
   color: "#000000",
@@ -17,4 +17,4 @@ LoginButton.defaultProps = {
   title: "Click !",
 };
 
-export default LoginButton;
+export default EnterButton;

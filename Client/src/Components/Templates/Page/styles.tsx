@@ -1,9 +1,7 @@
 import styled from "styled-components";
 
 const ContentContainer = styled.div`
-  padding-top: 150px;
-  width: 60%;
-  margin: auto;
+  padding-top: 100px;
 `;
 
 export default ContentContainer;

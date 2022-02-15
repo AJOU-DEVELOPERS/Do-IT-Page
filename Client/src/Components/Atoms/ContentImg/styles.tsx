@@ -7,10 +7,6 @@ const Img = styled.img<ImgProps>`
 `;
 
 const MiddleBox = styled.div`
-  background: #ffffff;
-  border-radius: 100%;
-  width: 200px;
-  height: 200px;
   display: flex;
   justify-content: center;
   align-items: center;

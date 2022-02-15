@@ -21,6 +21,7 @@ const Box = styled.div`
 `;
 
 const Container = styled.div<Props>`
+  text-align: center;
   ${({ type }) => type === "true" && TrueStyle}
   ${({ type }) => type === "false" && FalseStyle}
 `;

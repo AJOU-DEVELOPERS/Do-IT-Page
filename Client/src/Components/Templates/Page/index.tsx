@@ -15,6 +15,7 @@ import { Year } from "@Atoms/ContentImg/styles";
 import ContentContainer from "./styles";
 
 import { CONTENT } from "@Constant/.";
+import MainImg from "@Organisms/Page/MainImg";
 
 const PageTemplate = ({ history }: { history: History }) => {
   const handleLoginClick = useCallback(() => {
@@ -25,22 +26,19 @@ const PageTemplate = ({ history }: { history: History }) => {
     <>
       <Header onClick={handleLoginClick} />
       <DoItCarousel />
-
       <ContentContainer>
-        <Content
-          text={() => Context(CONTENT[0])}
-          type="true"
-          url="/assets/Content/secondContent.png"
-        />
+        <Content text={() => Context(CONTENT[0])} type="basic" />
       </ContentContainer>
 
       <Year>
-        <img src="/assets/Content/year.png" />
+        <img src="/assets/Content/year.png" height={500} />
       </Year>
 
       <DoItTodo />
 
       <DoItInfo />
+
+      <MainImg />
 
       <EnterDoIt onClick={handleLoginClick} />
     </>
