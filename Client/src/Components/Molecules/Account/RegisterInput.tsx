@@ -1,18 +1,15 @@
-import { useRef } from "react";
-import { withRouter } from "react-router-dom";
-import { History } from "history";
-
 import LoginButton from "@Atoms/Button/Login";
 import Input from "@Atoms/Input";
-
+import RegisterLabel from "@Atoms/RegisterLabel";
 import { LoginButtonType, LoginInputType } from "@Style/.";
+import { useRef } from "react";
 import { InputContainer, Title } from "./styles";
 
-const LoginInput = ({ history }: { history: History }) => {
+const RegisterInput = () => {
   const idRef = useRef<HTMLInputElement>();
   const pwRef = useRef<HTMLInputElement>();
 
-  const handleLoginClick = () => {
+  const handleRegisterClick = () => {
     if (!idRef?.current || !pwRef?.current) return;
 
     const {
@@ -22,31 +19,34 @@ const LoginInput = ({ history }: { history: History }) => {
     const {
       current: { value: pwValue },
     } = pwRef;
-
-    history.push("/main");
   };
-
   return (
     <InputContainer>
-      <Title>아주대학교 통합인증</Title>
-      <Input
+      <Title>Do-IT 회원가입</Title>
+      <RegisterLabel
         {...LoginInputType}
-        placeholder="사용자 ID를 입력해주세요."
+        placeholder="아이디"
         inputRef={idRef}
       />
-      <Input
+      <RegisterLabel
         {...LoginInputType}
         placeholder="비밀번호를 입력해주세요."
         type="password"
         inputRef={pwRef}
       />
+      <RegisterLabel
+        {...LoginInputType}
+        placeholder="비밀번호 확인"
+        type="password"
+        inputRef={pwRef}
+      />
       <LoginButton
         {...LoginButtonType}
-        title="로그인"
-        onClick={handleLoginClick}
+        title="회원가입"
+        onClick={handleRegisterClick}
       />
     </InputContainer>
   );
 };
 
-export default withRouter(LoginInput);
+export default RegisterInput;

@@ -19,6 +19,7 @@ import PrivateRoute from "@Route/PrivateRoute";
 import AdminRoute from "@Route/AdminRoute";
 
 import Spin from "@Atoms/Spinner";
+import RegisterPage from "@Pages/Register";
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
       <Switch>
         <PublicRoute path="/" component={Page} exact />
         <PublicRoute path="/login" component={LoginPage} exact />
+        <PublicRoute path="/register" component={RegisterPage} exact />
 
         <PrivateRoute path="/main" component={MainPage} exact />
         <PrivateRoute path="/board" component={BoardPage} exact />
