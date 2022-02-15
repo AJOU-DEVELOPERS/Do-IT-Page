@@ -4,21 +4,21 @@ export const API_GET_OPTION = {
   withCredentials: true,
 };
 
-export const GET_CHECK_LOGIN_URL = "/checkLogin.json";
+export const GET_CHECK_LOGIN_URL = "/dummyData/checkLogin.json";
 
-export const GET_NOTICE_CONTENT_URL = "/NoticeBoardContent.json";
+export const GET_NOTICE_CONTENT_URL = "/dummyData/NoticeBoardContent.json";
 
-export const GET_FREE_CONTENT_URL = "/FreeBoardContent.json";
+export const GET_FREE_CONTENT_URL = "/dummyData/FreeBoardContent.json";
 
-export const GET_STUDY_CONTENT_URL = "/StudyBoardContent.json";
+export const GET_STUDY_CONTENT_URL = "/dummyData/StudyBoardContent.json";
 
-export const GET_PROJECT_CONTENT_URL = "/ProjectBoardContent.json";
+export const GET_PROJECT_CONTENT_URL = "/dummyData/ProjectBoardContent.json";
 
-export const GET_ROOM_CONTENT_URL = "/RoomBoardContent.json";
+export const GET_ROOM_CONTENT_URL = "/dummyData/RoomBoardContent.json";
 
-export const GET_RANKING_URL = "/BaekJoonRanking.json";
+export const GET_RANKING_URL = "/dummyData/BaekJoonRanking.json";
 
-export const GET_PHOTO_CONTENT_URL = "/PhotoBoardContent.json";
+export const GET_PHOTO_CONTENT_URL = "/dummyData/PhotoBoardContent.json";
 
 export const NOTICE_URL = "/notice";
 
@@ -59,9 +59,9 @@ export const BOARD_INFOS: BoardType[] = [
 ];
 // carousel
 export const CAROUSEL_URL = [
-  "/loginBg.jpeg",
-  "/carousel1.jpeg",
-  "/carousel2.jpeg",
+  "/assets/Login/loginBg.jpeg",
+  "/assets/CAROUSEL/carousel1.jpeg",
+  "/assets/CAROUSEL/carousel2.jpeg",
 ];
 export const CAROUSEL_TIME = 3000;
 
@@ -76,22 +76,22 @@ export const ADMIN_CATEGORY = [
 // content
 
 export const MIDDLE_IMG_URL = [
-  "/process_logo.png",
-  "/study_logo.png",
-  "/room_logo.png",
+  "/assets/Content/process_logo.png",
+  "/assets/Content/study_logo.png",
+  "/assets/Content/room_logo.png",
 ];
 
 export const LAST_IMG_URL = [
-  "/secondContent.png",
-  "/secondContent.png",
-  "/secondContent.png",
-  "/secondContent.png",
+  "/assets/Content/secondContent.png",
+  "/assets/Content/secondContent.png",
+  "/assets/Content/secondContent.png",
+  "/assets/Content/secondContent.png",
 ];
 
 export const RANKING_IMG_URL = [
-  "/gold_icon.png",
-  "/silver_icon.png",
-  "/bronze_icon.png",
+  "/assets/BackJoon/gold_icon.png",
+  "/assets/BackJoon/silver_icon.png",
+  "/assets/BackJoon/bronze_icon.png",
 ];
 
 export const MANAGER_INFO = "민태홍 김영진";
