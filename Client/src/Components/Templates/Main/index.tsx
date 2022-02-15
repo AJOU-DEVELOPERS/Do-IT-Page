@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 
 import Header from "@Organisms/Header";
-import DoItCarousel from "@Organisms/Page/DoItCarousel";
+import DoItCarousel from "@Organisms/Before/DoItCarousel";
 import NoticeContent from "@Organisms/Main/NoticeContent";
 import { BOARD_INFOS } from "@Constant/.";
 import BoardContent from "@Organisms/Main/BoardContent";

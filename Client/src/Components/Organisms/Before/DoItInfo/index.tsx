@@ -1,6 +1,6 @@
 import { CONTENT, LAST_IMG_URL } from "@Constant/.";
 import Context from "@Molecules/Content";
-import Content from "@Organisms/Page/Content";
+import Content from "@Organisms/Before/Content";
 import ContentContainer from "./styles";
 
 const DoItInfo = () => {

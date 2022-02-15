@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 const Box = styled.div`
   margin-top: 200px;
-  background-color: #f3f6f8;
+  background-color: #f5f5f5;
+  opacity: 0.7;
   width: 100%;
   height: 500px;
 `;

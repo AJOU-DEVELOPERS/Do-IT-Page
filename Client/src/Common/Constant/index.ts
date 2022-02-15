@@ -4,21 +4,21 @@ export const API_GET_OPTION = {
   withCredentials: true,
 };
 
-export const GET_CHECK_LOGIN_URL = "/checkLogin.json";
+export const GET_CHECK_LOGIN_URL = "/dummyData/checkLogin.json";
 
-export const GET_NOTICE_CONTENT_URL = "/NoticeBoardContent.json";
+export const GET_NOTICE_CONTENT_URL = "/dummyData/NoticeBoardContent.json";
 
-export const GET_FREE_CONTENT_URL = "/FreeBoardContent.json";
+export const GET_FREE_CONTENT_URL = "/dummyData/FreeBoardContent.json";
 
-export const GET_STUDY_CONTENT_URL = "/StudyBoardContent.json";
+export const GET_STUDY_CONTENT_URL = "/dummyData/StudyBoardContent.json";
 
-export const GET_PROJECT_CONTENT_URL = "/ProjectBoardContent.json";
+export const GET_PROJECT_CONTENT_URL = "/dummyData/ProjectBoardContent.json";
 
-export const GET_ROOM_CONTENT_URL = "/RoomBoardContent.json";
+export const GET_ROOM_CONTENT_URL = "/dummyData/RoomBoardContent.json";
 
-export const GET_RANKING_URL = "/BaekJoonRanking.json";
+export const GET_RANKING_URL = "/dummyData/BaekJoonRanking.json";
 
-export const GET_PHOTO_CONTENT_URL = "/PhotoBoardContent.json";
+export const GET_PHOTO_CONTENT_URL = "/dummyData/PhotoBoardContent.json";
 
 export const NOTICE_URL = "/notice";
 
@@ -59,9 +59,9 @@ export const BOARD_INFOS: BoardType[] = [
 ];
 // carousel
 export const CAROUSEL_URL = [
-  "/loginBg.jpeg",
-  "/carousel1.jpeg",
-  "/carousel2.jpeg",
+  "/assets/Login/loginBg.jpeg",
+  "/assets/CAROUSEL/carousel1.jpeg",
+  "/assets/CAROUSEL/carousel2.jpeg",
 ];
 export const CAROUSEL_TIME = 3000;
 
@@ -76,22 +76,22 @@ export const ADMIN_CATEGORY = [
 // content
 
 export const MIDDLE_IMG_URL = [
-  "/process_logo.png",
-  "/study_logo.png",
-  "/room_logo.png",
+  "/assets/Content/process_logo.png",
+  "/assets/Content/study_logo.png",
+  "/assets/Content/room_logo.png",
 ];
 
 export const LAST_IMG_URL = [
-  "/secondContent.png",
-  "/secondContent.png",
-  "/secondContent.png",
-  "/secondContent.png",
+  "/assets/Content/secondContent.png",
+  "/assets/Content/secondContent.png",
+  "/assets/Content/secondContent.png",
+  "/assets/Content/secondContent.png",
 ];
 
 export const RANKING_IMG_URL = [
-  "/gold_icon.png",
-  "/silver_icon.png",
-  "/bronze_icon.png",
+  "/assets/BackJoon/gold_icon.png",
+  "/assets/BackJoon/silver_icon.png",
+  "/assets/BackJoon/bronze_icon.png",
 ];
 
 export const MANAGER_INFO = "민태홍 김영진";
@@ -101,36 +101,30 @@ export const INTRODUCTION = "안녕하세요 김연진 입니다";
 export const CONTENT = [
   {
     title: "두잇은 어떤 동아리인가요 ?",
-    text: `두잇은 아주대학교 학생들을 바탕으로 
-    개발, 디자인, 기획을 함께 진행하여
-    꿈을 실현하기 위해 노력하는
-    학생들을 연결해주는
-    아주대학교 대표 IT 동아리 입니다.
-    `,
+    text: `두잇은 아주대학교 학생들을 바탕으로 개발, 디자인, 기획을 함께 진행하여 꿈을 실현하기 위해 노력하는 아주대학교 대표 IT 동아리 입니다. `,
+    type: "Info",
   },
   {
     title: "실무에 가까운 프로세스",
-    text: `실무와 유사한 프로젝트를 
-개발자, 디자이너, 그리고 기획자와
-함께 협업을 진행함으로써
-실무에 필요한 능력을 배양합니다.
-  `,
+    text: `함께 협업을 진행함으로써
+실무와 유사한 프로젝트를 진행하여
+실무에 필요한 능력을 함양합니다.`,
+    type: "Todo",
   },
+
   {
     title: "자기계발 및 스터디 진행",
-    text: `컴퓨터와 쉽게 소통할 수 있도록
-두잇에서 진행하는 교육 프로세스와
-구성원을 직접 모집하여
-스터디 및 프로젝트 를 진행합니다.
-  `,
+    text: `컴퓨터와 쉽게 소통할 수 있는
+    교육 프로세스를 통해 모집된 구성원들과
+    스터디 및 프로젝트를 진행합니다.`,
+    type: "Todo",
   },
   {
     title: "동아리방 예약 신청",
-    text: `사전 신청을 통해
-평일 오후 6시 이후, 주말에
-질서있는 동아리방을
-이용할 수 있습니다.
-  `,
+    text: `평일 오후 6시 이후,
+    주말 시간의 동아리방 사용을
+    사전에 신청하여 이용할 수 있습니다.`,
+    type: "Todo",
   },
   {
     title: "D/ream",
@@ -159,9 +153,5 @@ export const CONTENT = [
 최신 기술스택을 학습하며
 
 `,
-  },
-  {
-    title: "두잇에 대해 더 알고 싶으신가요?",
-    text: `두잇은 언제나 열정 넘치는 기획자, 개발자, 디자이너를 기다립니다!`,
   },
 ];

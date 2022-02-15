@@ -1,5 +1,5 @@
 export interface ImgProps {
-  url: string;
+  url?: string;
 }
 export interface ImgAltProps extends ImgProps {
   alt: string;

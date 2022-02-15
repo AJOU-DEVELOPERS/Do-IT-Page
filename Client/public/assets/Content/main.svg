@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="821" height="879" viewBox="0 0 821 879">
+  <defs>
+    <filter id="D" x="0" y="0" width="100" height="180" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="O" x="164" y="122" width="108" height="180" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-2"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="I" x="434" y="386" width="58" height="180" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-3"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-3"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="T" x="588" y="509" width="90" height="180" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-4"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-4"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="_" x="757" y="610" width="64" height="180" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-5"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-5"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="_2" x="322" y="201" width="58" height="180" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-6"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-6"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="r_e_a_m" x="0" y="122" width="64" height="222" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-7"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-7"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="n_t_e_r_a_c_t" x="438" y="522" width="50" height="357" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-8"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-8"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="r_e_n_d" x="608" y="639" width="50" height="222" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-9"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-9"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="w_n" x="183" y="249" width="60" height="132" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-10"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-10"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="그룹_8" data-name="그룹 8" transform="translate(-543 -1901)">
+    <g id="그룹_5" data-name="그룹 5" transform="translate(0 1)">
+      <text id="D-2" data-name="D" transform="translate(588 2039)" fill="#fff" font-size="112" font-family="NotoSansCJKkr-Black, Noto Sans CJK KR" font-weight="800" letter-spacing="0.064em"><tspan x="-40.824" y="0">D</tspan></text>
+      <text id="O-2" data-name="O" transform="translate(756 2161)" fill="#fff" font-size="112" font-family="NotoSansCJKkr-Black, Noto Sans CJK KR" font-weight="800" letter-spacing="0.064em"><tspan x="-44.016" y="0">O</tspan></text>
+      <text id="I-2" data-name="I" transform="translate(1001 2425)" fill="#fff" font-size="112" font-family="NotoSansCJKkr-Black, Noto Sans CJK KR" font-weight="800" letter-spacing="0.064em"><tspan x="-19.6" y="0">I</tspan></text>
+      <text id="T-2" data-name="T" transform="translate(1171 2548)" fill="#fff" font-size="112" font-family="NotoSansCJKkr-Black, Noto Sans CJK KR" font-weight="800" letter-spacing="0.064em"><tspan x="-35.84" y="0">T</tspan></text>
+      <text id="_3" data-name="!" transform="translate(1327 2649)" fill="#fff" font-size="112" font-family="NotoSansCJKkr-Black, Noto Sans CJK KR" font-weight="800" letter-spacing="0.064em"><tspan x="-22.232" y="0">!</tspan></text>
+      <text id="_4" data-name="," transform="translate(889 2240)" fill="#fff" font-size="112" font-family="NotoSansCJKkr-Black, Noto Sans CJK KR" font-weight="800" letter-spacing="0.064em"><tspan x="-19.656" y="0">,</tspan></text>
+      <text id="r_e_a_m-2" data-name="r
+e
+a
+m" transform="translate(570 2086)" fill="#fff" font-size="47" font-family="NotoSansCJKkr-Bold, Noto Sans CJK KR" font-weight="700"><tspan x="-10.246" y="0">r</tspan><tspan x="-13.653" y="45">e</tspan><tspan x="-13.888" y="90">a</tspan><tspan x="-22.654" y="135">m</tspan></text>
+      <text id="n_t_e_r_a_c_t-2" data-name="n
+t
+e
+r
+a
+c
+t" transform="translate(1001 2486)" fill="#fff" font-size="47" font-family="NotoSansCJKkr-Bold, Noto Sans CJK KR" font-weight="700"><tspan x="-15.063" y="0">n</tspan><tspan x="-9.87" y="45">t</tspan><tspan x="-13.653" y="90">e</tspan><tspan x="-10.246" y="135">r</tspan><tspan x="-13.888" y="180">a</tspan><tspan x="-12.384" y="225">c</tspan><tspan x="-9.87" y="270">t</tspan></text>
+      <text id="r_e_n_d-2" data-name="r
+e
+n
+d" transform="translate(1171 2603)" fill="#fff" font-size="47" font-family="NotoSansCJKkr-Bold, Noto Sans CJK KR" font-weight="700"><tspan x="-10.246" y="0">r</tspan><tspan x="-13.653" y="45">e</tspan><tspan x="-15.063" y="90">n</tspan><tspan x="-15.134" y="135">d</tspan></text>
+      <text id="w_n-2" data-name="w
+n" transform="translate(751 2213)" fill="#fff" font-size="47" font-family="NotoSansCJKkr-Bold, Noto Sans CJK KR" font-weight="700"><tspan x="-20.28" y="0">w</tspan><tspan x="-15.063" y="45">n</tspan></text>
+    </g>
+    <g id="그룹_6" data-name="그룹 6" transform="translate(5 -2)">
+      <g transform="matrix(1, 0, 0, 1, 538, 1903)" filter="url(#D)">
+        <text id="D-3" data-name="D" transform="translate(50 136)" fill="#fff" font-size="112" font-family="NotoSansCJKkr-Black, Noto Sans CJK KR" font-weight="800" letter-spacing="0.064em"><tspan x="-40.824" y="0">D</tspan></text>
+      </g>
+      <g transform="matrix(1, 0, 0, 1, 538, 1903)" filter="url(#O)">
+        <text id="O-3" data-name="O" transform="translate(218 258)" fill="#fff" font-size="112" font-family="NotoSansCJKkr-Black, Noto Sans CJK KR" font-weight="800" letter-spacing="0.064em"><tspan x="-44.016" y="0">O</tspan></text>
+      </g>
+      <g transform="matrix(1, 0, 0, 1, 538, 1903)" filter="url(#I)">
+        <text id="I-3" data-name="I" transform="translate(463 522)" fill="#fff" font-size="112" font-family="NotoSansCJKkr-Black, Noto Sans CJK KR" font-weight="800" letter-spacing="0.064em"><tspan x="-19.6" y="0">I</tspan></text>
+      </g>
+      <g transform="matrix(1, 0, 0, 1, 538, 1903)" filter="url(#T)">
+        <text id="T-3" data-name="T" transform="translate(633 645)" fill="#fff" font-size="112" font-family="NotoSansCJKkr-Black, Noto Sans CJK KR" font-weight="800" letter-spacing="0.064em"><tspan x="-35.84" y="0">T</tspan></text>
+      </g>
+      <g transform="matrix(1, 0, 0, 1, 538, 1903)" filter="url(#_)">
+        <text id="_5" data-name="!" transform="translate(789 746)" fill="#fff" font-size="112" font-family="NotoSansCJKkr-Black, Noto Sans CJK KR" font-weight="800" letter-spacing="0.064em"><tspan x="-22.232" y="0">!</tspan></text>
+      </g>
+      <g transform="matrix(1, 0, 0, 1, 538, 1903)" filter="url(#_2)">
+        <text id="_6" data-name="," transform="translate(351 337)" fill="#fff" font-size="112" font-family="NotoSansCJKkr-Black, Noto Sans CJK KR" font-weight="800" letter-spacing="0.064em"><tspan x="-19.656" y="0">,</tspan></text>
+      </g>
+      <g transform="matrix(1, 0, 0, 1, 538, 1903)" filter="url(#r_e_a_m)">
+        <text id="r_e_a_m-3" data-name="r
+e
+a
+m" transform="translate(32 183)" fill="#fff" font-size="47" font-family="NotoSansCJKkr-Bold, Noto Sans CJK KR" font-weight="700"><tspan x="-10.246" y="0">r</tspan><tspan x="-13.653" y="45">e</tspan><tspan x="-13.888" y="90">a</tspan><tspan x="-22.654" y="135">m</tspan></text>
+      </g>
+      <g transform="matrix(1, 0, 0, 1, 538, 1903)" filter="url(#n_t_e_r_a_c_t)">
+        <text id="n_t_e_r_a_c_t-3" data-name="n
+t
+e
+r
+a
+c
+t" transform="translate(463 583)" fill="#fff" font-size="47" font-family="NotoSansCJKkr-Bold, Noto Sans CJK KR" font-weight="700"><tspan x="-15.063" y="0">n</tspan><tspan x="-9.87" y="45">t</tspan><tspan x="-13.653" y="90">e</tspan><tspan x="-10.246" y="135">r</tspan><tspan x="-13.888" y="180">a</tspan><tspan x="-12.384" y="225">c</tspan><tspan x="-9.87" y="270">t</tspan></text>
+      </g>
+      <g transform="matrix(1, 0, 0, 1, 538, 1903)" filter="url(#r_e_n_d)">
+        <text id="r_e_n_d-3" data-name="r
+e
+n
+d" transform="translate(633 700)" fill="#fff" font-size="47" font-family="NotoSansCJKkr-Bold, Noto Sans CJK KR" font-weight="700"><tspan x="-10.246" y="0">r</tspan><tspan x="-13.653" y="45">e</tspan><tspan x="-15.063" y="90">n</tspan><tspan x="-15.134" y="135">d</tspan></text>
+      </g>
+      <g transform="matrix(1, 0, 0, 1, 538, 1903)" filter="url(#w_n)">
+        <text id="w_n-3" data-name="w
+n" transform="translate(213 310)" fill="#fff" font-size="47" font-family="NotoSansCJKkr-Bold, Noto Sans CJK KR" font-weight="700"><tspan x="-20.28" y="0">w</tspan><tspan x="-15.063" y="45">n</tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>

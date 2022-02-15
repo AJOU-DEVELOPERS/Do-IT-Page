@@ -53,10 +53,10 @@ export const SmallLoginButtonType = {
 };
 
 export const MainPageLastButtonType = {
-  width: "320px",
-  height: "70px",
+  width: "250px",
+  height: "80px",
   borderColor: "#ffffff",
-  backGroundColor: "#8ECBF8",
+  backGroundColor: "#ffffff",
 };
 // Input
 
