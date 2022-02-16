@@ -11,6 +11,7 @@ import { AuthsModule } from './auths/auth.module';
 import { User } from './users/entities/user.entity';
 import { Department } from './departments/entities/department.entity';
 import { DepartmentsModule } from './departments/departments.module';
+import { StudiesModule } from './studies/studies.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -26,12 +27,20 @@ import { DepartmentsModule } from './departments/departments.module';
       }),
     }),
     TypeOrmModule.forRoot({
+      // type: 'mysql',
+      // host: process.env.DB_HOST,
+      // port: 3306,
+      // username: process.env.DB_USERNAME,
+      // password: process.env.DB_PASSWORD,
+      // database: process.env.DB_DATABASE,
+      // entities: ['dist/**/*.entity{.ts,.js}'],
+      // synchronize: false,
       type: 'mysql',
-      host: process.env.DB_HOST,
+      host: 'localhost',
       port: 3306,
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_DATABASE,
+      username: 'root',
+      password: 'ajoulee1214',
+      database: 'nesttest',
       entities: ['dist/**/*.entity{.ts,.js}'],
       synchronize: false,
     }),
@@ -60,6 +69,7 @@ import { DepartmentsModule } from './departments/departments.module';
     UsersModule,
     AuthsModule,
     DepartmentsModule,
+    StudiesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
