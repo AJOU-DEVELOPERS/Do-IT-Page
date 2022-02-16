@@ -1,12 +1,13 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { UserStudy } from "src/users/entities/user.entity";
-import { BaseEntity, Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, DeleteDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 export enum studyStatus {
     processing = "processing",
     collecting = "collecting",
     done = "done",    
 };
+
 @Entity('Study')
 export class Study extends BaseEntity {
     @ApiProperty()
@@ -25,14 +26,18 @@ export class Study extends BaseEntity {
     totalHeadcount: number;
     @ApiProperty()
     @Column()
-    leader: string;
+    leaderName: string;
     @ApiProperty()
     @Column({
         type: "enum",
         enum: studyStatus,
+        default: "collecting"
     })
     status: studyStatus;
     @ApiProperty()
     @OneToMany((_type) => UserStudy, (_type) => _type.study)
     userStudies: UserStudy[];
+
+    @DeleteDateColumn()
+    deletedAt?: Date; 
 }

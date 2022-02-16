@@ -15,6 +15,12 @@ import * as bcrypt from 'bcrypt';
 import { InternalServerErrorException } from '@nestjs/common';
 import { ApiProperty } from '@nestjs/swagger';
 
+export enum UserStudyStatus {
+  leader="leader",
+  accepted="accepted",
+  rejected="rejected",
+  waiting="waiting",
+};
 
 @Entity('User')
 export class User extends BaseEntity {
@@ -139,12 +145,20 @@ export class UserStudy extends BaseEntity {
   @ApiProperty()
   @Column()
   studyIdx: number
+  @ApiProperty()
+  @Column({
+    type: "enum",
+    enum: UserStudyStatus,
+    default: "waiting"
+  })
+  status: UserStudyStatus
   @ManyToOne(() => User, (user) => user.userStudies)
   @JoinColumn({ name: 'userIdx', referencedColumnName: 'userIdx' })
   user: User
   @ManyToOne(() => Study, (study) => study.userStudies)
   @JoinColumn({ name: 'studyIdx', referencedColumnName: 'studyIdx' })
   study: Study
+
 }
 
 @Entity()
