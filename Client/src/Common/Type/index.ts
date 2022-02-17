@@ -44,9 +44,11 @@ export interface BasicInputProps extends BasicAtomProps {
 
 export interface BoardType {
   boardType?: string;
-  apiSrc?: string;
+  apiSrc: string;
   pageSrc: string;
   previewSize?: number;
+  previewType?: string;
+  alignPreview?: string;
 }
 
 export interface BoardInfoType {
@@ -62,13 +64,31 @@ export interface BoardContentType {
   writer: string;
 }
 
+export interface StudyContentType {
+  name: string;
+  decription: string;
+  totalHeadCount: number;
+  leaderUserIdx: number;
+  leaderName: string;
+  status: string;
+}
+
+export interface ProjectContentType extends StudyContentType {
+  techStack: string;
+}
+
 export interface RankingContentType {
   rating: number;
   tier: string;
   name: string;
 }
 
-export interface RankingCardProps extends RankingContentType {
-  ranking: number;
-  onClick: () => void;
+export interface PreviewProps {
+  previewType?: string;
+  content: PreviewContentType;
 }
+
+export type PreviewContentType =
+  | BoardContentType
+  | ProjectContentType
+  | RankingContentType;

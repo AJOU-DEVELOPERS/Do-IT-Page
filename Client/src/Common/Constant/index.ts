@@ -124,33 +124,52 @@ export const BOARD_INFOS: BoardType[] = [
 export const _BOARD_INFOS: BoardInfoType = {
   공지사항: {
     pageSrc: NOTICE_URL,
+    apiSrc: GET_NOTICE_CONTENT_URL,
     previewSize: 7,
+    previewType: "basic",
   },
   자유게시판: {
     pageSrc: FREE_BOARD_URL,
+    apiSrc: GET_FREE_CONTENT_URL,
     previewSize: 7,
+    previewType: "basic",
   },
   백준랭킹: {
     pageSrc: RANKING_BOARD_URL,
+    apiSrc: GET_RANKING_URL,
     previewSize: 4,
+    previewType: "ranking",
   },
   프로젝트: {
     pageSrc: PROJECT_BOARD_URL,
+    apiSrc: GET_PROJECT_CONTENT_URL,
     previewSize: 3,
+    previewType: "card",
   },
   스터디: {
     pageSrc: STUDY_BOARD_URL,
+    apiSrc: GET_STUDY_CONTENT_URL,
     previewSize: 3,
+    previewType: "card",
   },
   "과방 대여": {
     pageSrc: ROOM_BOARD_URL,
+    apiSrc: GET_ROOM_CONTENT_URL,
   },
   마이페이지: {
     pageSrc: MY_PAGE_URL,
+    apiSrc: "",
   },
   사진첩: {
     pageSrc: PHOTO_BOARD_URL,
+    apiSrc: GET_PHOTO_CONTENT_URL,
     previewSize: 4,
+    previewType: "image",
+    alignPreview: "row",
+  },
+  이미지: {
+    pageSrc: "",
+    apiSrc: "",
   },
 };
 
