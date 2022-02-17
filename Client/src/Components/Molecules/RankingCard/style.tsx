@@ -5,7 +5,7 @@ import styled from "styled-components";
 export const CardContainer = styled.div`
   background: white;
   display: flex;
-  width: 75%;
+  width: 100%;
   height: 25%;
   ${AlignCenterAround}
   ${HoverPointer}
@@ -16,7 +16,7 @@ export const Name = styled.p`
 `;
 
 export const Info = styled.img<ImgAltProps>`
-  width: 30%;
+  width: 100%;
   height: 95%;
   content: url(${({ url }) => url});
 `;
