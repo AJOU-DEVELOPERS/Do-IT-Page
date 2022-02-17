@@ -1,5 +1,5 @@
 import { GET_PHOTO_CONTENT_URL } from "@Constant/.";
-import ContentTitle from "@Molecules/ContentTitle";
+import ContentTitle from "@Molecules/BoardTitle";
 import PhotoCard from "@Molecules/PhotoCard";
 import { BoardContentSelector } from "@Recoil/BoardContent";
 import { BoardContentType } from "@Type/.";
@@ -16,7 +16,7 @@ const PhotoContent = () => {
   return (
     <>
       <ContenTitleContainer>
-        <ContentTitle title="우리들의 사진" onClick={handleMoreInfoClick} />
+        <ContentTitle boardName="우리들의 사진" />
       </ContenTitleContainer>
       <ContentContainer>
         {photoContents.slice(0, 8).map(({ images, title }, idx) => (

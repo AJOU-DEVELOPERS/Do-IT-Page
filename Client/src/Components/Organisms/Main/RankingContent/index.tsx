@@ -1,5 +1,5 @@
 import { useRecoilValue } from "recoil";
-import ContentTitle from "@Molecules/ContentTitle";
+import ContentTitle from "@Molecules/BoardTitle";
 import { ContentContainer, ContenTitleContainer } from "./style";
 import { GET_RANKING_URL } from "@Constant/.";
 import { BoardContentSelector } from "@Recoil/BoardContent";
@@ -16,7 +16,7 @@ const RainkingContent = () => {
   return (
     <>
       <ContenTitleContainer>
-        <ContentTitle title="백준 랭킹" onClick={handleMoreInfoClick} />
+        <ContentTitle boardName="백준 랭킹" />
       </ContenTitleContainer>
       <ContentContainer>
         {rankingContents.slice(0, 3).map(({ name, rating, tier }, ranking) => (

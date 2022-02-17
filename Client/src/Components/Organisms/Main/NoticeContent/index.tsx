@@ -1,7 +1,7 @@
 import { useRecoilValue } from "recoil";
 
 import BoardPreview from "@Molecules/BoardPreview";
-import ContentTitle from "@Molecules/ContentTitle";
+import ContentTitle from "@Molecules/BoardTitle";
 import { noticeContentSelector } from "@Recoil/NoticeContent";
 
 import { ContenTitleContainer, ContentContainer } from "./style";
@@ -16,7 +16,7 @@ const NoticeContent = () => {
   return (
     <>
       <ContenTitleContainer>
-        <ContentTitle title="공지사항" onClick={handleMoreInfoClick} />
+        <ContentTitle boardName="공지사항" />
       </ContenTitleContainer>
       <ContentContainer>
         {noticeContents.slice(0, 4).map(({ title, date }, idx) => (
