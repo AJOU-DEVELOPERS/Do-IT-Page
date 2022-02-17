@@ -3,14 +3,17 @@ import { DefaultBoxShadow } from "@Style/.";
 import { BoardType } from "@Type/.";
 import styled from "styled-components";
 
-interface Props {
+interface BoardProps {
   boardName: string;
+}
+interface ContentProps {
+  alignPreview?: string;
 }
 const imageUrl = `
 background-size:cover;
 background-image:url(${MAIN_PREVIEW_IMAGE})`;
 
-export const BoardContainer = styled.div<Props>`
+export const BoardContainer = styled.div<BoardProps>`
   grid-area: ${({ boardName }) => boardName};
   display: flex;
   flex-direction: column;
@@ -19,8 +22,9 @@ export const BoardContainer = styled.div<Props>`
   ${({ boardName }) => boardName === "이미지" && imageUrl};
 `;
 
-export const ContentContainer = styled.div`
+export const ContentContainer = styled.div<ContentProps>`
   display: flex;
+  flex-direction: ${({ alignPreview }) => alignPreview}
   width: 90%;
   height: 85%;
   margin: auto;
