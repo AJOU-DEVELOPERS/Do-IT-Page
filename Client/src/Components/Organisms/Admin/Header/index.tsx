@@ -1,7 +1,7 @@
 import Button from "@Atoms/Button/Login";
 import { ADMIN_CATEGORY } from "@Constant/.";
 import { SmallLoginButtonType } from "@Style/.";
-import { Title, AdminContainer } from "./styles";
+import { AdminContainer, Title } from "./styles";
 
 const AdminHeader = ({ category }: { category: number }) => {
   return (

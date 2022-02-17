@@ -67,8 +67,10 @@ export const CAROUSEL_TIME = 3000;
 
 //admin category
 export const ADMIN_CATEGORY = [
-  "동아리원 모집",
+  "동아리원 관리",
   "동아리 신청 관리",
+  "스터디 관리",
+  "프로젝트 관리",
   "과방 신청 관리",
   "공지사항 관리",
 ];
