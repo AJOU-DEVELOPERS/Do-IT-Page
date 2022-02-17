@@ -1,3 +1,5 @@
+export const DefaultColor = "#707070";
+
 export const GreyColor = `#f3f6f8`;
 
 export const AlignCenterAround = `
