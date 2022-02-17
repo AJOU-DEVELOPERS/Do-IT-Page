@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { HEADER_NAV_LENGTH } from "@Constant/.";
+import { AlignCenterAround } from "@Style/.";
 
 const LeftContainer = styled.div`
   display: flex;
@@ -13,4 +15,16 @@ const Title = styled.div`
   color: #707070;
   text-shadow: 0px 3px 3px #00000029;
 `;
-export { LeftContainer, Title };
+
+const NavContainer = styled.div`
+  display: flex;
+  width: 55%;
+  ${AlignCenterAround}
+`;
+
+const NavItem = styled.button`
+  width: calc(100 / ${HEADER_NAV_LENGTH});
+  align-items: center;
+  font-size: 1.8vmin;
+`;
+export { LeftContainer, Title, NavContainer, NavItem };

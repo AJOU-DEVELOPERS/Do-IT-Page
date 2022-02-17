@@ -94,6 +94,18 @@ export const RANKING_IMG_URL = [
   "/assets/BackJoon/bronze_icon.png",
 ];
 
+export const HEADER_NAV_LIST = [
+  "공지사항",
+  "자유게시판",
+  "백준랭킹",
+  "프로젝트",
+  "스터디",
+  "과방 대여",
+  "마이페이지",
+];
+
+export const HEADER_NAV_LENGTH = HEADER_NAV_LIST.length;
+
 export const MANAGER_INFO = "민태홍 김영진";
 
 export const INTRODUCTION = "안녕하세요 김연진 입니다";

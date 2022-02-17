@@ -6,6 +6,7 @@ import { SmallLoginButtonType } from "@Style/.";
 import Button from "@Atoms/Button";
 import { Container } from "./styles";
 import HeaderLeftSide from "@Molecules/Header";
+import HeaderNav from "@Molecules//Header/Nav";
 
 const Header = ({ onClick }: { onClick: () => void }) => {
   const user = useRecoilValue(checkLoginSelector);
@@ -14,11 +15,7 @@ const Header = ({ onClick }: { onClick: () => void }) => {
     <Container>
       <HeaderLeftSide />
       {user ? (
-        <img
-          src="/assets/Header/user_icon.png"
-          alt="유저아이콘"
-          onClick={onClick}
-        />
+        <HeaderNav />
       ) : (
         <Button {...SmallLoginButtonType} title="로그인" onClick={onClick} />
       )}
