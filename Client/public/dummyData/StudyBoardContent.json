@@ -5,7 +5,7 @@
             "totalHeadcount": 5,
             "leaderUserIdx": 2,
             "leaderName": "이호용",
-            "studyStatus": "모집중"
+            "status": "모집중"
         },
         {
             "name": "NestJS 기초 스터디",
@@ -13,7 +13,7 @@
             "totalHeadcount": 5,
             "leaderUserIdx": 2,
             "leaderName": "이호용",
-            "studyStatus": "모집중"
+            "status": "모집중"
         },
         {
             "name": "NestJS 기초 스터디",
@@ -21,7 +21,7 @@
             "totalHeadcount": 5,
             "leaderUserIdx": 2,
             "leaderName": "이호용",
-            "studyStatus": "모집중"
+            "status": "모집중"
         },
         {
             "name": "NestJS 기초 스터디",
@@ -29,7 +29,7 @@
             "totalHeadcount": 5,
             "leaderUserIdx": 2,
             "leaderName": "이호용",
-            "studyStatus": "모집중"
+            "status": "모집중"
         },
         {
             "name": "NestJS 기초 스터디",
@@ -37,7 +37,7 @@
             "totalHeadcount": 5,
             "leaderUserIdx": 2,
             "leaderName": "이호용",
-            "studyStatus": "모집중"
+            "status": "모집중"
         },
         {
             "name": "NestJS 기초 스터디",
@@ -45,7 +45,7 @@
             "totalHeadcount": 5,
             "leaderUserIdx": 2,
             "leaderName": "이호용",
-            "studyStatus": "모집중"
+            "status": "모집중"
         },
         {
             "name": "NestJS 기초 스터디",
@@ -53,7 +53,7 @@
             "totalHeadcount": 5,
             "leaderUserIdx": 2,
             "leaderName": "이호용",
-            "studyStatus": "모집중"
+            "status": "모집중"
         }
     ],
     "status": 200

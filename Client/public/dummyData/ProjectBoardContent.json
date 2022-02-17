@@ -1,43 +1,66 @@
 {
     "res": [{
-            "board": "notice",
-            "title": "김영진은 무엇인가? ",
-            "text": "갓일수도 있음",
-            "date": "2022-02-10",
-            "images": [],
-            "writer": "Hong Han Sol"
+            "name": "프로젝트 1",
+            "description": "NestJS의 기본 동작 원리와 ... 을 공부합니다.",
+            "totalHeadcount": 5,
+            "leaderUserIdx": 2,
+            "leaderName": "이호용",
+            "status": "모집중",
+            "techStack": "Java/Spring"
         },
         {
-            "board": "notice",
-            "title": "김영진은 무엇인가? ",
-            "text": "갓일수도 있음",
-            "date": "2022-02-10",
-            "images": [],
-            "writer": "Hong Han Sol"
+            "name": "NestJS 기초 스터디",
+            "description": "NestJS의 기본 동작 원리와 ... 을 공부합니다.",
+            "totalHeadcount": 5,
+            "leaderUserIdx": 2,
+            "leaderName": "이호용",
+            "status": "모집중",
+            "techStack": "Java/Spring"
         },
         {
-            "board": "notice",
-            "title": "김영진은 무엇인가? ",
-            "text": "갓일수도 있음",
-            "date": "2022-02-10",
-            "images": [],
-            "writer": "Hong Han Sol"
+            "name": "NestJS 기초 스터디",
+            "description": "NestJS의 기본 동작 원리와 ... 을 공부합니다.",
+            "totalHeadcount": 5,
+            "leaderUserIdx": 2,
+            "leaderName": "이호용",
+            "status": "모집중",
+            "techStack": "Java/Spring"
         },
         {
-            "board": "notice",
-            "title": "김영진은 무엇인가? ",
-            "text": "갓일수도 있음",
-            "date": "2022-02-10",
-            "images": [],
-            "writer": "Hong Han Sol"
+            "name": "NestJS 기초 스터디",
+            "description": "NestJS의 기본 동작 원리와 ... 을 공부합니다.",
+            "totalHeadcount": 5,
+            "leaderUserIdx": 2,
+            "leaderName": "이호용",
+            "status": "모집중",
+            "techStack": "Java/Spring"
         },
         {
-            "board": "notice",
-            "title": "김영진은 무엇인가? ",
-            "text": "갓일수도 있음",
-            "date": "2022-02-10",
-            "images": [],
-            "writer": "Hong Han Sol"
+            "name": "NestJS 기초 스터디",
+            "description": "NestJS의 기본 동작 원리와 ... 을 공부합니다.",
+            "totalHeadcount": 5,
+            "leaderUserIdx": 2,
+            "leaderName": "이호용",
+            "status": "모집중",
+            "techStack": "Java/Spring"
+        },
+        {
+            "name": "NestJS 기초 스터디",
+            "description": "NestJS의 기본 동작 원리와 ... 을 공부합니다.",
+            "totalHeadcount": 5,
+            "leaderUserIdx": 2,
+            "leaderName": "이호용",
+            "status": "모집중",
+            "techStack": "Java/Spring"
+        },
+        {
+            "name": "NestJS 기초 스터디",
+            "description": "NestJS의 기본 동작 원리와 ... 을 공부합니다.",
+            "totalHeadcount": 5,
+            "leaderUserIdx": 2,
+            "leaderName": "이호용",
+            "status": "모집중",
+            "techStack": "Java/Spring"
         }
     ],
     "status": 200
