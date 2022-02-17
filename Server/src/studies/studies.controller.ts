@@ -61,4 +61,9 @@ export class StudiesController {
     remove(@Param('studyIdx') studyIdx: number) {
         return this.studiesService.remove(studyIdx);
     }
+
+    @Post(':studyIdx')
+    apply(@Body('userIdx') userIdx: number, @Param('studyIdx') studyIdx: number) {
+        return this.studiesService.apply(userIdx, studyIdx);
+    }
 }

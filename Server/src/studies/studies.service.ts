@@ -10,7 +10,6 @@ import { Study } from './entity/study.entity';
 @Injectable()
 export class StudiesService {
     constructor(
-        @InjectRepository(Study) private studyRepository: Repository<Study>,
         private connection: Connection,
     ) {}
     async createStudy(createStudyDto: CreateStudyDto) {
@@ -25,7 +24,7 @@ export class StudiesService {
         try {
             const user: User = await queryRunner.manager.findOne(User, {
                 userIdx: createStudyDto.leaderUserIdx
-            })
+            });
             await queryRunner.manager.save(study);
             
             const userstudy = new UserStudy();
@@ -112,8 +111,37 @@ export class StudiesService {
         }
     }
 
-    apply() {
+    async apply(userIdx: number, studyIdx: number) {
+        const queryRunner = this.connection.createQueryRunner();
 
+        await queryRunner.connect();
+        await queryRunner.startTransaction();
+        try {
+            const user: User = await User.findOne({
+                where: {
+                    userIdx: userIdx
+                }
+            });
+            const study: Study = await Study.findOne({
+                where: {
+                    studyIdx: studyIdx
+                }
+            });
+            const userstudy = new UserStudy();
+            userstudy.user = user;
+            userstudy.study = study;
+
+            await queryRunner.manager.save(userstudy);
+            await queryRunner.commitTransaction();
+
+            return new BaseSuccessResponse();
+        } catch(error) {
+            console.log(error);
+            await queryRunner.rollbackTransaction();
+            return new BaseFailResponse('스터디 신청에 실패했습니다.');
+        } finally {
+            queryRunner.release();
+        }
     }
 
     accept() {
