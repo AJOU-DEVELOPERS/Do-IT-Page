@@ -21,9 +21,12 @@ export class StudiesService {
         study.leaderName = createStudyDto.leaderName;
 
         await queryRunner.connect();
+        await queryRunner.startTransaction();
         try {
-            const user: User = await queryRunner.manager.findOne(User, {
-                userIdx: createStudyDto.leaderUserIdx
+            const user: User = await User.findOne({
+                where: {
+                    userIdx: createStudyDto.leaderUserIdx
+                }
             });
             await queryRunner.manager.save(study);
             
@@ -33,10 +36,11 @@ export class StudiesService {
             userstudy.status = UserStudyStatus.leader;
     
             await queryRunner.manager.save(userstudy);
-
+            await queryRunner.commitTransaction();
             return new BaseSuccessResponse();
         } catch(error) {
             console.log(error);
+            await queryRunner.rollbackTransaction();
             return new BaseFailResponse('스터디 생성에 실패하였습니다.');
         } finally {
             await queryRunner.release();
@@ -47,11 +51,14 @@ export class StudiesService {
         const queryRunner = this.connection.createQueryRunner();
         
         await queryRunner.connect();
+        await queryRunner.startTransaction();
         try {
             await queryRunner.manager.update(Study, studyIdx, updateStudyDto);
+            await queryRunner.commitTransaction();
             return new BaseSuccessResponse();
         } catch(error) {
             console.log(error);
+            await queryRunner.rollbackTransaction();
             return new BaseFailResponse('스터디 정보 수정에 실패했습니다.');
         } finally {
             await queryRunner.release();
@@ -59,26 +66,18 @@ export class StudiesService {
     }
 
     async findAll() {
-        const queryRunner = this.connection.createQueryRunner();
-        
-        await queryRunner.connect();
         try {
-            const studies = await queryRunner.manager.find(Study);
+            const studies = await Study.find();
             return studies;
         } catch(error) {
             console.log(error);
             return new BaseFailResponse('모든 스터디 불러오기를 실패했습니다.');
-        } finally {
-            await queryRunner.release();
         }
     }
 
     async findOne(studyIdx: number) {
-        const queryRunner = this.connection.createQueryRunner();
-        
-        await queryRunner.connect();
         try {
-            const study = await queryRunner.manager.find(Study, 
+            const study = await Study.find( 
                 { 
                     where: {
                         studyIdx: studyIdx
@@ -91,8 +90,6 @@ export class StudiesService {
         } catch(error) {
             console.log(error);
             return new BaseFailResponse('스터디 불러오기를 실패했습니다.');
-        } finally {
-            await queryRunner.release();
         }
     }
 
@@ -100,11 +97,14 @@ export class StudiesService {
         const queryRunner = this.connection.createQueryRunner();
         
         await queryRunner.connect();
+        await queryRunner.startTransaction();
         try {
             await queryRunner.manager.softDelete(Study, studyIdx);
+            await queryRunner.commitTransaction();
             return new BaseSuccessResponse();
         } catch(error) {
             console.log(error);
+            await queryRunner.rollbackTransaction();
             return new BaseFailResponse('스터디 삭제에 실패했습니다.');
         } finally {
             await queryRunner.release();
