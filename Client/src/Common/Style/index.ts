@@ -2,6 +2,8 @@ export const DefaultColor = "#707070";
 
 export const GreyColor = `#f3f6f8`;
 
+export const DefaultBoxShadow = `0px 3px 19px #00000029`;
+
 export const AlignCenterAround = `
   align-items: center;
   justify-content: space-around;`;

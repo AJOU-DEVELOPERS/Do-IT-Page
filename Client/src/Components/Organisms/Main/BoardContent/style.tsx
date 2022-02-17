@@ -1,9 +1,14 @@
+import { DefaultBoxShadow } from "@Style/.";
+import { BoardType } from "@Type/.";
 import styled from "styled-components";
 
-export const BoardContainer = styled.div`
+interface Props {
+  boardName: string;
+}
+export const BoardContainer = styled.div<Props>`
+  grid-area: ${({ boardName }) => boardName};
   display: flex;
-  flex-direction: column;
-  width: 40%;
+  box-shadow: ${DefaultBoxShadow};
 `;
 export const ContenTitleContainer = styled.div`
   width: 80%;

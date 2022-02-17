@@ -5,29 +5,8 @@ import { BoardContentType, BoardType } from "@src/Common/Type";
 import { useRecoilValue } from "recoil";
 import { BoardContainer, ContenTitleContainer } from "./style";
 
-const BoardContent = ({ boardType, apiSrc }: BoardType) => {
-  const BoardContents = useRecoilValue<BoardContentType[]>(
-    BoardContentSelector(apiSrc as string)
-  );
-
-  const handleMoreInfoClick = () => {};
-  return (
-    <BoardContainer>
-      <ContenTitleContainer>
-        <ContentTitle
-          title={boardType as string}
-          onClick={handleMoreInfoClick}
-        />
-      </ContenTitleContainer>
-      {BoardContents.slice(0, 4).map(({ title, date }, idx) => (
-        <BoardPreview
-          type="line"
-          title={title}
-          date={date}
-          key={`${title + date} ${idx}`}
-        />
-      ))}
-    </BoardContainer>
-  );
+const BoardContent = ({ boardName }: { boardName: string }) => {
+  const _boardName = boardName.replaceAll(" ", "");
+  return <BoardContainer boardName={_boardName}></BoardContainer>;
 };
 export default BoardContent;

@@ -39,28 +39,6 @@ export const MY_PAGE_URL = "/mypage";
 export const GET_SOLVED_CARD_URL = (id: string) =>
   `http://mazassumnida.wtf/api/v2/generate_badge?boj=${id}`;
 
-export const BOARD_INFOS: BoardType[] = [
-  {
-    boardType: "자유게시판",
-    apiSrc: GET_FREE_CONTENT_URL,
-    pageSrc: FREE_BOARD_URL,
-  },
-  {
-    boardType: "스터디",
-    apiSrc: GET_STUDY_CONTENT_URL,
-    pageSrc: STUDY_BOARD_URL,
-  },
-  {
-    boardType: "프로젝트",
-    apiSrc: GET_PROJECT_CONTENT_URL,
-    pageSrc: PROJECT_BOARD_URL,
-  },
-  {
-    boardType: "과방 대여",
-    apiSrc: GET_ROOM_CONTENT_URL,
-    pageSrc: ROOM_BOARD_URL,
-  },
-];
 // carousel
 export const CAROUSEL_URL = [
   "/assets/Login/loginBg.jpeg",
@@ -108,6 +86,39 @@ export const HEADER_NAV_LIST = [
   "마이페이지",
 ];
 
+export const MAIN_BOARD_PREVIEW_LIST = [
+  "스터디",
+  "공지사항",
+  "이미지",
+  "백준랭킹",
+  "프로젝트",
+  "과방 대여",
+  "자유게시판",
+  "사진첩",
+];
+
+export const BOARD_INFOS: BoardType[] = [
+  {
+    boardType: "자유게시판",
+    apiSrc: GET_FREE_CONTENT_URL,
+    pageSrc: FREE_BOARD_URL,
+  },
+  {
+    boardType: "스터디",
+    apiSrc: GET_STUDY_CONTENT_URL,
+    pageSrc: STUDY_BOARD_URL,
+  },
+  {
+    boardType: "프로젝트",
+    apiSrc: GET_PROJECT_CONTENT_URL,
+    pageSrc: PROJECT_BOARD_URL,
+  },
+  {
+    boardType: "과방 대여",
+    apiSrc: GET_ROOM_CONTENT_URL,
+    pageSrc: ROOM_BOARD_URL,
+  },
+];
 export const _BOARD_INFOS: BoardInfoType = {
   공지사항: {
     pageSrc: NOTICE_URL,
@@ -129,6 +140,9 @@ export const _BOARD_INFOS: BoardInfoType = {
   },
   마이페이지: {
     pageSrc: MY_PAGE_URL,
+  },
+  사진첩: {
+    pageSrc: PHOTO_BOARD_URL,
   },
 };
 

@@ -8,7 +8,7 @@ import { Container } from "./styles";
 import HeaderLeftSide from "@Molecules/Header";
 import HeaderNav from "@Molecules//Header/Nav";
 
-const Header = ({ onClick }: { onClick: () => void }) => {
+const Header = ({ onClick }: { onClick?: () => void }) => {
   const user = useRecoilValue(checkLoginSelector);
 
   return (
