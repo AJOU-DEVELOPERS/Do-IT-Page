@@ -1,4 +1,4 @@
-import { BoardType } from "../Type";
+import { BoardInfoType, BoardType } from "../Type";
 
 export const API_GET_OPTION = {
   withCredentials: true,
@@ -31,6 +31,10 @@ export const PROJECT_BOARD_URL = "/project";
 export const ROOM_BOARD_URL = "/room";
 
 export const PHOTO_BOARD_URL = "/photos";
+
+export const RANKING_BOARD_URL = "/ranking";
+
+export const MY_PAGE_URL = "/mypage";
 
 export const GET_SOLVED_CARD_URL = (id: string) =>
   `http://mazassumnida.wtf/api/v2/generate_badge?boj=${id}`;
@@ -103,6 +107,30 @@ export const HEADER_NAV_LIST = [
   "과방 대여",
   "마이페이지",
 ];
+
+export const _BOARD_INFOS: BoardInfoType = {
+  공지사항: {
+    pageSrc: NOTICE_URL,
+  },
+  자유게시판: {
+    pageSrc: FREE_BOARD_URL,
+  },
+  백준랭킹: {
+    pageSrc: RANKING_BOARD_URL,
+  },
+  프로젝트: {
+    pageSrc: PROJECT_BOARD_URL,
+  },
+  스터디: {
+    pageSrc: STUDY_BOARD_URL,
+  },
+  "과방 대여": {
+    pageSrc: ROOM_BOARD_URL,
+  },
+  마이페이지: {
+    pageSrc: MY_PAGE_URL,
+  },
+};
 
 export const HEADER_NAV_LENGTH = HEADER_NAV_LIST.length;
 

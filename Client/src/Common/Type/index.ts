@@ -43,9 +43,13 @@ export interface BasicInputProps extends BasicAtomProps {
 }
 
 export interface BoardType {
-  boardType: string;
-  apiSrc: string;
-  pageSrc?: string;
+  boardType?: string;
+  apiSrc?: string;
+  pageSrc: string;
+}
+
+export interface BoardInfoType {
+  [index: string]: BoardType;
 }
 
 export interface BoardContentType {

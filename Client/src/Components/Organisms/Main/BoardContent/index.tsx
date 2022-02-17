@@ -7,14 +7,17 @@ import { BoardContainer, ContenTitleContainer } from "./style";
 
 const BoardContent = ({ boardType, apiSrc }: BoardType) => {
   const BoardContents = useRecoilValue<BoardContentType[]>(
-    BoardContentSelector(apiSrc)
+    BoardContentSelector(apiSrc as string)
   );
 
   const handleMoreInfoClick = () => {};
   return (
     <BoardContainer>
       <ContenTitleContainer>
-        <ContentTitle title={boardType} onClick={handleMoreInfoClick} />
+        <ContentTitle
+          title={boardType as string}
+          onClick={handleMoreInfoClick}
+        />
       </ContenTitleContainer>
       {BoardContents.slice(0, 4).map(({ title, date }, idx) => (
         <BoardPreview

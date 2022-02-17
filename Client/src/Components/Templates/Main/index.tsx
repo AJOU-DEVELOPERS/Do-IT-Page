@@ -20,17 +20,7 @@ const MainPageTemplate = () => {
   return (
     <>
       <Header onClick={handleUserIconClick}></Header>
-      <DoItCarousel />
       <NoticeContent />
-      <BoardsContainer>
-        {BOARD_INFOS.map(({ boardType, apiSrc }, idx) => (
-          <BoardContent
-            boardType={boardType}
-            apiSrc={apiSrc}
-            key={`${boardType} ${idx}`}
-          />
-        ))}
-      </BoardsContainer>
       <RainkingContent />
       <PhotoContent />
       <CalendarContainer>

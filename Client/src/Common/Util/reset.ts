@@ -27,5 +27,9 @@ const GlobalStyle = createGlobalStyle`
     font-familiy: Noto Sans CJK KR;
     color : ${DefaultColor}
   }
+  a{
+    font-familiy: Noto Sans CJK KR;
+    color : ${DefaultColor}
+  }
 `;
 export default GlobalStyle;
