@@ -46,6 +46,7 @@ export interface BoardType {
   boardType?: string;
   apiSrc?: string;
   pageSrc: string;
+  previewSize?: number;
 }
 
 export interface BoardInfoType {

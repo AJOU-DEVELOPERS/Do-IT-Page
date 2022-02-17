@@ -55,6 +55,8 @@ export const ADMIN_CATEGORY = [
   "공지사항 관리",
 ];
 
+export const MAIN_PREVIEW_IMAGE = "/assets/MainPage/codeImage.jpg";
+
 // content
 
 export const MIDDLE_IMG_URL = [
@@ -122,18 +124,23 @@ export const BOARD_INFOS: BoardType[] = [
 export const _BOARD_INFOS: BoardInfoType = {
   공지사항: {
     pageSrc: NOTICE_URL,
+    previewSize: 7,
   },
   자유게시판: {
     pageSrc: FREE_BOARD_URL,
+    previewSize: 7,
   },
   백준랭킹: {
     pageSrc: RANKING_BOARD_URL,
+    previewSize: 4,
   },
   프로젝트: {
     pageSrc: PROJECT_BOARD_URL,
+    previewSize: 3,
   },
   스터디: {
     pageSrc: STUDY_BOARD_URL,
+    previewSize: 3,
   },
   "과방 대여": {
     pageSrc: ROOM_BOARD_URL,
@@ -143,6 +150,7 @@ export const _BOARD_INFOS: BoardInfoType = {
   },
   사진첩: {
     pageSrc: PHOTO_BOARD_URL,
+    previewSize: 4,
   },
 };
 
