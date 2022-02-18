@@ -28,11 +28,11 @@ export const STUDY_BOARD_URL = "/study";
 
 export const PROJECT_BOARD_URL = "/project";
 
-export const ROOM_BOARD_URL = "/room";
+export const ROOM_BOARD_URL = "/reserve";
 
 export const PHOTO_BOARD_URL = "/photos";
 
-export const RANKING_BOARD_URL = "/ranking";
+export const RANKING_BOARD_URL = "/rank";
 
 export const MY_PAGE_URL = "/mypage";
 
@@ -239,3 +239,5 @@ export const CONTENT = [
 `,
   },
 ];
+
+export const FOOTER_MESSAGE = `Do It / 임원진 김영진 010-8931-4993 / 과방 구학 243호 / 이메일@ajou.ac.kr`;
