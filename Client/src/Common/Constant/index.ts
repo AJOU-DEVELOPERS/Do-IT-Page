@@ -158,6 +158,8 @@ export const _BOARD_INFOS: BoardInfoType = {
   "과방 대여": {
     pageSrc: ROOM_BOARD_URL,
     apiSrc: GET_ROOM_CONTENT_URL,
+    previewSize: 1,
+    previewType: "calendar",
   },
   마이페이지: {
     pageSrc: MY_PAGE_URL,
