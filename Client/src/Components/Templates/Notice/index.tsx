@@ -1,7 +1,7 @@
 import Header from "@Organisms/Header";
 import { withRouter } from "react-router-dom";
 import { History } from "history";
-import NoticeBody from "@Organisms/NoticeBody";
+import BoardBody from "@Organisms/BoardBody";
 
 const NoticeTemplate = ({ history }: { history: History }) => {
   const handleHeaderClick = () => {
@@ -10,7 +10,7 @@ const NoticeTemplate = ({ history }: { history: History }) => {
   return (
     <>
       <Header onClick={handleHeaderClick} />
-      <NoticeBody />
+      <BoardBody type="공지사항" />
     </>
   );
 };

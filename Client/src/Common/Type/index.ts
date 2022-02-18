@@ -74,6 +74,8 @@ export interface BoardContentType {
   date: string;
   images: string[];
   writer: string;
+  visitor: number;
+  idx: number;
 }
 
 export interface StudyContentType {
@@ -83,6 +85,7 @@ export interface StudyContentType {
   leaderUserIdx: number;
   leaderName: string;
   status: string;
+  idx: number;
 }
 
 export interface ProjectContentType extends StudyContentType {
@@ -93,11 +96,13 @@ export interface RankingContentType {
   rating: number;
   tier: string;
   name: string;
+  idx: number;
 }
 
 export interface PreviewProps {
   previewType?: string;
   content: ContentType;
+  type?: string;
 }
 
 export type ContentType =
