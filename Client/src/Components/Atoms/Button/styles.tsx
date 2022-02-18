@@ -1,4 +1,8 @@
-import { BasicButtonProps, LoginButtonProps } from "@src/Common/Type";
+import {
+  ApplyButtonProps,
+  BasicButtonProps,
+  LoginButtonProps,
+} from "@src/Common/Type";
 import styled from "styled-components";
 
 const ButtonContainer = styled.button<BasicButtonProps>`
@@ -9,7 +13,7 @@ const ButtonContainer = styled.button<BasicButtonProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #ffffff;
+  color: ${({ color }) => color};
   background-color: ${({ backGroundColor }) => backGroundColor};
   cursor: pointer;
 `;
@@ -27,4 +31,8 @@ const EnterContainer = styled(ButtonContainer)`
   font-size: 32px;
 `;
 
-export { ButtonContainer, LoginContainer, EnterContainer };
+const ApplyContainer = styled(ButtonContainer)<ApplyButtonProps>`
+  color: ${({ color }) => color};
+`;
+
+export { ButtonContainer, LoginContainer, EnterContainer, ApplyContainer };
