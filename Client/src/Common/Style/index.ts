@@ -8,6 +8,10 @@ export const AlignCenterAround = `
   align-items: center;
   justify-content: space-around;`;
 
+export const AlignCenterBetween = `
+align-items: center;
+justify-content: space-between;`;
+
 export const HoverPointer = `
     &:hover{
       cursor : pointer

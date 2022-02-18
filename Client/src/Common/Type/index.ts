@@ -85,10 +85,10 @@ export interface RankingContentType {
 
 export interface PreviewProps {
   previewType?: string;
-  content: PreviewContentType;
+  content: ContentType;
 }
 
-export type PreviewContentType =
+export type ContentType =
   | BoardContentType
   | ProjectContentType
   | RankingContentType;

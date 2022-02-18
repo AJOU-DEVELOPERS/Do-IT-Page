@@ -5,7 +5,7 @@ import { BoardContentSelector } from "@Recoil/BoardContent";
 import { _BOARD_INFOS } from "@Constant/.";
 import { hasBoardContent } from "@Util/.";
 import BoardPreview from "@Molecules/BoardPreview";
-import { PreviewContentType } from "@Type/.";
+import { ContentType } from "@Type/.";
 
 const BoardContent = ({ boardName }: { boardName: string }) => {
   const _boardName = boardName.replaceAll(" ", "");
@@ -18,7 +18,7 @@ const BoardContent = ({ boardName }: { boardName: string }) => {
 
   const boardContents =
     hasBoardContent(apiSrc, boardName) &&
-    useRecoilValue<PreviewContentType[]>(BoardContentSelector(apiSrc));
+    useRecoilValue<ContentType[]>(BoardContentSelector(apiSrc));
 
   return (
     <BoardContainer boardName={_boardName}>
