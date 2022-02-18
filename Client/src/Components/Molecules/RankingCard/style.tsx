@@ -6,7 +6,7 @@ export const CardContainer = styled.div`
   background: white;
   display: flex;
   width: 100%;
-  height: 25%;
+  height: 24%;
   ${AlignCenterAround}
   ${HoverPointer}
 `;
@@ -16,7 +16,9 @@ export const Name = styled.p`
 `;
 
 export const Info = styled.img<ImgAltProps>`
+  max-width: 100%;
   width: 100%;
-  height: 95%;
+  min-height: 90%;
+  height: 10vh;
   content: url(${({ url }) => url});
 `;

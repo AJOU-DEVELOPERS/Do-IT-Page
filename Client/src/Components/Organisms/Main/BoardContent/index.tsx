@@ -1,6 +1,6 @@
 import { useRecoilValue } from "recoil";
 import { BoardContainer, ContentContainer } from "./style";
-import BoardTitle from "@Molecules/BoardTitle";
+import ContentTitle from "@Molecules/ContentTitle";
 import { BoardContentSelector } from "@Recoil/BoardContent";
 import { _BOARD_INFOS } from "@Constant/.";
 import { hasBoardContent } from "@Util/.";
@@ -24,7 +24,7 @@ const BoardContent = ({ boardName }: { boardName: string }) => {
     <BoardContainer boardName={_boardName}>
       {boardName !== "이미지" && (
         <>
-          <BoardTitle boardName={boardName} />
+          <ContentTitle title={boardName} />
           <ContentContainer alignPreview={alignPreview}>
             {boardContents?.slice(0, previewSize).map((content) => (
               <BoardPreview previewType={previewType} content={content} />

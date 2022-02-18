@@ -24,7 +24,7 @@ export const BoardContainer = styled.div<BoardProps>`
 
 export const ContentContainer = styled.div<ContentProps>`
   display: flex;
-  flex-direction: ${({ alignPreview }) => alignPreview}
+  flex-direction: ${({ alignPreview }) => alignPreview};
   width: 90%;
   height: 85%;
   margin: auto;
