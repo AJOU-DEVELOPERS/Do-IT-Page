@@ -89,3 +89,9 @@ export const ApplyButtonType = (backgroundColor = "white") => ({
   fontSize: "0.6rem",
   radius: "1px",
 });
+
+export const textOverflowSafe = `
+white-space: nowrap;
+text-overflow: ellipsis;
+overflow: hidden;
+`;
