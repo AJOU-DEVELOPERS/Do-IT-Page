@@ -1,10 +1,14 @@
 import { atom, selectorFamily } from "recoil";
 import { _API } from "@API/.";
 import { getBoardContents } from "@API/test";
-import { BoardContentType, BoardType, RankingContentType } from "@Type/.";
+import {
+  BoardContentType,
+  ProjectContentType,
+  RankingContentType,
+} from "@Type/.";
 
 export const BoardContentSelector = selectorFamily<
-  BoardContentType[] & RankingContentType[],
+  BoardContentType[] | RankingContentType[] | ProjectContentType[],
   string
 >({
   key: "BoardContentSelector",

@@ -1,4 +1,4 @@
-import { BoardType } from "../Type";
+import { BoardInfoType, BoardType } from "../Type";
 
 export const API_GET_OPTION = {
   withCredentials: true,
@@ -28,12 +28,81 @@ export const STUDY_BOARD_URL = "/study";
 
 export const PROJECT_BOARD_URL = "/project";
 
-export const ROOM_BOARD_URL = "/room";
+export const ROOM_BOARD_URL = "/reserve";
 
 export const PHOTO_BOARD_URL = "/photos";
 
+export const RANKING_BOARD_URL = "/rank";
+
+export const MY_PAGE_URL = "/mypage";
+
 export const GET_SOLVED_CARD_URL = (id: string) =>
   `http://mazassumnida.wtf/api/v2/generate_badge?boj=${id}`;
+
+// carousel
+export const CAROUSEL_URL = [
+  "/assets/Login/loginBg.jpeg",
+  "/assets/CAROUSEL/carousel1.jpeg",
+  "/assets/CAROUSEL/carousel2.jpeg",
+];
+
+export const USER_ICON_URL = "/assets/MainPage/userIcon.png";
+
+export const CAROUSEL_TIME = 3000;
+
+//admin category
+export const ADMIN_CATEGORY = [
+  "동아리원 관리",
+  "동아리 신청 관리",
+  "스터디 관리",
+  "프로젝트 관리",
+  "과방 신청 관리",
+  "공지사항 관리",
+];
+
+export const MAIN_PREVIEW_IMAGE = "/assets/MainPage/codeImage.jpg";
+
+// content
+
+export const MIDDLE_IMG_URL = [
+  "/assets/Content/process_logo.png",
+  "/assets/Content/study_logo.png",
+  "/assets/Content/room_logo.png",
+];
+
+export const LAST_IMG_URL = [
+  "/assets/Content/secondContent.png",
+  "/assets/Content/secondContent.png",
+  "/assets/Content/secondContent.png",
+  "/assets/Content/secondContent.png",
+];
+
+export const RANKING_IMG_URL = [
+  "/assets/BackJoon/gold_icon.png",
+  "/assets/BackJoon/silver_icon.png",
+  "/assets/BackJoon/bronze_icon.png",
+];
+
+export const HEADER_NAV_LIST = [
+  "공지사항",
+  "자유게시판",
+  "백준랭킹",
+  "프로젝트",
+  "스터디",
+  "과방 대여",
+  "마이페이지",
+];
+
+export const MAIN_BOARD_PREVIEW_LIST = [
+  "스터디",
+  "공지사항",
+  "이미지",
+  "백준랭킹",
+  "프로젝트",
+  "과방 대여",
+  "자유게시판",
+  "사진첩",
+];
 
 export const BOARD_INFOS: BoardType[] = [
   {
@@ -57,44 +126,61 @@ export const BOARD_INFOS: BoardType[] = [
     pageSrc: ROOM_BOARD_URL,
   },
 ];
-// carousel
-export const CAROUSEL_URL = [
-  "/assets/Login/loginBg.jpeg",
-  "/assets/CAROUSEL/carousel1.jpeg",
-  "/assets/CAROUSEL/carousel2.jpeg",
-];
-export const CAROUSEL_TIME = 3000;
+export const _BOARD_INFOS: BoardInfoType = {
+  공지사항: {
+    pageSrc: NOTICE_URL,
+    apiSrc: GET_NOTICE_CONTENT_URL,
+    previewSize: 7,
+    previewType: "basic",
+  },
+  자유게시판: {
+    pageSrc: FREE_BOARD_URL,
+    apiSrc: GET_FREE_CONTENT_URL,
+    previewSize: 7,
+    previewType: "basic",
+  },
+  백준랭킹: {
+    pageSrc: RANKING_BOARD_URL,
+    apiSrc: GET_RANKING_URL,
+    previewSize: 4,
+    previewType: "ranking",
+  },
+  프로젝트: {
+    pageSrc: PROJECT_BOARD_URL,
+    apiSrc: GET_PROJECT_CONTENT_URL,
+    previewSize: 3,
+    previewType: "card",
+  },
+  스터디: {
+    pageSrc: STUDY_BOARD_URL,
+    apiSrc: GET_STUDY_CONTENT_URL,
+    previewSize: 3,
+    previewType: "card",
+  },
+  "과방 대여": {
+    pageSrc: ROOM_BOARD_URL,
+    apiSrc: GET_ROOM_CONTENT_URL,
+    previewSize: 1,
+    previewType: "calendar",
+  },
+  마이페이지: {
+    pageSrc: MY_PAGE_URL,
+    apiSrc: "",
+  },
+  사진첩: {
+    pageSrc: PHOTO_BOARD_URL,
+    apiSrc: GET_PHOTO_CONTENT_URL,
+    previewSize: 4,
+    previewType: "image",
+    alignPreview: "row",
+  },
+  이미지: {
+    pageSrc: "",
+    apiSrc: "",
+  },
+};
 
-//admin category
-export const ADMIN_CATEGORY = [
-  "동아리원 관리",
-  "동아리 신청 관리",
-  "스터디 관리",
-  "프로젝트 관리",
-  "과방 신청 관리",
-  "공지사항 관리",
-];
-
-// content
-
-export const MIDDLE_IMG_URL = [
-  "/assets/Content/process_logo.png",
-  "/assets/Content/study_logo.png",
-  "/assets/Content/room_logo.png",
-];
-
-export const LAST_IMG_URL = [
-  "/assets/Content/secondContent.png",
-  "/assets/Content/secondContent.png",
-  "/assets/Content/secondContent.png",
-  "/assets/Content/secondContent.png",
-];
-
-export const RANKING_IMG_URL = [
-  "/assets/BackJoon/gold_icon.png",
-  "/assets/BackJoon/silver_icon.png",
-  "/assets/BackJoon/bronze_icon.png",
-];
+export const HEADER_NAV_LENGTH = HEADER_NAV_LIST.length;
 
 export const MANAGER_INFO = "민태홍 김영진";
 
@@ -157,3 +243,5 @@ export const CONTENT = [
 `,
   },
 ];
+
+export const FOOTER_MESSAGE = `Do It / 임원진 김영진 010-8931-4993 / 과방 구학 243호 / 이메일@ajou.ac.kr`;

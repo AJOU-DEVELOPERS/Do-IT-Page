@@ -1,20 +1,31 @@
-import { HoverPointer } from "@Style/.";
+import {
+  DefaultColor,
+  HoverPointer,
+  AlignCenterBetween,
+  textOverflowSafe,
+} from "@Style/.";
 import styled from "styled-components";
 
+interface Props {
+  type?: string;
+}
 export const Container = styled.div`
   display: flex;
+  width: 90%;
+  height: 10%;
   margin: auto;
-  align-items: center;
-  justify-content: space-between;
+  ${AlignCenterBetween};
+  border-bottom: 1px solid ${DefaultColor};
 `;
 
-export const Title = styled.p`
+export const Title = styled.p<Props>`
+  width: 70%;
+  font-size: ${({ type }) => (type === "small" ? "0.8rem" : "1.5rem")};
   font-weight: 700;
-  font-size: 25px;
+  ${textOverflowSafe};
 `;
 
-export const Text = styled.button`
-  font-size: 15px;
-  background: none;
-  ${HoverPointer}
+export const Text = styled.p<Props>`
+  font-size: ${({ type }) => (type === "small" ? "0.3rem" : "0.8rem")};
+  ${textOverflowSafe};
 `;
