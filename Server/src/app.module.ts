@@ -12,6 +12,7 @@ import { User } from './users/entities/user.entity';
 import { Department } from './departments/entities/department.entity';
 import { DepartmentsModule } from './departments/departments.module';
 import { StudiesModule } from './studies/studies.module';
+import { ProjectsModule } from './projects/projects.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -42,7 +43,7 @@ import { StudiesModule } from './studies/studies.module';
       password: 'ajoulee1214',
       database: 'nesttest',
       entities: ['dist/**/*.entity{.ts,.js}'],
-      synchronize: false,
+      synchronize: true,
     }),
     MailerModule.forRootAsync({
       useFactory: () => ({
@@ -70,6 +71,7 @@ import { StudiesModule } from './studies/studies.module';
     AuthsModule,
     DepartmentsModule,
     StudiesModule,
+    ProjectsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
