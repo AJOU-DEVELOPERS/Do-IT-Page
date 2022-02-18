@@ -1,6 +1,12 @@
 export interface ImgProps {
   url?: string;
+  width?: string;
 }
+
+export interface ContentImgProps extends ImgAltProps {
+  radius?: string;
+}
+
 export interface ImgAltProps extends ImgProps {
   alt: string;
 }
