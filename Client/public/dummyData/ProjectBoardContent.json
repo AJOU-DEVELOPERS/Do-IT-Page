@@ -6,7 +6,7 @@
             "leaderUserIdx": 2,
             "leaderName": "이호용",
             "status": "모집중",
-            "techStack": "Java/Spring"
+            "techStack": ["Java", "Spring"]
         },
         {
             "name": "NestJS 기초 스터디",
@@ -15,7 +15,7 @@
             "leaderUserIdx": 2,
             "leaderName": "이호용",
             "status": "모집중",
-            "techStack": "Java/Spring"
+            "techStack": ["Java", "Spring", "React"]
         },
         {
             "name": "NestJS 기초 스터디",
@@ -24,7 +24,7 @@
             "leaderUserIdx": 2,
             "leaderName": "이호용",
             "status": "모집중",
-            "techStack": "Java/Spring"
+            "techStack": ["Java", "Spring", "React"]
         },
         {
             "name": "NestJS 기초 스터디",
@@ -33,7 +33,7 @@
             "leaderUserIdx": 2,
             "leaderName": "이호용",
             "status": "모집중",
-            "techStack": "Java/Spring"
+            "techStack": ["Java", "Spring", "React"]
         },
         {
             "name": "NestJS 기초 스터디",
@@ -42,7 +42,7 @@
             "leaderUserIdx": 2,
             "leaderName": "이호용",
             "status": "모집중",
-            "techStack": "Java/Spring"
+            "techStack": ["Java", "Spring", "React"]
         },
         {
             "name": "NestJS 기초 스터디",
@@ -51,7 +51,7 @@
             "leaderUserIdx": 2,
             "leaderName": "이호용",
             "status": "모집중",
-            "techStack": "Java/Spring"
+            "techStack": ["Java", "Spring", "React"]
         },
         {
             "name": "NestJS 기초 스터디",
@@ -60,7 +60,7 @@
             "leaderUserIdx": 2,
             "leaderName": "이호용",
             "status": "모집중",
-            "techStack": "Java/Spring"
+            "techStack": ["Java", "Spring", "React"]
         }
     ],
     "status": 200
