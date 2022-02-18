@@ -23,11 +23,17 @@ interface BasicAtomProps {
 export interface BasicButtonProps extends BasicAtomProps {
   backGroundColor?: string;
   title?: string;
+  color?: string;
   onClick?: () => void;
 }
 
 export interface LoginButtonProps extends BasicButtonProps {
-  color?: string;
+  fontSize?: string;
+  radius?: string;
+}
+
+export interface ApplyButtonProps extends BasicButtonProps {
+  backGroundColor?: string;
   fontSize?: string;
   radius?: string;
 }
@@ -67,14 +73,14 @@ export interface BoardContentType {
 export interface StudyContentType {
   name: string;
   decription: string;
-  totalHeadCount: number;
+  totalHeadcount: number;
   leaderUserIdx: number;
   leaderName: string;
   status: string;
 }
 
 export interface ProjectContentType extends StudyContentType {
-  techStack: string;
+  techStack?: string[];
 }
 
 export interface RankingContentType {

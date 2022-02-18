@@ -1,6 +1,8 @@
 export const DefaultColor = "#707070";
 
-export const GreyColor = `#f3f6f8`;
+export const GreyColor = `#F6F6F6`;
+
+export const BlueColor = `#42556B`;
 
 export const DefaultBoxShadow = `0px 3px 19px #00000029`;
 
@@ -76,3 +78,14 @@ export const LoginInputType = {
   padding: "0 0 0 10px",
   background: "#e8f0fe",
 };
+
+export const ApplyButtonType = (backgroundColor = "white") => ({
+  title: "신청",
+  width: "7vmin",
+  height: "20%",
+  borderColor: DefaultColor,
+  backGroundColor: backgroundColor,
+  color: DefaultColor,
+  fontSize: "0.6rem",
+  radius: "1px",
+});

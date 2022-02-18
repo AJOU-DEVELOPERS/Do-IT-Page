@@ -45,6 +45,9 @@ export const CAROUSEL_URL = [
   "/assets/CAROUSEL/carousel1.jpeg",
   "/assets/CAROUSEL/carousel2.jpeg",
 ];
+
+export const USER_ICON_URL = "/assets/MainPage/userIcon.png";
+
 export const CAROUSEL_TIME = 3000;
 
 //admin category
