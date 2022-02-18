@@ -1,5 +1,6 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
 import { ApiBody, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { number } from 'joi';
 import { BaseSuccessResponse } from 'src/commons/dto/response-common.dto';
 import { CreateStudyDto } from './dto/create-study.dto';
 import { UpdateStudyDto } from './dto/update-study.dto';
@@ -63,7 +64,32 @@ export class StudiesController {
     }
 
     @Post(':studyIdx')
+    @ApiOperation({
+        summary: '스터디 신청 API',
+        description: 'true false 반환'
+    })
+    @ApiOkResponse({ description: '스터디 신청 성공' })
     apply(@Body('userIdx') userIdx: number, @Param('studyIdx') studyIdx: number) {
         return this.studiesService.apply(userIdx, studyIdx);
+    }
+
+    @Get('accept/:userStudyIdx')
+    @ApiOperation({
+        summary: '스터디 참여 요청 승인',
+        description: 'true false 반환'
+    })
+    @ApiOkResponse({ description: '스터디 참여 요청 승인 성공' })
+    accept(@Param('userStudyIdx') userStudyIdx: number) {
+        return this.studiesService.accept(userStudyIdx);
+    }
+
+    @Get('reject/:userStudyIdx')
+    @ApiOperation({
+        summary: '스터디 참여 요청 거부',
+        description: 'true false 반환'
+    })
+    @ApiOkResponse({ description: '스터디 참여 요청 거부 성공' })
+    reject(@Param('userStudyIdx') userStudyIdx: number) {
+        return this.studiesService.reject(userStudyIdx);
     }
 }

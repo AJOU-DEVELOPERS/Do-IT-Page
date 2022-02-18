@@ -30,12 +30,12 @@ export class StudiesService {
             });
             await queryRunner.manager.save(study);
             
-            const userstudy = new UserStudy();
-            userstudy.user = user;
-            userstudy.study = study;
-            userstudy.status = UserStudyStatus.leader;
+            const userStudy = new UserStudy();
+            userStudy.user = user;
+            userStudy.study = study;
+            userStudy.status = UserStudyStatus.leader;
     
-            await queryRunner.manager.save(userstudy);
+            await queryRunner.manager.save(userStudy);
             await queryRunner.commitTransaction();
             return new BaseSuccessResponse();
         } catch(error) {
@@ -127,11 +127,11 @@ export class StudiesService {
                     studyIdx: studyIdx
                 }
             });
-            const userstudy = new UserStudy();
-            userstudy.user = user;
-            userstudy.study = study;
+            const userStudy = new UserStudy();
+            userStudy.user = user;
+            userStudy.study = study;
 
-            await queryRunner.manager.save(userstudy);
+            await queryRunner.manager.save(userStudy);
             await queryRunner.commitTransaction();
 
             return new BaseSuccessResponse();
@@ -144,11 +144,43 @@ export class StudiesService {
         }
     }
 
-    accept() {
+    async accept(userStudyIdx: number) {
+        const queryRunner = this.connection.createQueryRunner();
 
+        await queryRunner.connect();
+        await queryRunner.startTransaction();
+        try {
+            await queryRunner.manager.update(UserStudy, userStudyIdx, {
+                status: UserStudyStatus.accepted
+            })
+            await queryRunner.commitTransaction();
+            return new BaseSuccessResponse();
+        } catch(error) {
+            console.log(error);
+            await queryRunner.rollbackTransaction();
+            return new BaseFailResponse('스터디 참여 승인에 실패했습니다.');
+        } finally {
+            await queryRunner.release();
+        }
     }
 
-    reject() {
+    async reject(userStudyIdx: number) {
+        const queryRunner = this.connection.createQueryRunner();
 
+        await queryRunner.connect();
+        await queryRunner.startTransaction();
+        try {
+            await queryRunner.manager.update(UserStudy, userStudyIdx, {
+                status: UserStudyStatus.rejected
+            })
+            await queryRunner.commitTransaction();
+            return new BaseSuccessResponse();
+        } catch(error) {
+            console.log(error);
+            await queryRunner.rollbackTransaction();
+            return new BaseFailResponse('스터디 참여 거부에 실패했습니다.');
+        } finally {
+            await queryRunner.release();
+        }
     }
 }
