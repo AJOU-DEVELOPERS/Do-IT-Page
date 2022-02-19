@@ -14,6 +14,9 @@ const Title = styled.div`
   margin-top: 1rem;
   color: #707070;
   text-shadow: 0px 3px 3px #00000029;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const NavContainer = styled.div`
