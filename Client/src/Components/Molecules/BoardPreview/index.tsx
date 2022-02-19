@@ -1,4 +1,4 @@
-import Calendar from "@Organisms/Calendar";
+import Calendar from "@Organisms/Calendar/.";
 import { PreviewProps } from "@Type/.";
 import {
   convertBoardType,
@@ -20,7 +20,7 @@ const BoardPreview = ({ content, previewType = "basic" }: PreviewProps) => {
     if (previewType === "image")
       return <ImageBoardPreview {...convertBoardType(content)} />;
     if (previewType === "calendar") {
-      return <Calendar />;
+      return <Calendar isReadOnly={true} />;
     }
     return <BasicBoardPreview {...convertBoardType(content)} />;
   };

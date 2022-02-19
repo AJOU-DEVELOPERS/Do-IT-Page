@@ -8,8 +8,11 @@ export const CALENDAR_OPTION = {
   useDetailPopup: true,
   useCreationPopup: true,
   usageStatistics: false,
-  height: "600px",
+  height: "500px",
   week: {
     daynames: ["일", "월", "화", "수", "목", "금", "토"],
   },
+  //   month: {
+  //     visibleWeeksCount: 3, // visible week count in monthly
+  //   },
 };
