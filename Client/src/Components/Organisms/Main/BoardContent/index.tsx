@@ -1,30 +1,39 @@
-import BoardPreview from "@Molecules/BoardPreview";
+import { useRecoilValue } from "recoil";
+import { BoardContainer, ContentContainer } from "./style";
 import ContentTitle from "@Molecules/ContentTitle";
 import { BoardContentSelector } from "@Recoil/BoardContent";
-import { BoardContentType, BoardType } from "@src/Common/Type";
-import { useRecoilValue } from "recoil";
-import { BoardContainer, ContenTitleContainer } from "./style";
+import { _BOARD_INFOS } from "@Constant/.";
+import { hasBoardContent } from "@Util/.";
+import BoardPreview from "@Molecules/BoardPreview";
+import { ContentType } from "@Type/.";
 
-const BoardContent = ({ boardType, apiSrc }: BoardType) => {
-  const BoardContents = useRecoilValue<BoardContentType[]>(
-    BoardContentSelector(apiSrc)
-  );
+const BoardContent = ({ boardName }: { boardName: string }) => {
+  const _boardName = boardName.replaceAll(" ", "");
+  const {
+    apiSrc,
+    previewSize,
+    previewType,
+    alignPreview = "column;",
+  } = _BOARD_INFOS[boardName];
 
-  const handleMoreInfoClick = () => {};
+  const boardContents =
+    hasBoardContent(apiSrc, boardName) &&
+    useRecoilValue<ContentType[]>(BoardContentSelector(apiSrc));
+
   return (
-    <BoardContainer>
-      <ContenTitleContainer>
-        <ContentTitle title={boardType} onClick={handleMoreInfoClick} />
-      </ContenTitleContainer>
-      {BoardContents.slice(0, 4).map(({ title, date }, idx) => (
-        <BoardPreview
-          type="line"
-          title={title}
-          date={date}
-          key={`${title + date} ${idx}`}
-        />
-      ))}
+    <BoardContainer boardName={_boardName}>
+      {boardName !== "이미지" && (
+        <>
+          <ContentTitle title={boardName} />
+          <ContentContainer alignPreview={alignPreview}>
+            {boardContents?.slice(0, previewSize).map((content) => (
+              <BoardPreview previewType={previewType} content={content} />
+            ))}
+          </ContentContainer>
+        </>
+      )}
     </BoardContainer>
   );
 };
+
 export default BoardContent;

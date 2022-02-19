@@ -1,7 +1,5 @@
 import AdminTemp from "@Templates/Admin";
 
-const AdminPage = () => {
-  return <AdminTemp />;
-};
+const AdminPage = () => <AdminTemp />;
 
 export default AdminPage;

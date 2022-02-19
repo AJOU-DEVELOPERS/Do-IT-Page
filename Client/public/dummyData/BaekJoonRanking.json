@@ -1,0 +1,29 @@
+{
+    "res": [{
+            "rating": 1800,
+            "tier": "플레티넘4",
+            "name": "dnjun2"
+        },
+        {
+            "rating": 1700,
+            "tier": "플레티넘4",
+            "name": "hansorly"
+        },
+        {
+            "rating": 1600,
+            "tier": "플레티넘4",
+            "name": "hansorly"
+        },
+        {
+            "rating": 1500,
+            "tier": "플레티넘4",
+            "name": "dnjun2"
+        },
+        {
+            "rating": 1400,
+            "tier": "플레티넘4",
+            "name": "갓영진"
+        }
+    ],
+    "status": 200
+}

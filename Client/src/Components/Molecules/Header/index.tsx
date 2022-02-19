@@ -4,7 +4,7 @@ import { LeftContainer, Title } from "./style";
 const HeaderLeftSide = () => {
   return (
     <LeftContainer>
-      <Logo url="/Logo.svg" alt="Logo" />
+      {/* <Logo url="/assets/Header/Logo.svg" alt="Logo" /> */}
       <Title>Do-IT</Title>
     </LeftContainer>
   );

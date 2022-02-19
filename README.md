@@ -67,6 +67,11 @@
 
 [Click](https://github.com/AJOU-DEVELOPERS/Do-IT-Page/wiki/%EA%B8%B0%EC%88%A0-%EC%8A%A4%ED%83%9D)
 
-## 💓 Design
+## 💓 Design 초안 
 
 [Click](https://www.figma.com/file/r77c3Ps8mxVKVhjriACroN/Doit_web?node-id=0%3A1)
+
+
+## 💓 Design 최종안
+
+[Click](https://xd.adobe.com/view/990b55b6-06fd-4f6b-a02d-7b992644e2a2-cc58/grid)
