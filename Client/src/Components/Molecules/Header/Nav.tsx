@@ -6,7 +6,12 @@ const HeaderNav = () => {
   return (
     <NavContainer>
       {HEADER_NAV_LIST.map((boardName: string) => (
-        <Link to={_BOARD_INFOS[boardName].pageSrc}>{boardName}</Link>
+        <Link
+          to={_BOARD_INFOS[boardName].pageSrc}
+          key={`${boardName} navigation`}
+        >
+          {boardName}
+        </Link>
       ))}
     </NavContainer>
   );

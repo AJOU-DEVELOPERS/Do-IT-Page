@@ -26,8 +26,12 @@ const BoardContent = ({ boardName }: { boardName: string }) => {
         <>
           <ContentTitle title={boardName} />
           <ContentContainer alignPreview={alignPreview}>
-            {boardContents?.slice(0, previewSize).map((content) => (
-              <BoardPreview previewType={previewType} content={content} />
+            {boardContents?.slice(0, previewSize).map((content, idx) => (
+              <BoardPreview
+                previewType={previewType}
+                content={content}
+                key={`${idx} ${boardName} content`}
+              />
             ))}
           </ContentContainer>
         </>
