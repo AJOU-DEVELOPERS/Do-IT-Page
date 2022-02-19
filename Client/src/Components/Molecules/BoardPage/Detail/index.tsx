@@ -1,8 +1,8 @@
 import {
   DetailDate,
   DetailInfoContainer,
+  DetailText,
   DetailTitle,
-  DetailVisitor,
 } from "./styles";
 
 interface BoardProps {
@@ -17,9 +17,9 @@ const BoardPageDetail = ({ title, date, visitor, text }: BoardProps) => {
       <DetailTitle>제목 : {title}</DetailTitle>
       <DetailInfoContainer>
         <DetailDate>작성일 : {date}</DetailDate>
-        <DetailVisitor>조회수 : {visitor} </DetailVisitor>
+        <div>조회수 : {visitor} </div>
       </DetailInfoContainer>
-      <div>{text}</div>
+      <DetailText>{text}</DetailText>
     </>
   );
 };

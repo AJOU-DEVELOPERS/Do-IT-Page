@@ -7,7 +7,13 @@ const DetailContainer = styled.div`
   width: 70%;
   margin: auto;
   padding: 30px 50px;
-  min-height: 50vh;
+  height: 65vh;
 `;
 
-export { DetailContainer };
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+`;
+
+export { DetailContainer, ButtonContainer };

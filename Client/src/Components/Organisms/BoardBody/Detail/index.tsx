@@ -1,16 +1,19 @@
+import Button from "@Atoms/Button";
 import { _BOARD_INFOS } from "@Constant/.";
 import BoardPageDetail from "@Molecules/BoardPage/Detail";
 import { BoardContentOneBoardSelector } from "@Recoil/BoardContent";
-import { BoardContentType, ContentType } from "@Type/.";
+import { SmallButtonType } from "@Style/.";
+import { BoardContentType } from "@Type/.";
 import { hasBoardContent } from "@Util/.";
 import { Suspense } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import { DetailContainer } from "./styles";
+import { ButtonContainer, DetailContainer } from "./styles";
 
 const BoardDetailBody = ({ type }: { type: string }) => {
   const { id } = useParams<{ id: string }>();
-  const { boardApiSrc } = _BOARD_INFOS[type];
+  const { boardApiSrc, pageSrc } = _BOARD_INFOS[type];
+  const history = useHistory();
 
   const content =
     (hasBoardContent(boardApiSrc ?? "", type) &&
@@ -19,19 +22,33 @@ const BoardDetailBody = ({ type }: { type: string }) => {
       )) ??
     [];
 
+  const handleListClick = () => {
+    history.push(pageSrc);
+  };
+
   if (content.length > 1) return null;
   const { title, date, visitor, text } = content[0];
   return (
-    <DetailContainer>
-      <Suspense fallback={null}>
-        <BoardPageDetail
-          title={title}
-          date={date}
-          visitor={visitor}
-          text={text}
+    <>
+      <DetailContainer>
+        <Suspense fallback={null}>
+          <BoardPageDetail
+            title={title}
+            date={date}
+            visitor={visitor}
+            text={text}
+          />
+        </Suspense>
+      </DetailContainer>
+      <ButtonContainer>
+        <Button
+          onClick={handleListClick}
+          {...SmallButtonType}
+          borderColor="#00000029"
+          title="목록"
         />
-      </Suspense>
-    </DetailContainer>
+      </ButtonContainer>
+    </>
   );
 };
 
