@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { HEADER_NAV_LENGTH } from "@Constant/.";
-import { AlignCenterAround, HoverPointer } from "@Style/.";
+import { AlignCenterAround, DefaultColor, HoverPointer } from "@Style/.";
 
 const LeftContainer = styled.div`
   display: flex;
@@ -12,7 +12,7 @@ const Title = styled.div`
   font-weight: 900;
   font-size: 36px;
   margin-top: 1rem;
-  color: #707070;
+  color: ${DefaultColor};
   text-shadow: 0px 3px 3px #00000029;
   ${HoverPointer};
 `;

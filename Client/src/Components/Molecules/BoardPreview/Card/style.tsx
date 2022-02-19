@@ -31,7 +31,7 @@ export const Head = styled.div`
   display: flex;
   width: 80%;
   padding-top: 5px;
-  color: #42556b;
+  color: ${BlueColor};
   ${AlignCenterBetween};
 `;
 

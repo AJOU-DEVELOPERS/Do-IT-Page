@@ -1,4 +1,4 @@
-import { HoverPointer } from "@Style/.";
+import { DefaultColor, HoverPointer } from "@Style/.";
 import styled from "styled-components";
 
 const BoardFooterContainer = styled.div`
@@ -8,8 +8,7 @@ const BoardFooterContainer = styled.div`
 `;
 
 const BoardFooterItem = styled.div`
-  color: #707070;
-  ${HoverPointer};
+  color: ${DefaultColor} ${HoverPointer};
   padding: 30px;
   padding-left: 0;
   &:hover {

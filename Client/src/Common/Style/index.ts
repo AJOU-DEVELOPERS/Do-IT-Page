@@ -1,4 +1,5 @@
 export const DefaultColor = "#707070";
+export const DefaultBorderColor = "#00000029";
 
 export const GreyColor = `#F6F6F6`;
 

@@ -1,3 +1,4 @@
+import { DefaultColor } from "@Style/.";
 import styled, { css } from "styled-components";
 
 interface TitleProps {
@@ -10,8 +11,7 @@ const Title = styled.h1<TitleProps>`
   margin-bottom: 10px;
   padding: 20px 0;
 
-  color: #707070;
-  span {
+  color: ${DefaultColor} span {
     color: #000000;
     font-size: 48px;
   }
