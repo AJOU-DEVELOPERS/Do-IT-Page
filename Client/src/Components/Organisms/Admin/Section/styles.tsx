@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   justify-content: flex-end;
 `;
 
-const SubSection = styled.div`
+const SubSectionContainer = styled.div`
   margin: 2vh;
   height: 80%;
   border: 1px solid;
@@ -29,4 +29,4 @@ const SearchButton = styled.div`
   }
 `;
 
-export { Container, Wrapper, SubSection, SearchButton };
+export { Container, Wrapper, SubSectionContainer, SearchButton };

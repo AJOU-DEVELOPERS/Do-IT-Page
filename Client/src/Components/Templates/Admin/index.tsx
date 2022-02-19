@@ -1,29 +1,28 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
-import Hamburger from "@Atoms/Hamburger";
 import Logo from "@Atoms/Logo";
-import SideBar from "@Molecules/SideBar";
-import Section from "@Molecules/Section";
-import Header from "@Organisms/Header/admin";
+import SideBar from "@Molecules/Admin/SideBar";
+import Section from "@Organisms/Admin/Section";
+import Header from "@Organisms/Admin/Header";
 
 import { Container, AdminLogo, Title } from "./styles";
 
 const AdminTemp = () => {
   const [category, setCategory] = useState<number>(0);
 
-  const handleCategory = (number: number) => {
+  const handleCategory = useCallback((number: number) => {
     setCategory(number);
-  };
+  }, []);
+
   return (
     <Container>
       <AdminLogo>
-        <Logo url="./Logo.svg" alt="Logo" />
+        <Logo url="./assets/Header/Logo.svg" alt="Logo" />
         <Title>Do-IT</Title>
-        <Hamburger />
       </AdminLogo>
       <Header category={category} />
       <SideBar handleCategory={handleCategory} />
-      <Section />
+      <Section category={category} />
     </Container>
   );
 };
