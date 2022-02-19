@@ -68,7 +68,7 @@ export class User extends BaseEntity {
   @OneToMany((_type) => UserStudy, (_type) => _type.user)
   userStudies: UserStudy[];
 
-  @OneToMany((_type) => Reservation, (_type) => _type.user)
+  @OneToMany((_type) => Reservation, (_type)=> _type.user)
   reservations: Reservation[];
 
   @BeforeInsert()

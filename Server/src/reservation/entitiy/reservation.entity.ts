@@ -24,10 +24,6 @@ export class Reservation extends BaseEntity{
     @Column()
     title: string;
 
-    @ApiProperty()
-    @Column()
-    createdAt: Date;
-
     @ManyToOne(()=>User, (user)=>user.reservations)
     @JoinColumn({ name: 'userIdx', referencedColumnName: 'userIdx' })
     user: User;
