@@ -34,7 +34,6 @@ export const useChangeCalendarView = (
   };
 
   useEffect(() => {
-    console.log("?");
     changeView();
   }, [calendarRef.current]);
 };

@@ -29,3 +29,15 @@ export const Date = styled.p`
   font-size: 15px;
   color: #bac0c1;
 `;
+
+export const PreviewContainer = styled.div`
+  padding: 20px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  &:hover {
+    border-radius: 12px;
+    border: 1px solid #b3b0b0;
+    background-color: #ffffff;
+  }
+`;

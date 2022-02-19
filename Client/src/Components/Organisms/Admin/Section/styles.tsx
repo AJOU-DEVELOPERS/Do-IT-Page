@@ -24,9 +24,23 @@ const SearchButton = styled.div`
   border-left: none;
   content: url("/coolicon.svg");
   cursor: pointer;
-  :hover {
+  &:hover {
     opacity: 50%;
   }
 `;
 
-export { Container, Wrapper, SubSectionContainer, SearchButton };
+const TableContainer = styled.tr`
+  display: flex;
+  width: 100%;
+  background-color: whitesmoke;
+  justify-content: space-around;
+  padding: 1rem;
+  border-bottom: 1px solid;
+`;
+
+const Content = styled.td`
+  width: 25%;
+  text-align: center;
+`;
+
+export { Container, Wrapper, SubSectionContainer, SearchButton, TableContainer, Content };
