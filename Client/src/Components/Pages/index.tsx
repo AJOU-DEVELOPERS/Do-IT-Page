@@ -1,4 +1,4 @@
-import PageTemplate from "@Templates/Page";
+import PageTemplate from "@Templates/Page/.";
 
 const Page = () => <PageTemplate />;
 

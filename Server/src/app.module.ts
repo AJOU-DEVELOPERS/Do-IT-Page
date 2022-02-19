@@ -11,6 +11,7 @@ import { AuthsModule } from './auths/auth.module';
 import { User } from './users/entities/user.entity';
 import { Department } from './departments/entities/department.entity';
 import { DepartmentsModule } from './departments/departments.module';
+import { StudiesModule } from './studies/studies.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -34,6 +35,14 @@ import { DepartmentsModule } from './departments/departments.module';
       database: process.env.DB_DATABASE,
       entities: ['dist/**/*.entity{.ts,.js}'],
       synchronize: false,
+      // type: 'mysql',
+      // host: 'localhost',
+      // port: 3306,
+      // username: 'root',
+      // password: 'ajoulee1214',
+      // database: 'nesttest',
+      // entities: ['dist/**/*.entity{.ts,.js}'],
+      // synchronize: false,
     }),
     MailerModule.forRootAsync({
       useFactory: () => ({
@@ -60,6 +69,7 @@ import { DepartmentsModule } from './departments/departments.module';
     UsersModule,
     AuthsModule,
     DepartmentsModule,
+    StudiesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

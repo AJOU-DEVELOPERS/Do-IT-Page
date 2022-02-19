@@ -1,16 +1,24 @@
 import { Container, Title, Text } from "./style";
+import StyledLink from "@Atoms/StyledLink";
+import { _BOARD_INFOS } from "@Constant/.";
 
 interface Props {
   title: string;
   text?: string;
-  onClick?: () => void;
+  type?: string;
 }
 
-const ContentTitle = ({ title, text = "더보기 >", onClick }: Props) => {
+const ContentTitle = ({ title, text = ">", type = "basic" }: Props) => {
+  const pageSrc = _BOARD_INFOS[title]?.pageSrc;
+  console.log(pageSrc);
   return (
     <Container>
-      <Title>{title}</Title>
-      <Text onClick={onClick}>{text}</Text>
+      <Title type={type}>{title}</Title>
+      {text === ">" ? (
+        <StyledLink to={pageSrc}>{text}</StyledLink>
+      ) : (
+        <Text type={type}>{text}</Text>
+      )}
     </Container>
   );
 };

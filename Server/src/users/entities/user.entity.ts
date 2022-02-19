@@ -1,4 +1,5 @@
 import { Department } from 'src/departments/entities/department.entity';
+import { Study } from 'src/studies/entity/study.entity';
 import {
   Column,
   Entity,
@@ -14,12 +15,18 @@ import * as bcrypt from 'bcrypt';
 import { InternalServerErrorException } from '@nestjs/common';
 import { ApiProperty } from '@nestjs/swagger';
 
+export enum UserStudyStatus {
+  leader="leader",
+  accepted="accepted",
+  rejected="rejected",
+  waiting="waiting",
+};
+
 @Entity('User')
 export class User extends BaseEntity {
   @ApiProperty()
   @PrimaryGeneratedColumn()
   userIdx: number;
-
   @ApiProperty()
   @Column()
   password: string;
@@ -56,6 +63,9 @@ export class User extends BaseEntity {
 
   @OneToMany((_type) => UserSocial, (_type) => _type.user)
   userSocials: UserSocial[];
+
+  @OneToMany((_type) => UserStudy, (_type) => _type.user)
+  userStudies: UserStudy[];
 
   @BeforeInsert()
   async hashPassword() {
@@ -122,6 +132,33 @@ export class UserDepartment extends BaseEntity {
   @ManyToOne(() => Department, (department) => department.userDepartments)
   @JoinColumn({ name: 'departmentIdx', referencedColumnName: 'departmentIdx' })
   department: Department;
+}
+
+@Entity()
+export class UserStudy extends BaseEntity {
+  @ApiProperty()
+  @PrimaryGeneratedColumn()
+  userStudyIdx: number
+  @ApiProperty()
+  @Column()
+  userIdx: number
+  @ApiProperty()
+  @Column()
+  studyIdx: number
+  @ApiProperty()
+  @Column({
+    type: "enum",
+    enum: UserStudyStatus,
+    default: "waiting"
+  })
+  status: UserStudyStatus
+  @ManyToOne(() => User, (user) => user.userStudies)
+  @JoinColumn({ name: 'userIdx', referencedColumnName: 'userIdx' })
+  user: User
+  @ManyToOne(() => Study, (study) => study.userStudies)
+  @JoinColumn({ name: 'studyIdx', referencedColumnName: 'studyIdx' })
+  study: Study
+
 }
 
 @Entity()

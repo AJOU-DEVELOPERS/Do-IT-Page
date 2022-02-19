@@ -1,6 +1,12 @@
 export interface ImgProps {
-  url: string;
+  url?: string;
+  width?: string;
 }
+
+export interface ContentImgProps extends ImgAltProps {
+  radius?: string;
+}
+
 export interface ImgAltProps extends ImgProps {
   alt: string;
 }
@@ -27,12 +33,19 @@ interface BasicAtomProps {
 export interface BasicButtonProps extends BasicAtomProps {
   backGroundColor?: string;
   title?: string;
+  color?: string;
   onClick?: () => void;
 }
 
 export interface LoginButtonProps extends BasicButtonProps {
   grid?: string;
   color?: string;
+  fontSize?: string;
+  radius?: string;
+}
+
+export interface ApplyButtonProps extends BasicButtonProps {
+  backGroundColor?: string;
   fontSize?: string;
   radius?: string;
 }
@@ -50,9 +63,16 @@ export interface BasicInputProps extends BasicAtomProps {
 }
 
 export interface BoardType {
-  boardType: string;
+  boardType?: string;
   apiSrc: string;
-  pageSrc?: string;
+  pageSrc: string;
+  previewSize?: number;
+  previewType?: string;
+  alignPreview?: string;
+}
+
+export interface BoardInfoType {
+  [index: string]: BoardType;
 }
 
 export interface BoardContentType {
@@ -62,15 +82,35 @@ export interface BoardContentType {
   date: string;
   images: string[];
   writer: string;
+  visitor: number;
+  idx: number;
+}
+
+export interface StudyContentType {
+  name: string;
+  decription: string;
+  totalHeadcount: number;
+  leaderUserIdx: number;
+  leaderName: string;
+  status: string;
+  idx: number;
+}
+
+export interface ProjectContentType extends StudyContentType {
+  techStack?: string[];
 }
 
 export interface RankingContentType {
   rating: number;
   tier: string;
   name: string;
+  idx: number;
 }
 
-export interface RankingCardProps extends RankingContentType {
-  ranking: number;
-  onClick: () => void;
+export interface PreviewProps {
+  previewType?: string;
+  content: ContentType;
+  type?: string;
 }
+
+export type ContentType = BoardContentType | ProjectContentType | RankingContentType;
