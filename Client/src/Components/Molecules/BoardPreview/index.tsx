@@ -28,7 +28,11 @@ const BoardPreview = ({
       return <Calendar />;
     }
     return (
-      <PreviewContainer>
+      <PreviewContainer
+        key={content.idx}
+        data-idx={content.idx}
+        id="boardContainer"
+      >
         <BasicBoardPreview {...convertBoardType(content)} type={type} />
       </PreviewContainer>
     );

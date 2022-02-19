@@ -46,9 +46,9 @@ const BoardList = ({ type }: { type: string }) => {
         >
           {boardContents?.map((content) => (
             <BoardContainer
-              key={content.idx}
-              data-idx={content.idx}
-              id="boardContainer"
+            // key={content.idx}
+            // data-idx={content.idx}
+            // id="boardContainer"
             >
               <BoardPreview
                 previewType={previewType}
