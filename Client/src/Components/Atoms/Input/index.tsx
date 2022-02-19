@@ -7,13 +7,14 @@ const Input = (props: BasicInputProps) => {
 };
 
 Input.defaultProps = {
-  width: "150px",
-  height: "50px",
+  width: "100%",
+  height: "100%",
   borderColor: "#ffffff",
-  margin: "0",
-  padding: "0",
+  margin: "0px",
+  padding: "0px",
   background: "#ffffff",
   type: "text",
+  radius: "",
 };
 
 export default Input;

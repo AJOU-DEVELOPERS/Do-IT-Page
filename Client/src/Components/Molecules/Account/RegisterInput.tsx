@@ -3,7 +3,7 @@ import Input from "@Atoms/Input";
 import RegisterLabel from "@Atoms/RegisterLabel";
 import { LoginButtonType, LoginInputType } from "@Style/.";
 import { useRef } from "react";
-import { InputContainer, Title } from "./styles";
+import { RegisterContainer, Title } from "./styles";
 
 const RegisterInput = () => {
   const idRef = useRef<HTMLInputElement>();
@@ -21,31 +21,13 @@ const RegisterInput = () => {
     } = pwRef;
   };
   return (
-    <InputContainer>
+    <RegisterContainer>
       <Title>Do-IT 회원가입</Title>
-      <RegisterLabel
-        {...LoginInputType}
-        placeholder="아이디"
-        inputRef={idRef}
-      />
-      <RegisterLabel
-        {...LoginInputType}
-        placeholder="비밀번호를 입력해주세요."
-        type="password"
-        inputRef={pwRef}
-      />
-      <RegisterLabel
-        {...LoginInputType}
-        placeholder="비밀번호 확인"
-        type="password"
-        inputRef={pwRef}
-      />
-      <LoginButton
-        {...LoginButtonType}
-        title="회원가입"
-        onClick={handleRegisterClick}
-      />
-    </InputContainer>
+      <RegisterLabel {...LoginInputType} placeholder="아이디" inputRef={idRef} />
+      <RegisterLabel {...LoginInputType} placeholder="비밀번호를 입력해주세요." type="password" inputRef={pwRef} />
+      <RegisterLabel {...LoginInputType} placeholder="비밀번호 확인" type="password" inputRef={pwRef} />
+      <LoginButton {...LoginButtonType} title="회원가입" onClick={handleRegisterClick} />
+    </RegisterContainer>
   );
 };
 

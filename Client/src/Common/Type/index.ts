@@ -11,6 +11,10 @@ export interface ImgAltProps extends ImgProps {
   alt: string;
 }
 
+export interface LoginProps {
+  type: string;
+}
+
 export interface DateProps {
   year: number;
   month: number;
@@ -34,6 +38,8 @@ export interface BasicButtonProps extends BasicAtomProps {
 }
 
 export interface LoginButtonProps extends BasicButtonProps {
+  grid?: string;
+  color?: string;
   fontSize?: string;
   radius?: string;
 }
@@ -49,6 +55,8 @@ export interface BasicInputProps extends BasicAtomProps {
   padding?: string;
   placeholder?: string;
   background?: string;
+  radius?: string;
+  shadow?: string;
   type?: string;
   inputRef?: any;
   onChange?: () => void;
@@ -105,7 +113,4 @@ export interface PreviewProps {
   type?: string;
 }
 
-export type ContentType =
-  | BoardContentType
-  | ProjectContentType
-  | RankingContentType;
+export type ContentType = BoardContentType | ProjectContentType | RankingContentType;
