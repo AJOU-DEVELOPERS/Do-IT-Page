@@ -79,8 +79,7 @@ export const CheckDuplicateButton = {
 export const SmallLoginButtonType = {
   width: "150px",
   height: "50px",
-  borderColor: "#ffffff",
-  backGroundColor: "#8ECBF8",
+  color: "#ffffff",
   fontSize: "18px",
   radius: "0px",
 };

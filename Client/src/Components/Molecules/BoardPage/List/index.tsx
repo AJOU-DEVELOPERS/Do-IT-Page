@@ -2,7 +2,6 @@ import { _BOARD_INFOS } from "@Constant/.";
 import { ContentContainer } from "@Organisms/Main/BoardContent/style";
 import {
   BoardContentPagenationSelector,
-  BoardContentSelector,
   GetBoardContentLengthSelector,
 } from "@Recoil/BoardContent";
 import { ContentType } from "@Type/.";
@@ -19,34 +18,23 @@ const BoardList = ({ type }: { type: string }) => {
   const [noticePageNum, setNoticePageNum] = useState<number>(0);
   const history = useHistory();
 
-  const totalContents =
-    (hasBoardContent(apiSrc, type) &&
-      useRecoilValue<ContentType[]>(
-        BoardContentPagenationSelector([noticePageNum, apiSrc])
-      )) ??
-    [];
-  // const boardContents =
-  //   hasBoardContent(apiSrc, type) &&
-  //   useRecoilValue<ContentType[]>(
-  //     BoardContentPagenationSelector([noticePageNum, apiSrc])
-  //   );
-
-  const boardContents = totalContents.filter(
-    (item) =>
-      item.idx > noticePageNum * 10 && item.idx <= (noticePageNum + 1) * 10
-  );
+  const boardContents =
+    hasBoardContent(apiSrc, type) &&
+    useRecoilValue<ContentType[]>(
+      BoardContentPagenationSelector([noticePageNum, apiSrc])
+    );
 
   const totalBoardContentLength =
     (hasBoardContent(apiSrc, type) &&
       useRecoilValue<number>(GetBoardContentLengthSelector(apiSrc))) ??
     1;
 
-  const handleNoticeDetailMove = (e: any) => {
+  const handleDetailMove = (e: any) => {
     const target = e.target.closest("#boardContainer");
     if (!target) return;
     const idx = target.getAttribute("data-idx");
-    const path = type === "공지사항" ? "notice" : "board";
-    history.push(`/${path}/${idx}`);
+    const { pageSrc: path } = _BOARD_INFOS[type];
+    history.push(`${path}/${idx}`);
   };
 
   return (
@@ -54,14 +42,10 @@ const BoardList = ({ type }: { type: string }) => {
       <Suspense fallback={null}>
         <ContentContainer
           alignPreview={alignPreview}
-          onClick={handleNoticeDetailMove}
+          onClick={handleDetailMove}
         >
           {boardContents?.map((content) => (
-            <BoardContainer
-              key={content.idx}
-              data-idx={content.idx}
-              id="boardContainer"
-            >
+            <BoardContainer>
               <BoardPreview
                 previewType={previewType}
                 content={content}

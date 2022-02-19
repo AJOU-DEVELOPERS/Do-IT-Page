@@ -13,7 +13,7 @@ const CategoryButton = styled.button`
   background: none;
   font-size: 2vmin;
   cursor: pointer;
-  :hover {
+  &:hover {
     opacity: 50%;
   }
 `;

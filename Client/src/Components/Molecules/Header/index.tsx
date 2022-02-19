@@ -1,11 +1,19 @@
-import Logo from "@Atoms/Logo";
+import { MAIN_URL, BEFORE_URL } from "@Constant/.";
+import { useHistory } from "react-router-dom";
 import { LeftContainer, Title } from "./style";
 
-const HeaderLeftSide = () => {
+const HeaderLeftSide = ({ user }: { user: boolean }) => {
+  const history = useHistory();
+
+  const handleMoveHome = () => {
+    const path = user ? MAIN_URL : BEFORE_URL;
+    history.push(path);
+  };
   return (
     <LeftContainer>
-      {/* <Logo url="/assets/Header/Logo.svg" alt="Logo" /> */}
-      <Title>Do-IT</Title>
+      <Title onClick={handleMoveHome} style={{ color: user ? "" : "#ffffff" }}>
+        Do-IT
+      </Title>
     </LeftContainer>
   );
 };

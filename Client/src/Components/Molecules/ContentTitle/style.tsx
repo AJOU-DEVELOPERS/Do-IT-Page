@@ -1,9 +1,4 @@
-import {
-  DefaultColor,
-  HoverPointer,
-  AlignCenterBetween,
-  textOverflowSafe,
-} from "@Style/.";
+import { DefaultColor, AlignCenterBetween, textOverflowSafe } from "@Style/.";
 import styled from "styled-components";
 
 interface Props {

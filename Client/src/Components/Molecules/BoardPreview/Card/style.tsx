@@ -19,6 +19,7 @@ export const Container = styled.div<ContainerProps>`
   height: 30%;
   margin: 1vh 0px;
   font-size: 0.8rem;
+  cursor: pointer;
 `;
 
 export const Head = styled.div`

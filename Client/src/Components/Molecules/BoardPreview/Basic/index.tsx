@@ -12,11 +12,11 @@ const BasicBoardPreview = ({
   visitor,
   idx,
 }: BasicBoardPreviewProps) => {
-  const enumText = type !== "basic" ? idx : "•";
   return (
     <Container>
       <Text>
-        <span>{enumText}</span>
+        {type !== "basic" && <span>{idx}</span>}
+        {type === "basic" && "•"}
         {title}
       </Text>
       <Date>{date}</Date>

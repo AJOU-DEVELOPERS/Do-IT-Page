@@ -1,5 +1,11 @@
 import axios from "axios";
-import { API_GET_OPTION, GET_CHECK_LOGIN_URL, GET_NOTICE_CONTENT_URL } from "@Constant/.";
+import {
+  API_GET_OPTION,
+  GET_BOARD_POST_URL,
+  GET_CHECK_LOGIN_URL,
+  GET_NOTICE_CONTENT_URL,
+  GET_NOTICE_POST_URL,
+} from "@Constant/.";
 
 export const getLoginInfo = async () => {
   const { data } = await axios.get(GET_CHECK_LOGIN_URL, API_GET_OPTION);
