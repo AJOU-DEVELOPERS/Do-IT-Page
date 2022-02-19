@@ -2,16 +2,17 @@ import { Route } from "react-router-dom";
 import BoardList from "@Molecules/BoardPage/List";
 import { BoardListContainer, TitleContainer } from "./styles";
 import BoardDetailBody from "./Detail";
+import { _BOARD_INFOS } from "@Constant/.";
 
 const BoardBody = ({ type }: { type: string }) => {
-  const path = type === "공지사항" ? "/notice" : "/board";
+  const { pageSrc } = _BOARD_INFOS[type];
   return (
     <>
       <TitleContainer>{type}</TitleContainer>
       <BoardListContainer>
-        <Route path={path} render={() => <BoardList type={type} />} exact />
+        <Route path={pageSrc} render={() => <BoardList type={type} />} exact />
         <Route
-          path={path + "/:id"}
+          path={pageSrc + "/:id"}
           render={() => <BoardDetailBody type={type} />}
           exact
         />

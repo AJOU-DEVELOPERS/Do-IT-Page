@@ -29,12 +29,12 @@ const BoardList = ({ type }: { type: string }) => {
       useRecoilValue<number>(GetBoardContentLengthSelector(apiSrc))) ??
     1;
 
-  const handleNoticeDetailMove = (e: any) => {
+  const handleDetailMove = (e: any) => {
     const target = e.target.closest("#boardContainer");
     if (!target) return;
     const idx = target.getAttribute("data-idx");
-    const path = type === "공지사항" ? "notice" : "board";
-    history.push(`/${path}/${idx}`);
+    const { pageSrc: path } = _BOARD_INFOS[type];
+    history.push(`${path}/${idx}`);
   };
 
   return (
@@ -42,7 +42,7 @@ const BoardList = ({ type }: { type: string }) => {
       <Suspense fallback={null}>
         <ContentContainer
           alignPreview={alignPreview}
-          onClick={handleNoticeDetailMove}
+          onClick={handleDetailMove}
         >
           {boardContents?.map((content) => (
             <BoardContainer

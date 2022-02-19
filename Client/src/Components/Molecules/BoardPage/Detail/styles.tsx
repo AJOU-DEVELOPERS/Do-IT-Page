@@ -1,35 +1,33 @@
+import { DefaultColor } from "@Style/.";
 import styled from "styled-components";
 
 const DetailTitle = styled.div`
   font: bold;
-  font-size: 32px;
-  color: #707070;
+  font-size: 24px;
+  color: ${DefaultColor};
   border-bottom: 1px solid #e6e6e6;
+  padding-bottom: 10px;
 `;
 
 const DetailInfoContainer = styled.div`
   display: flex;
   align-items: center;
-  padding: 10px 0 50px 0;
+  padding: 20px 0 50px 0;
+  div {
+    color: ${DefaultColor};
+  }
 `;
 
 const DetailDate = styled.div`
-  color: #707070;
   margin-right: 100px;
 `;
 
-const DetailVisitor = styled.div`
-  color: #707070;
-`;
-
 const DetailText = styled.div`
-  color: #707070;
+  overflow: auto;
+  height: 75%;
+  @media only screen and (max-width: 550px) {
+    height: 50%;
+  }
 `;
 
-export {
-  DetailTitle,
-  DetailInfoContainer,
-  DetailDate,
-  DetailVisitor,
-  DetailText,
-};
+export { DetailTitle, DetailInfoContainer, DetailDate, DetailText };
