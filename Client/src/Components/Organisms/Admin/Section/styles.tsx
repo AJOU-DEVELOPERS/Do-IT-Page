@@ -1,3 +1,4 @@
+import { HoverPointer } from "@Style/.";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -23,7 +24,7 @@ const SearchButton = styled.div`
   border: 1px solid;
   border-left: none;
   content: url("/coolicon.svg");
-  cursor: pointer;
+  ${HoverPointer};
   &:hover {
     opacity: 50%;
   }
@@ -43,4 +44,11 @@ const Content = styled.td`
   text-align: center;
 `;
 
-export { Container, Wrapper, SubSectionContainer, SearchButton, TableContainer, Content };
+export {
+  Container,
+  Wrapper,
+  SubSectionContainer,
+  SearchButton,
+  TableContainer,
+  Content,
+};

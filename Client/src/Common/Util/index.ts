@@ -4,6 +4,7 @@ import {
   ProjectContentType,
   RankingContentType,
 } from "@Type/.";
+import { History } from "history";
 
 export const sayHello = (): string => "hi";
 
@@ -22,3 +23,7 @@ export const convertRankingType = (content: any): RankingContentType => content;
 export const convertBoardType = (content: any): BoardContentType => content;
 
 export const convertProjectType = (content: any): ProjectContentType => content;
+
+export const handleHeaderClick = (history: History) => {
+  history.push("/main");
+};

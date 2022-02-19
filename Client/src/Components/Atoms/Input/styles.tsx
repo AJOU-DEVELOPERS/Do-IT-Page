@@ -1,4 +1,5 @@
 import { BasicInputProps } from "@src/Common/Type";
+import { HoverPointer } from "@Style/.";
 import styled from "styled-components";
 
 const Container = styled.input<BasicInputProps>`
@@ -10,7 +11,7 @@ const Container = styled.input<BasicInputProps>`
   box-shadow: ${({ shadow }) => shadow};
   background: ${({ background }) => background};
   border-radius: ${({ radius }) => radius};
-  cursor: pointer;
+  ${HoverPointer};
 
   &:focus {
     outline: none;
