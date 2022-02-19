@@ -45,11 +45,7 @@ const BoardList = ({ type }: { type: string }) => {
           onClick={handleDetailMove}
         >
           {boardContents?.map((content) => (
-            <BoardContainer
-            // key={content.idx}
-            // data-idx={content.idx}
-            // id="boardContainer"
-            >
+            <BoardContainer>
               <BoardPreview
                 previewType={previewType}
                 content={content}

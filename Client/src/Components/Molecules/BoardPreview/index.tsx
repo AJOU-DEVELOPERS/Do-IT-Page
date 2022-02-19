@@ -17,8 +17,9 @@ const BoardPreview = ({
   type = "basic",
 }: PreviewProps) => {
   const getPreview = (previewType: string): JSX.Element => {
-    if (previewType === "card")
+    if (previewType === "card") {
       return <CardPreviewImage {...convertProjectType(content)} />;
+    }
     if (previewType === "ranking") {
       return <RankingBoardPreview {...convertRankingType(content)} />;
     }
@@ -28,11 +29,7 @@ const BoardPreview = ({
       return <Calendar />;
     }
     return (
-      <PreviewContainer
-        key={content.idx}
-        data-idx={content.idx}
-        id="boardContainer"
-      >
+      <PreviewContainer>
         <BasicBoardPreview {...convertBoardType(content)} type={type} />
       </PreviewContainer>
     );

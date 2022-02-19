@@ -25,11 +25,12 @@ const BoardContent = ({ boardName }: { boardName: string }) => {
 
   // 재사용으로 빼고싶음 // Molecules/Boardpage/List/index.tsx
   const handleDetailMove = (e: any) => {
-    const target = e.target.closest("#boardContainer");
+    const target = e.target.closest(`#${boardName}`);
     if (!target) return;
     const idx = target.getAttribute("data-idx");
     const { pageSrc: path } = _BOARD_INFOS[boardName];
-    history.push(`${path}/${idx}`);
+    const nextPath = idx ? `${path}/${idx}` : path;
+    history.push(nextPath);
   };
 
   return (
@@ -42,7 +43,9 @@ const BoardContent = ({ boardName }: { boardName: string }) => {
             onClick={handleDetailMove}
           >
             {boardContents?.slice(0, previewSize).map((content) => (
-              <BoardPreview previewType={previewType} content={content} />
+              <div key={content.idx} data-idx={content.idx} id={boardName}>
+                <BoardPreview previewType={previewType} content={content} />
+              </div>
             ))}
           </ContentContainer>
         </>

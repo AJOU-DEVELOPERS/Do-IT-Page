@@ -114,4 +114,7 @@ export interface PreviewProps {
   type?: string;
 }
 
-export type ContentType = BoardContentType | ProjectContentType | RankingContentType;
+export type ContentType =
+  | BoardContentType
+  | ProjectContentType
+  | RankingContentType;
