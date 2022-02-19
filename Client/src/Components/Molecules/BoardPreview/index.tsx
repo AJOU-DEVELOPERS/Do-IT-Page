@@ -9,6 +9,7 @@ import BasicBoardPreview from "./Basic/.";
 import CardPreviewImage from "./Card/.";
 import ImageBoardPreview from "./Image/.";
 import RankingBoardPreview from "./Ranking/.";
+import { PreviewContainer } from "./style";
 
 const BoardPreview = ({
   content,
@@ -26,7 +27,11 @@ const BoardPreview = ({
     if (previewType === "calendar") {
       return <Calendar />;
     }
-    return <BasicBoardPreview {...convertBoardType(content)} type={type} />;
+    return (
+      <PreviewContainer>
+        <BasicBoardPreview {...convertBoardType(content)} type={type} />
+      </PreviewContainer>
+    );
   };
 
   return getPreview(previewType);

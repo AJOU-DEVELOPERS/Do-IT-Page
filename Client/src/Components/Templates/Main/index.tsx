@@ -1,5 +1,3 @@
-import { useCallback } from "react";
-
 import Header from "@Organisms/Header";
 import Footer from "@Organisms/Footer";
 import { GridContainer } from "./style";
