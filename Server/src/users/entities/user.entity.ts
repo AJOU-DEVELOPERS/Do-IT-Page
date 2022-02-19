@@ -14,6 +14,7 @@ import {
 import * as bcrypt from 'bcrypt';
 import { InternalServerErrorException } from '@nestjs/common';
 import { ApiProperty } from '@nestjs/swagger';
+import { Reservation } from 'src/reservation/entitiy/reservation.entity';
 
 export enum UserStudyStatus {
   leader="leader",
@@ -66,6 +67,9 @@ export class User extends BaseEntity {
 
   @OneToMany((_type) => UserStudy, (_type) => _type.user)
   userStudies: UserStudy[];
+
+  @OneToMany((_type) => Reservation, (_type) => _type.user)
+  reservations: Reservation[];
 
   @BeforeInsert()
   async hashPassword() {
