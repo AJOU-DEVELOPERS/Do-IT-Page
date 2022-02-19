@@ -40,6 +40,10 @@ export const RANKING_BOARD_URL = "/rank";
 
 export const MY_PAGE_URL = "/mypage";
 
+export const MAIN_URL = "/main";
+
+export const BEFORE_URL = "/before";
+
 export const GET_SOLVED_CARD_URL = (id: string) =>
   `http://mazassumnida.wtf/api/v2/generate_badge?boj=${id}`;
 

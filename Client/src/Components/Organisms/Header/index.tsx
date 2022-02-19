@@ -9,11 +9,12 @@ import HeaderLeftSide from "@Molecules/Header";
 import HeaderNav from "@Molecules//Header/Nav";
 
 const Header = ({ onClick }: { onClick?: () => void }) => {
+  // const user = false;
   const user = useRecoilValue(checkLoginSelector);
 
   return (
     <Container>
-      <HeaderLeftSide />
+      <HeaderLeftSide user={user} />
       {user ? (
         <HeaderNav />
       ) : (

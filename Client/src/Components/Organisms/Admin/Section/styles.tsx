@@ -24,7 +24,7 @@ const SearchButton = styled.div`
   border-left: none;
   content: url("/coolicon.svg");
   cursor: pointer;
-  :hover {
+  &:hover {
     opacity: 50%;
   }
 `;

@@ -18,8 +18,8 @@ const GlobalStyle = createGlobalStyle`
   }
   button{
     background:none;
-    color : ${DefaultColor}
-    &:hover{
+    color : ${DefaultColor};
+    :hover{
       cursor:pointer;
     }
   }
