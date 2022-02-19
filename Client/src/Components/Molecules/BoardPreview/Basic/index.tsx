@@ -1,11 +1,31 @@
-import { Container, Text } from "./style";
+import { Container, Text, Date } from "./style";
 import { BoardContentType } from "@Type/.";
 
-const BasicBoardPreview = ({ title, date }: BoardContentType) => {
+interface BasicBoardPreviewProps extends BoardContentType {
+  type: string;
+  idx: number;
+}
+const BasicBoardPreview = ({
+  title,
+  date,
+  type,
+  visitor,
+  idx,
+}: BasicBoardPreviewProps) => {
+  const enumText = type !== "basic" ? idx : "•";
   return (
     <Container>
-      <Text>{`• ${title}`}</Text>
-      <Text>{date}</Text>
+      <Text>
+        <span>{enumText}</span>
+        {title}
+      </Text>
+      <Date>{date}</Date>
+      {type !== "basic" && (
+        <>
+          <Text>조회수</Text>
+          <Text>{visitor}</Text>
+        </>
+      )}
     </Container>
   );
 };
