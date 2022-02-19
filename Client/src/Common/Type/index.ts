@@ -67,12 +67,20 @@ export interface BoardType {
   apiSrc: string;
   pageSrc: string;
   previewSize?: number;
-  previewType?: string;
+  previewType?: "card" | "ranking" | "image" | "calendar" | "basic";
   alignPreview?: string;
 }
 
 export interface BoardInfoType {
   [index: string]: BoardType;
+}
+
+export interface PosticDefaultProps {
+  title: string;
+  studyLeader: string;
+  status: string;
+  member: number;
+  type: "processing" | "collecting" | "done";
 }
 
 export interface BoardContentType {
@@ -108,7 +116,7 @@ export interface RankingContentType {
 }
 
 export interface PreviewProps {
-  previewType?: string;
+  previewType?: "card" | "ranking" | "image" | "calendar" | "basic";
   content: ContentType;
   type?: string;
 }
