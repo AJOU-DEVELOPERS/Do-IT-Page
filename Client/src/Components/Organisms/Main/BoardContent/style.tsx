@@ -32,9 +32,9 @@ export const ContentContainer = styled.div<ContentProps>`
 `;
 
 export const BoardPreviewContainer = styled.div`
-  /* height: 30%; */
   display: flex;
   flex-direction: column;
   ${AlignCenterAround}
   width:100%;
+  cursor: pointer;
 `;
