@@ -1,16 +1,9 @@
 import { GetRecoilValue, selectorFamily } from "recoil";
 import { _API } from "@API/.";
 import { getBoardContents } from "@API/test";
-import {
-  BoardContentType,
-  ProjectContentType,
-  RankingContentType,
-} from "@Type/.";
+import { BoardContentType, ContentType } from "@Type/.";
 
-export const BoardContentSelector = selectorFamily<
-  BoardContentType[] | RankingContentType[] | ProjectContentType[],
-  string
->({
+export const BoardContentSelector = selectorFamily<ContentType[], string>({
   key: "BoardContentSelector",
   get: (apiSrc: string) => async () => {
     const res = await _API({ api: getBoardContents, apiSrc });
@@ -27,8 +20,9 @@ export const GetBoardContentLengthSelector = selectorFamily<number, string>({
       return Math.ceil(list.length / 10);
     },
 });
+
 export const BoardContentPagenationSelector = selectorFamily<
-  BoardContentType[] | RankingContentType[] | ProjectContentType[],
+  ContentType[],
   [number, string]
 >({
   key: "BoardContentPagenationSelector",
@@ -36,10 +30,25 @@ export const BoardContentPagenationSelector = selectorFamily<
     ([num, apiSrc]) =>
     async ({ get }: { get: GetRecoilValue }) => {
       const list = get(BoardContentSelector(apiSrc));
-      return list;
-      // return list.filter(
-      //   (item: BoardContentType | RankingContentType | ProjectContentType) =>
-      //     item.idx > num * 10 && item.idx <= (num + 1) * 10
-      // );
+      return (list as Array<ContentType>).filter(
+        (item: ContentType) => item.idx > num * 10 && item.idx <= (num + 1) * 10
+      ) as ContentType[];
+    },
+});
+
+export const BoardContentOneBoardSelector = selectorFamily<
+  BoardContentType[],
+  [number, string]
+>({
+  key: "BoardContentOneBoardSelector",
+  get:
+    ([id, boardApiSrc]) =>
+    async ({ get }: { get: GetRecoilValue }): Promise<BoardContentType[]> => {
+      const list = get(BoardContentSelector(boardApiSrc));
+      return (list as Array<BoardContentType>).filter(
+        (item: BoardContentType) => item.idx === id
+      );
+      // const item = get(BoardContentSelector(boardApiSrc + `?id=${id}`));
+      // return item
     },
 });
