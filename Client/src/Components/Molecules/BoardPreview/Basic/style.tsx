@@ -1,4 +1,4 @@
-import { AlignCenterBetween } from "@Style/.";
+import { AlignCenterBetween, HoverPointer } from "@Style/.";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -8,7 +8,7 @@ const Container = styled.div`
   ${AlignCenterBetween};
   padding: 12px 17px;
   box-sizing: border;
-  cursor: pointer;
+  ${HoverPointer};
 `;
 
 const Text = styled.p`

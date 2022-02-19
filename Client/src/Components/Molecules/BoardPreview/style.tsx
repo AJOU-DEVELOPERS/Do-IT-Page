@@ -32,7 +32,7 @@ export const Date = styled.p`
 
 export const PreviewContainer = styled.div`
   padding: 20px 0;
-  cursor: pointer;
+  ${HoverPointer};
   display: flex;
   align-items: center;
   width: 100%;

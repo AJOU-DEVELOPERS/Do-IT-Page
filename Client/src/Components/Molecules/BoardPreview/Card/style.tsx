@@ -3,6 +3,7 @@ import {
   AlignCenterBetween,
   BlueColor,
   GreyColor,
+  HoverPointer,
   MainItemHover,
 } from "@Style/.";
 
@@ -22,7 +23,7 @@ export const Container = styled.div<ContainerProps>`
   width: 100%;
   margin: 1vh 0px;
   font-size: 0.8rem;
-  cursor: pointer;
+  ${HoverPointer};
   ${MainItemHover};
 `;
 

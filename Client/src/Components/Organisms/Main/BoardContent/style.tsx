@@ -1,5 +1,5 @@
 import { MAIN_PREVIEW_IMAGE } from "@Constant/.";
-import { AlignCenterAround, DefaultBoxShadow } from "@Style/.";
+import { AlignCenterAround, DefaultBoxShadow, HoverPointer } from "@Style/.";
 import styled from "styled-components";
 
 interface BoardProps {
@@ -36,5 +36,5 @@ export const BoardPreviewContainer = styled.div`
   flex-direction: column;
   ${AlignCenterAround}
   width:100%;
-  cursor: pointer;
+  ${HoverPointer};
 `;

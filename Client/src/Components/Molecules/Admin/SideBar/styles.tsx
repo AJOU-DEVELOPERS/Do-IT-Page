@@ -1,3 +1,4 @@
+import { HoverPointer } from "@Style/.";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -12,7 +13,7 @@ const Container = styled.div`
 const CategoryButton = styled.button`
   background: none;
   font-size: 2vmin;
-  cursor: pointer;
+  ${HoverPointer};
   &:hover {
     opacity: 50%;
   }
