@@ -15,7 +15,6 @@ const CardBoardPreview = ({
   techStack = [],
 }: ProjectContentType) => {
   const techStackStr = techStack.join("/");
-  console.log(totalHeadcount);
   return (
     <Container>
       <Head>
