@@ -1,5 +1,7 @@
+import StudyTemp from "@Templates/Study";
+
 const StudyPage = () => {
-  return <div>스터디 페이지입니다.</div>;
+  return <StudyTemp />;
 };
 
 export default StudyPage;
