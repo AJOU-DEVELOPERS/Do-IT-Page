@@ -17,9 +17,3 @@ export const ReserveCalendarTitle = styled.p`
   margin-bottom: 25px;
   border-bottom: 1px solid ${DefaultBorderColor};
 `;
-
-export const CalendarHeaderContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
