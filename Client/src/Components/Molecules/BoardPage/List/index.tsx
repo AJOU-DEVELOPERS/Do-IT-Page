@@ -2,7 +2,6 @@ import { _BOARD_INFOS } from "@Constant/.";
 import { ContentContainer } from "@Organisms/Main/BoardContent/style";
 import {
   BoardContentPagenationSelector,
-  BoardContentSelector,
   GetBoardContentLengthSelector,
 } from "@Recoil/BoardContent";
 import { ContentType } from "@Type/.";
@@ -19,22 +18,11 @@ const BoardList = ({ type }: { type: string }) => {
   const [noticePageNum, setNoticePageNum] = useState<number>(0);
   const history = useHistory();
 
-  const totalContents =
-    (hasBoardContent(apiSrc, type) &&
-      useRecoilValue<ContentType[]>(
-        BoardContentPagenationSelector([noticePageNum, apiSrc])
-      )) ??
-    [];
-  // const boardContents =
-  //   hasBoardContent(apiSrc, type) &&
-  //   useRecoilValue<ContentType[]>(
-  //     BoardContentPagenationSelector([noticePageNum, apiSrc])
-  //   );
-
-  const boardContents = totalContents.filter(
-    (item) =>
-      item.idx > noticePageNum * 10 && item.idx <= (noticePageNum + 1) * 10
-  );
+  const boardContents =
+    hasBoardContent(apiSrc, type) &&
+    useRecoilValue<ContentType[]>(
+      BoardContentPagenationSelector([noticePageNum, apiSrc])
+    );
 
   const totalBoardContentLength =
     (hasBoardContent(apiSrc, type) &&
