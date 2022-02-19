@@ -68,21 +68,25 @@ export interface BoardInfoType {
 }
 
 export interface BoardContentType {
+  index: number;
   board: string;
   title: string;
   text: string;
   date: string;
   images: string[];
   writer: string;
+  onClick?: () => void;
 }
 
 export interface StudyContentType {
+  index: number;
   name: string;
   decription: string;
   totalHeadcount: number;
   leaderUserIdx: number;
   leaderName: string;
   status: string;
+  onClick?: () => void;
 }
 
 export interface ProjectContentType extends StudyContentType {
@@ -90,6 +94,7 @@ export interface ProjectContentType extends StudyContentType {
 }
 
 export interface RankingContentType {
+  index: number;
   rating: number;
   tier: string;
   name: string;
@@ -98,6 +103,7 @@ export interface RankingContentType {
 export interface PreviewProps {
   previewType?: string;
   content: ContentType;
+  onClick?: () => void;
 }
 
 export type ContentType =

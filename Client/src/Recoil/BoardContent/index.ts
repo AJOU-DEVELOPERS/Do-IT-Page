@@ -6,6 +6,7 @@ import {
   ProjectContentType,
   RankingContentType,
 } from "@Type/.";
+import { checkLoginAtom } from "@Recoil/CheckLogin";
 
 export const BoardContentSelector = selectorFamily<
   BoardContentType[] | RankingContentType[] | ProjectContentType[],

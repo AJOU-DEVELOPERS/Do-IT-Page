@@ -11,6 +11,27 @@ import { CALENDAR_THEME } from "@Style/.";
 import { changeCalendarHeight } from "./util";
 import { CALENDAR_OPTION } from "@Style/calendar";
 
+const calendars = [
+  {
+    id: "1",
+    name: "My Calendar",
+    color: "#ffffff",
+    bgColor: "#9e5fff",
+    dragBgColor: "#9e5fff",
+    borderColor: "#9e5fff",
+  },
+];
+const shedules = [
+  {
+    id: "1",
+    calendarId: "1",
+    title: "my schedule",
+    category: "time",
+    dueDateClass: "",
+    start: "2022-02-18T22:30:00+09:00",
+    end: "2022-02-19T02:30:00+09:00",
+  },
+];
 const Calendar = ({ isReadOnly }: { isReadOnly: boolean }) => {
   const [dateState, dateDispatch] = useReducer(dateReducer, getYearMonth());
   const calendarRef = useRef<any>(null);
@@ -36,6 +57,8 @@ const Calendar = ({ isReadOnly }: { isReadOnly: boolean }) => {
         ref={calendarRef}
         {...CALENDAR_OPTION}
         isReadOnly={isReadOnly}
+        calendars={calendars}
+        schedules={shedules}
       />
     </Container>
   );
