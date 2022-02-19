@@ -10,6 +10,7 @@ const BoardListContainer = styled.div`
   width: 100%;
   background-color: #f5f5f5;
   padding: 30px 0;
+  min-height: 50vh;
 `;
 
 export { TitleContainer, BoardListContainer };
