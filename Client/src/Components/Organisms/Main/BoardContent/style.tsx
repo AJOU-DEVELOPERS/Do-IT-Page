@@ -1,5 +1,5 @@
 import { MAIN_PREVIEW_IMAGE } from "@Constant/.";
-import { DefaultBoxShadow } from "@Style/.";
+import { AlignCenterAround, DefaultBoxShadow } from "@Style/.";
 import styled from "styled-components";
 
 interface BoardProps {
@@ -29,4 +29,12 @@ export const ContentContainer = styled.div<ContentProps>`
   width: 90%;
   height: 85%;
   margin: auto;
+`;
+
+export const BoardPreviewContainer = styled.div`
+  /* height: 30%; */
+  display: flex;
+  flex-direction: column;
+  ${AlignCenterAround}
+  width:100%;
 `;

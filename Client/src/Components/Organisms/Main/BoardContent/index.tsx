@@ -1,5 +1,9 @@
 import { useRecoilValue } from "recoil";
-import { BoardContainer, ContentContainer } from "./style";
+import {
+  BoardContainer,
+  BoardPreviewContainer,
+  ContentContainer,
+} from "./style";
 import ContentTitle from "@Molecules/ContentTitle";
 import { BoardContentSelector } from "@Recoil/BoardContent";
 import { _BOARD_INFOS } from "@Constant/.";
@@ -43,9 +47,13 @@ const BoardContent = ({ boardName }: { boardName: string }) => {
             onClick={handleDetailMove}
           >
             {boardContents?.slice(0, previewSize).map((content) => (
-              <div key={content.idx} data-idx={content.idx} id={boardName}>
+              <BoardPreviewContainer
+                key={content.idx}
+                data-idx={content.idx}
+                id={boardName}
+              >
                 <BoardPreview previewType={previewType} content={content} />
-              </div>
+              </BoardPreviewContainer>
             ))}
           </ContentContainer>
         </>

@@ -20,6 +20,13 @@ export const HoverPointer = `
     }
   `;
 
+export const MainItemHover = `
+&:hover {
+  border-radius: 12px;
+  border: 1px solid #b3b0b0;
+  background-color: #ffffff;
+}
+`;
 const BackgroundBorderBlack = {
   borderColor: "#000000",
   backGroundColor: "#ffffff",
