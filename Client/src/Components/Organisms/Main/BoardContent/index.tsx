@@ -9,16 +9,10 @@ import { ContentType } from "@Type/.";
 
 const BoardContent = ({ boardName }: { boardName: string }) => {
   const _boardName = boardName.replaceAll(" ", "");
-  const {
-    apiSrc,
-    previewSize,
-    previewType,
-    alignPreview = "column;",
-  } = _BOARD_INFOS[boardName];
+  const { apiSrc, previewSize, previewType, alignPreview = "column" } = _BOARD_INFOS[boardName];
 
   const boardContents =
-    hasBoardContent(apiSrc, boardName) &&
-    useRecoilValue<ContentType[]>(BoardContentSelector(apiSrc));
+    hasBoardContent(apiSrc, boardName) && useRecoilValue<ContentType[]>(BoardContentSelector(apiSrc));
 
   return (
     <BoardContainer boardName={_boardName}>

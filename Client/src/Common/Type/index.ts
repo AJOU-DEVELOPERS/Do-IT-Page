@@ -100,7 +100,7 @@ export interface StudyContentType {
   totalHeadcount: number;
   leaderUserIdx: number;
   leaderName: string;
-  status: string;
+  status: "processing" | "collecting" | "done";
   idx: number;
 }
 
