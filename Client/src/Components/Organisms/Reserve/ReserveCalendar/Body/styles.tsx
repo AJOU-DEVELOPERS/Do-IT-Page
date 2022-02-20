@@ -30,7 +30,7 @@ export const WeekContainer = styled.div`
     color: ${DefaultColor};
     border-bottom: 1px solid ${DefaultBorderColor};
     border-right: 1px solid ${DefaultBorderColor};
-    padding: 16px;
+    padding: 10px;
     &:nth-child(7) {
       border-right: none;
     }
