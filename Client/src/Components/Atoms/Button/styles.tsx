@@ -19,9 +19,11 @@ const ButtonContainer = styled.button<BasicButtonProps>`
 `;
 
 const LoginContainer = styled(ButtonContainer)<LoginButtonProps>`
+  grid-area: ${({ grid }) => grid};
   color: ${({ color }) => color};
   font-size: ${({ fontSize }) => fontSize};
   border-radius: ${({ radius }) => radius};
+  box-shadow: 0px 0px 0px 1px rgba(93, 93, 93, 0.1);
 `;
 
 const EnterContainer = styled(ButtonContainer)`

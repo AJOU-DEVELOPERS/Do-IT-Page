@@ -5,13 +5,13 @@ import { checkLoginSelector } from "@src/Recoil/CheckLogin";
 interface Props {
   component: () => JSX.Element;
   path: string;
-  exact: boolean;
+  exact?: boolean;
 }
 
 const PrivateRoute = ({
   component: Component,
   path,
-  exact,
+  exact = false,
 }: Props): JSX.Element => {
   // const user = useRecoilValue(checkLoginSelector);
   const user = true;

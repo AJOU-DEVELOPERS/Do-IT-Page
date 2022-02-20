@@ -1,10 +1,9 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  width: 790px;
-  height: 645px;
   background-color: #ffffff;
   display: flex;
+  border-radius: 2vw;
 `;
 
 export { Container };

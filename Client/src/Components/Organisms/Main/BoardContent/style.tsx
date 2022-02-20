@@ -1,6 +1,5 @@
 import { MAIN_PREVIEW_IMAGE } from "@Constant/.";
 import { DefaultBoxShadow } from "@Style/.";
-import { BoardType } from "@Type/.";
 import styled from "styled-components";
 
 interface BoardProps {
@@ -20,6 +19,8 @@ export const BoardContainer = styled.div<BoardProps>`
   box-shadow: ${DefaultBoxShadow};
   border-radius: 1rem;
   ${({ boardName }) => boardName === "이미지" && imageUrl};
+
+  overflow: hidden;
 `;
 
 export const ContentContainer = styled.div<ContentProps>`

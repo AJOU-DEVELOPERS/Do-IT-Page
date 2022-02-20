@@ -9,8 +9,7 @@ const Button = (props: BasicButtonProps) => {
 Button.defaultProps = {
   width: "150px",
   height: "50px",
-  borderColor: "#000000",
-  backGroundColor: "#ffffff",
+  borderColor: "none",
   title: "Click !",
 };
 export default Button;

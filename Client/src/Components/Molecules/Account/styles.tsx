@@ -1,35 +1,78 @@
 import styled from "styled-components";
-
+import { LoginProps } from "@Type/index";
 const Container = styled.div`
-  width: 50%;
-`;
-
-const InputContainer = styled.div`
-  padding: 90px 30px;
-`;
-
-const Left = styled.div`
   width: 100%;
   height: 100%;
-  background-image: url("/loginL.png");
-  background-repeat: no-repeat;
+  align-items: center;
+  justify-items: center;
 `;
 
-const Right = styled.div`
+const LoginContainer = styled(Container)`
+  width: 30vw;
+  height: 40vh;
+  display: grid;
+  grid-template:
+    ". title title ." 6fr
+    ". id button ." 2fr
+    ". pwd button ." 2fr
+    ". footer footer ." 6fr
+    / 1fr 6fr 2fr 1fr;
+`;
+const RegisterContainer = styled(Container)`
+  width: 30vw;
+  height: 60vh;
+  display: grid;
+  grid-template:
+    ". title . " 2fr
+    ". section ." 8fr
+    ". button ." 2fr
+    / 1fr 6fr 1fr;
+`;
+
+const Wrapper = styled(Container)<LoginProps>`
+  display: flex;
   width: 100%;
-  height: 100%;
-  background-image: url("/loginR.png");
-  background-repeat: no-repeat;
+  height: 80%;
+  align-items: center;
+  color: rgba(93, 93, 93);
+  justify-content: space-evenly;
+  font-weight: bold;
+  grid-area: ${({ type }) => type};
+  p {
+    width: 2vw;
+    text-align: center;
+  }
+`;
+const Section = styled.div`
+  grid-area: section;
+  width: 100%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+const Footer = styled.div`
+  grid-area: footer;
+  display: flex;
+  column-gap: 10px;
+  font-size: 0.8rem;
 `;
 
 const Title = styled.h1`
-  position: relative;
-  display: inline-block;
-  color: #0c218b;
-  font-size: 20px;
+  grid-area: title;
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
+  color: rgba(93, 93, 93);
   font-weight: bold;
-  width: 100%;
-  margin: 6px 0 16px;
 `;
 
-export { Container, Left, Right, Title, InputContainer };
+const SubWrapper = styled.div`
+  align-items: center;
+  column-gap: 20px;
+  display: flex;
+`;
+
+export { Container, Title, Wrapper, SubWrapper, LoginContainer, RegisterContainer, Footer, Section };
