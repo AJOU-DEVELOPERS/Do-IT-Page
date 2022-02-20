@@ -29,7 +29,7 @@ export const ContentContainer = styled.div<ContentProps>`
   width: 90%;
   height: 85%;
   margin: auto;
-  justify-content: space-around;
+  /* justify-content: space-around; */
 `;
 
 export const BoardPreviewContainer = styled.div`
