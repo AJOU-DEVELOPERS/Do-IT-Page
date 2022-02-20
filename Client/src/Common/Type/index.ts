@@ -65,6 +65,7 @@ export interface BasicInputProps extends BasicAtomProps {
 export interface BoardType {
   boardType?: string;
   apiSrc: string;
+  boardApiSrc?: string;
   pageSrc: string;
   previewSize?: number;
   previewType?: "card" | "ranking" | "image" | "calendar" | "basic";
@@ -121,4 +122,7 @@ export interface PreviewProps {
   type?: string;
 }
 
-export type ContentType = BoardContentType | ProjectContentType | RankingContentType;
+export type ContentType =
+  | BoardContentType
+  | ProjectContentType
+  | RankingContentType;

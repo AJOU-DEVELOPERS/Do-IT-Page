@@ -1,3 +1,4 @@
+import { HoverPointer } from "@Style/.";
 import styled from "styled-components";
 
 const Container = styled.tr`
@@ -17,7 +18,7 @@ const Button = styled.button`
   border: 1px solid;
   padding: 0px 0.8rem;
   border-radius: 0.5rem;
-  cursor: pointer;
+  ${HoverPointer};
   :hover {
     opacity: 50%;
   }

@@ -3,6 +3,7 @@ import {
   BasicButtonProps,
   LoginButtonProps,
 } from "@src/Common/Type";
+import { HoverPointer } from "@Style/.";
 import styled from "styled-components";
 
 const ButtonContainer = styled.button<BasicButtonProps>`
@@ -15,7 +16,7 @@ const ButtonContainer = styled.button<BasicButtonProps>`
   align-items: center;
   color: ${({ color }) => color};
   background-color: ${({ backGroundColor }) => backGroundColor};
-  cursor: pointer;
+  ${HoverPointer};
 `;
 
 const LoginContainer = styled(ButtonContainer)<LoginButtonProps>`

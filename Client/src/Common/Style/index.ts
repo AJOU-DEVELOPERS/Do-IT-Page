@@ -1,4 +1,5 @@
 export const DefaultColor = "#707070";
+export const DefaultBorderColor = "#00000029";
 
 export const GreyColor = `#F6F6F6`;
 
@@ -15,11 +16,16 @@ align-items: center;
 justify-content: space-between;`;
 
 export const HoverPointer = `
-    &:hover{
-      cursor : pointer
-    }
-  `;
+  cursor : pointer
+`;
 
+export const MainItemHover = `
+&:hover {
+  border-radius: 12px;
+  border: 1px solid #b3b0b0;
+  background-color: #ffffff;
+}
+`;
 const BackgroundBorderBlack = {
   borderColor: "#000000",
   backGroundColor: "#ffffff",
@@ -79,8 +85,7 @@ export const CheckDuplicateButton = {
 export const SmallLoginButtonType = {
   width: "150px",
   height: "50px",
-  borderColor: "#ffffff",
-  backGroundColor: "#8ECBF8",
+  color: "#ffffff",
   fontSize: "18px",
   radius: "0px",
 };
