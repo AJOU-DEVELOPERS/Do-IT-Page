@@ -13,5 +13,5 @@ export const ReserveBodyContainer = styled(BoardListContainer)`
 `;
 
 export const ReserveBoxContainer = styled.div`
-  width: 35%;
+  width: 40%;
 `;

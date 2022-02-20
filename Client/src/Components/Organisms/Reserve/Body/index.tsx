@@ -19,6 +19,7 @@ const ReserveBody = () => {
           <ReserveBox />
         </ReserveBoxContainer>
       </ReserveBodyContainer>
+      {/* <ReserveBox /> */}
     </>
   );
 };

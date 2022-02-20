@@ -1,47 +1,55 @@
-import Input from "@Atoms/Input";
-import { ReserveInput } from "@Atoms/Input/styles";
+import Button from "@Atoms/Button";
 import {
-  DateContainer,
-  ReserveBoxContainer,
-  ReserveBoxSmallText,
-  ReserveBoxText,
-  ReserveBoxTitle,
-  ReservorContainer,
-  SpliteTimeSpan,
-  TimerContainer,
-} from "./styles";
+  ReserveBoxHeader,
+  ReserveBoxName,
+  ReserveInputForm,
+} from "@Molecules/ReserveForm";
+import { ReserveBoxText } from "@Molecules/ReserveForm/style";
+import { LoginButtonType } from "@Style/.";
+import { useRef } from "react";
+import { ButtonContainer, ReserveBoxContainer } from "./styles";
 
 const ReserveBox = () => {
+  const userNameRef = useRef<HTMLInputElement | null>(null);
+  const startDateRef = useRef<HTMLInputElement | null>(null);
+  const endDateRef = useRef<HTMLInputElement | null>(null);
+  const startTimeRef = useRef<HTMLInputElement | null>(null);
+  const endTimeRef = useRef<HTMLInputElement | null>(null);
+
+  const handleCreateClick = () => {
+    if (
+      !userNameRef?.current ||
+      !startDateRef?.current ||
+      !endDateRef?.current ||
+      !startTimeRef?.current ||
+      !endTimeRef?.current
+    )
+      return;
+
+    console.log(userNameRef.current.value);
+    console.log(startDateRef.current.value);
+    console.log(endDateRef.current.value);
+    console.log(startTimeRef.current.value);
+    console.log(endTimeRef.current.value);
+  };
   return (
     <ReserveBoxContainer>
-      <ReserveBoxTitle>신청하기</ReserveBoxTitle>
-
-      <ReservorContainer>
-        <ReserveBoxText>대표자</ReserveBoxText>
-        <ReserveInput width="190px" height="40px" />
-      </ReservorContainer>
-
+      <ReserveBoxHeader />
+      <ReserveBoxName nameRef={userNameRef} />
       <ReserveBoxText>날짜</ReserveBoxText>
-
-      <DateContainer>
-        <span>
-          <ReserveBoxSmallText>시작</ReserveBoxSmallText>
-          <ReserveInput width="163px" height="37px" />
-        </span>
-        <span>
-          <ReserveBoxSmallText>종료</ReserveBoxSmallText>
-          <ReserveInput width="163px" height="37px" />
-        </span>
-      </DateContainer>
-
-      <TimerContainer>
-        <ReserveBoxSmallText>시간</ReserveBoxSmallText>
-        <ReserveInput width="163px" height="37px" />
-        <SpliteTimeSpan>-</SpliteTimeSpan>
-        <ReserveInput width="163px" height="37px" />
-      </TimerContainer>
-
-      <div>신청하기</div>
+      <ReserveInputForm
+        sDateRef={startDateRef}
+        eDateRef={endDateRef}
+        sTimeRef={startTimeRef}
+        eTimeRef={endTimeRef}
+      />
+      <ButtonContainer>
+        <Button
+          title="신청하기"
+          {...LoginButtonType}
+          onClick={handleCreateClick}
+        />
+      </ButtonContainer>
     </ReserveBoxContainer>
   );
 };
