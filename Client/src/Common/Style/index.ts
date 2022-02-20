@@ -125,3 +125,11 @@ white-space: nowrap;
 text-overflow: ellipsis;
 overflow: hidden;
 `;
+
+export const NavItemHover = `
+&:hover {
+  border-radius: 5px;
+  border: 1px solid #b3b0b0;
+  background-color: #ffffff;
+}
+`;

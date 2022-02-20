@@ -20,6 +20,7 @@ const Title = styled.div`
 const NavContainer = styled.div`
   display: flex;
   width: 55%;
+  height: 50%;
   ${AlignCenterAround}
 `;
 
