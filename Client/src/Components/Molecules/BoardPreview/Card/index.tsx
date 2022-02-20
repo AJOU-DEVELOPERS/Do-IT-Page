@@ -4,7 +4,7 @@ import { ProjectContentType } from "@Type/.";
 
 const CardBoardPreview = (props: ProjectContentType) => {
   const { status } = props;
-
+    
   return (
     <>
       {status === "processing" && <ProcessingBoard {...props} />}

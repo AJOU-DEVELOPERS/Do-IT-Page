@@ -85,6 +85,7 @@ export interface PosticDefaultProps {
 }
 
 export interface BoardContentType {
+  index: number;
   board: string;
   title: string;
   text: string;
@@ -96,6 +97,7 @@ export interface BoardContentType {
 }
 
 export interface StudyContentType {
+  index: number;
   name: string;
   decription: string;
   totalHeadcount: number;
@@ -110,6 +112,7 @@ export interface ProjectContentType extends StudyContentType {
 }
 
 export interface RankingContentType {
+  index: number;
   rating: number;
   tier: string;
   name: string;

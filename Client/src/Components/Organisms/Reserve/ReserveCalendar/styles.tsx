@@ -11,15 +11,9 @@ export const ReserveCalendarContainer = styled.div`
 `;
 
 export const ReserveCalendarTitle = styled.p`
-  font-size: 30px;
+  font-size: 20px;
   color: ${DefaultColor};
   padding-bottom: 5px;
   margin-bottom: 25px;
   border-bottom: 1px solid ${DefaultBorderColor};
-`;
-
-export const CalendarHeaderContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
