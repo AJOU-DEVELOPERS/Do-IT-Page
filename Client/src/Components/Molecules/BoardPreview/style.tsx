@@ -1,4 +1,4 @@
-import { AlignCenterAround, HoverPointer } from "@Style/.";
+import { AlignCenterAround, HoverPointer, MainItemHover } from "@Style/.";
 import styled from "styled-components";
 
 interface Props {
@@ -32,12 +32,9 @@ export const Date = styled.p`
 
 export const PreviewContainer = styled.div`
   padding: 20px 0;
-  cursor: pointer;
+  ${HoverPointer};
   display: flex;
   align-items: center;
-  &:hover {
-    border-radius: 12px;
-    border: 1px solid #b3b0b0;
-    background-color: #ffffff;
-  }
+  width: 100%;
+  ${MainItemHover}
 `;

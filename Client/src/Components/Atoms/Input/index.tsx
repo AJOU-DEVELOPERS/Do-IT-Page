@@ -1,5 +1,5 @@
 import { BasicInputProps } from "@src/Common/Type";
-import Container from "./styles";
+import { Container } from "./styles";
 
 const Input = (props: BasicInputProps) => {
   const { inputRef } = props;

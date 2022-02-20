@@ -1,5 +1,9 @@
 import { useRecoilValue } from "recoil";
-import { BoardContainer, ContentContainer } from "./style";
+import {
+  BoardContainer,
+  BoardPreviewContainer,
+  ContentContainer,
+} from "./style";
 import ContentTitle from "@Molecules/ContentTitle";
 import { BoardContentSelector } from "@Recoil/BoardContent";
 import { _BOARD_INFOS } from "@Constant/.";
@@ -7,21 +11,23 @@ import { hasBoardContent } from "@Util/.";
 import BoardPreview from "@Molecules/BoardPreview";
 import { ContentType } from "@Type/.";
 import { useHistory } from "react-router-dom";
+import React from "react";
 
 const BoardContent = ({ boardName }: { boardName: string }) => {
   const _boardName = boardName.replaceAll(" ", "");
+
   const {
+    pageSrc,
     apiSrc,
     previewSize,
     previewType,
     alignPreview = "column;",
   } = _BOARD_INFOS[boardName];
 
-  const boardContents =
-    hasBoardContent(apiSrc, boardName) &&
-    useRecoilValue<ContentType[]>(BoardContentSelector(apiSrc));
 
   const history = useHistory();
+  const boardContents =
+    hasBoardContent(apiSrc, boardName) && useRecoilValue<ContentType[]>(BoardContentSelector(apiSrc));
 
   // 재사용으로 빼고싶음 // Molecules/Boardpage/List/index.tsx
   const handleDetailMove = (e: any) => {
@@ -43,9 +49,13 @@ const BoardContent = ({ boardName }: { boardName: string }) => {
             onClick={handleDetailMove}
           >
             {boardContents?.slice(0, previewSize).map((content) => (
-              <div key={content.idx} data-idx={content.idx} id={boardName}>
+              <BoardPreviewContainer
+                key={content.idx}
+                data-idx={content.idx}
+                id={boardName}
+              >
                 <BoardPreview previewType={previewType} content={content} />
-              </div>
+              </BoardPreviewContainer>
             ))}
           </ContentContainer>
         </>

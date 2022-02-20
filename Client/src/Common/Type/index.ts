@@ -68,7 +68,7 @@ export interface BoardType {
   boardApiSrc?: string;
   pageSrc: string;
   previewSize?: number;
-  previewType?: string;
+  previewType?: "card" | "ranking" | "image" | "calendar" | "basic";
   alignPreview?: string;
 }
 
@@ -76,7 +76,16 @@ export interface BoardInfoType {
   [index: string]: BoardType;
 }
 
+export interface PosticDefaultProps {
+  title: string;
+  studyLeader: string;
+  status: string;
+  member: number;
+  type: "processing" | "collecting" | "done";
+}
+
 export interface BoardContentType {
+  index: number;
   board: string;
   title: string;
   text: string;
@@ -88,12 +97,13 @@ export interface BoardContentType {
 }
 
 export interface StudyContentType {
+  index: number;
   name: string;
   decription: string;
   totalHeadcount: number;
   leaderUserIdx: number;
   leaderName: string;
-  status: string;
+  status: "processing" | "collecting" | "done";
   idx: number;
 }
 
@@ -102,6 +112,7 @@ export interface ProjectContentType extends StudyContentType {
 }
 
 export interface RankingContentType {
+  index: number;
   rating: number;
   tier: string;
   name: string;
@@ -109,7 +120,7 @@ export interface RankingContentType {
 }
 
 export interface PreviewProps {
-  previewType?: string;
+  previewType?: "card" | "ranking" | "image" | "calendar" | "basic";
   content: ContentType;
   type?: string;
 }

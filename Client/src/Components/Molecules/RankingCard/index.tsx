@@ -1,6 +1,5 @@
-import Logo from "@Atoms/Logo";
-import { GET_SOLVED_CARD_URL, RANKING_IMG_URL } from "@Constant/.";
-import { CardContainer, Info, Name } from "./style";
+import { GET_SOLVED_CARD_URL } from "@Constant/.";
+import { CardContainer, Info } from "./style";
 
 const RankingCard = ({ name }: { name: string }) => {
   return (

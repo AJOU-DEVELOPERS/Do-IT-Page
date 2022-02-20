@@ -1,7 +1,8 @@
 import { BasicInputProps } from "@src/Common/Type";
+import { HoverPointer } from "@Style/.";
 import styled from "styled-components";
 
-const Container = styled.input<BasicInputProps>`
+export const Container = styled.input<BasicInputProps>`
   width: ${({ width }) => width};
   height: ${({ height }) => height};
   border: 1px solid ${({ borderColor }) => borderColor};
@@ -10,11 +11,17 @@ const Container = styled.input<BasicInputProps>`
   box-shadow: ${({ shadow }) => shadow};
   background: ${({ background }) => background};
   border-radius: ${({ radius }) => radius};
-  cursor: pointer;
+  ${HoverPointer};
 
   &:focus {
     outline: none;
   }
 `;
 
-export default Container;
+export const ReserveInput = styled.input<{ height: string; width: string }>`
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: inset 0px 0px 38px #00000029;
+  border-radius: 14px;
+  width: ${({ width }) => width};
+  height: ${({ height }) => height};
+`;

@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
-import { DefaultColor } from "@Style/.";
+import { DefaultColor, HoverPointer } from "@Style/.";
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -19,9 +19,7 @@ const GlobalStyle = createGlobalStyle`
   button{
     background:none;
     color : ${DefaultColor};
-    :hover{
-      cursor:pointer;
-    }
+    ${HoverPointer};
   }
   p{
     font-familiy: Noto Sans CJK KR;
