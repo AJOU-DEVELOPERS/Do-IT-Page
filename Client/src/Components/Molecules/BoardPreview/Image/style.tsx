@@ -1,4 +1,4 @@
-import { DefaultBoxShadow } from "@Style/.";
+import { DefaultBoxShadow, MainItemHover } from "@Style/.";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -7,6 +7,7 @@ export const Container = styled.div`
   box-shadow: ${DefaultBoxShadow};
   border-radius: 12px;
   height: 100%;
+  ${MainItemHover}
 `;
 
 export const ContentText = styled.div`

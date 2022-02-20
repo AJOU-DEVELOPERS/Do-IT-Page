@@ -1,5 +1,5 @@
 import { Container, Title, Text } from "./style";
-import StyledLink from "@Atoms/StyledLink";
+import { StyledLink } from "@Atoms/StyledLink";
 import { _BOARD_INFOS } from "@Constant/.";
 
 interface Props {
