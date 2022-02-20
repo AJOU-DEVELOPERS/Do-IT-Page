@@ -1,18 +1,24 @@
-import {
-  BoardListContainer,
-  TitleContainer,
-} from "@Organisms/BoardBody/styles";
+import { TitleContainer } from "@Organisms/BoardBody/styles";
 import ReserveBox from "../ReserveBox";
 import ReserveCalendar from "../ReserveCalendar";
+import {
+  ReserveBodyContainer,
+  ReserveCalendarContainer,
+  ReserveBoxContainer,
+} from "./styles";
 
 const ReserveBody = () => {
   return (
     <>
       <TitleContainer>과방 대여</TitleContainer>
-      <BoardListContainer>
-        <ReserveCalendar />
-        <ReserveBox />
-      </BoardListContainer>
+      <ReserveBodyContainer>
+        <ReserveCalendarContainer>
+          <ReserveCalendar />
+        </ReserveCalendarContainer>
+        <ReserveBoxContainer>
+          <ReserveBox />
+        </ReserveBoxContainer>
+      </ReserveBodyContainer>
     </>
   );
 };
