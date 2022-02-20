@@ -22,6 +22,7 @@ const BoardContent = ({ boardName }: { boardName: string }) => {
     previewType,
     alignPreview = "column;",
   } = _BOARD_INFOS[boardName];
+
   const history = useHistory();
   const boardContents =
     hasBoardContent(apiSrc, boardName) &&
