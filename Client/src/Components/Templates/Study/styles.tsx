@@ -1,8 +1,11 @@
 import styled from "styled-components";
 
 const Title = styled.h1`
-  padding: 0px 15vw;
-  font-size: 2rem;
+  padding: 3vw 15vw;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #707070;
+  text-align: center;
 `;
 
 const PosticWrapper = styled.div`
@@ -13,7 +16,7 @@ const PosticWrapper = styled.div`
   flex-wrap: wrap;
 `;
 
-const Container = styled.div`
+const ModalContainer = styled.div`
   width: 400px;
   height: 400px;
   background: rgba(255, 240, 155, 0.8);
@@ -32,4 +35,8 @@ const Container = styled.div`
   }
 `;
 
-export { Title, PosticWrapper, Container };
+const Container = styled.div`
+  background-color: hsla(0, 0%, 96.07843137254902%, 0.7);
+  padding: 4vw;
+`;
+export { Title, PosticWrapper, ModalContainer, Container };

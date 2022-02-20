@@ -1,60 +1,21 @@
 {
-    "res": [{
-            "name": "NestJS 기초 스터디",
-            "description": "NestJS의 기본 동작 원리와 ... 을 공부합니다.",
-            "totalHeadcount": 5,
-            "leaderUserIdx": 2,
-            "leaderName": "이호용",
-            "status": "모집중"
-        },
-        {
-            "name": "NestJS 기초 스터디",
-            "description": "NestJS의 기본 동작 원리와 ... 을 공부합니다.",
-            "totalHeadcount": 5,
-            "leaderUserIdx": 2,
-            "leaderName": "이호용",
-            "status": "모집중"
-        },
-        {
-            "name": "NestJS 기초 스터디",
-            "description": "NestJS의 기본 동작 원리와 ... 을 공부합니다.",
-            "totalHeadcount": 5,
-            "leaderUserIdx": 2,
-            "leaderName": "이호용",
-            "status": "모집중"
-        },
-        {
-            "name": "NestJS 기초 스터디",
-            "description": "NestJS의 기본 동작 원리와 ... 을 공부합니다.",
-            "totalHeadcount": 5,
-            "leaderUserIdx": 2,
-            "leaderName": "이호용",
-            "status": "모집중"
-        },
-        {
-            "name": "NestJS 기초 스터디",
-            "description": "NestJS의 기본 동작 원리와 ... 을 공부합니다.",
-            "totalHeadcount": 5,
-            "leaderUserIdx": 2,
-            "leaderName": "이호용",
-            "status": "모집중"
-        },
-        {
-            "name": "NestJS 기초 스터디",
-            "description": "NestJS의 기본 동작 원리와 ... 을 공부합니다.",
-            "totalHeadcount": 5,
-            "leaderUserIdx": 2,
-            "leaderName": "이호용",
-            "status": "모집중"
-        },
-        {
-            "name": "NestJS 기초 스터디",
-            "description": "NestJS의 기본 동작 원리와 ... 을 공부합니다.",
-            "totalHeadcount": 5,
-            "leaderUserIdx": 2,
-            "leaderName": "이호용",
-            "status": "모집중"
-        }
-    ],
-    "status": 200
+  "res": [
+    {
+      "name": "NestJS 기초 스터디",
+      "description": "NestJS의 기본 동작 원리와 ... 을 공부합니다.",
+      "totalHeadcount": 5,
+      "leaderUserIdx": 2,
+      "leaderName": "이호용",
+      "status": "collecting"
+    },
+    {
+      "name": "NestJS 기초 스터디",
+      "description": "NestJS의 기본 동작 원리와 ... 을 공부합니다.",
+      "totalHeadcount": 5,
+      "leaderUserIdx": 2,
+      "leaderName": "차재명",
+      "status": "processing"
+    }
+  ],
+  "status": 200
 }

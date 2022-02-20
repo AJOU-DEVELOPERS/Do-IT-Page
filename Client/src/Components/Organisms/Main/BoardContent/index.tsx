@@ -15,6 +15,7 @@ import React from "react";
 
 const BoardContent = ({ boardName }: { boardName: string }) => {
   const _boardName = boardName.replaceAll(" ", "");
+
   const {
     pageSrc,
     apiSrc,
@@ -23,10 +24,10 @@ const BoardContent = ({ boardName }: { boardName: string }) => {
     alignPreview = "column;",
   } = _BOARD_INFOS[boardName];
 
+
   const history = useHistory();
   const boardContents =
-    hasBoardContent(apiSrc, boardName) &&
-    useRecoilValue<ContentType[]>(BoardContentSelector(apiSrc));
+    hasBoardContent(apiSrc, boardName) && useRecoilValue<ContentType[]>(BoardContentSelector(apiSrc));
 
   // 재사용으로 빼고싶음 // Molecules/Boardpage/List/index.tsx
   const handleDetailMove = (e: any) => {

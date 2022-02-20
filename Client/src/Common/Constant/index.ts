@@ -44,8 +44,7 @@ export const MAIN_URL = "/main";
 
 export const BEFORE_URL = "/before";
 
-export const GET_SOLVED_CARD_URL = (id: string) =>
-  `http://mazassumnida.wtf/api/v2/generate_badge?boj=${id}`;
+export const GET_SOLVED_CARD_URL = (id: string) => `http://mazassumnida.wtf/api/v2/generate_badge?boj=${id}`;
 
 // carousel
 export const CAROUSEL_URL = [
@@ -91,15 +90,7 @@ export const RANKING_IMG_URL = [
   "/assets/BackJoon/bronze_icon.png",
 ];
 
-export const HEADER_NAV_LIST = [
-  "공지사항",
-  "자유게시판",
-  "백준랭킹",
-  "프로젝트",
-  "스터디",
-  "과방 대여",
-  "마이페이지",
-];
+export const HEADER_NAV_LIST = ["공지사항", "자유게시판", "백준랭킹", "프로젝트", "스터디", "과방 대여", "마이페이지"];
 
 export const MAIN_BOARD_PREVIEW_LIST = [
   "스터디",
@@ -111,6 +102,12 @@ export const MAIN_BOARD_PREVIEW_LIST = [
   "자유게시판",
   "사진첩",
 ];
+
+export const STUDY_STATUS = {
+  collecting: "모집 중",
+  processing: "진행 중",
+  done: "마감",
+};
 
 export const BOARD_INFOS: BoardType[] = [
   {
