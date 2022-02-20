@@ -1,4 +1,4 @@
-import Calendar from "@Organisms/Calendar";
+import Calendar from "@Organisms/Calendar/.";
 import { PreviewProps } from "@Type/.";
 import {
   convertBoardType,

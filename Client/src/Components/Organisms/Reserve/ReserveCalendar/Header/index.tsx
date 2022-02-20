@@ -1,3 +1,4 @@
+import { DateAction } from "@Type/.";
 import { Dispatch, SetStateAction } from "react";
 import { CalendarHeaderContainer } from "./styles";
 
@@ -7,26 +8,12 @@ export interface DateProps {
 }
 
 interface HeaderProps extends DateProps {
-  setDate: Dispatch<SetStateAction<DateProps>>;
+  setDate: Dispatch<DateAction>;
 }
 
 const CalendarHeader = ({ year, month, setDate }: HeaderProps) => {
-  const handleMinusMonth = () => {
-    setDate((prev: DateProps) => {
-      return {
-        ...prev,
-        month: prev.month - 1,
-      };
-    });
-  };
-  const handlePlusMonth = () => {
-    setDate((prev: DateProps) => {
-      return {
-        ...prev,
-        month: prev.month + 1,
-      };
-    });
-  };
+  const handleMinusMonth = () => setDate({ type: "decrement" });
+  const handlePlusMonth = () => setDate({ type: "increment" });
   return (
     <CalendarHeaderContainer>
       <span onClick={handleMinusMonth}>{"<"}</span>

@@ -10,7 +10,7 @@ const MainPageTemplate = () => {
       <Header />
       <GridContainer>
         {MAIN_BOARD_PREVIEW_LIST.map((boardName: string) => (
-          <BoardContent boardName={boardName} />
+          <BoardContent boardName={boardName} key={boardName} />
         ))}
       </GridContainer>
       <Footer />

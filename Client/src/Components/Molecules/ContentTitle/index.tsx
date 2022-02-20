@@ -10,7 +10,6 @@ interface Props {
 
 const ContentTitle = ({ title, text = ">", type = "basic" }: Props) => {
   const pageSrc = _BOARD_INFOS[title]?.pageSrc;
-  console.log(pageSrc);
   return (
     <Container>
       <Title type={type}>{title}</Title>

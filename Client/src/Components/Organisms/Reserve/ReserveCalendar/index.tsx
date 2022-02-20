@@ -1,13 +1,12 @@
-import { useState } from "react";
+import { dateReducer } from "@src/Hook/test";
+import { getYearMonth } from "@Util/.";
+import { useReducer } from "react";
 import CalendarBody from "./Body";
 import CalendarHeader from "./Header";
 import { ReserveCalendarContainer, ReserveCalendarTitle } from "./styles";
 
 const ReserveCalendar = () => {
-  const [date, setDate] = useState({
-    year: 2022,
-    month: 2,
-  });
+  const [date, setDate] = useReducer(dateReducer, getYearMonth());
 
   return (
     <ReserveCalendarContainer>

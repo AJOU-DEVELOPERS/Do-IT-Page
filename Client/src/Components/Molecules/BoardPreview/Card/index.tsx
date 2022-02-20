@@ -15,7 +15,6 @@ const CardBoardPreview = ({
   techStack = [],
 }: ProjectContentType) => {
   const techStackStr = techStack.join("/");
-
   return (
     <Container>
       <Head>
