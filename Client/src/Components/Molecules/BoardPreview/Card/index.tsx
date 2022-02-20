@@ -13,11 +13,10 @@ const CardBoardPreview = ({
   leaderName,
   status,
   techStack = [],
-  onClick,
 }: ProjectContentType) => {
   const techStackStr = techStack.join("/");
   return (
-    <Container onClick={onClick}>
+    <Container>
       <Head>
         <Status>{status}</Status>
         <Info>{techStackStr}</Info>

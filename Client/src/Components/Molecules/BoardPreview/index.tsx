@@ -9,29 +9,29 @@ import BasicBoardPreview from "./Basic/.";
 import CardPreviewImage from "./Card/.";
 import ImageBoardPreview from "./Image/.";
 import RankingBoardPreview from "./Ranking/.";
+import { PreviewContainer } from "./style";
 
 const BoardPreview = ({
-  onClick,
   content,
   previewType = "basic",
+  type = "basic",
 }: PreviewProps) => {
   const getPreview = (previewType: string): JSX.Element => {
-    if (previewType === "card")
-      return (
-        <CardPreviewImage onClick={onClick} {...convertProjectType(content)} />
-      );
+    if (previewType === "card") {
+      return <CardPreviewImage {...convertProjectType(content)} />;
+    }
     if (previewType === "ranking") {
       return <RankingBoardPreview {...convertRankingType(content)} />;
     }
     if (previewType === "image")
-      return (
-        <ImageBoardPreview onClick={onClick} {...convertBoardType(content)} />
-      );
+      return <ImageBoardPreview {...convertBoardType(content)} />;
     if (previewType === "calendar") {
       return <Calendar isReadOnly={true} />;
     }
     return (
-      <BasicBoardPreview onClick={onClick} {...convertBoardType(content)} />
+      <PreviewContainer>
+        <BasicBoardPreview {...convertBoardType(content)} type={type} />
+      </PreviewContainer>
     );
   };
 

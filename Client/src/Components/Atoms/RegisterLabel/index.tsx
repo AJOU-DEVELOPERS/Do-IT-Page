@@ -1,12 +1,18 @@
 import Input from "@Atoms/Input";
+import { Container } from "./styles";
 import { BasicInputProps } from "@Type/.";
 
-const RegisterLabel = (props: BasicInputProps) => {
+interface Props extends BasicInputProps {
+  title: string;
+}
+
+const RegisterLabel = (props: Props) => {
+  const { title } = props;
   return (
-    <>
-      <div>아이디</div>
+    <Container>
+      <div>{title}</div>
       <Input {...props} />
-    </>
+    </Container>
   );
 };
 

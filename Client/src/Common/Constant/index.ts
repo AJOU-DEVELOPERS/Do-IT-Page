@@ -20,6 +20,10 @@ export const GET_RANKING_URL = "/dummyData/BaekJoonRanking.json";
 
 export const GET_PHOTO_CONTENT_URL = "/dummyData/PhotoBoardContent.json";
 
+export const GET_NOTICE_POST_URL = "/dummyData/NoticeBoardContent.json";
+
+export const GET_BOARD_POST_URL = "/dummyData/FreeBoardContent.json";
+
 export const NOTICE_URL = "/notice";
 
 export const FREE_BOARD_URL = "/board";
@@ -35,6 +39,10 @@ export const PHOTO_BOARD_URL = "/photos";
 export const RANKING_BOARD_URL = "/rank";
 
 export const MY_PAGE_URL = "/mypage";
+
+export const MAIN_URL = "/main";
+
+export const BEFORE_URL = "/before";
 
 export const GET_SOLVED_CARD_URL = (id: string) =>
   `http://mazassumnida.wtf/api/v2/generate_badge?boj=${id}`;
@@ -130,12 +138,14 @@ export const _BOARD_INFOS: BoardInfoType = {
   공지사항: {
     pageSrc: NOTICE_URL,
     apiSrc: GET_NOTICE_CONTENT_URL,
+    boardApiSrc: GET_NOTICE_POST_URL,
     previewSize: 7,
     previewType: "basic",
   },
   자유게시판: {
     pageSrc: FREE_BOARD_URL,
     apiSrc: GET_FREE_CONTENT_URL,
+    boardApiSrc: GET_BOARD_POST_URL,
     previewSize: 7,
     previewType: "basic",
   },

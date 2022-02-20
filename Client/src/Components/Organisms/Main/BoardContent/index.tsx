@@ -1,12 +1,16 @@
 import { useRecoilValue } from "recoil";
-import { BoardContainer, ContentContainer } from "./style";
+import {
+  BoardContainer,
+  BoardPreviewContainer,
+  ContentContainer,
+} from "./style";
 import ContentTitle from "@Molecules/ContentTitle";
 import { BoardContentSelector } from "@Recoil/BoardContent";
 import { _BOARD_INFOS } from "@Constant/.";
 import { hasBoardContent } from "@Util/.";
 import BoardPreview from "@Molecules/BoardPreview";
 import { ContentType } from "@Type/.";
-import { useHistory, withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const BoardContent = ({ boardName }: { boardName: string }) => {
   const _boardName = boardName.replaceAll(" ", "");
@@ -22,22 +26,35 @@ const BoardContent = ({ boardName }: { boardName: string }) => {
     hasBoardContent(apiSrc, boardName) &&
     useRecoilValue<ContentType[]>(BoardContentSelector(apiSrc));
 
+  const history = useHistory();
+
+  // 재사용으로 빼고싶음 // Molecules/Boardpage/List/index.tsx
+  const handleDetailMove = (e: any) => {
+    const target = e.target.closest(`#${boardName}`);
+    if (!target) return;
+    const idx = target.getAttribute("data-idx");
+    const { pageSrc: path } = _BOARD_INFOS[boardName];
+    const nextPath = idx ? `${path}/${idx}` : path;
+    history.push(nextPath);
+  };
+
   return (
     <BoardContainer boardName={_boardName}>
       {boardName !== "이미지" && (
         <>
           <ContentTitle title={boardName} />
-          <ContentContainer alignPreview={alignPreview}>
-            {boardContents?.slice(0, previewSize).map((content, idx) => (
-              <BoardPreview
-                onClick={() => {
-                  console.log(123);
-                  history.push(`/${pageSrc}/${content.index}`);
-                }}
-                previewType={previewType}
-                content={content}
-                key={`${idx} ${boardName} content`}
-              />
+          <ContentContainer
+            alignPreview={alignPreview}
+            onClick={handleDetailMove}
+          >
+            {boardContents?.slice(0, previewSize).map((content) => (
+              <BoardPreviewContainer
+                key={content.idx}
+                data-idx={content.idx}
+                id={boardName}
+              >
+                <BoardPreview previewType={previewType} content={content} />
+              </BoardPreviewContainer>
             ))}
           </ContentContainer>
         </>

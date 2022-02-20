@@ -1,65 +1,24 @@
-import CalendarDate from "@Molecules/CalendarDate";
-import { dateReducer, useChangeCalendarView } from "@src/Hook/test";
-import TUICalendar from "@toast-ui/react-calendar";
-import { getYearMonth } from "@Util/.";
-import { useEffect, useReducer, useRef } from "react";
-import "tui-calendar/dist/tui-calendar.css";
-import "tui-date-picker/dist/tui-date-picker.css";
-import "tui-time-picker/dist/tui-time-picker.css";
+import { useState } from "react";
+import CalendarBody from "@Organisms/Reserve/ReserveCalendar/Body";
 import { Container } from "./style";
-import { CALENDAR_THEME } from "@Style/.";
-import { changeCalendarHeight } from "./util";
-import { CALENDAR_OPTION } from "@Style/calendar";
+import { useHistory } from "react-router-dom";
+import { ROOM_BOARD_URL } from "@Constant/.";
 
-const calendars = [
-  {
-    id: "1",
-    name: "My Calendar",
-    color: "#ffffff",
-    bgColor: "#9e5fff",
-    dragBgColor: "#9e5fff",
-    borderColor: "#9e5fff",
-  },
-];
-const shedules = [
-  {
-    id: "1",
-    calendarId: "1",
-    title: "my schedule",
-    category: "time",
-    dueDateClass: "",
-    start: "2022-02-18T22:30:00+09:00",
-    end: "2022-02-19T02:30:00+09:00",
-  },
-];
-const Calendar = ({ isReadOnly }: { isReadOnly: boolean }) => {
-  const [dateState, dateDispatch] = useReducer(dateReducer, getYearMonth());
-  const calendarRef = useRef<any>(null);
+const Calendar = () => {
+  const [date, setDate] = useState({
+    year: 2022,
+    month: 2,
+  });
+  const history = useHistory();
 
-  useChangeCalendarView(calendarRef, "month");
-
-  const handleMonthIncrement = () => {
-    dateDispatch({ type: "increment" });
-    calendarRef.current?.getInstance().next();
-  };
-
-  const handleMonthDecrement = () => {
-    dateDispatch({ type: "decrement" });
-    calendarRef.current?.getInstance().prev();
+  const handleCalendarMove = (e: any) => {
+    e.stopPropagation();
+    history.push(ROOM_BOARD_URL);
   };
 
   return (
-    <Container>
-      <CalendarDate
-        {...{ ...dateState, handleMonthIncrement, handleMonthDecrement }}
-      />
-      <TUICalendar
-        ref={calendarRef}
-        {...CALENDAR_OPTION}
-        isReadOnly={isReadOnly}
-        calendars={calendars}
-        schedules={shedules}
-      />
+    <Container onClickCapture={handleCalendarMove}>
+      <CalendarBody {...date} />
     </Container>
   );
 };

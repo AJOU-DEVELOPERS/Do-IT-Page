@@ -1,4 +1,3 @@
-import { AlignCenterAround, GreyColor } from "@Style/.";
 import styled from "styled-components";
 
 export const GridContainer = styled.div`
