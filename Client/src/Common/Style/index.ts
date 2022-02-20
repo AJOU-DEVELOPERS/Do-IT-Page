@@ -16,7 +16,7 @@ align-items: center;
 justify-content: space-between;`;
 
 export const HoverPointer = `
-  cursor : pointer
+  cursor : pointer;
 `;
 
 export const MainItemHover = `
