@@ -43,7 +43,7 @@ import { ReservationModule } from './reservation/reservation.module';
       password: 'inter7477',
       database: 'test',
       entities: ['dist/**/*.entity{.ts,.js}'],
-      synchronize: true,
+      synchronize: false,
     }),
     MailerModule.forRootAsync({
       useFactory: () => ({

@@ -1,18 +1,17 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsInt, IsString } from "class-validator";
-import internal from "stream";
 
 export class CreateReservationDto {
     @IsString()
     @ApiProperty({
         description: '예약 시작 시간',
-        example: ''
+        example: '2022-02-22 18:00:00'
     })
     reservationStart: Date;
     @IsString()
     @ApiProperty({
         description: '예약 종료 시간',
-        example: ''
+        example: '2022-02-22 20:00:00'
     })
     reservationEnd: Date;
     @IsString()

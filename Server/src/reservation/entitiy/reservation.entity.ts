@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { User } from "src/users/entities/user.entity";
-import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, DeleteDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('Reservation')
 export class Reservation extends BaseEntity{
@@ -23,6 +23,9 @@ export class Reservation extends BaseEntity{
     @ApiProperty()
     @Column()
     title: string;
+
+    @DeleteDateColumn()
+    deletedAt?: Date; 
 
     @ManyToOne(()=>User, (user)=>user.reservations)
     @JoinColumn({ name: 'userIdx', referencedColumnName: 'userIdx' })

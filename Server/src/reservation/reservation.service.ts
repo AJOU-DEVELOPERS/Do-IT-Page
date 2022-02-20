@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BaseFailResponse, BaseSuccessResponse } from 'src/commons/dto/response-common.dto';
 import { User } from 'src/users/entities/user.entity';
@@ -14,7 +14,7 @@ export class ReservationService {
         private connection: Connection,
     ) {}
     
-    async createReservation(createReservationDto: CreateReservationDto) {
+    async createReservation(createReservationDto: CreateReservationDto):Promise<Reservation> {
         const {reservationStart, reservationEnd, title, userIdx} = createReservationDto;
         const reservation = new Reservation();
         const queryRunner = this.connection.createQueryRunner();
@@ -31,21 +31,34 @@ export class ReservationService {
             })
             reservation.user = user;
             await queryRunner.manager.save(reservation);
-            return new BaseSuccessResponse();
+            return reservation;
         } catch(error) {
             console.log(error);
-            return new BaseFailResponse('과방 예약에 실패했습니다.');
+            new BaseFailResponse('과방 예약에 실패했습니다.');
         } finally {
             await queryRunner.release();
         }
     }
 
-    // async updateStudy(studyIdx: number, updateReservationDto: updateReservationDto) {
-    //     const queryRunner = this.connection.createQueryRunner();
-        
-    // }
+    async updateReservation(reservationIdx: number, updateReservationDto: UpdateReservationDto):Promise<Reservation> {
+        const queryRunner = this.connection.createQueryRunner();
+        const reservation = await this.findOne(reservationIdx);
+        reservation.reservationStart = updateReservationDto.reservationStart;
+        reservation.reservationEnd = updateReservationDto.reservationEnd;
+        reservation.title = updateReservationDto.title;
+        await queryRunner.connect();
+        try{
+            await queryRunner.manager.save(reservation);
+            return reservation;
+        }catch(error){
+            console.log(error);
+            new BaseFailResponse('예약 정보 변경에 실패했습니다.');
+        }finally{
+            await queryRunner.release();
+        }
+    }
 
-    async findAll() {
+    async findAll():Promise<Reservation[]> {
         const queryRunner = this.connection.createQueryRunner();
         await queryRunner.connect();
         try {
@@ -53,18 +66,17 @@ export class ReservationService {
             return reservations;
         } catch(error) {
             console.log(error);
-            return new BaseFailResponse('모든 과방 신청 정보 불러오기를 실패했습니다.');
         } finally {
             await queryRunner.release();
         }
     }
 
-    async findOne(reservationIdx: number) {
+    async findOne(reservationIdx: number):Promise<Reservation>{
         const queryRunner = this.connection.createQueryRunner();
         
         await queryRunner.connect();
         try {
-            const reservation = await queryRunner.manager.find(Reservation, 
+            const reservation = await queryRunner.manager.findOne(Reservation, 
                 { 
                     where: {
                         reservationIdx: reservationIdx
@@ -73,7 +85,7 @@ export class ReservationService {
             return reservation;
         } catch(error) {
             console.log(error);
-            return new BaseFailResponse('과방 신청 정보 불러오기를 실패했습니다.');
+            throw new NotFoundException(`${reservationIdx}의 예약 정보를 찾을 수 없습니다.`);
         } finally {
             await queryRunner.release();
         }
