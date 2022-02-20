@@ -8,7 +8,9 @@ import {
   IsArray,
   isArray,
   IsNotEmpty,
-  isNotEmpty
+  isNotEmpty,
+  Min,
+  Max
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { extend, object } from 'joi';
@@ -20,7 +22,7 @@ export class SignupUserDto {
     description: '유저 아이디',
     example: 'kyi9592',
   })
-  id: number;
+  id: string;
   @IsNotEmpty()
   @IsString()
   @MinLength(2)
@@ -30,9 +32,9 @@ export class SignupUserDto {
     example: '곽영일',
   })
   name: string;
+  @Min(9)
   @IsNotEmpty()
   @IsInt()
-  @Length(9, 9)
   @ApiProperty({
     description: '학번',
     example: '201823815',
@@ -44,8 +46,8 @@ export class SignupUserDto {
     example: 'ASDJ123sa',
   })
   password: string;
+  @MinLength(11)
   @IsNotEmpty()
-  @Length(11, 11)
   @ApiProperty({
     description: '유저 핸드폰 번호',
     example: '01012345678',

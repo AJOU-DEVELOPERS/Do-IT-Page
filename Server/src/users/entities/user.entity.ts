@@ -22,7 +22,7 @@ export class User extends BaseEntity {
 
   @ApiProperty()
   @Column()
-  id: number;
+  id: string;
   @ApiProperty()
   @Column()
   password: string;
@@ -72,9 +72,9 @@ export class User extends BaseEntity {
   async comparePassword(password: string, hashedPassword: string) {
     return await bcrypt.compare(password, hashedPassword);
   }
-  static async findByLogin(email: string, password : string) {
-    const user = await User.findOne({where: {email, password}})
-    if(!user) throw new ForbiddenException('아이디와 비밀번호를 다시 입력해주세요.')
+  static async findByLogin(id: string, password : string) {
+    const user = await User.findOne({id})
+    if(!user|| !await bcrypt.compare(password, user.password)) throw new ForbiddenException('아이디와 비밀번호를 다시 입력해주세요.')
     return user
   }
  

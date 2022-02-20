@@ -29,6 +29,6 @@ import { LocalStrategy } from './auth.local.strategy';
   ],
   controllers: [AuthController],
   providers: [AuthsService, LocalStrategy, JwtStrategy],
-  exports: [AuthsService, LocalStrategy, JwtStrategy],
+  exports: [AuthsService],
 })
 export class AuthsModule {}

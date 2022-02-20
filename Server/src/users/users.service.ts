@@ -30,6 +30,7 @@ export class UsersService {
     user.id = createUserDto.id
     await queryRunner.connect();
     await queryRunner.startTransaction();
+    console.log(user)
     try {
       const emailInfo = await queryRunner.manager.findOne(User, {
         email: user.email,
@@ -51,7 +52,7 @@ export class UsersService {
   }
 
   async login(loginUserDto: LoginUserDto) {
-    const userInfo = await User.findOne({ email: loginUserDto.email });
+    const userInfo = await User.findOne({ id: loginUserDto.id });
     if (!userInfo)
       return new BaseFailResponse('이미 존재하지 않는 이메일입니다.');
     if (!(await compare(loginUserDto.password, userInfo.password)))

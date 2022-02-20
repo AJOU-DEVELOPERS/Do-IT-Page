@@ -63,8 +63,8 @@ export class AuthsService {
     
     return token;
   }
-  async validateUser(email: string, password: string){
-    const userInfo = await User.findByLogin(email, password)
+  async validateUser(id: string, password: string){
+    const userInfo = await User.findByLogin(id, password)
     if(!userInfo)
     return null;
     const result = {

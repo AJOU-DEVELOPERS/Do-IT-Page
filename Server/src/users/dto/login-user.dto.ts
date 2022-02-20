@@ -11,12 +11,12 @@ import {
 import { ApiProperty } from '@nestjs/swagger';
 
 export class LoginUserDto {
-  @IsEmail()
+  @IsString()
   @ApiProperty({
-    description: '유저 이메일',
-    example: 'kyi9592@ajou.ac.kr',
+    description: '유저 아이디',
+    example: 'kyi9592',
   })
-  email: string;
+  id: string;
   @ApiProperty({
     description: '유저 비밀번호',
     example: 'ASDJ123sa',

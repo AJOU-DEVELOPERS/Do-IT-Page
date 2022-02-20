@@ -10,7 +10,8 @@ import {
   HttpCode,
   Res,
   ParseIntPipe,
-  Request
+  Request,
+  Req
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { SignupUserDto } from './dto/create-user.dto';
@@ -57,14 +58,16 @@ export class UsersController {
   })
   @ApiBody({ type: LoginUserDto })
   @ApiOkResponse({ description: '로그인 성공', type: BaseSuccessResponse })
-  // @UseGuards(AuthGuard('local'))
   async logIn(
+    @Req() req,
     @Body() loginUserDto: LoginUserDto,
     @Res({ passthrough: true }) res: Response,
   ) {
+
+
     const cookie = await this.usersService.login(loginUserDto);
     res.cookie('JWT', cookie);
-    return new BaseSuccessResponse();
+    return new ResultSuccessResponse(req.user)
   }
 
   @ApiOperation({
