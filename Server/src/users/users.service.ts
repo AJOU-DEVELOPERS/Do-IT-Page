@@ -1,4 +1,4 @@
-import { Inject, Injectable, CACHE_MANAGER } from '@nestjs/common';
+import { Inject, Injectable, CACHE_MANAGER, BadRequestException } from '@nestjs/common';
 import { SignupUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -27,13 +27,17 @@ export class UsersService {
     user.phoneNumber = createUserDto.phoneNumber;
     user.password = createUserDto.password;
     user.email = createUserDto.email;
+    user.id = createUserDto.id
     await queryRunner.connect();
     await queryRunner.startTransaction();
     try {
-      const userInfo = await queryRunner.manager.findOne(User, {
+      const emailInfo = await queryRunner.manager.findOne(User, {
         email: user.email,
       });
-      if (userInfo) return new BaseFailResponse('이미 존재하는 이메일입니다.');
+      const idInfo = await queryRunner.manager.findOne(User, {
+        id: user.id,
+      });
+      if (emailInfo||idInfo) return new BaseFailResponse('이미 존재하는 계정입니다.');
       await queryRunner.manager.save(user);
       await queryRunner.commitTransaction();
       return new BaseSuccessResponse();
@@ -54,19 +58,24 @@ export class UsersService {
       return new BaseFailResponse('비밀번호가 틀렸습니다.');
     return this.authsService.getCookieWithJwtToken(userInfo.userIdx);
   }
-  findAll() {
-    return `This action returns all users`;
+  async findById(id: string){
+    const user = await User.findOne({where:id})
+    if(user) throw new BadRequestException('이미 존재하는 아이디입니다.')
+    return new BaseSuccessResponse();
   }
-
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
-  }
-
-  // update(id: number, updateUserDto: UpdateUserDto) {
-  //   return `This action updates a #${id} user`;
+  // findAll() {
+  //   return `This action returns all users`;
   // }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
-  }
+  // findOne(id: number) {
+  //   return `This action returns a #${id} user`;
+  // }
+
+  // // update(id: number, updateUserDto: UpdateUserDto) {
+  // //   return `This action updates a #${id} user`;
+  // // }
+
+  // remove(id: number) {
+  //   return `This action removes a #${id} user`;
+  // }
 }

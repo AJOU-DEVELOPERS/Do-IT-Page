@@ -13,13 +13,16 @@ import {
 import * as bcrypt from 'bcrypt';
 import { InternalServerErrorException } from '@nestjs/common';
 import { ApiProperty } from '@nestjs/swagger';
-
+import { ForbiddenException } from '@nestjs/common';
 @Entity('User')
 export class User extends BaseEntity {
   @ApiProperty()
   @PrimaryGeneratedColumn()
   userIdx: number;
 
+  @ApiProperty()
+  @Column()
+  id: number;
   @ApiProperty()
   @Column()
   password: string;
@@ -69,6 +72,12 @@ export class User extends BaseEntity {
   async comparePassword(password: string, hashedPassword: string) {
     return await bcrypt.compare(password, hashedPassword);
   }
+  static async findByLogin(email: string, password : string) {
+    const user = await User.findOne({where: {email, password}})
+    if(!user) throw new ForbiddenException('아이디와 비밀번호를 다시 입력해주세요.')
+    return user
+  }
+ 
 }
 
 @Entity()

@@ -11,8 +11,12 @@ import { AuthsModule } from './auths/auth.module';
 import { User } from './users/entities/user.entity';
 import { Department } from './departments/entities/department.entity';
 import { DepartmentsModule } from './departments/departments.module';
+
 @Module({
   imports: [
+    AuthsModule,
+    UsersModule,
+    DepartmentsModule,
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: ['.env.dev'],
@@ -59,9 +63,6 @@ import { DepartmentsModule } from './departments/departments.module';
         },
       }),
     }),
-    AuthsModule,
-    UsersModule,
-    DepartmentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

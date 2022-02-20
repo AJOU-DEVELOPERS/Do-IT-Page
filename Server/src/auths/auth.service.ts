@@ -9,17 +9,16 @@ import {
   BaseFailResponse,
 } from 'src/commons/dto/response-common.dto';
 import { User } from 'src/users/entities/user.entity';
-import { UsersService } from 'src/users/users.service';
 import { JwtService } from '@nestjs/jwt';
-import { ConfigService } from '@nestjs/config';
+// import { InjectRepository } from '@nestjs/typeorm';
 @Injectable()
 export class AuthsService {
   constructor(
     private readonly mailerService: MailerService,
     @Inject(CACHE_MANAGER) private cacheManager: Cache,
-    private connection: Connection,
+    //private connection: Connection,
     private readonly jwtService: JwtService,
-    private readonly configService: ConfigService,
+    //@InjectRepository(User) private userRepository: Repository<User>,
   ) {}
   async sendMail(SendMailDto: SendMailDto) {
     try {
@@ -61,6 +60,16 @@ export class AuthsService {
       userId: number;
     } = { userId };
     const token = this.jwtService.sign(payload);
+    
     return token;
+  }
+  async validateUser(email: string, password: string){
+    const userInfo = await User.findByLogin(email, password)
+    if(!userInfo)
+    return null;
+    const result = {
+      userId : userInfo.userIdx
+    }
+    return result
   }
 }
