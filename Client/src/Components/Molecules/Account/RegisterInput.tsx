@@ -10,12 +10,12 @@ import { useRef } from "react";
 import { RegisterContainer, Title, Section, SubWrapper } from "./styles";
 
 const RegisterInput = () => {
-  const idRef = useRef<HTMLInputElement>();
-  const pwRef = useRef<HTMLInputElement>();
-  const nameRef = useRef<HTMLInputElement>();
-  const studentIdRef = useRef<HTMLInputElement>();
-  const subjectRef = useRef<HTMLInputElement>();
-  const emailRef = useRef<HTMLInputElement>();
+  const idRef = useRef<HTMLInputElement | null>(null);
+  const pwRef = useRef<HTMLInputElement | null>(null);
+  const nameRef = useRef<HTMLInputElement | null>(null);
+  const studentIdRef = useRef<HTMLInputElement | null>(null);
+  const subjectRef = useRef<HTMLInputElement | null>(null);
+  const emailRef = useRef<HTMLInputElement | null>(null);
 
   const handleRegisterClick = () => {
     if (!idRef?.current || !pwRef?.current) return;

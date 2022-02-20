@@ -1,3 +1,4 @@
+import { TABLET_WIDTH } from "@Constant/.";
 import { BoardListContainer } from "@Organisms/BoardBody/styles";
 import styled from "styled-components";
 
@@ -16,6 +17,12 @@ export const ReserveBodyContainer = styled(BoardListContainer)`
 
 export const ReserveBoxContainer = styled.div`
   width: 40%;
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    position: fixed;
+    width: 500px;
+    top: auto;
+    left: auto;
+  }
 `;
 
 export const ToggleButtonContainer = styled.div`

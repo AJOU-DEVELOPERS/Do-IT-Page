@@ -6,10 +6,15 @@ import {
 } from "@Molecules/ReserveForm";
 import { ReserveBoxText } from "@Molecules/ReserveForm/style";
 import { LoginButtonType } from "@Style/.";
-import { useRef } from "react";
+import { checkTablet } from "@Util/.";
+import { Dispatch, SetStateAction, useRef } from "react";
 import { ButtonContainer, ReserveBoxContainer } from "./styles";
 
-const ReserveBox = () => {
+const ReserveBox = ({
+  setBoxOpen,
+}: {
+  setBoxOpen: Dispatch<SetStateAction<boolean>>;
+}) => {
   const userNameRef = useRef<HTMLInputElement | null>(null);
   const startDateRef = useRef<HTMLInputElement | null>(null);
   const endDateRef = useRef<HTMLInputElement | null>(null);
@@ -31,6 +36,9 @@ const ReserveBox = () => {
     console.log(endDateRef.current.value);
     console.log(startTimeRef.current.value);
     console.log(endTimeRef.current.value);
+
+    if (!checkTablet()) return;
+    setBoxOpen(false);
   };
   return (
     <ReserveBoxContainer>

@@ -9,9 +9,9 @@ import { LoginButtonType, LoginInputType } from "@Style/.";
 import { Wrapper, Title, LoginContainer, Footer } from "./styles";
 
 const LoginInput = ({ history }: { history: History }) => {
-  const idRef = useRef<HTMLInputElement>();
+  const idRef = useRef<HTMLInputElement | null>(null);
 
-  const pwRef = useRef<HTMLInputElement>();
+  const pwRef = useRef<HTMLInputElement | null>(null);
 
   const handleLoginClick = () => {
     if (!idRef?.current || !pwRef?.current) return;
@@ -36,9 +36,18 @@ const LoginInput = ({ history }: { history: History }) => {
       </Wrapper>
       <Wrapper type={"pwd"}>
         <p>PW</p>
-        <Input {...LoginInputType} placeholder="" type="password" inputRef={pwRef} />
+        <Input
+          {...LoginInputType}
+          placeholder=""
+          type="password"
+          inputRef={pwRef}
+        />
       </Wrapper>
-      <LoginButton {...LoginButtonType} title="로그인" onClick={handleLoginClick} />
+      <LoginButton
+        {...LoginButtonType}
+        title="로그인"
+        onClick={handleLoginClick}
+      />
       <Footer>
         <p>아이디/비밀번호 찾기</p>
         <p>회원가입</p>
