@@ -26,7 +26,7 @@ const BoardPreview = ({
     if (previewType === "image")
       return <ImageBoardPreview {...convertBoardType(content)} />;
     if (previewType === "calendar") {
-      return <Calendar isReadOnly={true} />;
+      return <Calendar />;
     }
     return (
       <PreviewContainer>

@@ -4,15 +4,9 @@ import ContentTitle from "@Molecules/ContentTitle";
 import { BoardContentType } from "@Type/.";
 import { Container } from "./style";
 
-const ImageBoardPreview = ({
-  images,
-  title,
-  text,
-  date,
-  onClick,
-}: BoardContentType) => {
+const ImageBoardPreview = ({ images, title, text, date }: BoardContentType) => {
   return (
-    <Container onClick={onClick}>
+    <Container>
       <ContentImg
         url={images[0]}
         alt={`${title} logo image`}

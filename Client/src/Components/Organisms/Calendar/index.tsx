@@ -1,14 +1,14 @@
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import CalendarBody from "@Organisms/Reserve/ReserveCalendar/Body";
 import { Container } from "./style";
 import { useHistory } from "react-router-dom";
 import { ROOM_BOARD_URL } from "@Constant/.";
+import CalendarHeader from "@Organisms/Reserve/ReserveCalendar/Header";
+import { dateReducer } from "@src/Hook/test";
+import { getYearMonth } from "@Util/.";
 
 const Calendar = () => {
-  const [date, setDate] = useState({
-    year: 2022,
-    month: 2,
-  });
+  const [date, setDate] = useReducer(dateReducer, getYearMonth());
   const history = useHistory();
 
   const handleCalendarMove = (e: any) => {
@@ -18,6 +18,7 @@ const Calendar = () => {
 
   return (
     <Container onClickCapture={handleCalendarMove}>
+      <CalendarHeader {...date} setDate={setDate} />
       <CalendarBody {...date} />
     </Container>
   );
