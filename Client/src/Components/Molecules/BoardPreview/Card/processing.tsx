@@ -2,7 +2,14 @@ import ApplyButton from "@Atoms/Button/Apply";
 import Icon from "@Atoms/Icon";
 import { USER_ICON_URL, STUDY_STATUS } from "@Constant/.";
 import { ProjectContentType } from "@Type/.";
-import { LargeContainer, Head, Status, Info, Title, ProcessingInfoContainer } from "./style";
+import {
+  LargeContainer,
+  Head,
+  Status,
+  Info,
+  Title,
+  ProcessingInfoContainer,
+} from "./style";
 
 const CardBoardPreview = ({
   name,
@@ -26,8 +33,9 @@ const CardBoardPreview = ({
         <p>김영진, 김영진, 김영진, 김영진</p>
         <Info>{`인원 : ${leaderUserIdx} / ${totalHeadcount}`}</Info>
         <p>
-          ~하고 ~하고 ~할 것이다. ~하고 ~하고 ~할 것이다. ~하고 ~하고 ~할 것 이다.~하고 ~하고 ~할 것이다. ~하고 ~하고
-          ~할 것이다. ~하고 ~하고 ~할 것이다.~하고 ~하고 ~할 것이다. ~하고 ~하고 ~할 것이다.
+          ~하고 ~하고 ~할 것이다. ~하고 ~하고 ~할 것이다. ~하고 ~하고 ~할 것
+          이다.~하고 ~하고 ~할 것이다. ~하고 ~하고 ~할 것이다. ~하고 ~하고 ~할
+          것이다.~하고 ~하고 ~할 것이다. ~하고 ~하고 ~할 것이다.
         </p>
       </ProcessingInfoContainer>
     </LargeContainer>

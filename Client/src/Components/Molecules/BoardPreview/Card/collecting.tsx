@@ -3,7 +3,14 @@ import Icon from "@Atoms/Icon";
 import { USER_ICON_URL, STUDY_STATUS } from "@Constant/.";
 import { ApplyButtonType } from "@Style/.";
 import { ProjectContentType } from "@Type/.";
-import { Container, Head, Status, Info, Title, CollectingInfoContainer } from "./style";
+import {
+  Container,
+  Head,
+  Status,
+  Info,
+  Title,
+  CollectingInfoContainer,
+} from "./style";
 
 const CardBoardPreview = ({
   name,
