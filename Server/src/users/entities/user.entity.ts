@@ -1,4 +1,5 @@
 import { Department } from 'src/departments/entities/department.entity';
+import { Study } from 'src/studies/entity/study.entity';
 import {
   Column,
   Entity,
@@ -9,17 +10,27 @@ import {
   BeforeInsert,
   BaseEntity,
   JoinColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { InternalServerErrorException } from '@nestjs/common';
 import { ApiProperty } from '@nestjs/swagger';
 import { ForbiddenException } from '@nestjs/common';
+import { Reservation } from 'src/reservation/entitiy/reservation.entity';
+
+export enum UserStudyStatus {
+  leader="leader",
+  accepted="accepted",
+  rejected="rejected",
+  waiting="waiting",
+};
+
 @Entity('User')
 export class User extends BaseEntity {
   @ApiProperty()
   @PrimaryGeneratedColumn()
   userIdx: number;
-
   @ApiProperty()
   @Column()
   id: string;
@@ -39,14 +50,12 @@ export class User extends BaseEntity {
   @Column({ unique: true })
   email: string;
   @ApiProperty()
-  @Column()
+  @CreateDateColumn()
   createdAt: string;
   @ApiProperty()
-  @Column()
+  @UpdateDateColumn()
   updatedAt: string;
   @ApiProperty()
-  @Column()
-  status: string;
 
   @OneToMany((_type) => UserTechStack, (_type) => _type.user)
   userTechStacks: UserTechStack[];
@@ -59,6 +68,12 @@ export class User extends BaseEntity {
 
   @OneToMany((_type) => UserSocial, (_type) => _type.user)
   userSocials: UserSocial[];
+
+  @OneToMany((_type) => UserStudy, (_type) => _type.user)
+  userStudies: UserStudy[];
+
+  @OneToMany((_type) => Reservation, (_type)=> _type.user)
+  reservations: Reservation[];
 
   @BeforeInsert()
   async hashPassword() {
@@ -134,6 +149,33 @@ export class UserDepartment extends BaseEntity {
   @ManyToOne(() => Department, (department) => department.userDepartments)
   @JoinColumn({ name: 'departmentIdx', referencedColumnName: 'departmentIdx' })
   department: Department;
+}
+
+@Entity()
+export class UserStudy extends BaseEntity {
+  @ApiProperty()
+  @PrimaryGeneratedColumn()
+  userStudyIdx: number
+  @ApiProperty()
+  @Column()
+  userIdx: number
+  @ApiProperty()
+  @Column()
+  studyIdx: number
+  @ApiProperty()
+  @Column({
+    type: "enum",
+    enum: UserStudyStatus,
+    default: "waiting"
+  })
+  status: UserStudyStatus
+  @ManyToOne(() => User, (user) => user.userStudies)
+  @JoinColumn({ name: 'userIdx', referencedColumnName: 'userIdx' })
+  user: User
+  @ManyToOne(() => Study, (study) => study.userStudies)
+  @JoinColumn({ name: 'studyIdx', referencedColumnName: 'studyIdx' })
+  study: Study
+
 }
 
 @Entity()

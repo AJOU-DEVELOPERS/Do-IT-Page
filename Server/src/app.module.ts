@@ -12,6 +12,8 @@ import { User } from './users/entities/user.entity';
 import { Department } from './departments/entities/department.entity';
 import { DepartmentsModule } from './departments/departments.module';
 
+import { StudiesModule } from './studies/studies.module';
+import { ReservationModule } from './reservation/reservation.module';
 @Module({
   imports: [
     AuthsModule,
@@ -40,6 +42,7 @@ import { DepartmentsModule } from './departments/departments.module';
       database: process.env.DB_DATABASE,
       entities: ['dist/**/*.entity{.ts,.js}'],
       synchronize: false,
+      
     }),
     MailerModule.forRootAsync({
       useFactory: () => ({
@@ -63,6 +66,11 @@ import { DepartmentsModule } from './departments/departments.module';
         },
       }),
     }),
+    UsersModule,
+    AuthsModule,
+    DepartmentsModule,
+    StudiesModule,
+    ReservationModule,
   ],
   controllers: [AppController],
   providers: [AppService],

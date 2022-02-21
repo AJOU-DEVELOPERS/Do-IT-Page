@@ -1,0 +1,67 @@
+{
+    "res": [{
+            "name": "프로젝트 1",
+            "description": "NestJS의 기본 동작 원리와 ... 을 공부합니다.",
+            "totalHeadcount": 5,
+            "leaderUserIdx": 2,
+            "leaderName": "이호용",
+            "status": "모집중",
+            "techStack": ["Java", "Spring"]
+        },
+        {
+            "name": "NestJS 기초 스터디",
+            "description": "NestJS의 기본 동작 원리와 ... 을 공부합니다.",
+            "totalHeadcount": 5,
+            "leaderUserIdx": 2,
+            "leaderName": "이호용",
+            "status": "모집중",
+            "techStack": ["Java", "Spring", "React"]
+        },
+        {
+            "name": "NestJS 기초 스터디",
+            "description": "NestJS의 기본 동작 원리와 ... 을 공부합니다.",
+            "totalHeadcount": 5,
+            "leaderUserIdx": 2,
+            "leaderName": "이호용",
+            "status": "모집중",
+            "techStack": ["Java", "Spring", "React"]
+        },
+        {
+            "name": "NestJS 기초 스터디",
+            "description": "NestJS의 기본 동작 원리와 ... 을 공부합니다.",
+            "totalHeadcount": 5,
+            "leaderUserIdx": 2,
+            "leaderName": "이호용",
+            "status": "모집중",
+            "techStack": ["Java", "Spring", "React"]
+        },
+        {
+            "name": "NestJS 기초 스터디",
+            "description": "NestJS의 기본 동작 원리와 ... 을 공부합니다.",
+            "totalHeadcount": 5,
+            "leaderUserIdx": 2,
+            "leaderName": "이호용",
+            "status": "모집중",
+            "techStack": ["Java", "Spring", "React"]
+        },
+        {
+            "name": "NestJS 기초 스터디",
+            "description": "NestJS의 기본 동작 원리와 ... 을 공부합니다.",
+            "totalHeadcount": 5,
+            "leaderUserIdx": 2,
+            "leaderName": "이호용",
+            "status": "모집중",
+            "techStack": ["Java", "Spring", "React"]
+        },
+        {
+            "name": "NestJS 기초 스터디",
+            "description": "NestJS의 기본 동작 원리와 ... 을 공부합니다.",
+            "totalHeadcount": 5,
+            "leaderUserIdx": 2,
+            "leaderName": "이호용",
+            "status": "모집중",
+            "techStack": ["Java", "Spring", "React"]
+        }
+    ],
+    "status": 200
+}
