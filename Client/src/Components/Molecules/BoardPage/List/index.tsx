@@ -28,9 +28,7 @@ const BoardList = ({ type }: { type: string }) => {
     useRecoilValue<ContentType[]>(
       BoardContentPagenationSelector([pageNum, apiSrc, viewSize])
     );
-  console.log(hasBoardContent(apiSrc, type));
-  console.log(apiSrc);
-  console.log(boardContents);
+
   const totalBoardContentLength =
     (hasBoardContent(apiSrc, type) &&
       useRecoilValue<number>(GetBoardContentLengthSelector(apiSrc))) ??

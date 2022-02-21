@@ -48,7 +48,7 @@ export const BoardContentOneBoardSelector = selectorFamily<
     async ({ get }: { get: GetRecoilValue }): Promise<BoardContentType[]> => {
       const list = get(BoardContentSelector(boardApiSrc));
       return (list as Array<BoardContentType>).filter(
-        (item: BoardContentType) => item.idx === id
+        (item: BoardContentType) => item.idx === Number(id)
       );
       // const item = get(BoardContentSelector(boardApiSrc + `?id=${id}`));
       // return item
