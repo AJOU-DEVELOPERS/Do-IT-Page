@@ -1,4 +1,4 @@
-import { useReducer, useState } from "react";
+import { useReducer } from "react";
 import CalendarBody from "@Organisms/Reserve/ReserveCalendar/Body";
 import { Container } from "./style";
 import { useHistory } from "react-router-dom";
