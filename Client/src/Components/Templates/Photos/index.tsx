@@ -5,15 +5,16 @@ import { TitleContainer } from "@Organisms/BoardBody/styles";
 import Header from "@Organisms/Header";
 import { GetBoardContentLengthSelector } from "@Recoil/BoardContent";
 import { hasBoardContent } from "@Util/.";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { Container } from "./style";
+import PhotoDetail from "@Organisms/Photos/Detail";
 
 const PhotosTemplate = () => {
   const type = "사진첩";
+
   const [pageNum, setPageNum] = useState<number>(0);
   const { apiSrc, viewSize } = _BOARD_INFOS[type];
-
   const totalBoardContentLength =
     (hasBoardContent(apiSrc, type) &&
       useRecoilValue<number>(
@@ -25,11 +26,20 @@ const PhotosTemplate = () => {
       <Header />
       <TitleContainer>{type}</TitleContainer>
       <Container>
-        <PhotoList type={type} pageNum={pageNum} />
+        {useMemo(
+          () => (
+            <PhotoList type={type} pageNum={pageNum} />
+          ),
+          [pageNum]
+        )}
         <Footer
           pageNum={pageNum}
           setPageNum={setPageNum}
           totalBoardContentLength={totalBoardContentLength}
+        />
+        <Route
+          path="/photos/:id"
+          render={() => <PhotoDetail apiSrc={apiSrc} />}
         />
       </Container>
     </>

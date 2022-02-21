@@ -1,21 +1,16 @@
 import { _BOARD_INFOS } from "@Constant/.";
 import BoardPreview from "@Molecules/BoardPreview";
-import {
-  BoardContentOneBoardSelector,
-  BoardContentPagenationSelector,
-} from "@Recoil/BoardContent";
-import { ContentType, DetailViewType } from "@Type/.";
+import { BoardContentPagenationSelector } from "@Recoil/BoardContent";
+import { ContentType } from "@Type/.";
 import { hasBoardContent } from "@Util/.";
-import { Suspense, useState } from "react";
+import { Suspense } from "react";
 import { useHistory } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import PhotoDetail from "../Detail";
 import { ContentContainer, BoardContainer } from "./style";
 
 const PhotoList = ({ type, pageNum }: { type: string; pageNum: number }) => {
-  const { apiSrc, previewType, viewSize } = _BOARD_INFOS[type];
+  const { apiSrc, previewType, viewSize, pageSrc } = _BOARD_INFOS[type];
   const history = useHistory();
-  const [detailView, setDetailView] = useState<number | null>(null);
 
   const boardContents =
     hasBoardContent(apiSrc, type) &&
@@ -29,7 +24,8 @@ const PhotoList = ({ type, pageNum }: { type: string; pageNum: number }) => {
     const target = e.target.closest("#boardContainer");
     if (!target) return;
     const idx = target.getAttribute("data-idx");
-    setDetailView(idx);
+    const nextPath = `${pageSrc}/${idx}`;
+    history.push(nextPath);
   };
 
   return (
@@ -49,13 +45,6 @@ const PhotoList = ({ type, pageNum }: { type: string; pageNum: number }) => {
               />
             </BoardContainer>
           ))}
-          {detailView && (
-            <PhotoDetail
-              apiSrc={apiSrc}
-              detailView={detailView}
-              setDetailView={setDetailView}
-            />
-          )}
         </ContentContainer>
       </Suspense>
     </>

@@ -11,7 +11,6 @@ import { hasBoardContent } from "@Util/.";
 import BoardPreview from "@Molecules/BoardPreview";
 import { ContentType } from "@Type/.";
 import { useHistory } from "react-router-dom";
-import React from "react";
 
 const BoardContent = ({ boardName }: { boardName: string }) => {
   const _boardName = boardName.replaceAll(" ", "");
