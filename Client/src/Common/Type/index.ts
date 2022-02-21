@@ -1,3 +1,5 @@
+import React from "react";
+
 export interface ImgProps {
   url?: string;
   width?: string;
@@ -35,6 +37,8 @@ export interface BasicButtonProps extends BasicAtomProps {
   title?: string;
   color?: string;
   onClick?: () => void;
+  onClickCapture?: (e: any) => void;
+  buttonRef?: React.RefObject<HTMLButtonElement> | undefined;
 }
 
 export interface LoginButtonProps extends BasicButtonProps {
@@ -58,7 +62,7 @@ export interface BasicInputProps extends BasicAtomProps {
   radius?: string;
   shadow?: string;
   type?: string;
-  inputRef?: any;
+  inputRef?: React.RefObject<HTMLInputElement> | undefined;
   onChange?: () => void;
 }
 

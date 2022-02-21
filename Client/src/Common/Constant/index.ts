@@ -1,5 +1,8 @@
 import { BoardInfoType, BoardType } from "../Type";
 
+export const MOBILE_WIDTH = 640;
+export const TABLET_WIDTH = 1024;
+
 export const API_GET_OPTION = {
   withCredentials: true,
 };
@@ -44,7 +47,8 @@ export const MAIN_URL = "/main";
 
 export const BEFORE_URL = "/before";
 
-export const GET_SOLVED_CARD_URL = (id: string) => `http://mazassumnida.wtf/api/v2/generate_badge?boj=${id}`;
+export const GET_SOLVED_CARD_URL = (id: string) =>
+  `http://mazassumnida.wtf/api/v2/generate_badge?boj=${id}`;
 
 // carousel
 export const CAROUSEL_URL = [
@@ -90,7 +94,15 @@ export const RANKING_IMG_URL = [
   "/assets/BackJoon/bronze_icon.png",
 ];
 
-export const HEADER_NAV_LIST = ["공지사항", "자유게시판", "백준랭킹", "프로젝트", "스터디", "과방 대여", "마이페이지"];
+export const HEADER_NAV_LIST = [
+  "공지사항",
+  "자유게시판",
+  "백준랭킹",
+  "프로젝트",
+  "스터디",
+  "과방 대여",
+  "마이페이지",
+];
 
 export const MAIN_BOARD_PREVIEW_LIST = [
   "스터디",
