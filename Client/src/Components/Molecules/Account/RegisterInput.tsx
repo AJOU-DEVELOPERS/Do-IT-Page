@@ -1,5 +1,4 @@
 import LoginButton from "@Atoms/Button/Login";
-import Input from "@Atoms/Input";
 import RegisterLabel from "@Atoms/RegisterLabel";
 import {
   RegisterButtonType,
@@ -8,6 +7,7 @@ import {
 } from "@Style/.";
 import { useRef } from "react";
 import { RegisterContainer, Title, Section, SubWrapper } from "./styles";
+import { checkDuplicateId, clickMail, RegisterClick } from "./util";
 
 const RegisterInput = () => {
   const idRef = useRef<HTMLInputElement | null>(null);
@@ -17,20 +17,18 @@ const RegisterInput = () => {
   const subjectRef = useRef<HTMLInputElement | null>(null);
   const emailRef = useRef<HTMLInputElement | null>(null);
 
-  const handleRegisterClick = () => {
-    if (!idRef?.current || !pwRef?.current) return;
+  const handleRegisterClick = () =>
+    RegisterClick({
+      idRef,
+      pwRef,
+      nameRef,
+      studentIdRef,
+      subjectRef,
+      emailRef,
+    });
 
-    const {
-      current: { value: idValue },
-    } = idRef;
-
-    const {
-      current: { value: pwValue },
-    } = pwRef;
-  };
-  const handleCheckDuplicateId = () => {
-    console.log("api 요청");
-  };
+  const handleCheckDuplicateId = () => checkDuplicateId({ idRef });
+  const handleClickMail = () => clickMail({ emailRef });
   return (
     <RegisterContainer>
       <Title>회원가입</Title>
@@ -62,7 +60,18 @@ const RegisterInput = () => {
           title="학번"
           inputRef={studentIdRef}
         />
-        <RegisterLabel {...LoginInputType} title="이메일" inputRef={emailRef} />
+        <SubWrapper>
+          <RegisterLabel
+            {...LoginInputType}
+            title="이메일"
+            inputRef={emailRef}
+          />
+          <LoginButton
+            {...CheckDuplicateButton}
+            title="메일 인증"
+            onClick={handleClickMail}
+          />
+        </SubWrapper>
       </Section>
       <LoginButton
         {...RegisterButtonType}

@@ -48,12 +48,11 @@ export const getFirstAndLastDayInfo = ({
 export const checkReserve = (
   date: any,
   reserveDate: reservationDatasProps[]
-): string => {
-  return reserveDate
-    .map((item: reservationDatasProps) => item.date)
-    .findIndex(date) >= 0
-    ? "isTrue"
-    : "";
+): boolean => {
+  return (
+    reserveDate.map((item: reservationDatasProps) => item.date).indexOf(date) >=
+    0
+  );
 };
 
 export const getReserveDatas = (
@@ -67,16 +66,22 @@ export const getReserveDatas = (
       reservationEndHour,
       reservationName,
     } = cur;
+
+    const startDate = reservationStartDate.split("-");
+    const endDate = reservationEndDate.split("-");
+    const diff = Number(endDate[2]) - Number(startDate[2]) + 1;
+
     return [
       ...acc,
-      ...[1, 2, 3] // reservationEndDate - reservationStartDate
-        .map((item) => {
-          return {
-            date: item,
-            hour: `${reservationStartHour} - ${reservationEndHour}`,
-            host: reservationName,
-          };
-        }),
+      ...new Array(diff).fill(0).map((_, idx) => {
+        return {
+          date: [startDate[0], startDate[1], Number(startDate[2]) + idx].join(
+            "-"
+          ),
+          hour: `${reservationStartHour} - ${reservationEndHour}`,
+          host: reservationName,
+        };
+      }),
     ];
   }, []);
 };

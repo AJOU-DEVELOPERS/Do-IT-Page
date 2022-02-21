@@ -7,26 +7,17 @@ import Input from "@Atoms/Input";
 
 import { LoginButtonType, LoginInputType } from "@Style/.";
 import { Wrapper, Title, LoginContainer, Footer } from "./styles";
+import { LoginClick } from "./util";
 
 const LoginInput = ({ history }: { history: History }) => {
   const idRef = useRef<HTMLInputElement | null>(null);
 
   const pwRef = useRef<HTMLInputElement | null>(null);
 
-  const handleLoginClick = () => {
-    if (!idRef?.current || !pwRef?.current) return;
-
-    const {
-      current: { value: idValue },
-    } = idRef;
-
-    const {
-      current: { value: pwValue },
-    } = pwRef;
-
-    history.push("/main");
+  const handleLoginClick = () => LoginClick({ idRef, pwRef, history });
+  const handleRegisterClick = () => {
+    history.push("/register");
   };
-
   return (
     <LoginContainer>
       <Title>로그인</Title>
@@ -50,7 +41,7 @@ const LoginInput = ({ history }: { history: History }) => {
       />
       <Footer>
         <p>아이디/비밀번호 찾기</p>
-        <p>회원가입</p>
+        <p onClick={handleRegisterClick}>회원가입</p>
       </Footer>
     </LoginContainer>
   );

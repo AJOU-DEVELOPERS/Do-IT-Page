@@ -57,6 +57,10 @@ const Footer = styled.div`
   display: flex;
   column-gap: 10px;
   font-size: 0.8rem;
+
+  p {
+    cursor: pointer;
+  }
 `;
 
 const Title = styled.h1`
@@ -75,4 +79,13 @@ const SubWrapper = styled.div`
   display: flex;
 `;
 
-export { Container, Title, Wrapper, SubWrapper, LoginContainer, RegisterContainer, Footer, Section };
+export {
+  Container,
+  Title,
+  Wrapper,
+  SubWrapper,
+  LoginContainer,
+  RegisterContainer,
+  Footer,
+  Section,
+};

@@ -20,7 +20,8 @@ export const GET_BOARD_POST_URL = "/dummyData/FreeBoardContent.json";
 
 export const POST_RESERVATION_URL = "/dummyData/reservation.json";
 
-export const GET_RESERVATION_URL = "/dummyData/reservation.json";
+export const GET_RESERVATION_URL = "/dummyData/reservation";
+// export const GET_RESERVATION_URL = "/dummyData/reservation.json";
 
 export const API_GET_OPTION = {
   withCredentials: true,
