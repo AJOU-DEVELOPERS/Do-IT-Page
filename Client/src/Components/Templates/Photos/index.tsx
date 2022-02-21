@@ -9,6 +9,7 @@ import { useMemo, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { Container } from "./style";
 import PhotoDetail from "@Organisms/Photos/Detail";
+import { Route } from "react-router-dom";
 
 const PhotosTemplate = () => {
   const type = "사진첩";
