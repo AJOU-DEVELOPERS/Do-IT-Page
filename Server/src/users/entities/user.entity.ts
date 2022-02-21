@@ -10,10 +10,13 @@ import {
   BeforeInsert,
   BaseEntity,
   JoinColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { InternalServerErrorException } from '@nestjs/common';
 import { ApiProperty } from '@nestjs/swagger';
+import { Reservation } from 'src/reservation/entitiy/reservation.entity';
 
 export enum UserStudyStatus {
   leader="leader",
@@ -43,14 +46,12 @@ export class User extends BaseEntity {
   @Column()
   email: string;
   @ApiProperty()
-  @Column()
+  @CreateDateColumn()
   createdAt: string;
   @ApiProperty()
-  @Column()
+  @UpdateDateColumn()
   updatedAt: string;
   @ApiProperty()
-  @Column()
-  status: string;
 
   @OneToMany((_type) => UserTechStack, (_type) => _type.user)
   userTechStacks: UserTechStack[];
@@ -66,6 +67,9 @@ export class User extends BaseEntity {
 
   @OneToMany((_type) => UserStudy, (_type) => _type.user)
   userStudies: UserStudy[];
+
+  @OneToMany((_type) => Reservation, (_type)=> _type.user)
+  reservations: Reservation[];
 
   @BeforeInsert()
   async hashPassword() {

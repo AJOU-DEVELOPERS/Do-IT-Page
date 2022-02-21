@@ -24,4 +24,5 @@ export const ReserveInput = styled.input<{ height: string; width: string }>`
   border-radius: 14px;
   width: ${({ width }) => width};
   height: ${({ height }) => height};
+  padding: 0 10px;
 `;

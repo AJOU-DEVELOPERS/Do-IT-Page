@@ -8,6 +8,7 @@ export const ReserveCalendarContainer = styled.div`
   box-shadow: 0px 3px 15px #00000029;
   border-radius: 21px;
   padding: 40px;
+  min-width: 480px;
 `;
 
 export const ReserveCalendarTitle = styled.p`

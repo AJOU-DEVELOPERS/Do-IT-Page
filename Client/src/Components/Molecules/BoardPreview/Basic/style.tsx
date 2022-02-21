@@ -4,7 +4,7 @@ import styled from "styled-components";
 const Container = styled.div`
   display: flex;
   width: 100%;
-  height: 15%;
+  height: 70px;
   ${AlignCenterBetween};
   padding: 12px 17px;
   box-sizing: border;

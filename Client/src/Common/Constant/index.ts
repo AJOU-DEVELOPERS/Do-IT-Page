@@ -1,5 +1,8 @@
 import { BoardInfoType, BoardType } from "../Type";
 
+export const MOBILE_WIDTH = 640;
+export const TABLET_WIDTH = 1024;
+
 export const API_GET_OPTION = {
   withCredentials: true,
 };
@@ -101,22 +104,22 @@ export const HEADER_NAV_LIST = [
   "마이페이지",
 ];
 
+export const MAIN_BOARD_PREVIEW_LIST = [
+  "스터디",
+  "공지사항",
+  "자유게시판",
+  "백준랭킹",
+  "프로젝트",
+  "스터디",
+  "과방 대여",
+  "마이페이지",
+];
+
 export const STUDY_STATUS = {
   collecting: "모집 중",
   processing: "진행 중",
   done: "마감",
 };
-
-export const MAIN_BOARD_PREVIEW_LIST = [
-  "스터디",
-  "공지사항",
-  "이미지",
-  "백준랭킹",
-  "프로젝트",
-  "과방 대여",
-  "자유게시판",
-  "사진첩",
-];
 
 export const BOARD_INFOS: BoardType[] = [
   {

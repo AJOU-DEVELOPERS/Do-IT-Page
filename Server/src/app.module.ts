@@ -12,6 +12,7 @@ import { User } from './users/entities/user.entity';
 import { Department } from './departments/entities/department.entity';
 import { DepartmentsModule } from './departments/departments.module';
 import { StudiesModule } from './studies/studies.module';
+import { ReservationModule } from './reservation/reservation.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -27,22 +28,22 @@ import { StudiesModule } from './studies/studies.module';
       }),
     }),
     TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: process.env.DB_HOST,
-      port: 3306,
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_DATABASE,
-      entities: ['dist/**/*.entity{.ts,.js}'],
-      synchronize: false,
       // type: 'mysql',
-      // host: 'localhost',
+      // host: process.env.DB_HOST,
       // port: 3306,
-      // username: 'root',
-      // password: 'ajoulee1214',
-      // database: 'nesttest',
+      // username: process.env.DB_USERNAME,
+      // password: process.env.DB_PASSWORD,
+      // database: process.env.DB_DATABASE,
       // entities: ['dist/**/*.entity{.ts,.js}'],
       // synchronize: false,
+      type: 'mysql',
+      host: 'localhost',
+      port: 3306,
+      username: 'root',
+      password: 'inter7477',
+      database: 'test',
+      entities: ['dist/**/*.entity{.ts,.js}'],
+      synchronize: false,
     }),
     MailerModule.forRootAsync({
       useFactory: () => ({
@@ -70,6 +71,7 @@ import { StudiesModule } from './studies/studies.module';
     AuthsModule,
     DepartmentsModule,
     StudiesModule,
+    ReservationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
