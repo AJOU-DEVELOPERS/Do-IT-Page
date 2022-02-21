@@ -104,7 +104,7 @@ export const LoginInputType = {
   borderColor: "#e8f0fe",
   radius: "10px",
   margin: "0",
-  padding: "0",
+  padding: "10px",
   shadow: "inset 0 2px 45px #00000029",
   background: "white",
 };

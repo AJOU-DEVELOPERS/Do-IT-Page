@@ -1,4 +1,8 @@
-import { GET_RESERVATION_URL, POST_RESERVATION_URL } from "@Constant/API";
+import {
+  API_GET_OPTION,
+  GET_RESERVATION_URL,
+  POST_RESERVATION_URL,
+} from "@Constant/API";
 import { postReservationRoomBodyProps } from "@Type/API";
 import axios from "axios";
 
@@ -10,6 +14,9 @@ export const postReservationRoom = async (
 };
 
 export const getReservationRoom = async (url: string) => {
-  const { data } = await axios.get(GET_RESERVATION_URL + url + ".json");
+  const { data } = await axios.get(
+    GET_RESERVATION_URL + url + ".json",
+    API_GET_OPTION
+  );
   return data;
 };

@@ -36,17 +36,17 @@ export const WeekContainer = styled.div`
       border-right: none;
     }
     &:hover {
-      border-color: black;
-      border-left: 1px solid black;
-      border-top: 1px solid black;
+      border-color: #ffffb1;
+      border-left: 1px solid #ffffb1;
+      border-top: 1px solid #ffffb1;
     }
   }
   .isTrue {
-    background-color: #74d9f8;
-    border-color: #74d9f8;
+    background-color: #ffffb1;
+    border-color: #ffffb1;
     &:hover {
-      border-color: #74d9f8;
-      background-color: #74d9f8;
+      border-color: #ffffb1;
+      background-color: #ffffb1;
     }
   }
 

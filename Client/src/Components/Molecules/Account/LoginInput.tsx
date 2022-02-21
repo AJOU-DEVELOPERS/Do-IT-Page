@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { withRouter } from "react-router-dom";
+import { useHistory, withRouter } from "react-router-dom";
 import { History } from "history";
 
 import LoginButton from "@Atoms/Button/Login";
@@ -9,10 +9,10 @@ import { LoginButtonType, LoginInputType } from "@Style/.";
 import { Wrapper, Title, LoginContainer, Footer } from "./styles";
 import { LoginClick } from "./util";
 
-const LoginInput = ({ history }: { history: History }) => {
+const LoginInput = () => {
   const idRef = useRef<HTMLInputElement | null>(null);
-
   const pwRef = useRef<HTMLInputElement | null>(null);
+  const history = useHistory();
 
   const handleLoginClick = () => LoginClick({ idRef, pwRef, history });
   const handleRegisterClick = () => {
@@ -23,13 +23,17 @@ const LoginInput = ({ history }: { history: History }) => {
       <Title>로그인</Title>
       <Wrapper type={"id"}>
         <p>ID</p>
-        <Input {...LoginInputType} placeholder="" inputRef={idRef} />
+        <Input
+          {...LoginInputType}
+          placeholder="ID를 입력하세요."
+          inputRef={idRef}
+        />
       </Wrapper>
       <Wrapper type={"pwd"}>
         <p>PW</p>
         <Input
           {...LoginInputType}
-          placeholder=""
+          placeholder="패스워드를 입력하세요."
           type="password"
           inputRef={pwRef}
         />
