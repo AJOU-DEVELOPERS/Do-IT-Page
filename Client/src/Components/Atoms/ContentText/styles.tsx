@@ -1,9 +1,11 @@
+import { textOverflowSafe } from "@Style/.";
 import styled, { css } from "styled-components";
 
 const CommonStyle = css`
   margin: auto;
   margin-top: 10px;
   width: 90%;
+  ${textOverflowSafe};
 `;
 
 const PreviewContentText = styled.p`
