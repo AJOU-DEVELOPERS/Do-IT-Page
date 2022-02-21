@@ -5,6 +5,11 @@ interface TitleProps {
   type: string | undefined;
 }
 
+const Container = styled.div`
+  background-color: hsla(0, 0%, 96.07843137254902%, 0.7);
+  padding: 4vw;
+`;
+
 const Title = styled.h1<TitleProps>`
   font-size: 26px;
   font-weight: 500;
@@ -38,4 +43,4 @@ const TodoTitleStyle = css`
 const TodoTextStyle = css`
   font-size: 16px;
 `;
-export { Title, Text };
+export { Title, Text, Container };
