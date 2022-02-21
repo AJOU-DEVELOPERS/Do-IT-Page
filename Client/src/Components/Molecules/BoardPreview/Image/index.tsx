@@ -17,7 +17,7 @@ const ImageBoardPreview = ({
   return (
     <Container type={type}>
       <ContentImg
-        url={images[0]}
+        src={images[0]}
         alt={`${title} logo image`}
         width="80%"
         radius="5px"

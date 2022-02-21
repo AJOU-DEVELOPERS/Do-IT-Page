@@ -113,6 +113,7 @@ export const MAIN_BOARD_PREVIEW_LIST = [
   "스터디",
   "과방 대여",
   "마이페이지",
+  "사진첩"
 ];
 
 export const STUDY_STATUS = {
