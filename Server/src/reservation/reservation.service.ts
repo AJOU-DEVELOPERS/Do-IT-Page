@@ -4,6 +4,7 @@ import { BaseFailResponse, BaseSuccessResponse } from 'src/commons/dto/response-
 import { User } from 'src/users/entities/user.entity';
 import { Connection, Repository } from 'typeorm';
 import { CreateReservationDto } from './dto/create-reservation.dto';
+import { DeleteReservationDto } from './dto/delete-reservation.dto';
 import { UpdateReservationDto } from './dto/update-reservation.dto';
 import { Reservation } from './entitiy/reservation.entity';
 
@@ -15,14 +16,15 @@ export class ReservationService {
     ) {}
     
     async createReservation(createReservationDto: CreateReservationDto):Promise<Reservation> {
-        const {reservationStart, reservationEnd, title, userIdx} = createReservationDto;
+        const {reservationStartDate, reservationStartHour, reservationEndDate, reservationEndHour, userIdx} = createReservationDto;
         const reservation = new Reservation();
         const queryRunner = this.connection.createQueryRunner();
-        reservation.reservationStart = reservationStart;
-        reservation.reservationEnd = reservationEnd;
-        reservation.reservationStart = reservationStart;
-        reservation.title = title;
+        const start = new Date(reservationStartDate + ' ' + reservationStartHour);
+        const end = new Date(reservationEndDate + ' ' + reservationEndHour);
+        reservation.reservationStart = start;
+        reservation.reservationEnd = end;
         reservation.userIdx = userIdx;
+        reservation.status = 'created';
 
         await queryRunner.connect();
         try {
@@ -41,15 +43,19 @@ export class ReservationService {
     }
 
     async updateReservation(reservationIdx: number, updateReservationDto: UpdateReservationDto):Promise<Reservation> {
+        const {reservationStartDate, reservationStartHour, reservationEndDate, reservationEndHour, userIdx} = updateReservationDto;
         const queryRunner = this.connection.createQueryRunner();
-        const reservation = await this.findOne(reservationIdx);
-        reservation.reservationStart = updateReservationDto.reservationStart;
-        reservation.reservationEnd = updateReservationDto.reservationEnd;
-        reservation.title = updateReservationDto.title;
         await queryRunner.connect();
         try{
-            await queryRunner.manager.save(reservation);
-            return reservation;
+            const reservation = await this.findOne(reservationIdx);
+            if(reservation.userIdx == userIdx){
+                const start = new Date(reservationStartDate + ' ' + reservationStartHour);
+                const end = new Date(reservationEndDate + ' ' + reservationEndHour);
+                reservation.reservationStart = start;
+                reservation.reservationEnd = end;
+                await queryRunner.manager.save(reservation);
+                return reservation;
+            }
         }catch(error){
             console.log(error);
             new BaseFailResponse('예약 정보 변경에 실패했습니다.');
@@ -91,13 +97,17 @@ export class ReservationService {
         }
     }
 
-    async remove(reservationIdx: number) {
+    async remove(reservationIdx: number, deleteReservationDto: DeleteReservationDto):Promise<BaseSuccessResponse>{
+        const {userIdx} = deleteReservationDto;
         const queryRunner = this.connection.createQueryRunner();
         
         await queryRunner.connect();
         try {
-            await queryRunner.manager.softDelete(Reservation, reservationIdx);
-            return new BaseSuccessResponse();
+            const reservation = await this.findOne(reservationIdx);
+            if(reservation.userIdx == userIdx){
+                await queryRunner.manager.delete(Reservation, reservationIdx);
+                return new BaseSuccessResponse();
+            }
         } catch(error) {
             console.log(error);
             return new BaseFailResponse('스터디 삭제에 실패했습니다.');
@@ -105,8 +115,4 @@ export class ReservationService {
             await queryRunner.release();
         }
     }
-
-
-
-
 }

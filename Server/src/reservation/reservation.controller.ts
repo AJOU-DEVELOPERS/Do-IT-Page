@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/commo
 import { ApiBody, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { BaseSuccessResponse } from 'src/commons/dto/response-common.dto';
 import { CreateReservationDto } from './dto/create-reservation.dto';
+import { DeleteReservationDto } from './dto/delete-reservation.dto';
 import { UpdateReservationDto } from './dto/update-reservation.dto';
 import { Reservation } from './entitiy/reservation.entity';
 import { ReservationService } from './reservation.service';
@@ -59,7 +60,9 @@ export class ReservationController {
         description: 'true false 반환'
     })
     @ApiOkResponse({ description: '과방 신청 정보 삭제 성공' })
-    remove(@Param('idx') reservationIdx: number) {
-        return this.reservationService.remove(reservationIdx);
+    remove(
+        @Param('idx') idx: number,
+        @Body() deleteReservationDto: DeleteReservationDto) {
+        return this.reservationService.remove(idx, deleteReservationDto);
     }
 }
