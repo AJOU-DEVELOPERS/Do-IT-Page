@@ -10,15 +10,27 @@ export class Reservation extends BaseEntity{
 
     @ApiProperty()
     @Column()
-    reservationStart: Date;
+    reservationStartDate: string;
 
     @ApiProperty()
     @Column()
-    reservationEnd: Date;
+    reservationStartHour: string;
+
+    @ApiProperty()
+    @Column()
+    reservationEndDate: string;
+
+    @ApiProperty()
+    @Column()
+    reservationEndHour: string;
 
     @ApiProperty()
     @Column()
     userIdx: number
+
+    @ApiProperty()
+    @Column()
+    userName: string;
 
     @ApiProperty()
     @Column()

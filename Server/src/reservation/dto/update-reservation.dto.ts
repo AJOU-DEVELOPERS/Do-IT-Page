@@ -6,7 +6,7 @@ export class UpdateReservationDto{
     @IsString()
     @ApiProperty({
         description: '예약 시작 날짜',
-        example: '2022-02-22'
+        example: '2022-2-2'
     })
     reservationStartDate: string;
     @ApiProperty({
@@ -17,7 +17,7 @@ export class UpdateReservationDto{
     @IsString()
     @ApiProperty({
         description: '예약 종료 날짜',
-        example: '2022-02-22'
+        example: '2022-02-3'
     })
     reservationEndDate: string;
     @ApiProperty({

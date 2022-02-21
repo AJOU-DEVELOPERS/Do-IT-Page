@@ -5,7 +5,7 @@ export class CreateReservationDto {
     @IsString()
     @ApiProperty({
         description: '예약 시작 날짜',
-        example: '2022-02-22'
+        example: '2022-2-22'
     })
     reservationStartDate: string;
     @ApiProperty({
@@ -16,7 +16,7 @@ export class CreateReservationDto {
     @IsString()
     @ApiProperty({
         description: '예약 종료 날짜',
-        example: '2022-02-22'
+        example: '2022-2-24'
     })
     reservationEndDate: string;
     @ApiProperty({
@@ -30,4 +30,10 @@ export class CreateReservationDto {
         example: '1'
     })
     userIdx: number;
+    @IsString()
+    @ApiProperty({
+        description: '신청 유저 이름',
+        example: '홍길동'
+    })
+    userName: string;
 }

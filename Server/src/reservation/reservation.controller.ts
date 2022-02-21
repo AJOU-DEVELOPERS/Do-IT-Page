@@ -43,6 +43,18 @@ export class ReservationController {
         return this.reservationService.findOne(reservationIdx);
     }
 
+    @Get(':year/:month')
+    @ApiOperation({
+        summary: '특정 과방 신청 정보 불러오기 API',
+        description: '성공 시 과방 신청 정보 반환'
+    })
+    @ApiOkResponse({ description: '특정 과방 신청 정보 불러오기 성공', type: Reservation })
+    findMonth(
+        @Param('year') year: string,
+        @Param('month') month: string):Promise<Reservation[]>{
+        return this.reservationService.findMonth(year, month);
+    }
+
     @Patch(':idx')
     @ApiOperation({
         summary: '과방 신청 정보 수정 API',

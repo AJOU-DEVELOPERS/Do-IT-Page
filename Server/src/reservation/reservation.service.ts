@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BaseFailResponse, BaseSuccessResponse } from 'src/commons/dto/response-common.dto';
 import { User } from 'src/users/entities/user.entity';
-import { Connection, Repository } from 'typeorm';
+import { Connection, Like, Repository } from 'typeorm';
 import { CreateReservationDto } from './dto/create-reservation.dto';
 import { DeleteReservationDto } from './dto/delete-reservation.dto';
 import { UpdateReservationDto } from './dto/update-reservation.dto';
@@ -16,20 +16,21 @@ export class ReservationService {
     ) {}
     
     async createReservation(createReservationDto: CreateReservationDto):Promise<Reservation> {
-        const {reservationStartDate, reservationStartHour, reservationEndDate, reservationEndHour, userIdx} = createReservationDto;
+        const {reservationStartDate, reservationStartHour, reservationEndDate, reservationEndHour, userIdx, userName} = createReservationDto;
         const reservation = new Reservation();
         const queryRunner = this.connection.createQueryRunner();
-        const start = new Date(reservationStartDate + ' ' + reservationStartHour);
-        const end = new Date(reservationEndDate + ' ' + reservationEndHour);
-        reservation.reservationStart = start;
-        reservation.reservationEnd = end;
+        reservation.reservationStartDate = reservationStartDate;
+        reservation.reservationStartHour = reservationStartHour;
+        reservation.reservationEndDate = reservationEndDate;
+        reservation.reservationEndHour = reservationEndHour;
         reservation.userIdx = userIdx;
+        reservation.userName = userName;
         reservation.status = 'created';
 
         await queryRunner.connect();
         try {
             const user: User = await queryRunner.manager.findOne(User, {
-                userIdx: createReservationDto.userIdx
+                userIdx: createReservationDto.userIdx,
             })
             reservation.user = user;
             await queryRunner.manager.save(reservation);
@@ -49,10 +50,10 @@ export class ReservationService {
         try{
             const reservation = await this.findOne(reservationIdx);
             if(reservation.userIdx == userIdx){
-                const start = new Date(reservationStartDate + ' ' + reservationStartHour);
-                const end = new Date(reservationEndDate + ' ' + reservationEndHour);
-                reservation.reservationStart = start;
-                reservation.reservationEnd = end;
+                reservation.reservationStartDate = reservationStartDate;
+                reservation.reservationStartHour = reservationStartHour;
+                reservation.reservationEndDate = reservationEndDate;
+                reservation.reservationEndHour = reservationEndHour;
                 await queryRunner.manager.save(reservation);
                 return reservation;
             }
@@ -92,6 +93,24 @@ export class ReservationService {
         } catch(error) {
             console.log(error);
             throw new NotFoundException(`${reservationIdx}의 예약 정보를 찾을 수 없습니다.`);
+        } finally {
+            await queryRunner.release();
+        }
+    }
+
+    async findMonth(year: string, month: string):Promise<Reservation[]>{
+        const queryRunner = this.connection.createQueryRunner();
+        const time = year + '-' + month;
+        await queryRunner.connect();
+        try {
+            const reservation = await queryRunner.manager.find(Reservation, 
+                { 
+                    reservationStartDate: Like(`${time}%`),
+            });
+            return reservation;
+        } catch(error) {
+            console.log(error);
+            throw new NotFoundException(`예약 정보를 찾을 수 없습니다.`);
         } finally {
             await queryRunner.release();
         }
