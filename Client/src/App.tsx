@@ -22,6 +22,7 @@ import AdminRoute from "@Route/AdminRoute";
 import Spin from "@Atoms/Spinner";
 import RegisterPage from "@Pages/Register";
 import { ROOM_BOARD_URL } from "@Constant/.";
+import PhotosPage from "@Pages/Phtos";
 
 const App = () => {
   return (
@@ -42,6 +43,7 @@ const App = () => {
         <PrivateRoute path="/mypage" component={MyPage} exact />
         <PrivateRoute path={ROOM_BOARD_URL} component={ReservePage} exact />
         <PrivateRoute path="/rank" component={RankingPage} exact />
+        <PrivateRoute path="/photos" component={PhotosPage} exact />
 
         <AdminRoute path="/admin" component={AdminPage} />
         <Route path="*" component={ErrorPage} exact />
