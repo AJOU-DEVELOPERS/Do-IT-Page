@@ -8,7 +8,7 @@ const Img = styled.img<ImgProps>`
 
 const ContentImg = styled(Img)<ContentImgProps>`
   border-radius: ${({ radius }) => (radius ? radius : "0px")};
-  max-width: 100%;
+  max-width: ${({ maxWidth }) => (maxWidth ? maxWidth : "100%")};
 `;
 
 const MiddleBox = styled.div`

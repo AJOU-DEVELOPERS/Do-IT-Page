@@ -5,6 +5,7 @@ export interface ImgProps {
 
 export interface ContentImgProps extends ImgAltProps {
   radius?: string;
+  maxWidth?: string;
 }
 
 export interface ImgAltProps extends ImgProps {
@@ -130,3 +131,8 @@ export type ContentType =
   | BoardContentType
   | ProjectContentType
   | RankingContentType;
+
+export interface DetailViewType {
+  idx: number;
+  content: BoardContentType;
+}
