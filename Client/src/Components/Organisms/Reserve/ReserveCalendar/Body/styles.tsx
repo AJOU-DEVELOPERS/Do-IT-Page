@@ -35,7 +35,21 @@ export const WeekContainer = styled.div`
     &:nth-child(7) {
       border-right: none;
     }
+    &:hover {
+      border-color: black;
+      border-left: 1px solid black;
+      border-top: 1px solid black;
+    }
   }
+  .isTrue {
+    background-color: #74d9f8;
+    border-color: #74d9f8;
+    &:hover {
+      border-color: #74d9f8;
+      background-color: #74d9f8;
+    }
+  }
+
   &:last-child {
     span {
       border-bottom: none;

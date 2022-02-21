@@ -1,5 +1,5 @@
 import StudyContainer from "@Organisms/Study";
-import { GET_STUDY_CONTENT_URL } from "@Constant/index";
+import { GET_STUDY_CONTENT_URL } from "@Constant/API";
 import { hasBoardContent } from "@Util/index";
 import { useRecoilValue } from "recoil";
 import { BoardContentSelector } from "@Recoil/BoardContent";

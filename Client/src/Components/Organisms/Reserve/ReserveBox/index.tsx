@@ -1,3 +1,4 @@
+import { postReservationRoom } from "@API/Reservation";
 import Button from "@Atoms/Button";
 import {
   ReserveBoxHeader,
@@ -9,6 +10,7 @@ import { LoginButtonType } from "@Style/.";
 import { checkTablet } from "@Util/.";
 import { Dispatch, SetStateAction, useRef } from "react";
 import { ButtonContainer, ReserveBoxContainer } from "./styles";
+import { makeReservationRoomType } from "./util";
 
 const ReserveBox = ({
   setBoxOpen,
@@ -31,12 +33,16 @@ const ReserveBox = ({
     )
       return;
 
-    console.log(userNameRef.current.value);
-    console.log(startDateRef.current.value);
-    console.log(endDateRef.current.value);
-    console.log(startTimeRef.current.value);
-    console.log(endTimeRef.current.value);
+    const body = makeReservationRoomType({
+      reservationStartDate: "22" + startDateRef.current.value,
+      reservationStartHour: "22" + endDateRef.current.value,
+      reservationEndDate: startTimeRef.current.value + ":00",
+      reservationEndHour: endTimeRef.current.value + ":00",
+      reservationName: userNameRef.current.value,
+    });
 
+    const res = postReservationRoom(body);
+    // if (!res) alert("error");
     if (!checkTablet()) return;
     setBoxOpen(false);
   };
