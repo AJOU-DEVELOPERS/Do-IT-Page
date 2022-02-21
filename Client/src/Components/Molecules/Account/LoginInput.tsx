@@ -6,11 +6,12 @@ import LoginButton from "@Atoms/Button/Login";
 import Input from "@Atoms/Input";
 
 import { LoginButtonType, LoginInputType } from "@Style/.";
-import { InputContainer, Title } from "./styles";
+import { Wrapper, Title, LoginContainer, Footer } from "./styles";
 
 const LoginInput = ({ history }: { history: History }) => {
-  const idRef = useRef<HTMLInputElement>();
-  const pwRef = useRef<HTMLInputElement>();
+  const idRef = useRef<HTMLInputElement | null>(null);
+
+  const pwRef = useRef<HTMLInputElement | null>(null);
 
   const handleLoginClick = () => {
     if (!idRef?.current || !pwRef?.current) return;
@@ -27,25 +28,31 @@ const LoginInput = ({ history }: { history: History }) => {
   };
 
   return (
-    <InputContainer>
-      <Title>Do-IT 로그인</Title>
-      <Input
-        {...LoginInputType}
-        placeholder="사용자 ID를 입력해주세요."
-        inputRef={idRef}
-      />
-      <Input
-        {...LoginInputType}
-        placeholder="비밀번호를 입력해주세요."
-        type="password"
-        inputRef={pwRef}
-      />
+    <LoginContainer>
+      <Title>로그인</Title>
+      <Wrapper type={"id"}>
+        <p>ID</p>
+        <Input {...LoginInputType} placeholder="" inputRef={idRef} />
+      </Wrapper>
+      <Wrapper type={"pwd"}>
+        <p>PW</p>
+        <Input
+          {...LoginInputType}
+          placeholder=""
+          type="password"
+          inputRef={pwRef}
+        />
+      </Wrapper>
       <LoginButton
         {...LoginButtonType}
         title="로그인"
         onClick={handleLoginClick}
       />
-    </InputContainer>
+      <Footer>
+        <p>아이디/비밀번호 찾기</p>
+        <p>회원가입</p>
+      </Footer>
+    </LoginContainer>
   );
 };
 

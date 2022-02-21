@@ -1,5 +1,5 @@
-const ReservePage = () => {
-  return <div>과방 예약</div>;
-};
+import ReserveTemplate from "@Templates/Reserve";
+
+const ReservePage = () => <ReserveTemplate />;
 
 export default ReservePage;

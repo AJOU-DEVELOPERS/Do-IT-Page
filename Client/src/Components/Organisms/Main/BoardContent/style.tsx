@@ -1,17 +1,41 @@
+import { MAIN_PREVIEW_IMAGE } from "@Constant/.";
+import { AlignCenterAround, DefaultBoxShadow, HoverPointer } from "@Style/.";
 import styled from "styled-components";
 
-export const BoardContainer = styled.div`
+interface BoardProps {
+  boardName: string;
+}
+interface ContentProps {
+  alignPreview?: string;
+}
+const imageUrl = `
+background-size:cover;
+background-image:url(${MAIN_PREVIEW_IMAGE})`;
+
+export const BoardContainer = styled.div<BoardProps>`
+  grid-area: ${({ boardName }) => boardName};
   display: flex;
   flex-direction: column;
-  width: 40%;
+  box-shadow: ${DefaultBoxShadow};
+  border-radius: 1rem;
+  ${({ boardName }) => boardName === "이미지" && imageUrl};
+
+  overflow: hidden;
 `;
-export const ContenTitleContainer = styled.div`
-  width: 80%;
-  margin: 40px auto;
-  &::after {
-    content: "";
-    display: block;
-    margin: 10px 0px -10px 0px;
-    border-bottom: 1px solid;
-  }
+
+export const ContentContainer = styled.div<ContentProps>`
+  display: flex;
+  flex-direction: ${({ alignPreview }) => alignPreview};
+  width: 90%;
+  height: 85%;
+  margin: auto;
+  justify-content: center;
+`;
+
+export const BoardPreviewContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  ${AlignCenterAround}
+  width:100%;
+  ${HoverPointer};
 `;

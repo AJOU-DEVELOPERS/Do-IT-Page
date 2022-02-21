@@ -13,6 +13,8 @@ import { Department } from './departments/entities/department.entity';
 import { DepartmentsModule } from './departments/departments.module';
 import { StudiesModule } from './studies/studies.module';
 import { ProjectsModule } from './projects/projects.module';
+import { ReservationModule } from './reservation/reservation.module';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -71,7 +73,7 @@ import { ProjectsModule } from './projects/projects.module';
     AuthsModule,
     DepartmentsModule,
     StudiesModule,
-    ProjectsModule,
+    ReservationModule,
   ],
   controllers: [AppController],
   providers: [AppService],

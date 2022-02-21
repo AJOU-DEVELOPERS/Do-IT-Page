@@ -1,51 +1,29 @@
-import CalendarDate from "@Molecules/CalendarDate";
-import { dateReducer, useChangeCalendarView } from "@src/Hook/test";
-import TUICalendar from "@toast-ui/react-calendar";
-import { DateProps } from "@Type/.";
-import { getYearMonth } from "@Util/.";
-import React from "react";
-import { useEffect, useReducer, useRef, useState } from "react";
-import "tui-calendar/dist/tui-calendar.css";
-import "tui-date-picker/dist/tui-date-picker.css";
-import "tui-time-picker/dist/tui-time-picker.css";
+import { useReducer } from "react";
+import CalendarBody from "@Organisms/Reserve/ReserveCalendar/Body";
 import { Container } from "./style";
+import { useHistory } from "react-router-dom";
+import { ROOM_BOARD_URL } from "@Constant/.";
+import CalendarHeader from "@Organisms/Reserve/ReserveCalendar/Header";
+import { dateReducer } from "@src/Hook/test";
+import { getYearMonth } from "@Util/.";
 
 const Calendar = () => {
-  const [dateState, dateDispatch] = useReducer(dateReducer, getYearMonth());
-  const calendarRef = useRef<any>(null);
+  const [date, setDate] = useReducer(dateReducer, getYearMonth());
+  const history = useHistory();
 
-  useChangeCalendarView(calendarRef, "month");
-
-  const handleMonthIncrement = () => {
-    dateDispatch({ type: "increment" });
-    calendarRef.current?.getInstance().next();
-  };
-
-  const handleMonthDecrement = () => {
-    dateDispatch({ type: "decrement" });
-    calendarRef.current?.getInstance().prev();
+  const handleCalendarMove = (e: any) => {
+    e.stopPropagation();
+    history.push(ROOM_BOARD_URL);
   };
 
   return (
-    <Container>
-      <CalendarDate
-        {...{ ...dateState, handleMonthIncrement, handleMonthDecrement }}
-      />
-      <TUICalendar
-        view={"week"}
-        ref={calendarRef}
-        scheduleView
-        taskView
-        useDetailPopup
-        useCreationPopup
-        usageStatistics={false}
-        height={"90%"}
-        week={{
-          daynames: ["일", "월", "화", "수", "목", "금", "토"],
-        }}
-      />
+    <Container onClickCapture={handleCalendarMove}>
+      <CalendarHeader {...date} setDate={setDate} />
+      <CalendarBody {...date} />
     </Container>
   );
 };
+
+// export default Calendar;
 
 export default Calendar;

@@ -1,13 +1,21 @@
 import LoginButton from "@Atoms/Button/Login";
 import Input from "@Atoms/Input";
 import RegisterLabel from "@Atoms/RegisterLabel";
-import { LoginButtonType, LoginInputType } from "@Style/.";
+import {
+  RegisterButtonType,
+  CheckDuplicateButton,
+  LoginInputType,
+} from "@Style/.";
 import { useRef } from "react";
-import { InputContainer, Title } from "./styles";
+import { RegisterContainer, Title, Section, SubWrapper } from "./styles";
 
 const RegisterInput = () => {
-  const idRef = useRef<HTMLInputElement>();
-  const pwRef = useRef<HTMLInputElement>();
+  const idRef = useRef<HTMLInputElement | null>(null);
+  const pwRef = useRef<HTMLInputElement | null>(null);
+  const nameRef = useRef<HTMLInputElement | null>(null);
+  const studentIdRef = useRef<HTMLInputElement | null>(null);
+  const subjectRef = useRef<HTMLInputElement | null>(null);
+  const emailRef = useRef<HTMLInputElement | null>(null);
 
   const handleRegisterClick = () => {
     if (!idRef?.current || !pwRef?.current) return;
@@ -20,32 +28,48 @@ const RegisterInput = () => {
       current: { value: pwValue },
     } = pwRef;
   };
+  const handleCheckDuplicateId = () => {
+    console.log("api 요청");
+  };
   return (
-    <InputContainer>
-      <Title>Do-IT 회원가입</Title>
-      <RegisterLabel
-        {...LoginInputType}
-        placeholder="아이디"
-        inputRef={idRef}
-      />
-      <RegisterLabel
-        {...LoginInputType}
-        placeholder="비밀번호를 입력해주세요."
-        type="password"
-        inputRef={pwRef}
-      />
-      <RegisterLabel
-        {...LoginInputType}
-        placeholder="비밀번호 확인"
-        type="password"
-        inputRef={pwRef}
-      />
+    <RegisterContainer>
+      <Title>회원가입</Title>
+      <Section>
+        <SubWrapper>
+          <RegisterLabel {...LoginInputType} title="ID" inputRef={idRef} />
+          <LoginButton
+            {...CheckDuplicateButton}
+            title="중복확인"
+            onClick={handleCheckDuplicateId}
+          />
+        </SubWrapper>
+        <RegisterLabel
+          {...LoginInputType}
+          title="PW"
+          type="password"
+          inputRef={pwRef}
+        />
+        <RegisterLabel
+          {...LoginInputType}
+          title="PW 확인"
+          type="password"
+          inputRef={pwRef}
+        />
+        <RegisterLabel {...LoginInputType} title="이름" inputRef={nameRef} />
+        <RegisterLabel {...LoginInputType} title="학과" inputRef={subjectRef} />
+        <RegisterLabel
+          {...LoginInputType}
+          title="학번"
+          inputRef={studentIdRef}
+        />
+        <RegisterLabel {...LoginInputType} title="이메일" inputRef={emailRef} />
+      </Section>
       <LoginButton
-        {...LoginButtonType}
-        title="회원가입"
+        {...RegisterButtonType}
+        title="가입하기"
         onClick={handleRegisterClick}
       />
-    </InputContainer>
+    </RegisterContainer>
   );
 };
 

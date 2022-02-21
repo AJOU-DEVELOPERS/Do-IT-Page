@@ -1,5 +1,5 @@
-const NoticePage = () => {
-  return <div>공지사항 페이지</div>;
-};
+import NoticeTemplate from "@Templates/Notice";
+
+const NoticePage = () => <NoticeTemplate />;
 
 export default NoticePage;

@@ -1,19 +1,21 @@
-import { Container, Title, Date } from "./style";
+import Calendar from "@Organisms/Calendar/.";
+import { PreviewProps } from "@Type/.";
+import { convertBoardType, convertProjectType, convertRankingType } from "@Util/.";
+import BasicBoardPreview from "./Basic/.";
+import CardPreviewImage from "./Card/.";
+import ImageBoardPreview from "./Image/.";
+import RankingBoardPreview from "./Ranking/.";
 
-interface Props {
-  title: string;
-  date: string;
-  type: string;
-}
-const BoardPreview = ({ title, date, type }: Props) => {
-  const handleBoardClick = () => {};
+const BoardPreview = ({ content, previewType = "basic", type = "basic" }: PreviewProps) => {
+  const getPreview = {
+    card: <CardPreviewImage {...convertProjectType(content)} />,
+    ranking: <RankingBoardPreview {...convertRankingType(content)} />,
+    image: <ImageBoardPreview {...convertBoardType(content)} />,
+    calendar: <Calendar />,
+    basic: <BasicBoardPreview {...convertBoardType(content)} type={type} />,
+  };
 
-  return (
-    <Container type={type} onClick={handleBoardClick}>
-      <Title>{title}</Title>
-      <Date>{date}</Date>
-    </Container>
-  );
+  return getPreview[previewType];
 };
 
 export default BoardPreview;

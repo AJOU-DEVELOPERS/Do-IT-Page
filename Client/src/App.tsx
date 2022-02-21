@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { Route, Switch } from "react-router-dom";
 
 import Page from "@Pages/.";
+import BeforePage from "@Pages/Before";
 import AdminPage from "@Pages/Admin";
 import BoardPage from "@Pages/Board";
 import ErrorPage from "@Pages/Error";
@@ -20,24 +21,26 @@ import AdminRoute from "@Route/AdminRoute";
 
 import Spin from "@Atoms/Spinner";
 import RegisterPage from "@Pages/Register";
+import { ROOM_BOARD_URL } from "@Constant/.";
 
 const App = () => {
   return (
     <Suspense fallback={<Spin />}>
       <Switch>
         <PublicRoute path="/" component={Page} exact />
+        <PublicRoute path="/before" component={BeforePage} exact />
         <PublicRoute path="/login" component={LoginPage} exact />
         <PublicRoute path="/register" component={RegisterPage} exact />
 
         <PrivateRoute path="/main" component={MainPage} exact />
-        <PrivateRoute path="/board" component={BoardPage} exact />
-        <PrivateRoute path="/notice" component={NoticePage} exact />
+        <PrivateRoute path="/board" component={BoardPage} />
+        <PrivateRoute path="/notice" component={NoticePage} />
 
         <PrivateRoute path="/project" component={ProjectPage} exact />
         <PrivateRoute path="/study" component={StudyPage} exact />
 
         <PrivateRoute path="/mypage" component={MyPage} exact />
-        <PrivateRoute path="/reserve" component={ReservePage} exact />
+        <PrivateRoute path={ROOM_BOARD_URL} component={ReservePage} exact />
         <PrivateRoute path="/rank" component={RankingPage} exact />
 
         <AdminRoute path="/admin" component={AdminPage} />

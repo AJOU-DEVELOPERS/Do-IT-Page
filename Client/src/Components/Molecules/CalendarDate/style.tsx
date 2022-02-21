@@ -6,6 +6,7 @@ export const Container = styled.div`
   width: 30%;
   height: 10%;
   ${AlignCenterAround}
+  margin:1vh auto;
 `;
 
 export const Button = styled.button`

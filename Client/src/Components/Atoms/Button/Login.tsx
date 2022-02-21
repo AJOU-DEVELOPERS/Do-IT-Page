@@ -7,10 +7,11 @@ const LoginButton = (props: LoginButtonProps) => {
 };
 
 LoginButton.defaultProps = {
-  width: 150,
-  height: 50,
+  type: "",
+  width: "90%",
+  height: "90%",
   color: "#000000",
-  fontSize: "16px",
+  fontSize: "10px",
   borderColor: "#000000",
   backGroundColor: "#ffffff",
   radius: "10px",
