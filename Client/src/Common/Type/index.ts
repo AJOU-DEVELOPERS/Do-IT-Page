@@ -70,6 +70,7 @@ export interface BoardType {
   previewSize?: number;
   previewType?: "card" | "ranking" | "image" | "calendar" | "basic";
   alignPreview?: string;
+  viewSize?: number;
 }
 
 export interface BoardInfoType {

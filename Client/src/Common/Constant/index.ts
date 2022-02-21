@@ -148,6 +148,7 @@ export const _BOARD_INFOS: BoardInfoType = {
     boardApiSrc: GET_NOTICE_POST_URL,
     previewSize: 7,
     previewType: "basic",
+    viewSize: 10,
   },
   자유게시판: {
     pageSrc: FREE_BOARD_URL,
@@ -155,6 +156,7 @@ export const _BOARD_INFOS: BoardInfoType = {
     boardApiSrc: GET_BOARD_POST_URL,
     previewSize: 7,
     previewType: "basic",
+    viewSize: 10,
   },
   백준랭킹: {
     pageSrc: RANKING_BOARD_URL,
@@ -190,6 +192,7 @@ export const _BOARD_INFOS: BoardInfoType = {
     previewSize: 4,
     previewType: "image",
     alignPreview: "row",
+    viewSize: 16,
   },
   이미지: {
     pageSrc: "",

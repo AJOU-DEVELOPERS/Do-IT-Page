@@ -23,15 +23,17 @@ export const GetBoardContentLengthSelector = selectorFamily<number, string>({
 
 export const BoardContentPagenationSelector = selectorFamily<
   ContentType[],
-  [number, string]
+  [number, string, number | undefined]
 >({
   key: "BoardContentPagenationSelector",
   get:
-    ([num, apiSrc]) =>
+    ([num, apiSrc, viewSize]) =>
     async ({ get }: { get: GetRecoilValue }) => {
       const list = get(BoardContentSelector(apiSrc));
+      const size = viewSize ? viewSize : 10;
       return (list as Array<ContentType>).filter(
-        (item: ContentType) => item.idx > num * 10 && item.idx <= (num + 1) * 10
+        (item: ContentType) =>
+          item.idx > num * size && item.idx <= (num + 1) * size
       ) as ContentType[];
     },
 });

@@ -14,16 +14,23 @@ import Footer from "../Footer";
 import { useHistory } from "react-router-dom";
 
 const BoardList = ({ type }: { type: string }) => {
-  const { apiSrc, previewType, alignPreview = "column;" } = _BOARD_INFOS[type];
-  const [noticePageNum, setNoticePageNum] = useState<number>(0);
+  const {
+    apiSrc,
+    previewType,
+    alignPreview = "column;",
+    viewSize,
+  } = _BOARD_INFOS[type];
+  const [pageNum, setPageNum] = useState<number>(0);
   const history = useHistory();
 
   const boardContents =
     hasBoardContent(apiSrc, type) &&
     useRecoilValue<ContentType[]>(
-      BoardContentPagenationSelector([noticePageNum, apiSrc])
+      BoardContentPagenationSelector([pageNum, apiSrc, viewSize])
     );
-
+  console.log(hasBoardContent(apiSrc, type));
+  console.log(apiSrc);
+  console.log(boardContents);
   const totalBoardContentLength =
     (hasBoardContent(apiSrc, type) &&
       useRecoilValue<number>(GetBoardContentLengthSelector(apiSrc))) ??
@@ -36,6 +43,8 @@ const BoardList = ({ type }: { type: string }) => {
     const { pageSrc: path } = _BOARD_INFOS[type];
     history.push(`${path}/${idx}`);
   };
+
+  const boardType = type === "사진첩" ? "image" : "image";
 
   return (
     <>
@@ -53,13 +62,13 @@ const BoardList = ({ type }: { type: string }) => {
               <BoardPreview
                 previewType={previewType}
                 content={content}
-                type="게시판"
+                type={boardType}
               />
             </BoardContainer>
           ))}
           <Footer
-            noticePageNum={noticePageNum}
-            setNoticePageNum={setNoticePageNum}
+            pageNum={pageNum}
+            setPageNum={setPageNum}
             totalBoardContentLength={totalBoardContentLength}
           />
         </ContentContainer>

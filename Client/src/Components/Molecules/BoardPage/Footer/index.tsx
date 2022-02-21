@@ -4,19 +4,19 @@ import { BoardFooterContainer, BoardFooterItem } from "./styles";
 const FOOTER_LIST_LENGTH = 5;
 
 const Footer = ({
-  noticePageNum,
-  setNoticePageNum,
+  pageNum,
+  setPageNum,
   totalBoardContentLength,
 }: {
-  noticePageNum: number;
-  setNoticePageNum: Dispatch<SetStateAction<number>>;
+  pageNum: number;
+  setPageNum: Dispatch<SetStateAction<number>>;
   totalBoardContentLength: number;
 }) => {
   const handleButtonClick = (e: any) => {
     //   const handleButtonClick = (e: React.MouseEvent<HTMLElement>) => {
     const target = e?.target?.closest("#target");
     if (!target) return;
-    setNoticePageNum(Number(target.getAttribute("data-idx")) - 1);
+    setPageNum(Number(target.getAttribute("data-idx")) - 1);
   };
 
   const totalList = useMemo(() => {
@@ -24,16 +24,16 @@ const Footer = ({
   }, [totalBoardContentLength]);
 
   const arrList =
-    noticePageNum < FOOTER_LIST_LENGTH
+    pageNum < FOOTER_LIST_LENGTH
       ? totalList.filter((item) => item < 2 * FOOTER_LIST_LENGTH)
-      : noticePageNum > totalBoardContentLength - FOOTER_LIST_LENGTH
+      : pageNum > totalBoardContentLength - FOOTER_LIST_LENGTH
       ? totalList.filter(
           (item) => item > totalBoardContentLength - 2 * FOOTER_LIST_LENGTH
         )
       : totalList.filter(
           (item) =>
-            noticePageNum - FOOTER_LIST_LENGTH < Number(item) &&
-            Number(item) < noticePageNum + FOOTER_LIST_LENGTH
+            pageNum - FOOTER_LIST_LENGTH < Number(item) &&
+            Number(item) < pageNum + FOOTER_LIST_LENGTH
         );
 
   return (
@@ -43,7 +43,7 @@ const Footer = ({
           key={item}
           id="target"
           data-idx={Number(item) + 1}
-          style={{ color: item === noticePageNum ? "#d3d1d1" : "" }}
+          style={{ color: item === pageNum ? "#d3d1d1" : "" }}
         >
           {item + 1}
         </BoardFooterItem>
