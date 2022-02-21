@@ -11,13 +11,17 @@ export const BoardContentSelector = selectorFamily<ContentType[], string>({
   },
 });
 
-export const GetBoardContentLengthSelector = selectorFamily<number, string>({
+export const GetBoardContentLengthSelector = selectorFamily<
+  number,
+  [string, number|undefined]
+>({
   key: "GetBoardContentLengthSelector",
   get:
-    (apiSrc: string) =>
+    ([apiSrc, viewSize]) =>
     async ({ get }: { get: GetRecoilValue }) => {
       const list = get(BoardContentSelector(apiSrc));
-      return Math.ceil(list.length / 10);
+      const size = viewSize ? viewSize : 10;
+      return Math.ceil(list.length / Number(size));
     },
 });
 

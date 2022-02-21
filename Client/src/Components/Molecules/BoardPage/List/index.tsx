@@ -31,7 +31,9 @@ const BoardList = ({ type }: { type: string }) => {
 
   const totalBoardContentLength =
     (hasBoardContent(apiSrc, type) &&
-      useRecoilValue<number>(GetBoardContentLengthSelector(apiSrc))) ??
+      useRecoilValue<number>(
+        GetBoardContentLengthSelector([apiSrc, viewSize])
+      )) ??
     1;
 
   const handleDetailMove = (e: any) => {

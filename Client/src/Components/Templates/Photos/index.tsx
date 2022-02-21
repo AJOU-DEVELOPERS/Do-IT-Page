@@ -12,11 +12,13 @@ import { Container } from "./style";
 const PhotosTemplate = () => {
   const type = "사진첩";
   const [pageNum, setPageNum] = useState<number>(0);
-  const { apiSrc } = _BOARD_INFOS[type];
+  const { apiSrc, viewSize } = _BOARD_INFOS[type];
 
   const totalBoardContentLength =
     (hasBoardContent(apiSrc, type) &&
-      useRecoilValue<number>(GetBoardContentLengthSelector(apiSrc))) ??
+      useRecoilValue<number>(
+        GetBoardContentLengthSelector([apiSrc, viewSize])
+      )) ??
     1;
   return (
     <>
