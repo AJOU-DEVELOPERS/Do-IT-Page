@@ -11,7 +11,7 @@ import {
   Res,
   ParseIntPipe,
   Request,
-  Req
+  Req,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { SignupUserDto } from './dto/create-user.dto';
@@ -33,6 +33,7 @@ import { LoginUserDto } from './dto/login-user.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { Response } from 'express';
 import { LocalAuthGuard } from 'src/auths/auth.local.guard';
+import { duplicateCheckUserId } from './dto/duplicateCheck-userId.dto';
 @Controller('users')
 @ApiTags('User API')
 export class UsersController {
@@ -63,27 +64,20 @@ export class UsersController {
     @Body() loginUserDto: LoginUserDto,
     @Res({ passthrough: true }) res: Response,
   ) {
-
-
     const cookie = await this.usersService.login(loginUserDto);
     res.cookie('JWT', cookie);
-    return new ResultSuccessResponse(req.user)
+    return new ResultSuccessResponse(req.user);
   }
 
   @ApiOperation({
     summary: '유저 아이디 중복 확인',
     description: '유저 아이디 중복확인 api.',
   })
-
-  @Post('duplicateCheck/:id')
+  @Post('duplicateCheck')
   @ApiOkResponse({ description: '중복확인 성공', type: BaseSuccessResponse })
-  @ApiParam({
-    name : 'id',
-    required: true,
-    description: '유저 입력 아이디'
-  })
-  async checkUserDuplicate(@Param() id:string){
-    return this.usersService.findById(id)
+  @ApiBody({ type: duplicateCheckUserId })
+  async checkUserDuplicate(@Body() id: string) {
+    return this.usersService.findById(id);
   }
 
   // findAll() {

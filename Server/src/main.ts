@@ -6,13 +6,16 @@ import { ValidationPipe } from '@nestjs/common';
 async function bootstrap() {
   await makeOrmConfig();
   const app = await NestFactory.create(AppModule);
+  app.enableCors();
   app.use(cookieParser());
   setupSwagger(app);
-  app.useGlobalPipes(new ValidationPipe({
-  	whitelist: true, 
-    forbidNonWhitelisted: true, 
-    transform: true, 
-  }));
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+    }),
+  );
   await app.listen(4000);
 }
 

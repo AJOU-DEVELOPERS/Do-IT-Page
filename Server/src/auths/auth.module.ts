@@ -11,9 +11,7 @@ import { UsersService } from 'src/users/users.service';
 import { LocalStrategy } from './auth.local.strategy';
 @Module({
   imports: [
-    TypeOrmModule.forFeature([
-      User
-    ]),
+    
     CacheModule.register(),
     PassportModule.register({defaultStrategy: 'jwt'}),
     JwtModule.registerAsync({
