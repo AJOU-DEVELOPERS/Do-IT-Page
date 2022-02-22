@@ -3,19 +3,15 @@ import { UsersService } from './users.service';
 import { UsersController } from './users.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import {
-  TechStack,
   User,
   UserDepartment,
   UserSocial,
-  UserTechStack,
 } from './entities/user.entity';
 import { ConfigService } from '@nestjs/config';
 @Module({
   imports: [
     TypeOrmModule.forFeature([
       User,
-      UserTechStack,
-      TechStack,
       UserDepartment,
       UserSocial,
     ]),

@@ -45,7 +45,7 @@ import { ReservationModule } from './reservation/reservation.module';
       password: 'ajoulee1214',
       database: 'nesttest',
       entities: ['dist/**/*.entity{.ts,.js}'],
-      synchronize: true,
+      synchronize: false,
     }),
     MailerModule.forRootAsync({
       useFactory: () => ({
@@ -74,6 +74,7 @@ import { ReservationModule } from './reservation/reservation.module';
     DepartmentsModule,
     StudiesModule,
     ReservationModule,
+    ProjectsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -61,8 +61,8 @@ export class User extends BaseEntity {
   updatedAt: string;
   @ApiProperty()
 
-  @OneToMany((_type) => UserTechStack, (_type) => _type.user)
-  userTechStacks: UserTechStack[];
+  // @OneToMany((_type) => UserTechStack, (_type) => _type.user)
+  // userTechStacks: UserTechStack[];
 
   @OneToMany(
     (_type) => UserDepartment,
@@ -94,38 +94,38 @@ export class User extends BaseEntity {
   }
 }
 
-@Entity()
-export class TechStack extends BaseEntity {
-  @ApiProperty()
-  @PrimaryGeneratedColumn()
-  techStackIdx: number;
-  @ApiProperty()
-  @Column()
-  name: string;
-  @OneToMany((_type) => UserTechStack, (_type) => _type.techStack)
-  userTechStacks: UserTechStack[];
-  @OneToMany((_type) => ProjectTechStack, (_type) => _type.techStack)
-  projectTechStacks: ProjectTechStack[];
-}
+// @Entity()
+// export class TechStack extends BaseEntity {
+//   @ApiProperty()
+//   @PrimaryGeneratedColumn()
+//   techStackIdx: number;
+//   @ApiProperty()
+//   @Column()
+//   name: string;
+//   @OneToMany((_type) => UserTechStack, (_type) => _type.techStack)
+//   userTechStacks: UserTechStack[];
+//   @OneToMany((_type) => ProjectTechStack, (_type) => _type.techStack)
+//   projectTechStacks: ProjectTechStack[];
+// }
 
-@Entity()
-export class UserTechStack extends BaseEntity {
-  @ApiProperty()
-  @PrimaryGeneratedColumn()
-  userTechStack: number;
-  @ApiProperty()
-  @Column()
-  userIdx: number;
-  @ApiProperty()
-  @Column()
-  techStackIdx: number;
+// @Entity()
+// export class UserTechStack extends BaseEntity {
+//   @ApiProperty()
+//   @PrimaryGeneratedColumn()
+//   userTechStack: number;
+//   @ApiProperty()
+//   @Column()
+//   userIdx: number;
+//   @ApiProperty()
+//   @Column()
+//   techStackIdx: number;
 
-  @ManyToOne((_type) => User, (_type) => _type.userTechStacks)
-  user: User;
+//   @ManyToOne((_type) => User, (_type) => _type.userTechStacks)
+//   user: User;
 
-  @ManyToOne((_type) => TechStack, (_type) => _type.userTechStacks)
-  techStack: TechStack;
-}
+//   @ManyToOne((_type) => TechStack, (_type) => _type.userTechStacks)
+//   techStack: TechStack;
+// }
 
 @Entity()
 export class UserDepartment extends BaseEntity {
@@ -195,7 +195,7 @@ export class UserProject extends BaseEntity {
     enum: UserProjectStatus,
     default: "waiting"
   })
-  status: UserStudyStatus
+  status: UserProjectStatus
   @ManyToOne(() => User, (user) => user.userProjects)
   @JoinColumn({ name: 'userIdx', referencedColumnName: 'userIdx' })
   user: User

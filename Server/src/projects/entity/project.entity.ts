@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { TechStack, UserProject } from "src/users/entities/user.entity";
+import { UserProject } from "src/users/entities/user.entity";
 import { BaseEntity, Column, DeleteDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 export enum projectStatus {
@@ -50,11 +50,10 @@ export class ProjectTechStack extends BaseEntity {
     @Column()
     projectIdx: number
     @Column()
-    techStackIdx: number
+    name: string
     @ManyToOne(() => Project, (project) => project.projectTechStacks)
     @JoinColumn({ name: 'projectIdx', referencedColumnName: 'projectIdx' })
     project: Project
-    @ManyToOne(() => TechStack, (techstack) => techstack.projectTechStacks)
-    @JoinColumn({ name: 'techStackIdx', referencedColumnName: 'techStackIdx' })
-    techStack: TechStack
+    @DeleteDateColumn()
+    deletedAt?: Date;
 }
