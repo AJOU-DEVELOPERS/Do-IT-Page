@@ -7,6 +7,7 @@ export interface ImgProps {
 
 export interface ContentImgProps extends ImgAltProps {
   radius?: string;
+  maxWidth?: string;
 }
 
 export interface ImgAltProps extends ImgProps {
@@ -74,6 +75,7 @@ export interface BoardType {
   previewSize?: number;
   previewType?: "card" | "ranking" | "image" | "calendar" | "basic";
   alignPreview?: string;
+  viewSize?: number;
 }
 
 export interface BoardInfoType {
@@ -133,3 +135,8 @@ export type ContentType =
   | BoardContentType
   | ProjectContentType
   | RankingContentType;
+
+export interface DetailViewType {
+  idx: number;
+  content: BoardContentType;
+}

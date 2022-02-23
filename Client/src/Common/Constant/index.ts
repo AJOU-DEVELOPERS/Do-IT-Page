@@ -59,12 +59,13 @@ export const HEADER_NAV_LIST = [
 export const MAIN_BOARD_PREVIEW_LIST = [
   "스터디",
   "공지사항",
-  "이미지",
+  "자유게시판",
   "백준랭킹",
   "프로젝트",
+  "스터디",
   "과방 대여",
-  "자유게시판",
-  "사진첩",
+  "마이페이지",
+  "사진첩"
 ];
 
 export const STUDY_STATUS = {
@@ -95,6 +96,7 @@ export const BOARD_INFOS: BoardType[] = [
     pageSrc: ROOM_BOARD_URL,
   },
 ];
+
 export const _BOARD_INFOS: BoardInfoType = {
   공지사항: {
     pageSrc: NOTICE_URL,
@@ -102,6 +104,7 @@ export const _BOARD_INFOS: BoardInfoType = {
     boardApiSrc: GET_NOTICE_POST_URL,
     previewSize: 7,
     previewType: "basic",
+    viewSize: 10,
   },
   자유게시판: {
     pageSrc: FREE_BOARD_URL,
@@ -109,6 +112,7 @@ export const _BOARD_INFOS: BoardInfoType = {
     boardApiSrc: GET_BOARD_POST_URL,
     previewSize: 7,
     previewType: "basic",
+    viewSize: 10,
   },
   백준랭킹: {
     pageSrc: RANKING_BOARD_URL,
@@ -144,6 +148,7 @@ export const _BOARD_INFOS: BoardInfoType = {
     previewSize: 4,
     previewType: "image",
     alignPreview: "row",
+    viewSize: 16,
   },
   이미지: {
     pageSrc: "",

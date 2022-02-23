@@ -2,13 +2,13 @@ import { ContentImgProps, ImgProps } from "@src/Common/Type";
 import styled from "styled-components";
 
 const Img = styled.img<ImgProps>`
-  content: url(${({ url }) => url});
+  ${({ url }) => url && "content: url(${({ url }) => url});"}
   width: ${({ width }) => (width ? width : "45%")};
 `;
 
 const ContentImg = styled(Img)<ContentImgProps>`
   border-radius: ${({ radius }) => (radius ? radius : "0px")};
-  max-width: 100%;
+  max-width: ${({ maxWidth }) => (maxWidth ? maxWidth : "100%")};
 `;
 
 const MiddleBox = styled.div`
