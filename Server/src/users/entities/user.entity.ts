@@ -16,9 +16,17 @@ import {
 import * as bcrypt from 'bcrypt';
 import { InternalServerErrorException } from '@nestjs/common';
 import { ApiProperty } from '@nestjs/swagger';
+import { Project, ProjectTechStack } from 'src/projects/entity/project.entity';
 import { Reservation } from 'src/reservation/entitiy/reservation.entity';
 
 export enum UserStudyStatus {
+  leader="leader",
+  accepted="accepted",
+  rejected="rejected",
+  waiting="waiting",
+};
+
+export enum UserProjectStatus {
   leader="leader",
   accepted="accepted",
   rejected="rejected",
@@ -53,8 +61,8 @@ export class User extends BaseEntity {
   updatedAt: string;
   @ApiProperty()
 
-  @OneToMany((_type) => UserTechStack, (_type) => _type.user)
-  userTechStacks: UserTechStack[];
+  // @OneToMany((_type) => UserTechStack, (_type) => _type.user)
+  // userTechStacks: UserTechStack[];
 
   @OneToMany(
     (_type) => UserDepartment,
@@ -68,8 +76,12 @@ export class User extends BaseEntity {
   @OneToMany((_type) => UserStudy, (_type) => _type.user)
   userStudies: UserStudy[];
 
+  @OneToMany((_type) => UserProject, (_type) => _type.user)
+  userProjects: UserProject[];
+
   @OneToMany((_type) => Reservation, (_type)=> _type.user)
   reservations: Reservation[];
+
 
   @BeforeInsert()
   async hashPassword() {
@@ -82,37 +94,38 @@ export class User extends BaseEntity {
   }
 }
 
-@Entity()
-export class TechStack extends BaseEntity {
-  @ApiProperty()
-  @PrimaryGeneratedColumn()
-  techStackIdx: number;
-  @ApiProperty()
-  @Column()
-  name: string;
+// @Entity()
+// export class TechStack extends BaseEntity {
+//   @ApiProperty()
+//   @PrimaryGeneratedColumn()
+//   techStackIdx: number;
+//   @ApiProperty()
+//   @Column()
+//   name: string;
+//   @OneToMany((_type) => UserTechStack, (_type) => _type.techStack)
+//   userTechStacks: UserTechStack[];
+//   @OneToMany((_type) => ProjectTechStack, (_type) => _type.techStack)
+//   projectTechStacks: ProjectTechStack[];
+// }
 
-  @OneToMany((_type) => UserTechStack, (_type) => _type.techStack)
-  userTechStacks: UserTechStack[];
-}
+// @Entity()
+// export class UserTechStack extends BaseEntity {
+//   @ApiProperty()
+//   @PrimaryGeneratedColumn()
+//   userTechStack: number;
+//   @ApiProperty()
+//   @Column()
+//   userIdx: number;
+//   @ApiProperty()
+//   @Column()
+//   techStackIdx: number;
 
-@Entity()
-export class UserTechStack extends BaseEntity {
-  @ApiProperty()
-  @PrimaryGeneratedColumn()
-  userTechStack: number;
-  @ApiProperty()
-  @Column()
-  userIdx: number;
-  @ApiProperty()
-  @Column()
-  techStackIdx: number;
+//   @ManyToOne((_type) => User, (_type) => _type.userTechStacks)
+//   user: User;
 
-  @ManyToOne((_type) => User, (_type) => _type.userTechStacks)
-  user: User;
-
-  @ManyToOne((_type) => TechStack, (_type) => _type.userTechStacks)
-  techStack: TechStack;
-}
+//   @ManyToOne((_type) => TechStack, (_type) => _type.userTechStacks)
+//   techStack: TechStack;
+// }
 
 @Entity()
 export class UserDepartment extends BaseEntity {
@@ -163,6 +176,32 @@ export class UserStudy extends BaseEntity {
   @JoinColumn({ name: 'studyIdx', referencedColumnName: 'studyIdx' })
   study: Study
 
+}
+
+@Entity()
+export class UserProject extends BaseEntity {
+  @ApiProperty()
+  @PrimaryGeneratedColumn()
+  userProjectIdx: number
+  @ApiProperty()
+  @Column()
+  userIdx: number
+  @ApiProperty()
+  @Column()
+  projectIdx: number
+  @ApiProperty()
+  @Column({
+    type: "enum",
+    enum: UserProjectStatus,
+    default: "waiting"
+  })
+  status: UserProjectStatus
+  @ManyToOne(() => User, (user) => user.userProjects)
+  @JoinColumn({ name: 'userIdx', referencedColumnName: 'userIdx' })
+  user: User
+  @ManyToOne(() => Project, (project) => project.userProjects)
+  @JoinColumn({ name: 'projectIdx', referencedColumnName: 'projectIdx' })
+  project: Project
 }
 
 @Entity()

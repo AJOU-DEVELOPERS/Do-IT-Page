@@ -12,7 +12,9 @@ import { User } from './users/entities/user.entity';
 import { Department } from './departments/entities/department.entity';
 import { DepartmentsModule } from './departments/departments.module';
 import { StudiesModule } from './studies/studies.module';
+import { ProjectsModule } from './projects/projects.module';
 import { ReservationModule } from './reservation/reservation.module';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -40,8 +42,8 @@ import { ReservationModule } from './reservation/reservation.module';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'inter7477',
-      database: 'test',
+      password: 'ajoulee1214',
+      database: 'nesttest',
       entities: ['dist/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
@@ -72,6 +74,7 @@ import { ReservationModule } from './reservation/reservation.module';
     DepartmentsModule,
     StudiesModule,
     ReservationModule,
+    ProjectsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
