@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { BaseFailResponse, BaseSuccessResponse } from 'src/commons/dto/response-common.dto';
+import { BaseFailResponse, BaseSuccessResponse, ResultSuccessResponse } from 'src/commons/dto/response-common.dto';
 import { User, UserProject, UserProjectStatus } from 'src/users/entities/user.entity';
 import { Connection } from 'typeorm';
 import { CreateProjectDto } from './dto/create-project.dto';
@@ -112,7 +112,7 @@ export class ProjectsService {
     async findAll() {
         try {
             const projects = await Project.find();
-            return projects;
+            return new ResultSuccessResponse(projects);
         } catch(error) {
             console.log(error);
             return new BaseFailResponse('모든 프로젝트 불러오기를 실패했습니다.');
@@ -129,7 +129,7 @@ export class ProjectsService {
                     "userProjects"
                 ]
             });
-            return project;
+            return new ResultSuccessResponse(project);
         } catch(error) {
             console.log(error);
             return new BaseFailResponse('프로젝트 불러오기를 실패했습니다.');

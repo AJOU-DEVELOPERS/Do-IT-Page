@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { BaseFailResponse, BaseSuccessResponse } from 'src/commons/dto/response-common.dto';
+import { BaseFailResponse, BaseSuccessResponse, ResultSuccessResponse } from 'src/commons/dto/response-common.dto';
 import { User, UserStudy, UserStudyStatus } from 'src/users/entities/user.entity';
 import { Connection, Repository } from 'typeorm';
 import { CreateStudyDto } from './dto/create-study.dto';
@@ -68,7 +68,7 @@ export class StudiesService {
     async findAll() {
         try {
             const studies = await Study.find();
-            return studies;
+            return new ResultSuccessResponse(studies);
         } catch(error) {
             console.log(error);
             return new BaseFailResponse('모든 스터디 불러오기를 실패했습니다.');
@@ -86,7 +86,7 @@ export class StudiesService {
                         "userStudies"
                     ]
             });
-            return study;
+            return new ResultSuccessResponse(study);
         } catch(error) {
             console.log(error);
             return new BaseFailResponse('스터디 불러오기를 실패했습니다.');
