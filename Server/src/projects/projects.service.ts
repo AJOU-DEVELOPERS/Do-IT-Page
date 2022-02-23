@@ -154,5 +154,76 @@ export class ProjectsService {
         }
     }
 
+    async apply(userIdx: number, projectIdx: number) {
+        const queryRunner = this.connection.createQueryRunner();
+
+        await queryRunner.connect();
+        await queryRunner.startTransaction();
+        try {
+            const user: User = await User.findOne({
+                where: {
+                    userIdx: userIdx
+                }
+            });
+            const project: Project = await Project.findOne({
+                where: {
+                    projectIdx: projectIdx
+                }
+            });
+            const userProject = new UserProject();
+            userProject.user = user;
+            userProject.project = project;
+
+            await queryRunner.manager.save(userProject);
+            await queryRunner.commitTransaction();
+
+            return new BaseSuccessResponse();
+        } catch(error) {
+            console.log(error);
+            await queryRunner.rollbackTransaction();
+            return new BaseFailResponse('프로젝트 신청에 실패했습니다.');
+        } finally {
+            queryRunner.release();
+        }
+    }
+
+    async accept(userProjectIdx: number) {
+        const queryRunner = this.connection.createQueryRunner();
+
+        await queryRunner.connect();
+        await queryRunner.startTransaction();
+        try {
+            await queryRunner.manager.update(UserProject, userProjectIdx, {
+                status: UserProjectStatus.accepted
+            });
+            await queryRunner.commitTransaction();
+            return new BaseSuccessResponse();
+        } catch(error) {
+            console.log(error);
+            await queryRunner.rollbackTransaction();
+            return new BaseFailResponse('프로젝트 참여 승인에 실패했습니다.');
+        } finally {
+            await queryRunner.release();
+        }
+    }
+
+    async reject(userProjectIdx: number) {
+        const queryRunner = this.connection.createQueryRunner();
+
+        await queryRunner.connect();
+        await queryRunner.startTransaction();
+        try {
+            await queryRunner.manager.update(UserProject, userProjectIdx, {
+                status: UserProjectStatus.rejected
+            });
+            await queryRunner.commitTransaction();
+            return new BaseSuccessResponse();
+        } catch(error) {
+            console.log(error);
+            await queryRunner.rollbackTransaction();
+            return new BaseFailResponse('프로젝트 참여 거부에 실패했습니다.');
+        } finally {
+            await queryRunner.release();
+        }
+    }
 }
-// CRUD, 신청, 승인, 거부
