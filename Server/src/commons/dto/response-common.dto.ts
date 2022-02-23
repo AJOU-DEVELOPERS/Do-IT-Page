@@ -9,6 +9,7 @@ import {
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { getSupportInfo } from 'prettier';
+import { HttpCode, HttpException, HttpStatus } from '@nestjs/common';
 
 export class BaseSuccessResponse {
   @IsBoolean()
@@ -23,33 +24,40 @@ export class BaseSuccessResponse {
     example: 200,
   })
   code: number;
-  @IsString()
-  @ApiProperty({
-    description: '응답 메시지',
-    example: '성공',
-  })
-  message: string;
-  constructor(isSuccess = true, code = 200, message = '성공') {
+
+  constructor(isSuccess = true, code = 200) {
     this.isSuccess = isSuccess;
     this.code = code;
-    this.message = message;
   }
 }
 
 export class ResultSuccessResponse extends BaseSuccessResponse {
-  constructor(result: any) {
+  constructor(res: any) {
     super();
-    this.result = result;
+    res = res;
   }
   @ApiProperty()
   result: any;
 }
 
 export class BaseFailResponse extends BaseSuccessResponse {
-  constructor(message = '실패') {
+  constructor(error: String = '실패') {
     super();
     this.isSuccess = false;
     this.code = 400;
-    this.message = message;
+    error = error;
+  }
+}
+
+export class ThrowFailResponse extends HttpException {
+  constructor(error: string) {
+    super(
+      {
+        isSuccess: false,
+        code: HttpStatus.BAD_REQUEST,
+        error: error,
+      },
+      HttpStatus.BAD_REQUEST,
+    );
   }
 }
