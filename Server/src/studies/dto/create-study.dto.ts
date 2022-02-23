@@ -1,6 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsInt, IsString } from "class-validator";
-import internal from "stream";
 
 export class CreateStudyDto {
     @IsString()

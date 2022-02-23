@@ -13,7 +13,9 @@ import { Department } from './departments/entities/department.entity';
 import { DepartmentsModule } from './departments/departments.module';
 
 import { StudiesModule } from './studies/studies.module';
+import { ProjectsModule } from './projects/projects.module';
 import { ReservationModule } from './reservation/reservation.module';
+
 @Module({
   imports: [
     AuthsModule,
@@ -70,6 +72,7 @@ import { ReservationModule } from './reservation/reservation.module';
     DepartmentsModule,
     StudiesModule,
     ReservationModule,
+    ProjectsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
