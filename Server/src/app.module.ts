@@ -11,10 +11,14 @@ import { AuthsModule } from './auths/auth.module';
 import { User } from './users/entities/user.entity';
 import { Department } from './departments/entities/department.entity';
 import { DepartmentsModule } from './departments/departments.module';
+
 import { StudiesModule } from './studies/studies.module';
 import { ReservationModule } from './reservation/reservation.module';
 @Module({
   imports: [
+    AuthsModule,
+    UsersModule,
+    DepartmentsModule,
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: ['.env.dev'],
@@ -25,25 +29,19 @@ import { ReservationModule } from './reservation/reservation.module';
         DB_USERNAME: Joi.string().required(),
         DB_PASSWORD: Joi.string().required(),
         DB_DATABASE: Joi.string().required(),
+        JWT_SECRET: Joi.string().required(),
+        JWT_EXPIRATION_TIME: Joi.string().required(),
       }),
     }),
     TypeOrmModule.forRoot({
-      // type: 'mysql',
-      // host: process.env.DB_HOST,
-      // port: 3306,
-      // username: process.env.DB_USERNAME,
-      // password: process.env.DB_PASSWORD,
-      // database: process.env.DB_DATABASE,
-      // entities: ['dist/**/*.entity{.ts,.js}'],
-      // synchronize: false,
       type: 'mysql',
-      host: 'localhost',
+      host: process.env.DB_HOST,
       port: 3306,
-      username: 'root',
-      password: 'inter7477',
-      database: 'test',
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_DATABASE,
       entities: ['dist/**/*.entity{.ts,.js}'],
-      synchronize: true,
+      synchronize: false,
     }),
     MailerModule.forRootAsync({
       useFactory: () => ({

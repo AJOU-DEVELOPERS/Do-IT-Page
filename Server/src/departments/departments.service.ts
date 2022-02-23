@@ -21,16 +21,12 @@ export class DepartmentsService {
   }
 
   async findAll() {
-    const queryRunner = this.connection.createQueryRunner();
-    await queryRunner.connect();
     try {
-      const departmentList = await queryRunner.manager.find(Department);
+      const departmentList = await Department.find();
       return new ResultSuccessResponse(departmentList);
     } catch (error) {
       console.log(error);
       return new BaseFailResponse('학과 목록을 불러오는데 실패하였습니다.');
-    } finally {
-      await queryRunner.release();
     }
   }
 

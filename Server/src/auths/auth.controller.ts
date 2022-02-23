@@ -15,7 +15,10 @@ import {
   ApiTags,
   ApiOkResponse,
 } from '@nestjs/swagger';
-import { BaseSuccessResponse } from 'src/commons/dto/response-common.dto';
+import {
+  BaseSuccessResponse,
+  ResultSuccessResponse,
+} from 'src/commons/dto/response-common.dto';
 @Controller('auths')
 @ApiTags('Auth API')
 export class AuthController {
@@ -25,7 +28,7 @@ export class AuthController {
     summary: '메일 발송 요청 API',
     description: 'cacheKey 반환',
   })
-  @ApiOkResponse({ description: '메일 발송 성공', type: BaseSuccessResponse })
+  @ApiOkResponse({ description: '메일 발송 성공', type: ResultSuccessResponse })
   async sendMail(@Body() sendMailDto: SendMailDto) {
     return await this.authsService.sendMail(sendMailDto);
   }

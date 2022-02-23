@@ -16,20 +16,25 @@ import {
 import * as bcrypt from 'bcrypt';
 import { InternalServerErrorException } from '@nestjs/common';
 import { ApiProperty } from '@nestjs/swagger';
+import { ForbiddenException } from '@nestjs/common';
 import { Reservation } from 'src/reservation/entitiy/reservation.entity';
-
+import { HttpException, HttpStatus } from '@nestjs/common';
+import { ThrowFailResponse } from 'src/commons/dto/response-common.dto';
 export enum UserStudyStatus {
-  leader="leader",
-  accepted="accepted",
-  rejected="rejected",
-  waiting="waiting",
-};
+  leader = 'leader',
+  accepted = 'accepted',
+  rejected = 'rejected',
+  waiting = 'waiting',
+}
 
 @Entity('User')
 export class User extends BaseEntity {
   @ApiProperty()
   @PrimaryGeneratedColumn()
   userIdx: number;
+  @ApiProperty()
+  @Column()
+  id: string;
   @ApiProperty()
   @Column()
   password: string;
@@ -43,7 +48,7 @@ export class User extends BaseEntity {
   @Column()
   phoneNumber: string;
   @ApiProperty()
-  @Column()
+  @Column({ unique: true })
   email: string;
   @ApiProperty()
   @CreateDateColumn()
@@ -52,7 +57,6 @@ export class User extends BaseEntity {
   @UpdateDateColumn()
   updatedAt: string;
   @ApiProperty()
-
   @OneToMany((_type) => UserTechStack, (_type) => _type.user)
   userTechStacks: UserTechStack[];
 
@@ -68,7 +72,7 @@ export class User extends BaseEntity {
   @OneToMany((_type) => UserStudy, (_type) => _type.user)
   userStudies: UserStudy[];
 
-  @OneToMany((_type) => Reservation, (_type)=> _type.user)
+  @OneToMany((_type) => Reservation, (_type) => _type.user)
   reservations: Reservation[];
 
   @BeforeInsert()
@@ -77,8 +81,17 @@ export class User extends BaseEntity {
       this.password = await bcrypt.hash(this.password, 10);
     } catch (error) {
       console.log(error);
-      throw new InternalServerErrorException();
+      throw new ThrowFailResponse('회원가입에 실패하였습니다.');
     }
+  }
+  async comparePassword(password: string, hashedPassword: string) {
+    return await bcrypt.compare(password, hashedPassword);
+  }
+  static async findByLogin(id: string, password: string) {
+    const user = await User.findOne({ id });
+    if (!user || !(await bcrypt.compare(password, user.password)))
+      throw new ThrowFailResponse('아이디와 비밀번호를 다시 입력해주세요.');
+    return user;
   }
 }
 
@@ -142,27 +155,26 @@ export class UserDepartment extends BaseEntity {
 export class UserStudy extends BaseEntity {
   @ApiProperty()
   @PrimaryGeneratedColumn()
-  userStudyIdx: number
+  userStudyIdx: number;
   @ApiProperty()
   @Column()
-  userIdx: number
+  userIdx: number;
   @ApiProperty()
   @Column()
-  studyIdx: number
+  studyIdx: number;
   @ApiProperty()
   @Column({
-    type: "enum",
+    type: 'enum',
     enum: UserStudyStatus,
-    default: "waiting"
+    default: 'waiting',
   })
-  status: UserStudyStatus
+  status: UserStudyStatus;
   @ManyToOne(() => User, (user) => user.userStudies)
   @JoinColumn({ name: 'userIdx', referencedColumnName: 'userIdx' })
-  user: User
+  user: User;
   @ManyToOne(() => Study, (study) => study.userStudies)
   @JoinColumn({ name: 'studyIdx', referencedColumnName: 'studyIdx' })
-  study: Study
-
+  study: Study;
 }
 
 @Entity()
