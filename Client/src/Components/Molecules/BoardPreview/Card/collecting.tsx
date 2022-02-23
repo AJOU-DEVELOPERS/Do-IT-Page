@@ -1,9 +1,17 @@
 import ApplyButton from "@Atoms/Button/Apply";
 import Icon from "@Atoms/Icon";
-import { USER_ICON_URL, STUDY_STATUS } from "@Constant/.";
+import { STUDY_STATUS } from "@Constant/.";
+import { USER_ICON_URL } from "@Constant/img";
 import { ApplyButtonType } from "@Style/.";
 import { ProjectContentType } from "@Type/.";
-import { Container, Head, Status, Info, Title, CollectingInfoContainer } from "./style";
+import {
+  Container,
+  Head,
+  Status,
+  Info,
+  Title,
+  CollectingInfoContainer,
+} from "./style";
 
 const CardBoardPreview = ({
   name,

@@ -1,4 +1,4 @@
-import { MAIN_PREVIEW_IMAGE } from "@Constant/.";
+import { MAIN_PREVIEW_IMAGE } from "@Constant/img";
 import { AlignCenterAround, DefaultBoxShadow, HoverPointer } from "@Style/.";
 import styled from "styled-components";
 

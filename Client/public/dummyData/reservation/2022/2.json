@@ -1,0 +1,29 @@
+{
+  "res": [
+    {
+      "reservationStartDate": "2022-2-1",
+      "reservationStartHour": "19:00:00",
+      "reservationEndDate": "2022-2-1",
+      "reservationEndHour": "20:00:00",
+      "reservationName": "김영진",
+      "userIdx": 1
+    },
+    {
+      "reservationStartDate": "2022-2-1",
+      "reservationStartHour": "15:00:00",
+      "reservationEndDate": "2022-2-3",
+      "reservationEndHour": "20:00:00",
+      "reservationName": "김영진",
+      "userIdx": 1
+    },
+    {
+      "reservationStartDate": "2022-2-4",
+      "reservationStartHour": "19:00:00",
+      "reservationEndDate": "2022-2-6",
+      "reservationEndHour": "20:00:00",
+      "reservationName": "김영진",
+      "userIdx": 1
+    }
+  ],
+  "status": 200
+}
