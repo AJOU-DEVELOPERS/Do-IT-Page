@@ -14,6 +14,7 @@ const CalendarBody = ({ month, year }: DateProps) => {
   const data = useRecoilValue<postReservationRoomBodyProps[]>(
     reservationRoomSelector({ year, month })
   );
+  console.log(data);
   const [toggle, setToggle] = useState<boolean>(false);
   const [reserveDate, setReserveDate] = useState<reservationDatasProps[]>([]);
 

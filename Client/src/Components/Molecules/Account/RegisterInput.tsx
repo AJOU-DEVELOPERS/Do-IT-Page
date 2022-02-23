@@ -34,8 +34,9 @@ const RegisterInput = () => {
       mailCheck,
     });
 
-  const handleCheckDuplicateId = () => {
-    const data = checkDuplicateId({ idRef });
+  const handleCheckDuplicateId = async () => {
+    const data = await checkDuplicateId({ idRef });
+    console.log(data);
     if (!data) return;
     setCheckId(true);
   };
