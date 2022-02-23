@@ -17,7 +17,7 @@ export const TARGET_URL = URL[0];
 export const API = async ({ api, data }: Props) => {
   try {
     const { isSuccess, code, res, error } = await api(data);
-    if (code < 400) return res;
+    if (isSuccess) return res;
     throw new Error(error);
   } catch (err) {
     console.log(err, "에러핸들링 추가");
@@ -27,7 +27,7 @@ export const API = async ({ api, data }: Props) => {
 export const _API = async ({ api, apiSrc, data }: _Props) => {
   try {
     const { isSuccess, code, res, error } = await api(apiSrc, data);
-    if (code < 400) return res;
+    if (isSuccess) return res;
     throw new Error(error);
   } catch (err) {
     console.log(err, "에러핸들링 추가");
