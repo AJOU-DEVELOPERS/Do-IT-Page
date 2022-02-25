@@ -41,7 +41,10 @@ export class AuthsService {
         html: '6자리 인증 코드 : ' + `<b> ${authNum}</b>`, // HTML body content
       });
       await this.cacheManager.set(cacheKey, authNum, { ttl: 180 });
-      return new ResultSuccessResponse({ cacheKey: cacheKey });
+      return new ResultSuccessResponse({ 
+        cacheKey,
+        message: true,
+       });
     } catch (err) {
       console.log(err);
       return new BaseFailResponse();
