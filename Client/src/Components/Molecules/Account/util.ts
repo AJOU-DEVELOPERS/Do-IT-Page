@@ -159,7 +159,7 @@ export const checkMail = async ({
 
   const data = await API({
     api: postCheckMail,
-    data: { authNum: emailCheckRef.current.value, cacheKey },
+    data: { authNum: Number(emailCheckRef.current.value), cacheKey },
   });
   console.log(data);
   data === "성공"

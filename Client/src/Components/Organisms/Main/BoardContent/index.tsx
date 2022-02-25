@@ -27,7 +27,6 @@ const BoardContent = ({ boardName }: { boardName: string }) => {
   const boardContents =
     hasBoardContent(apiSrc, boardName) &&
     useRecoilValue<ContentType[]>(BoardContentSelector(apiSrc));
-
   // 재사용으로 빼고싶음 // Molecules/Boardpage/List/index.tsx
   const handleDetailMove = (e: any) => {
     const target = e.target.closest(`#${boardName}`);
