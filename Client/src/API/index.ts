@@ -10,9 +10,9 @@ interface _Props {
 
 const URL = [
   "http://121.167.35.48:4000", // 01
-  "https://cors-anywhere.herokuapp.com/http://121.167.35.48:4000", // 01 cors
+  "http://localhost:4000", // test
 ];
-export const TARGET_URL = URL[0];
+export const TARGET_URL = URL[1];
 
 export const API = async ({ api, data }: Props) => {
   try {
