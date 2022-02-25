@@ -19,6 +19,7 @@ export const reservationRoomSelector = selectorFamily<
         api: getReservationRoom,
         data: `/${year}/${month}`,
       });
+      console.log(data);
       return data;
     },
 });

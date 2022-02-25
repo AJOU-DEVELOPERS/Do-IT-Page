@@ -13,7 +13,7 @@ export const BoardContentSelector = selectorFamily<ContentType[], string>({
 
 export const GetBoardContentLengthSelector = selectorFamily<
   number,
-  [string, number|undefined]
+  [string, number | undefined]
 >({
   key: "GetBoardContentLengthSelector",
   get:
