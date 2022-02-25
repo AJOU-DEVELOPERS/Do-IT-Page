@@ -1,22 +1,41 @@
 import StudyContainer from "@Organisms/Study";
-import { GET_STUDY_CONTENT_URL } from "@Constant/index";
+import Modal from "@Molecules/Modal";
+import StudyModalSubject from "@Molecules/Modal/study";
+import ProjectModalSubject from "@Molecules/Modal/project";
+import { GET_STUDY_CONTENT_URL, STUDY_STATUS } from "@Constant/index";
 import { hasBoardContent } from "@Util/index";
 import { useRecoilValue } from "recoil";
 import { BoardContentSelector } from "@Recoil/BoardContent";
 import { ContentType } from "@Type/.";
 import BoardPreview from "@Molecules/BoardPreview";
-import { Container } from "./styles";
+import { Container, ModalContainer, Wrapper } from "./styles";
+import { useEffect, useRef, useState } from "react";
 
 interface Props {
   type?: "study" | "project";
 }
 const Content = ({ type }: Props) => {
+  const [modalOnOff, setModalOnOff] = useState<ContentType>();
+  const outSection = useRef(null);
+
+  const handlePosticClick = (e: any) => {
+    const target = e.target.closest("button");
+    if (!target) return;
+    const data = target.parentNode.parentNode.getAttribute("data-idx").split(" ");
+    const status = data[1],
+      index = data[2];
+    setModalOnOff(typeContents[status][index]);
+  };
+
+  // useEffect(() => {
+  //   console.log(modalOnOff);
+  // }, [modalOnOff]);
   //타입에 따라서 데이터를 가져온다.
   const boardContents =
     hasBoardContent(GET_STUDY_CONTENT_URL, "스터디") &&
     useRecoilValue<ContentType[]>(BoardContentSelector(GET_STUDY_CONTENT_URL));
 
-  const { collecting, processing, done } = boardContents?.slice(0, 7).reduce(
+  const typeContents = boardContents?.slice(0, 7).reduce(
     (result: any, element: any) => {
       result[element.status].push(element);
       return result;
@@ -25,23 +44,29 @@ const Content = ({ type }: Props) => {
   );
 
   return (
-    <Container>
-      <StudyContainer title={"모집 중"}>
-        {collecting.map((content: ContentType, index: number) => (
-          <BoardPreview key={index} previewType={"card"} content={content} />
+    <>
+      {modalOnOff && (
+        <Modal onClick={(e) => outSection.current !== e.target && setModalOnOff(undefined)}>
+          {modalOnOff && (
+            <ModalContainer ref={outSection}>
+              {type === "study" && <StudyModalSubject {...modalOnOff} />}
+              {type !== "study" && <ProjectModalSubject {...modalOnOff} />}
+            </ModalContainer>
+          )}
+        </Modal>
+      )}
+      <Container onClick={(e) => handlePosticClick(e)}>
+        {Object.keys(STUDY_STATUS).map((element, i) => (
+          <StudyContainer key={i} title={STUDY_STATUS[element as keyof typeof STUDY_STATUS]}>
+            {typeContents[element].map((content: ContentType, index: number) => (
+              <Wrapper key={index} data-idx={type + " " + element + " " + index}>
+                <BoardPreview previewType={"card"} content={content} />
+              </Wrapper>
+            ))}
+          </StudyContainer>
         ))}
-      </StudyContainer>
-      <StudyContainer title={"진행 중"}>
-        {processing.map((content: ContentType, index: number) => (
-          <BoardPreview key={index} previewType={"card"} content={content} />
-        ))}
-      </StudyContainer>
-      <StudyContainer title={"마감"}>
-        {done.map((content: ContentType, index: number) => (
-          <BoardPreview key={index} previewType={"card"} content={content} />
-        ))}
-      </StudyContainer>
-    </Container>
+      </Container>
+    </>
   );
 };
 

@@ -1,4 +1,8 @@
 import styled from "styled-components";
+import { AlignCenterBetween } from "@Style/.";
+interface TitleProps {
+  borderBottom?: string;
+}
 
 const Background = styled.div`
   height: 100vh;
@@ -12,7 +16,26 @@ const Background = styled.div`
   text-align: center;
   background: rgba(0, 0, 0, 0.5);
 `;
+const Title = styled.p<TitleProps>`
+  width: 80%;
+  border-bottom: ${({ borderBottom }) => borderBottom};
+`;
+const Info = styled.p`
+  font-size: 1rem;
+`;
 
-const Content = styled.div``;
+const Content = styled.div`
+  align-items: center;
+`;
 
-export { Background, Content };
+const Container = styled.div`
+  width: 100%;
+  height: 30%;
+  column-gap: 10px;
+`;
+const Wrapper = styled.div`
+  display: flex;
+  width: 80%;
+  ${AlignCenterBetween}
+`;
+export { Background, Content, Wrapper, Title, Info, Container };
