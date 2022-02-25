@@ -111,14 +111,14 @@ export const checkDuplicateId = async ({
     alert("아이디 입력하세요");
     return;
   }
-  const { message } = await API({
+  const res = await API({
     api: checkDuplicateUserId,
     data: { id: idRef.current.value },
   });
-  message === "성공"
+  res === "true"
     ? alert("사용 가능한 아이디입니다.")
     : alert("중복된 아이디입니다.");
-  return message === "성공";
+  return res === "true";
 };
 
 export const clickMail = async ({
@@ -134,15 +134,14 @@ export const clickMail = async ({
     alert("아주대 메일이어야합니다~");
     return;
   }
-  const data = await API({
+  const { cacheKey, message } = await API({
     api: postRequestMail,
     data: { email: emailRef.current.value },
   });
-  console.log(data);
-  data === "성공"
+  message === true
     ? alert("인증번호를 확인해주세요.")
     : alert("메일 아이디가 잘못되었습니다..");
-  return data;
+  return cacheKey;
 };
 
 export const checkMail = async ({
