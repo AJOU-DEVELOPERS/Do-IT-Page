@@ -2,8 +2,12 @@ import { BasicButtonProps } from "@src/Common/Type";
 import { ButtonContainer } from "./styles";
 
 const Button = (props: BasicButtonProps) => {
-  const { title } = props;
-  return <ButtonContainer {...props}>{title}</ButtonContainer>;
+  const { title, buttonRef } = props;
+  return (
+    <ButtonContainer {...props} ref={buttonRef}>
+      {title}
+    </ButtonContainer>
+  );
 };
 
 Button.defaultProps = {

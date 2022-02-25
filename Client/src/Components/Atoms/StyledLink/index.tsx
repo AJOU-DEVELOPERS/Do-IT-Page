@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { NavItemHover } from "@Style/.";
 
 interface LinkProps {
   to: string;
@@ -12,4 +13,10 @@ const StyledLink = styled(Link)<LinkProps>`
   opacity: 0.25;
 `;
 
-export default StyledLink;
+const StyledNav = styled(Link)<LinkProps>`
+  display: flex;
+  align-items: center;
+  ${NavItemHover}
+  height:100%;
+`;
+export { StyledLink, StyledNav };

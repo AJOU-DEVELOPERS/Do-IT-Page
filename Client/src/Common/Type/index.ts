@@ -1,3 +1,5 @@
+import React from "react";
+
 export interface ImgProps {
   url?: string;
   width?: string;
@@ -5,6 +7,7 @@ export interface ImgProps {
 
 export interface ContentImgProps extends ImgAltProps {
   radius?: string;
+  maxWidth?: string;
 }
 
 export interface ImgAltProps extends ImgProps {
@@ -35,6 +38,8 @@ export interface BasicButtonProps extends BasicAtomProps {
   title?: string;
   color?: string;
   onClick?: () => void;
+  onClickCapture?: (e: any) => void;
+  buttonRef?: React.RefObject<HTMLButtonElement> | undefined;
 }
 
 export interface LoginButtonProps extends BasicButtonProps {
@@ -58,7 +63,7 @@ export interface BasicInputProps extends BasicAtomProps {
   radius?: string;
   shadow?: string;
   type?: string;
-  inputRef?: any;
+  inputRef?: React.RefObject<HTMLInputElement> | undefined;
   onChange?: () => void;
 }
 
@@ -70,6 +75,7 @@ export interface BoardType {
   previewSize?: number;
   previewType?: "card" | "ranking" | "image" | "calendar" | "basic";
   alignPreview?: string;
+  viewSize?: number;
 }
 
 export interface BoardInfoType {
@@ -85,6 +91,7 @@ export interface PosticDefaultProps {
 }
 
 export interface BoardContentType {
+  index: number;
   board: string;
   title: string;
   text: string;
@@ -96,6 +103,7 @@ export interface BoardContentType {
 }
 
 export interface StudyContentType {
+  index: number;
   name: string;
   decription: string;
   totalHeadcount: number;
@@ -110,6 +118,7 @@ export interface ProjectContentType extends StudyContentType {
 }
 
 export interface RankingContentType {
+  index: number;
   rating: number;
   tier: string;
   name: string;
@@ -122,4 +131,12 @@ export interface PreviewProps {
   type?: string;
 }
 
-export type ContentType = BoardContentType | ProjectContentType | RankingContentType;
+export type ContentType =
+  | BoardContentType
+  | ProjectContentType
+  | RankingContentType;
+
+export interface DetailViewType {
+  idx: number;
+  content: BoardContentType;
+}

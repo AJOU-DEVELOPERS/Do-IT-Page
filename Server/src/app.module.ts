@@ -11,9 +11,16 @@ import { AuthsModule } from './auths/auth.module';
 import { User } from './users/entities/user.entity';
 import { Department } from './departments/entities/department.entity';
 import { DepartmentsModule } from './departments/departments.module';
+
 import { StudiesModule } from './studies/studies.module';
+import { ProjectsModule } from './projects/projects.module';
+import { ReservationModule } from './reservation/reservation.module';
+
 @Module({
   imports: [
+    AuthsModule,
+    UsersModule,
+    DepartmentsModule,
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: ['.env.dev'],
@@ -24,6 +31,8 @@ import { StudiesModule } from './studies/studies.module';
         DB_USERNAME: Joi.string().required(),
         DB_PASSWORD: Joi.string().required(),
         DB_DATABASE: Joi.string().required(),
+        JWT_SECRET: Joi.string().required(),
+        JWT_EXPIRATION_TIME: Joi.string().required(),
       }),
     }),
     TypeOrmModule.forRoot({
@@ -35,14 +44,6 @@ import { StudiesModule } from './studies/studies.module';
       database: process.env.DB_DATABASE,
       entities: ['dist/**/*.entity{.ts,.js}'],
       synchronize: false,
-      // type: 'mysql',
-      // host: 'localhost',
-      // port: 3306,
-      // username: 'root',
-      // password: 'ajoulee1214',
-      // database: 'nesttest',
-      // entities: ['dist/**/*.entity{.ts,.js}'],
-      // synchronize: false,
     }),
     MailerModule.forRootAsync({
       useFactory: () => ({
@@ -70,6 +71,8 @@ import { StudiesModule } from './studies/studies.module';
     AuthsModule,
     DepartmentsModule,
     StudiesModule,
+    ReservationModule,
+    ProjectsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -10,23 +10,39 @@ import {
   BeforeInsert,
   BaseEntity,
   JoinColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { InternalServerErrorException } from '@nestjs/common';
 import { ApiProperty } from '@nestjs/swagger';
-
+import { ForbiddenException } from '@nestjs/common';
+import { Project, ProjectTechStack } from 'src/projects/entity/project.entity';
+import { Reservation } from 'src/reservation/entitiy/reservation.entity';
+import { HttpException, HttpStatus } from '@nestjs/common';
+import { ThrowFailResponse } from 'src/commons/dto/response-common.dto';
 export enum UserStudyStatus {
-  leader="leader",
-  accepted="accepted",
-  rejected="rejected",
-  waiting="waiting",
-};
+  leader = 'leader',
+  accepted = 'accepted',
+  rejected = 'rejected',
+  waiting = 'waiting',
+}
+
+export enum UserProjectStatus {
+  leader = 'leader',
+  accepted = 'accepted',
+  rejected = 'rejected',
+  waiting = 'waiting',
+}
 
 @Entity('User')
 export class User extends BaseEntity {
   @ApiProperty()
   @PrimaryGeneratedColumn()
   userIdx: number;
+  @ApiProperty()
+  @Column()
+  id: string;
   @ApiProperty()
   @Column()
   password: string;
@@ -40,21 +56,18 @@ export class User extends BaseEntity {
   @Column()
   phoneNumber: string;
   @ApiProperty()
-  @Column()
+  @Column({ unique: true })
   email: string;
   @ApiProperty()
-  @Column()
+  @CreateDateColumn()
   createdAt: string;
   @ApiProperty()
-  @Column()
+  @UpdateDateColumn()
   updatedAt: string;
   @ApiProperty()
-  @Column()
-  status: string;
 
-  @OneToMany((_type) => UserTechStack, (_type) => _type.user)
-  userTechStacks: UserTechStack[];
-
+  // @OneToMany((_type) => UserTechStack, (_type) => _type.user)
+  // userTechStacks: UserTechStack[];
   @OneToMany(
     (_type) => UserDepartment,
     (userDepartments) => userDepartments.user,
@@ -67,48 +80,64 @@ export class User extends BaseEntity {
   @OneToMany((_type) => UserStudy, (_type) => _type.user)
   userStudies: UserStudy[];
 
+  @OneToMany((_type) => UserProject, (_type) => _type.user)
+  userProjects: UserProject[];
+
+  @OneToMany((_type) => Reservation, (_type) => _type.user)
+  reservations: Reservation[];
+
   @BeforeInsert()
   async hashPassword() {
     try {
       this.password = await bcrypt.hash(this.password, 10);
     } catch (error) {
       console.log(error);
-      throw new InternalServerErrorException();
+      throw new ThrowFailResponse('회원가입에 실패하였습니다.');
     }
+  }
+  async comparePassword(password: string, hashedPassword: string) {
+    return await bcrypt.compare(password, hashedPassword);
+  }
+  static async findByLogin(id: string, password: string) {
+    const user = await User.findOne({ id });
+    if (!user || !(await bcrypt.compare(password, user.password)))
+      throw new ThrowFailResponse('아이디와 비밀번호를 다시 입력해주세요.');
+    return user;
   }
 }
 
-@Entity()
-export class TechStack extends BaseEntity {
-  @ApiProperty()
-  @PrimaryGeneratedColumn()
-  techStackIdx: number;
-  @ApiProperty()
-  @Column()
-  name: string;
+// @Entity()
+// export class TechStack extends BaseEntity {
+//   @ApiProperty()
+//   @PrimaryGeneratedColumn()
+//   techStackIdx: number;
+//   @ApiProperty()
+//   @Column()
+//   name: string;
+//   @OneToMany((_type) => UserTechStack, (_type) => _type.techStack)
+//   userTechStacks: UserTechStack[];
+//   @OneToMany((_type) => ProjectTechStack, (_type) => _type.techStack)
+//   projectTechStacks: ProjectTechStack[];
+// }
 
-  @OneToMany((_type) => UserTechStack, (_type) => _type.techStack)
-  userTechStacks: UserTechStack[];
-}
+// @Entity()
+// export class UserTechStack extends BaseEntity {
+//   @ApiProperty()
+//   @PrimaryGeneratedColumn()
+//   userTechStack: number;
+//   @ApiProperty()
+//   @Column()
+//   userIdx: number;
+//   @ApiProperty()
+//   @Column()
+//   techStackIdx: number;
 
-@Entity()
-export class UserTechStack extends BaseEntity {
-  @ApiProperty()
-  @PrimaryGeneratedColumn()
-  userTechStack: number;
-  @ApiProperty()
-  @Column()
-  userIdx: number;
-  @ApiProperty()
-  @Column()
-  techStackIdx: number;
+//   @ManyToOne((_type) => User, (_type) => _type.userTechStacks)
+//   user: User;
 
-  @ManyToOne((_type) => User, (_type) => _type.userTechStacks)
-  user: User;
-
-  @ManyToOne((_type) => TechStack, (_type) => _type.userTechStacks)
-  techStack: TechStack;
-}
+//   @ManyToOne((_type) => TechStack, (_type) => _type.userTechStacks)
+//   techStack: TechStack;
+// }
 
 @Entity()
 export class UserDepartment extends BaseEntity {
@@ -138,27 +167,52 @@ export class UserDepartment extends BaseEntity {
 export class UserStudy extends BaseEntity {
   @ApiProperty()
   @PrimaryGeneratedColumn()
-  userStudyIdx: number
+  userStudyIdx: number;
   @ApiProperty()
   @Column()
-  userIdx: number
+  userIdx: number;
   @ApiProperty()
   @Column()
-  studyIdx: number
+  studyIdx: number;
   @ApiProperty()
   @Column({
-    type: "enum",
+    type: 'enum',
     enum: UserStudyStatus,
-    default: "waiting"
+    default: 'waiting',
   })
-  status: UserStudyStatus
+  status: UserStudyStatus;
   @ManyToOne(() => User, (user) => user.userStudies)
   @JoinColumn({ name: 'userIdx', referencedColumnName: 'userIdx' })
-  user: User
+  user: User;
   @ManyToOne(() => Study, (study) => study.userStudies)
   @JoinColumn({ name: 'studyIdx', referencedColumnName: 'studyIdx' })
-  study: Study
+  study: Study;
+}
 
+@Entity()
+export class UserProject extends BaseEntity {
+  @ApiProperty()
+  @PrimaryGeneratedColumn()
+  userProjectIdx: number;
+  @ApiProperty()
+  @Column()
+  userIdx: number;
+  @ApiProperty()
+  @Column()
+  projectIdx: number;
+  @ApiProperty()
+  @Column({
+    type: 'enum',
+    enum: UserProjectStatus,
+    default: 'waiting',
+  })
+  status: UserProjectStatus;
+  @ManyToOne(() => User, (user) => user.userProjects)
+  @JoinColumn({ name: 'userIdx', referencedColumnName: 'userIdx' })
+  user: User;
+  @ManyToOne(() => Project, (project) => project.userProjects)
+  @JoinColumn({ name: 'projectIdx', referencedColumnName: 'projectIdx' })
+  project: Project;
 }
 
 @Entity()

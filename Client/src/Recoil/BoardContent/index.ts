@@ -11,27 +11,33 @@ export const BoardContentSelector = selectorFamily<ContentType[], string>({
   },
 });
 
-export const GetBoardContentLengthSelector = selectorFamily<number, string>({
+export const GetBoardContentLengthSelector = selectorFamily<
+  number,
+  [string, number | undefined]
+>({
   key: "GetBoardContentLengthSelector",
   get:
-    (apiSrc: string) =>
+    ([apiSrc, viewSize]) =>
     async ({ get }: { get: GetRecoilValue }) => {
       const list = get(BoardContentSelector(apiSrc));
-      return Math.ceil(list.length / 10);
+      const size = viewSize ? viewSize : 10;
+      return Math.ceil(list.length / Number(size));
     },
 });
 
 export const BoardContentPagenationSelector = selectorFamily<
   ContentType[],
-  [number, string]
+  [number, string, number | undefined]
 >({
   key: "BoardContentPagenationSelector",
   get:
-    ([num, apiSrc]) =>
+    ([num, apiSrc, viewSize]) =>
     async ({ get }: { get: GetRecoilValue }) => {
       const list = get(BoardContentSelector(apiSrc));
+      const size = viewSize ? viewSize : 10;
       return (list as Array<ContentType>).filter(
-        (item: ContentType) => item.idx > num * 10 && item.idx <= (num + 1) * 10
+        (item: ContentType) =>
+          item.idx > num * size && item.idx <= (num + 1) * size
       ) as ContentType[];
     },
 });
@@ -46,7 +52,7 @@ export const BoardContentOneBoardSelector = selectorFamily<
     async ({ get }: { get: GetRecoilValue }): Promise<BoardContentType[]> => {
       const list = get(BoardContentSelector(boardApiSrc));
       return (list as Array<BoardContentType>).filter(
-        (item: BoardContentType) => item.idx === id
+        (item: BoardContentType) => item.idx === Number(id)
       );
       // const item = get(BoardContentSelector(boardApiSrc + `?id=${id}`));
       // return item

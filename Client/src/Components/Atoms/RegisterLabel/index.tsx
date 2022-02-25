@@ -4,10 +4,11 @@ import { BasicInputProps } from "@Type/.";
 
 interface Props extends BasicInputProps {
   title: string;
+  inputRef?: React.RefObject<HTMLInputElement> | undefined;
 }
 
 const RegisterLabel = (props: Props) => {
-  const { title } = props;
+  const { title, inputRef } = props;
   return (
     <Container>
       <div>{title}</div>

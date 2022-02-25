@@ -1,3 +1,4 @@
+import { MOBILE_WIDTH, TABLET_WIDTH } from "@Constant/.";
 import {
   BoardContentType,
   DateProps,
@@ -27,3 +28,6 @@ export const convertProjectType = (content: any): ProjectContentType => content;
 export const handleHeaderClick = (history: History) => {
   history.push("/main");
 };
+
+export const checkTablet = () => window.innerWidth < TABLET_WIDTH;
+export const checkMobile = () => window.innerWidth < MOBILE_WIDTH;

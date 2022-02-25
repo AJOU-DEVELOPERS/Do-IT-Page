@@ -1,4 +1,5 @@
-import { CONTENT, MIDDLE_IMG_URL } from "@Constant/.";
+import { CONTENT } from "@Constant/.";
+import { MIDDLE_IMG_URL } from "@Constant/img";
 import Context from "@Molecules/Content";
 import Content from "@Organisms/Before/Content";
 import { Box, Container } from "./styles";

@@ -7,7 +7,7 @@ export const CardContainer = styled.div`
   display: flex;
   width: 100%;
   height: 24%;
-  min-height: 130px;
+  min-height: 14vh;
   ${AlignCenterAround}
   ${HoverPointer}
 `;

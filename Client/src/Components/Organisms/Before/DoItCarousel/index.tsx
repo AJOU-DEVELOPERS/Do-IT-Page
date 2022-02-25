@@ -1,4 +1,5 @@
-import { CAROUSEL_TIME, CAROUSEL_URL } from "@Constant/.";
+import { CAROUSEL_TIME } from "@Constant/.";
+import { CAROUSEL_URL } from "@Constant/img";
 import Carousel from "@Molecules/Carousel";
 import { Container, FirstContainer, MainTitle } from "./styles";
 

@@ -1,28 +1,18 @@
 import { BoardInfoType, BoardType } from "../Type";
+import {
+  GET_FREE_CONTENT_URL,
+  GET_STUDY_CONTENT_URL,
+  GET_PROJECT_CONTENT_URL,
+  GET_ROOM_CONTENT_URL,
+  GET_NOTICE_CONTENT_URL,
+  GET_NOTICE_POST_URL,
+  GET_BOARD_POST_URL,
+  GET_RANKING_URL,
+  GET_PHOTO_CONTENT_URL,
+} from "./API";
 
-export const API_GET_OPTION = {
-  withCredentials: true,
-};
-
-export const GET_CHECK_LOGIN_URL = "/dummyData/checkLogin.json";
-
-export const GET_NOTICE_CONTENT_URL = "/dummyData/NoticeBoardContent.json";
-
-export const GET_FREE_CONTENT_URL = "/dummyData/FreeBoardContent.json";
-
-export const GET_STUDY_CONTENT_URL = "/dummyData/StudyBoardContent.json";
-
-export const GET_PROJECT_CONTENT_URL = "/dummyData/ProjectBoardContent.json";
-
-export const GET_ROOM_CONTENT_URL = "/dummyData/RoomBoardContent.json";
-
-export const GET_RANKING_URL = "/dummyData/BaekJoonRanking.json";
-
-export const GET_PHOTO_CONTENT_URL = "/dummyData/PhotoBoardContent.json";
-
-export const GET_NOTICE_POST_URL = "/dummyData/NoticeBoardContent.json";
-
-export const GET_BOARD_POST_URL = "/dummyData/FreeBoardContent.json";
+export const MOBILE_WIDTH = 640;
+export const TABLET_WIDTH = 1024;
 
 export const NOTICE_URL = "/notice";
 
@@ -44,17 +34,6 @@ export const MAIN_URL = "/main";
 
 export const BEFORE_URL = "/before";
 
-export const GET_SOLVED_CARD_URL = (id: string) => `http://mazassumnida.wtf/api/v2/generate_badge?boj=${id}`;
-
-// carousel
-export const CAROUSEL_URL = [
-  "/assets/Login/loginBg.jpeg",
-  "/assets/CAROUSEL/carousel1.jpeg",
-  "/assets/CAROUSEL/carousel2.jpeg",
-];
-
-export const USER_ICON_URL = "/assets/MainPage/userIcon.png";
-
 export const CAROUSEL_TIME = 3000;
 
 //admin category
@@ -67,40 +46,26 @@ export const ADMIN_CATEGORY = [
   "공지사항 관리",
 ];
 
-export const MAIN_PREVIEW_IMAGE = "/assets/MainPage/codeImage.jpg";
-
-// content
-
-export const MIDDLE_IMG_URL = [
-  "/assets/Content/process_logo.png",
-  "/assets/Content/study_logo.png",
-  "/assets/Content/room_logo.png",
+export const HEADER_NAV_LIST = [
+  "공지사항",
+  "자유게시판",
+  "백준랭킹",
+  "프로젝트",
+  "스터디",
+  "과방 대여",
+  "마이페이지",
 ];
-
-export const LAST_IMG_URL = [
-  "/assets/Content/secondContent.png",
-  "/assets/Content/secondContent.png",
-  "/assets/Content/secondContent.png",
-  "/assets/Content/secondContent.png",
-];
-
-export const RANKING_IMG_URL = [
-  "/assets/BackJoon/gold_icon.png",
-  "/assets/BackJoon/silver_icon.png",
-  "/assets/BackJoon/bronze_icon.png",
-];
-
-export const HEADER_NAV_LIST = ["공지사항", "자유게시판", "백준랭킹", "프로젝트", "스터디", "과방 대여", "마이페이지"];
 
 export const MAIN_BOARD_PREVIEW_LIST = [
   "스터디",
   "공지사항",
-  "이미지",
+  "자유게시판",
   "백준랭킹",
   "프로젝트",
+  "스터디",
   "과방 대여",
-  "자유게시판",
-  "사진첩",
+  "마이페이지",
+  "사진첩"
 ];
 
 export enum STUDY_STATUS {
@@ -131,6 +96,7 @@ export const BOARD_INFOS: BoardType[] = [
     pageSrc: ROOM_BOARD_URL,
   },
 ];
+
 export const _BOARD_INFOS: BoardInfoType = {
   공지사항: {
     pageSrc: NOTICE_URL,
@@ -138,6 +104,7 @@ export const _BOARD_INFOS: BoardInfoType = {
     boardApiSrc: GET_NOTICE_POST_URL,
     previewSize: 7,
     previewType: "basic",
+    viewSize: 10,
   },
   자유게시판: {
     pageSrc: FREE_BOARD_URL,
@@ -145,6 +112,7 @@ export const _BOARD_INFOS: BoardInfoType = {
     boardApiSrc: GET_BOARD_POST_URL,
     previewSize: 7,
     previewType: "basic",
+    viewSize: 10,
   },
   백준랭킹: {
     pageSrc: RANKING_BOARD_URL,
@@ -180,6 +148,7 @@ export const _BOARD_INFOS: BoardInfoType = {
     previewSize: 4,
     previewType: "image",
     alignPreview: "row",
+    viewSize: 16,
   },
   이미지: {
     pageSrc: "",
@@ -251,4 +220,6 @@ export const CONTENT = [
   },
 ];
 
-export const FOOTER_MESSAGE = `Do It / 임원진 김영진 010-8931-4993 / 과방 구학 243호 / 이메일@ajou.ac.kr`;
+export const FOOTER_MESSAGE = `Do It / 임원진 김영진 010-8931-4993 / 과방 구학 234호 / Do.It.Ajou@ajou.ac.kr`;
+
+export const DAY_NAMES = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];

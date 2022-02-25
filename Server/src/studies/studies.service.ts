@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { BaseFailResponse, BaseSuccessResponse } from 'src/commons/dto/response-common.dto';
+import { BaseFailResponse, BaseSuccessResponse, ResultSuccessResponse } from 'src/commons/dto/response-common.dto';
 import { User, UserStudy, UserStudyStatus } from 'src/users/entities/user.entity';
 import { Connection, Repository } from 'typeorm';
 import { CreateStudyDto } from './dto/create-study.dto';
@@ -10,7 +10,6 @@ import { Study } from './entity/study.entity';
 @Injectable()
 export class StudiesService {
     constructor(
-        @InjectRepository(Study) private studyRepository: Repository<Study>,
         private connection: Connection,
     ) {}
     async createStudy(createStudyDto: CreateStudyDto) {
@@ -22,22 +21,26 @@ export class StudiesService {
         study.leaderName = createStudyDto.leaderName;
 
         await queryRunner.connect();
+        await queryRunner.startTransaction();
         try {
-            const user: User = await queryRunner.manager.findOne(User, {
-                userIdx: createStudyDto.leaderUserIdx
-            })
+            const user: User = await User.findOne({
+                where: {
+                    userIdx: createStudyDto.leaderUserIdx
+                }
+            });
             await queryRunner.manager.save(study);
             
-            const userstudy = new UserStudy();
-            userstudy.user = user;
-            userstudy.study = study;
-            userstudy.status = UserStudyStatus.leader;
+            const userStudy = new UserStudy();
+            userStudy.user = user;
+            userStudy.study = study;
+            userStudy.status = UserStudyStatus.leader;
     
-            await queryRunner.manager.save(userstudy);
-
+            await queryRunner.manager.save(userStudy);
+            await queryRunner.commitTransaction();
             return new BaseSuccessResponse();
         } catch(error) {
             console.log(error);
+            await queryRunner.rollbackTransaction();
             return new BaseFailResponse('스터디 생성에 실패하였습니다.');
         } finally {
             await queryRunner.release();
@@ -48,11 +51,14 @@ export class StudiesService {
         const queryRunner = this.connection.createQueryRunner();
         
         await queryRunner.connect();
+        await queryRunner.startTransaction();
         try {
             await queryRunner.manager.update(Study, studyIdx, updateStudyDto);
+            await queryRunner.commitTransaction();
             return new BaseSuccessResponse();
         } catch(error) {
             console.log(error);
+            await queryRunner.rollbackTransaction();
             return new BaseFailResponse('스터디 정보 수정에 실패했습니다.');
         } finally {
             await queryRunner.release();
@@ -60,26 +66,18 @@ export class StudiesService {
     }
 
     async findAll() {
-        const queryRunner = this.connection.createQueryRunner();
-        
-        await queryRunner.connect();
         try {
-            const studies = await queryRunner.manager.find(Study);
-            return studies;
+            const studies = await Study.find();
+            return new ResultSuccessResponse(studies);
         } catch(error) {
             console.log(error);
             return new BaseFailResponse('모든 스터디 불러오기를 실패했습니다.');
-        } finally {
-            await queryRunner.release();
         }
     }
 
     async findOne(studyIdx: number) {
-        const queryRunner = this.connection.createQueryRunner();
-        
-        await queryRunner.connect();
         try {
-            const study = await queryRunner.manager.find(Study, 
+            const study = await Study.find( 
                 { 
                     where: {
                         studyIdx: studyIdx
@@ -88,12 +86,10 @@ export class StudiesService {
                         "userStudies"
                     ]
             });
-            return study;
+            return new ResultSuccessResponse(study);
         } catch(error) {
             console.log(error);
             return new BaseFailResponse('스터디 불러오기를 실패했습니다.');
-        } finally {
-            await queryRunner.release();
         }
     }
 
@@ -101,26 +97,90 @@ export class StudiesService {
         const queryRunner = this.connection.createQueryRunner();
         
         await queryRunner.connect();
+        await queryRunner.startTransaction();
         try {
             await queryRunner.manager.softDelete(Study, studyIdx);
+            await queryRunner.commitTransaction();
             return new BaseSuccessResponse();
         } catch(error) {
             console.log(error);
+            await queryRunner.rollbackTransaction();
             return new BaseFailResponse('스터디 삭제에 실패했습니다.');
         } finally {
             await queryRunner.release();
         }
     }
 
-    apply() {
+    async apply(userIdx: number, studyIdx: number) {
+        const queryRunner = this.connection.createQueryRunner();
 
+        await queryRunner.connect();
+        await queryRunner.startTransaction();
+        try {
+            const user: User = await User.findOne({
+                where: {
+                    userIdx: userIdx
+                }
+            });
+            const study: Study = await Study.findOne({
+                where: {
+                    studyIdx: studyIdx
+                }
+            });
+            const userStudy = new UserStudy();
+            userStudy.user = user;
+            userStudy.study = study;
+
+            await queryRunner.manager.save(userStudy);
+            await queryRunner.commitTransaction();
+
+            return new BaseSuccessResponse();
+        } catch(error) {
+            console.log(error);
+            await queryRunner.rollbackTransaction();
+            return new BaseFailResponse('스터디 신청에 실패했습니다.');
+        } finally {
+            queryRunner.release();
+        }
     }
 
-    accept() {
+    async accept(userStudyIdx: number) {
+        const queryRunner = this.connection.createQueryRunner();
 
+        await queryRunner.connect();
+        await queryRunner.startTransaction();
+        try {
+            await queryRunner.manager.update(UserStudy, userStudyIdx, {
+                status: UserStudyStatus.accepted
+            })
+            await queryRunner.commitTransaction();
+            return new BaseSuccessResponse();
+        } catch(error) {
+            console.log(error);
+            await queryRunner.rollbackTransaction();
+            return new BaseFailResponse('스터디 참여 승인에 실패했습니다.');
+        } finally {
+            await queryRunner.release();
+        }
     }
 
-    reject() {
+    async reject(userStudyIdx: number) {
+        const queryRunner = this.connection.createQueryRunner();
 
+        await queryRunner.connect();
+        await queryRunner.startTransaction();
+        try {
+            await queryRunner.manager.update(UserStudy, userStudyIdx, {
+                status: UserStudyStatus.rejected
+            })
+            await queryRunner.commitTransaction();
+            return new BaseSuccessResponse();
+        } catch(error) {
+            console.log(error);
+            await queryRunner.rollbackTransaction();
+            return new BaseFailResponse('스터디 참여 거부에 실패했습니다.');
+        } finally {
+            await queryRunner.release();
+        }
     }
 }

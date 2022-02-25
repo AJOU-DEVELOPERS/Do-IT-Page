@@ -34,10 +34,9 @@ export class Study extends BaseEntity {
         default: "collecting"
     })
     status: studyStatus;
-    @ApiProperty()
     @OneToMany((_type) => UserStudy, (_type) => _type.study)
     userStudies: UserStudy[];
-
+    @ApiProperty()
     @DeleteDateColumn()
     deletedAt?: Date; 
 }

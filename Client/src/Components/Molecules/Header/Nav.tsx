@@ -1,12 +1,17 @@
+import { StyledNav } from "@Atoms/StyledLink";
 import { HEADER_NAV_LIST, _BOARD_INFOS } from "@Constant/.";
 import { NavContainer, NavItem } from "./style";
-import { Link } from "react-router-dom";
 
 const HeaderNav = () => {
   return (
     <NavContainer>
       {HEADER_NAV_LIST.map((boardName: string) => (
-        <Link to={_BOARD_INFOS[boardName].pageSrc}>{boardName}</Link>
+        <StyledNav
+          to={_BOARD_INFOS[boardName].pageSrc}
+          key={`${boardName} navigation`}
+        >
+          {boardName}
+        </StyledNav>
       ))}
     </NavContainer>
   );

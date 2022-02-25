@@ -1,4 +1,4 @@
-import { MAIN_PREVIEW_IMAGE } from "@Constant/.";
+import { MAIN_PREVIEW_IMAGE } from "@Constant/img";
 import { AlignCenterAround, DefaultBoxShadow, HoverPointer } from "@Style/.";
 import styled from "styled-components";
 
@@ -29,6 +29,7 @@ export const ContentContainer = styled.div<ContentProps>`
   width: 90%;
   height: 85%;
   margin: auto;
+  justify-content: center;
 `;
 
 export const BoardPreviewContainer = styled.div`

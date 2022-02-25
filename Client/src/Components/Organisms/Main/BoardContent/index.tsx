@@ -14,12 +14,19 @@ import { useHistory } from "react-router-dom";
 
 const BoardContent = ({ boardName }: { boardName: string }) => {
   const _boardName = boardName.replaceAll(" ", "");
-  const { apiSrc, previewSize, previewType, alignPreview = "column" } = _BOARD_INFOS[boardName];
 
-  const boardContents =
-    hasBoardContent(apiSrc, boardName) && useRecoilValue<ContentType[]>(BoardContentSelector(apiSrc));
+  const {
+    pageSrc,
+    apiSrc,
+    previewSize,
+    previewType,
+    alignPreview = "column;",
+  } = _BOARD_INFOS[boardName];
 
   const history = useHistory();
+  const boardContents =
+    hasBoardContent(apiSrc, boardName) &&
+    useRecoilValue<ContentType[]>(BoardContentSelector(apiSrc));
 
   // 재사용으로 빼고싶음 // Molecules/Boardpage/List/index.tsx
   const handleDetailMove = (e: any) => {
