@@ -41,12 +41,12 @@ const RegisterInput = () => {
     setCheckId(true);
   };
   const handleClickMail = async () => {
-    const { data, cacheKey } = await clickMail({ emailRef });
-    if (!data) return;
+    const cacheKey = await clickMail({ emailRef });
     setMailKey(cacheKey);
   };
-  const handleCheckMail = () => {
-    const data = checkMail({ emailCheckRef, cacheKey: mailKey });
+  const handleCheckMail = async () => {
+    const data = await checkMail({ emailCheckRef, cacheKey: mailKey });
+    console.log(data);
     if (!data) return;
     setMailCheck(true);
   };

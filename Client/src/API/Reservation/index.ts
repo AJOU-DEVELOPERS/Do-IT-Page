@@ -15,7 +15,8 @@ export const postReservationRoom = async (
 
 export const getReservationRoom = async (url: string) => {
   const { data } = await axios.get(
-    GET_RESERVATION_URL + url + ".json",
+    GET_RESERVATION_URL + url,
+    // GET_RESERVATION_URL + url + ".json",
     API_GET_OPTION
   );
   return data;

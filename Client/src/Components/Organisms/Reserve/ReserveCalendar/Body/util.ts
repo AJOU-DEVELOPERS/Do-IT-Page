@@ -50,15 +50,16 @@ export const checkReserve = (
   reserveDate: reservationDatasProps[]
 ): boolean => {
   return (
-    reserveDate.map((item: reservationDatasProps) => item.date).indexOf(date) >=
-    0
+    reserveDate
+      ?.map((item: reservationDatasProps) => item.date)
+      .indexOf(date) >= 0
   );
 };
 
 export const getReserveDatas = (
   data: postReservationRoomBodyProps[]
 ): reservationDatasProps[] => {
-  return data.reduce((acc, cur): any => {
+  return data?.reduce((acc, cur): any => {
     const {
       reservationStartDate,
       reservationStartHour,
