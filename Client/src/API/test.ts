@@ -17,5 +17,6 @@ export const getNoticeContents = async () => {
 
 export const getBoardContents = async (apiSrc: string) => {
   const { data } = await axios.get(apiSrc, API_GET_OPTION);
+  console.log(data);
   return data;
 };
