@@ -68,11 +68,11 @@ export const MAIN_BOARD_PREVIEW_LIST = [
   "사진첩"
 ];
 
-export const STUDY_STATUS = {
-  collecting: "모집 중",
-  processing: "진행 중",
-  done: "마감",
-};
+export enum STUDY_STATUS {
+  collecting = "모집 중",
+  processing = "진행 중",
+  done = "마감",
+}
 
 export const BOARD_INFOS: BoardType[] = [
   {

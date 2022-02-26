@@ -4,9 +4,25 @@ import styled, { css } from "styled-components";
 interface TitleProps {
   type: string | undefined;
 }
+const ModalContainer = styled.div`
+  width: 320px;
+  height: 300px;
+  align-items: center;
+  display: flex;
+  padding: 2vw;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+  box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.2);
+  h2 {
+    padding: 1rem;
+    font-size: large;
+  }
+`;
 
 const Container = styled.div`
-  background-color: hsla(0, 0%, 96.07843137254902%, 0.7);
   padding: 4vw;
 `;
 
@@ -33,6 +49,10 @@ const Text = styled.div<TitleProps>`
   ${({ type }) => type === "Todo" && TodoTextStyle};
 `;
 
+const Wrapper = styled.div`
+  width: 100%;
+`;
+
 const InfoStyle = css`
   margin-bottom: 40px;
 `;
@@ -43,4 +63,4 @@ const TodoTitleStyle = css`
 const TodoTextStyle = css`
   font-size: 16px;
 `;
-export { Title, Text, Container };
+export { Title, Text, Container, ModalContainer, Wrapper };
