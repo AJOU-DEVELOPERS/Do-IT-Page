@@ -1,6 +1,9 @@
 import { API } from "@API/.";
 import { postCreateStudy } from "@API/Study";
+import Button from "@Atoms/Button";
+import { SmallButtonType } from "@Style/.";
 import { useRef } from "react";
+import { Label } from "./styles";
 
 const CreateStudy = () => {
   const inputRef = useRef<HTMLInputElement[]>([]);
@@ -28,7 +31,7 @@ const CreateStudy = () => {
   return (
     <>
       {CREATE_STUDY_ARR.map((item: any) => (
-        <div key={item.key}>
+        <Label key={item.key}>
           <div>{item.title}</div>
           <input
             placeholder={item.text}
@@ -37,9 +40,14 @@ const CreateStudy = () => {
                 el as HTMLInputElement)
             }
           />
-        </div>
+        </Label>
       ))}
-      <button onClick={handleCreateStudy}>생성하기</button>
+      <Button
+        {...SmallButtonType}
+        color="#000000"
+        onClick={handleCreateStudy}
+        title="생성하기"
+      />
     </>
   );
 };

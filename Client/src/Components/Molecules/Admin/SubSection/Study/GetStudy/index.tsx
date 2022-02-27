@@ -1,8 +1,10 @@
-import { API } from "@API/.";
-import { getStudyData, getStudyAccept, getStudyDeny } from "@API/Study";
 import { getStudyAllSelector } from "@Recoil/Admin";
 import { Suspense, useState } from "react";
 import { useRecoilValue } from "recoil";
+import StudyFilterBar from "./FilterBar";
+import StudyList from "./List";
+import Study from "./Study";
+import { StudySearch } from "./util";
 
 const GetStudy = () => {
   const totalStudyList = useRecoilValue(getStudyAllSelector);
@@ -14,102 +16,15 @@ const GetStudy = () => {
   }: {
     target: { value: string };
   }) => {
-    // setStudyList(
-    //   studyList.filter(
-    //     (item: { status: string }) => item.status === STUDY_STATE[value]
-    //   )
-    // );
-  };
-
-  const handleStudyClick = async ({
-    currentTarget,
-  }: {
-    currentTarget: any;
-  }) => {
-    const idx = currentTarget.getAttribute("data-idx");
-    const res = await API({ api: getStudyData, data: idx });
-    setStudy(res[0]);
-    console.log(res[0]);
-  };
-
-  const handleAcceptClick = async ({ target }: { target: any }) => {
-    const container = target.closest("#userContainer");
-    const idx = container.getAttribute("data-idx");
-    const res = await API({ api: getStudyAccept, data: idx });
-    console.log(res);
-  };
-
-  const handleDenyClick = async ({ target }: { target: any }) => {
-    const container = target.closest("#userContainer");
-    const idx = container.getAttribute("data-idx");
-    const res = await API({ api: getStudyDeny, data: idx });
-    console.log(res);
+    StudySearch({ value, studyList, setStudyList });
   };
 
   return (
     <Suspense fallback={null}>
-      <select onChange={handleStudySearch}>
-        <option>모집중</option>
-        <option>진행중</option>
-        <option>종료</option>
-      </select>
+      <StudyFilterBar handleStudySearch={handleStudySearch} />
+      <StudyList studyList={studyList} setStudy={setStudy} />
 
-      <table>
-        <thead>
-          <tr>
-            <th>스터디 명</th>
-            <th>설명</th>
-            <th>상태</th>
-            <th>스터디 장</th>
-          </tr>
-        </thead>
-        <tbody>
-          {studyList.map((item: any) => (
-            <tr
-              key={item.studyIdx}
-              onClick={handleStudyClick}
-              data-idx={item.studyIdx}
-            >
-              <th>{item.name}</th>
-              <th>{item.description}</th>
-              <th>{item.status}</th>
-              <th>{item.leaderName}</th>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-
-      {study && (
-        <table>
-          <thead>
-            <tr>
-              <th>스터디명</th>
-              <th>학과</th>
-              <th>이름</th>
-              <th>상태</th>
-              <th>승인</th>
-              <th>거절</th>
-            </tr>
-          </thead>
-          <tbody>
-            {study?.userStudies &&
-              study?.userStudies?.map((item: any) => (
-                <tr
-                  key={item.studyIdx}
-                  id="userContainer"
-                  data-idx={item.studyIdx}
-                >
-                  <th>{study?.name}</th>
-                  <th>{item?.college}</th>
-                  <th>{item?.name}</th>
-                  <th>{item.status}</th>
-                  <th onClick={handleAcceptClick}>승인</th>
-                  <th onClick={handleDenyClick}>거절</th>
-                </tr>
-              ))}
-          </tbody>
-        </table>
-      )}
+      {study && <Study study={study} />}
     </Suspense>
   );
 };

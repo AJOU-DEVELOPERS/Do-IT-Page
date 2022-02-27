@@ -35,11 +35,11 @@ const ReserveBox = ({
       return;
 
     const body = makeReservationRoomType({
-      reservationStartDate: "22" + startDateRef.current.value,
-      reservationStartHour: "22" + endDateRef.current.value,
+      reservationStartDate: "20" + startDateRef.current.value,
+      reservationStartHour: "20" + endDateRef.current.value,
       reservationEndDate: startTimeRef.current.value + ":00",
       reservationEndHour: endTimeRef.current.value + ":00",
-      reservationName: userNameRef.current.value,
+      userName: userNameRef.current.value,
     });
 
     const res = await API({ api: postReservationRoom, data: body });
