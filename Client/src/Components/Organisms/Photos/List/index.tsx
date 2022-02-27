@@ -1,5 +1,5 @@
 import { _BOARD_INFOS } from "@Constant/.";
-import BoardPreview from "@Molecules/BoardPreview";
+import BoardPreview from "@Molecules/Board/BoardPreview";
 import { BoardContentPagenationSelector } from "@Recoil/BoardContent";
 import { ContentType } from "@Type/.";
 import { hasBoardContent } from "@Util/.";

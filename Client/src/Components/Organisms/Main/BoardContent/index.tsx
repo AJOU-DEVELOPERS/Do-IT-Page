@@ -4,11 +4,11 @@ import {
   BoardPreviewContainer,
   ContentContainer,
 } from "./style";
-import ContentTitle from "@Molecules/ContentTitle";
+import ContentTitle from "@Molecules/Content/ContentTitle";
 import { BoardContentSelector } from "@Recoil/BoardContent";
 import { _BOARD_INFOS } from "@Constant/.";
 import { hasBoardContent } from "@Util/.";
-import BoardPreview from "@Molecules/BoardPreview";
+import BoardPreview from "@Molecules/Board/BoardPreview";
 import { ContentType } from "@Type/.";
 import { useHistory } from "react-router-dom";
 

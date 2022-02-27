@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import { History } from "history";
 
 import DoItCarousel from "@Organisms/Before/DoItCarousel";
-import Header from "@Organisms/Header";
+import Header from "@Organisms/Common/Header";
 import Content from "@Organisms/Before/Content";
 import DoItTodo from "@Organisms/Before/DoItTodo";
 import DoItInfo from "@Organisms/Before/DoItInfo";

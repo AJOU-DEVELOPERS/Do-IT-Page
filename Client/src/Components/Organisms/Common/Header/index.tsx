@@ -5,8 +5,8 @@ import { SmallLoginButtonType } from "@Style/.";
 
 import Button from "@Atoms/Button";
 import { Container } from "./styles";
-import HeaderLeftSide from "@Molecules/Header";
-import HeaderNav from "@Molecules//Header/Nav";
+import HeaderLeftSide from "@Molecules/Common/Header";
+import HeaderNav from "@Molecules/Common/Header/Nav";
 
 const Header = ({ onClick }: { onClick?: () => void }) => {
   // const user = false;

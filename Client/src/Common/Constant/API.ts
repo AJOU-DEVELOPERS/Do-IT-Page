@@ -48,6 +48,15 @@ export const GET_STUDY_ACCEPT = `${TARGET_URL}/studies/accept`;
 
 export const GET_STUDY_DENY = `${TARGET_URL}/studies/reject`;
 
+/**--------------------- Project ------------------------ */
+export const POST_CREATE_PROJECT = `${TARGET_URL}/projects`;
+
+export const GET_PROJECT_DATA = `${TARGET_URL}/projects`;
+
+export const GET_PROJECT_ACCEPT = `${TARGET_URL}/projects/accept`;
+
+export const GET_PROJECT_DENY = `${TARGET_URL}/projects/reject`;
+
 /**--------------------- Common ------------------------ */
 export const API_GET_OPTION = {
   withCredentials: true,

@@ -1,4 +1,4 @@
-import Header from "@Organisms/Header";
+import Header from "@Organisms/Common/Header";
 import ReserveBody from "@Organisms/Reserve/Body";
 import { handleHeaderClick } from "@Util/.";
 import { withRouter } from "react-router-dom";

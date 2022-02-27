@@ -1,6 +1,6 @@
 import Button from "@Atoms/Button";
 import { _BOARD_INFOS } from "@Constant/.";
-import BoardPageDetail from "@Molecules/BoardPage/Detail";
+import BoardPageDetail from "@Molecules/Board/BoardPage/Detail";
 import { BoardContentOneBoardSelector } from "@Recoil/BoardContent";
 import { SmallButtonType } from "@Style/.";
 import { BoardContentType } from "@Type/.";
