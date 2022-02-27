@@ -1,6 +1,6 @@
 import { ContentImg } from "@Atoms/ContentImg/styles";
 import ContentText from "@Atoms/ContentText/.";
-import ContentTitle from "@Molecules/ContentTitle";
+import ContentTitle from "@Molecules/Content/ContentTitle";
 import { BoardContentType } from "@Type/.";
 import { Container } from "./style";
 

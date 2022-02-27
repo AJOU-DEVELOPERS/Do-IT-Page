@@ -65,7 +65,7 @@ export const getReserveDatas = (
       reservationStartHour,
       reservationEndDate,
       reservationEndHour,
-      reservationName,
+      userName,
     } = cur;
 
     const startDate = reservationStartDate.split("-");
@@ -80,7 +80,7 @@ export const getReserveDatas = (
             "-"
           ),
           hour: `${reservationStartHour} - ${reservationEndHour}`,
-          host: reservationName,
+          host: userName,
         };
       }),
     ];

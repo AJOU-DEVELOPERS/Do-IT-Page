@@ -1,18 +1,14 @@
 import { API } from "@API/.";
-import { postCreateStudy } from "@API/Study";
-import Button from "@Atoms/Button";
-import { SmallButtonType } from "@Style/.";
+import { postCreateProject } from "@API/Project";
 import { useRef } from "react";
-import { Label } from "./styles";
 
-const CreateStudy = () => {
+const CreateProject = () => {
   const inputRef = useRef<HTMLInputElement[]>([]);
-
   const handleCreateStudy = async () => {
     if (!inputRef?.current) return;
 
     const data = {
-      ...CREATE_STUDY_ARR.reduce((acc, cur) => {
+      ...CREATE_PROJECT_ARR.reduce((acc, cur) => {
         const tempValue = inputRef.current[cur.key].value;
         const value =
           cur.value === "totalHeadcount" ? Number(tempValue) : tempValue;
@@ -24,14 +20,14 @@ const CreateStudy = () => {
       leaderUserIdx: 1,
       leaderName: "김영진",
     };
-    const res = await API({ api: postCreateStudy, data });
+    const res = await API({ api: postCreateProject, data });
     res !== "true" ? alert("에러") : alert("성공");
     return;
   };
   return (
     <>
-      {CREATE_STUDY_ARR.map((item: any) => (
-        <Label key={item.key}>
+      {CREATE_PROJECT_ARR.map((item: any) => (
+        <div key={item.key}>
           <div>{item.title}</div>
           <input
             placeholder={item.text}
@@ -40,29 +36,25 @@ const CreateStudy = () => {
                 el as HTMLInputElement)
             }
           />
-        </Label>
+        </div>
       ))}
-      <Button
-        {...SmallButtonType}
-        color="#000000"
-        onClick={handleCreateStudy}
-        title="생성하기"
-      />
+      <button onClick={handleCreateStudy}>생성하기</button>
     </>
   );
 };
-export default CreateStudy;
 
-export const CREATE_STUDY_ARR = [
+export default CreateProject;
+
+export const CREATE_PROJECT_ARR = [
   {
-    title: "스터디 명",
-    text: "스터디 명을 입력하세요",
+    title: "프로젝트 명",
+    text: "프로젝트 명을 입력하세요",
     key: 0,
     value: "name",
   },
   {
-    title: "스터디 설명",
-    text: "스터디 설명을 입력하세요",
+    title: "프로젝트 설명",
+    text: "프로젝트 설명을 입력하세요",
     key: 1,
     value: "description",
   },

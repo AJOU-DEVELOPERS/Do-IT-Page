@@ -1,4 +1,4 @@
-import ImageBoardPreview from "@Molecules/BoardPreview/Image";
+import ImageBoardPreview from "@Molecules/Board/BoardPreview/Image";
 import { BoardContentOneBoardSelector } from "@Recoil/BoardContent";
 import React, { useRef } from "react";
 import { useParams, useHistory } from "react-router-dom";

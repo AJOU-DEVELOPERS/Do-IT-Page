@@ -1,6 +1,6 @@
 import { CAROUSEL_TIME } from "@Constant/.";
 import { CAROUSEL_URL } from "@Constant/img";
-import Carousel from "@Molecules/Carousel";
+import Carousel from "@Molecules/Common/Carousel";
 import { Container, FirstContainer, MainTitle } from "./styles";
 
 const DoItCarousel = () => {

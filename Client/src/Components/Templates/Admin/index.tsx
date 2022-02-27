@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 
 import Logo from "@Atoms/Logo";
-import SideBar from "@Molecules/Admin/SideBar";
+import SideBar from "@Organisms/Admin/SideBar";
 import Section from "@Organisms/Admin/Section";
 import Header from "@Organisms/Admin/Header";
 
