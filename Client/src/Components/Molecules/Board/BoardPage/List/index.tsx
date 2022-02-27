@@ -8,7 +8,7 @@ import { ContentType } from "@Type/.";
 import { hasBoardContent } from "@Util/.";
 import { Suspense, useState } from "react";
 import { useRecoilValue } from "recoil";
-import BoardPreview from "@Molecules/BoardPreview";
+import BoardPreview from "@Molecules/Board/BoardPreview";
 import { BoardContainer } from "./styles";
 import Footer from "../Footer";
 import { useHistory } from "react-router-dom";

@@ -1,54 +1,53 @@
 import { API } from "@API/.";
-import { getStudyData, getStudyAccept, getStudyDeny } from "@API/Study";
+import { getProjectAccept, getProjectData, getProjectDeny } from "@API/Project";
 import { getStudyAllSelector } from "@Recoil/Admin";
 import { Suspense, useState } from "react";
 import { useRecoilValue } from "recoil";
 
-const GetStudy = () => {
-  const totalStudyList = useRecoilValue(getStudyAllSelector);
-  const [studyList, setStudyList] = useState(totalStudyList);
-  const [study, setStudy] = useState<any>();
+const GetProject = () => {
+  const totalProjectList = useRecoilValue(getStudyAllSelector);
+  const [projectList, setProjectList] = useState(totalProjectList);
+  const [project, setProject] = useState<any>();
 
-  const handleStudySearch = ({
+  const handleProjectSearch = ({
     target: { value },
   }: {
     target: { value: string };
   }) => {
-    // setStudyList(
-    //   studyList.filter(
-    //     (item: { status: string }) => item.status === STUDY_STATE[value]
+    // setProjectList(
+    //   totalProjectList.filter(
+    //     (item: { status: string }) => item.status === PROJECT_STATE[value]
     //   )
     // );
   };
 
-  const handleStudyClick = async ({
+  const handleProjectClick = async ({
     currentTarget,
   }: {
     currentTarget: any;
   }) => {
     const idx = currentTarget.getAttribute("data-idx");
-    const res = await API({ api: getStudyData, data: idx });
-    setStudy(res[0]);
-    console.log(res[0]);
+    const res = await API({ api: getProjectData, data: idx });
+    setProject(res[0]);
   };
 
   const handleAcceptClick = async ({ target }: { target: any }) => {
     const container = target.closest("#userContainer");
     const idx = container.getAttribute("data-idx");
-    const res = await API({ api: getStudyAccept, data: idx });
+    const res = await API({ api: getProjectAccept, data: idx });
     console.log(res);
   };
 
   const handleDenyClick = async ({ target }: { target: any }) => {
     const container = target.closest("#userContainer");
     const idx = container.getAttribute("data-idx");
-    const res = await API({ api: getStudyDeny, data: idx });
+    const res = await API({ api: getProjectDeny, data: idx });
     console.log(res);
   };
 
   return (
     <Suspense fallback={null}>
-      <select onChange={handleStudySearch}>
+      <select onChange={handleProjectSearch}>
         <option>모집중</option>
         <option>진행중</option>
         <option>종료</option>
@@ -64,10 +63,10 @@ const GetStudy = () => {
           </tr>
         </thead>
         <tbody>
-          {studyList.map((item: any) => (
+          {projectList.map((item: any) => (
             <tr
               key={item.studyIdx}
-              onClick={handleStudyClick}
+              onClick={handleProjectClick}
               data-idx={item.studyIdx}
             >
               <th>{item.name}</th>
@@ -79,7 +78,7 @@ const GetStudy = () => {
         </tbody>
       </table>
 
-      {study && (
+      {project && (
         <table>
           <thead>
             <tr>
@@ -92,14 +91,14 @@ const GetStudy = () => {
             </tr>
           </thead>
           <tbody>
-            {study?.userStudies &&
-              study?.userStudies?.map((item: any) => (
+            {project?.userProjects &&
+              project.userProjects?.map((item: any) => (
                 <tr
-                  key={item.studyIdx}
+                  key={item.projectIdx}
                   id="userContainer"
-                  data-idx={item.studyIdx}
+                  data-idx={item.projectIdx}
                 >
-                  <th>{study?.name}</th>
+                  <th>{project?.name}</th>
                   <th>{item?.college}</th>
                   <th>{item?.name}</th>
                   <th>{item.status}</th>
@@ -114,9 +113,9 @@ const GetStudy = () => {
   );
 };
 
-export default GetStudy;
+export default GetProject;
 
-const STUDY_STATE = {
+const PROJECT_STATE = {
   진행중: "collecting",
   모집중: "",
   종료: "",

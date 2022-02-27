@@ -1,4 +1,4 @@
-import Header from "@Organisms/Header";
+import Header from "@Organisms/Common/Header";
 import { withRouter } from "react-router-dom";
 import { History } from "history";
 import BoardBody from "@Organisms/BoardBody";
