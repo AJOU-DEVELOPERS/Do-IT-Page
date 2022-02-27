@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { ApiBody, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { BaseSuccessResponse } from 'src/commons/dto/response-common.dto';
+import { BaseSuccessResponse, ResultSuccessResponse } from 'src/commons/dto/response-common.dto';
 import { CreateReservationDto } from './dto/create-reservation.dto';
 import { DeleteReservationDto } from './dto/delete-reservation.dto';
 import { UpdateReservationDto } from './dto/update-reservation.dto';
@@ -18,8 +18,8 @@ export class ReservationController {
         description: 'JSON 객체 반환'
     })
     @ApiBody({ type: CreateReservationDto })
-    @ApiOkResponse({ description: '과방 신청 성공', type: Reservation })
-    create(@Body() createReservationDto: CreateReservationDto):Promise<Reservation> {
+    @ApiOkResponse({ description: '과방 신청 성공', type: BaseSuccessResponse })
+    create(@Body() createReservationDto: CreateReservationDto) {
         return this.reservationService.createReservation(createReservationDto);
     }
 
@@ -28,9 +28,10 @@ export class ReservationController {
         summary: '전체 과방 신청 정보 불러오기 API',
         description: '전체 정보 혹은 빈 배열 반환'
     })
-    @ApiOkResponse({ description: '전체 스터디 불러오기 성공', type: Reservation })
-    findAll() :Promise<Reservation[]>{
-        return this.reservationService.findAll();
+    @ApiOkResponse({ description: '전체 스터디 불러오기 성공', type: ResultSuccessResponse })
+    async findAll(){
+        const reservations = await this.reservationService.findAll()
+        return new ResultSuccessResponse(reservations);
     }
 
     @Get(':idx')
@@ -38,9 +39,10 @@ export class ReservationController {
         summary: '특정 과방 신청 정보 불러오기 API',
         description: '성공 시 과방 신청 정보 반환'
     })
-    @ApiOkResponse({ description: '특정 과방 신청 정보 불러오기 성공', type: Reservation })
-    findOne(@Param('idx') reservationIdx: number):Promise<Reservation>{
-        return this.reservationService.findOne(reservationIdx);
+    @ApiOkResponse({ description: '특정 과방 신청 정보 불러오기 성공', type: ResultSuccessResponse })
+    async findOne(@Param('idx') reservationIdx: number){
+        const reservation = await this.reservationService.findOne(reservationIdx);
+        return new ResultSuccessResponse(reservation);
     }
 
     @Get(':year/:month')
@@ -48,11 +50,12 @@ export class ReservationController {
         summary: '특정 과방 신청 정보 불러오기 API',
         description: '성공 시 과방 신청 정보 반환'
     })
-    @ApiOkResponse({ description: '특정 과방 신청 정보 불러오기 성공', type: Reservation })
-    findMonth(
+    @ApiOkResponse({ description: '특정 과방 신청 정보 불러오기 성공', type: ResultSuccessResponse })
+    async findMonth(
         @Param('year') year: string,
-        @Param('month') month: string):Promise<Reservation[]>{
-        return this.reservationService.findMonth(year, month);
+        @Param('month') month: string){
+        const reservations = await this.reservationService.findMonth(year, month);
+        return new ResultSuccessResponse(reservations);
     }
 
     @Patch(':idx')
@@ -61,8 +64,8 @@ export class ReservationController {
         description: '성공 시 과방 신청 정보 반환'
     })
     @ApiBody({ type: UpdateReservationDto })
-    @ApiOkResponse({ description: '과방 신청 정보 수정 성공', type: Reservation })
-    update(@Param('idx') reservationIdx: number, @Body() updateReservationDto: UpdateReservationDto):Promise<Reservation> {
+    @ApiOkResponse({ description: '과방 신청 정보 수정 성공', type: BaseSuccessResponse })
+    update(@Param('idx') reservationIdx: number, @Body() updateReservationDto: UpdateReservationDto) {
         return this.reservationService.updateReservation(reservationIdx, updateReservationDto);
     }
 

@@ -8,6 +8,7 @@ export class CreateReservationDto {
         example: '2022-2-22'
     })
     reservationStartDate: string;
+    @IsString()
     @ApiProperty({
         description: '예약 시작 시간',
         example: '18:00:00'
@@ -19,6 +20,7 @@ export class CreateReservationDto {
         example: '2022-2-24'
     })
     reservationEndDate: string;
+    @IsString()
     @ApiProperty({
         description: '예약 종료 시간',
         example: '18:00:00'
