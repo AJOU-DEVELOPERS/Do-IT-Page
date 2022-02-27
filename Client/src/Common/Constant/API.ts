@@ -22,7 +22,7 @@ export const GET_NOTICE_POST_URL = "/dummyData/NoticeBoardContent.json";
 
 export const GET_BOARD_POST_URL = "/dummyData/FreeBoardContent.json";
 
-export const POST_RESERVATION_URL = "/dummyData/reservation.json";
+export const POST_RESERVATION_URL = `${TARGET_URL}/reservation`;
 
 export const GET_RESERVATION_URL = `${TARGET_URL}/reservation`;
 // export const GET_RESERVATION_URL = "/dummyData/reservation";
