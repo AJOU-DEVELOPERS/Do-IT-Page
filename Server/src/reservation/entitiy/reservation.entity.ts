@@ -2,6 +2,12 @@ import { ApiProperty } from "@nestjs/swagger";
 import { User } from "src/users/entities/user.entity";
 import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
+export enum reservationStatus {
+    processing = "processing",
+    accepted = "accepted",
+    rejected = "rejected",    
+};
+
 @Entity('Reservation')
 export class Reservation extends BaseEntity{
     @ApiProperty()
@@ -33,8 +39,12 @@ export class Reservation extends BaseEntity{
     userName: string;
 
     @ApiProperty()
-    @Column()
-    status: string;
+    @Column({
+        type: "enum",
+        enum: reservationStatus,
+        default: "processing"
+    })
+    status: reservationStatus;
 
     @ApiProperty()
     @UpdateDateColumn()
