@@ -1,12 +1,13 @@
 import Button from "@Atoms/Button";
 import { SmallButtonType } from "@Style/.";
 import { useState } from "react";
-import CreateStudy from "./CreateStudy";
-import GetStudy from "./GetStudy";
 import { ButtonContainer, StudyContainerStyle } from "./styles";
+import { getComponent, getCreateComponent } from "./util";
 
-const StudyContainer = () => {
+const StudyContainer = ({ type }: { type: string }) => {
   const [create, setCreate] = useState(false);
+  const CreateComponent = getCreateComponent({ type });
+  const GetComponent = getComponent({ type });
 
   const handleToggleStudy = () => {
     setCreate(!create);
@@ -19,11 +20,11 @@ const StudyContainer = () => {
           {...SmallButtonType}
           color="#000000"
           onClick={handleToggleStudy}
-          title={create ? "돌아가기" : "스터디 생성"}
+          title={create ? "돌아가기" : `${type} 생성`}
         />
       </ButtonContainer>
-      {create && <CreateStudy />}
-      {!create && <GetStudy />}
+      {create && <CreateComponent />}
+      {!create && <GetComponent />}
     </StudyContainerStyle>
   );
 };

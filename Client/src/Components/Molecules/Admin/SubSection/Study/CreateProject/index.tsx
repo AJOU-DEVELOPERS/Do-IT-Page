@@ -1,9 +1,13 @@
 import { API } from "@API/.";
 import { postCreateProject } from "@API/Project";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import TechStack from "./TechStack";
 
 const CreateProject = () => {
   const inputRef = useRef<HTMLInputElement[]>([]);
+  const stackRef = useRef<HTMLInputElement>(null);
+  const [stack, setStack] = useState();
+
   const handleCreateStudy = async () => {
     if (!inputRef?.current) return;
 
@@ -19,6 +23,7 @@ const CreateProject = () => {
       }, {}),
       leaderUserIdx: 1,
       leaderName: "김영진",
+      techStacks: stack,
     };
     const res = await API({ api: postCreateProject, data });
     res !== "true" ? alert("에러") : alert("성공");
@@ -38,6 +43,7 @@ const CreateProject = () => {
           />
         </div>
       ))}
+      <TechStack stackRef={stackRef} stack={stack} setStack={setStack} />
       <button onClick={handleCreateStudy}>생성하기</button>
     </>
   );

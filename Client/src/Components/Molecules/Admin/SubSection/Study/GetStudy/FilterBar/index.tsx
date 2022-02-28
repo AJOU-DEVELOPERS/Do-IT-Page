@@ -4,8 +4,8 @@ const StudyFilterBar = ({ handleStudySearch }: { handleStudySearch: any }) => {
   return (
     <StudyFilterBarContainer>
       <Select onChange={handleStudySearch}>
-        {STUDY_TYPE.map((item) => (
-          <option>{item}</option>
+        {STUDY_TYPE.map((item, idx) => (
+          <option key={idx}>{item}</option>
         ))}
       </Select>
     </StudyFilterBarContainer>

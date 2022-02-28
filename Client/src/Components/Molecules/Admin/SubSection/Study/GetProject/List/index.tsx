@@ -1,51 +1,48 @@
 import { API } from "@API/.";
-import { getStudyData } from "@API/Study";
+import { getProjectData } from "@API/Project";
 import {
   Table,
+  TableBody,
   TableHead,
   TableRow,
   TableTitle,
-  TableBody,
-  TableData,
 } from "@Atoms/Table/styles";
 import { Dispatch } from "react";
 
-const StudyList = ({
-  studyList,
-  setStudy,
+const ProjectList = ({
+  projectList,
+  setProject,
 }: {
-  studyList: any;
-  setStudy: Dispatch<any>;
+  projectList: any;
+  setProject: Dispatch<any>;
 }) => {
-  const handleStudyClick = async ({
+  const handleProjectClick = async ({
     currentTarget,
   }: {
     currentTarget: any;
   }) => {
     const idx = currentTarget.getAttribute("data-idx");
-    const res = await API({ api: getStudyData, data: idx });
-    setStudy(res[0]);
-    console.log(res[0]);
+    const res = await API({ api: getProjectData, data: idx });
+    setProject(res[0]);
   };
-
   return (
     <Table>
       <TableHead>
         <TableRow>
-          {STUDY_TITLE.map((item) => (
+          {PROJECT_TITLE.map((item) => (
             <TableTitle key={item.key}>{item.title}</TableTitle>
           ))}
         </TableRow>
       </TableHead>
       <TableBody>
-        {studyList.map((item: any) => (
+        {projectList.map((item: any) => (
           <TableRow
             key={item.studyIdx}
-            onClick={handleStudyClick}
+            onClick={handleProjectClick}
             data-idx={item.studyIdx}
           >
-            {STUDY_TITLE.map((title) => (
-              <TableData key={title.key}>{item[title.key]}</TableData>
+            {PROJECT_TITLE.map((title) => (
+              <TableTitle key={title.key}>{item[title.key]}</TableTitle>
             ))}
           </TableRow>
         ))}
@@ -54,9 +51,9 @@ const StudyList = ({
   );
 };
 
-export default StudyList;
+export default ProjectList;
 
-const STUDY_TITLE = [
+export const PROJECT_TITLE = [
   {
     key: "name",
     title: "스터디 명",

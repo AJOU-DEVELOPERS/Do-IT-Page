@@ -30,9 +30,3 @@ const GetStudy = () => {
 };
 
 export default GetStudy;
-
-const STUDY_STATE = {
-  진행중: "collecting",
-  모집중: "",
-  종료: "",
-};
