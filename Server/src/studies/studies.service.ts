@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BaseFailResponse, BaseSuccessResponse, ResultSuccessResponse } from 'src/commons/dto/response-common.dto';
 import { User, UserStudy, UserStudyStatus } from 'src/users/entities/user.entity';
-import { Connection, Repository } from 'typeorm';
+import { Connection, getRepository, Repository } from 'typeorm';
 import { CreateStudyDto } from './dto/create-study.dto';
 import { UpdateStudyDto } from './dto/update-study.dto';
 import { Study } from './entity/study.entity';
@@ -76,6 +76,22 @@ export class StudiesService {
     }
 
     async findOne(studyIdx: number) {
+        
+        // try {
+        //     const study = await Study.find( 
+        //         { 
+        //             where: {
+        //                 studyIdx: studyIdx
+        //             },
+        //             relations: [
+        //                 "userStudies"
+        //             ],   
+        //     });
+        //     return new ResultSuccessResponse(study);
+        // } catch(error) {
+        //     console.log(error);
+        //     return new BaseFailResponse('스터디 불러오기를 실패했습니다.');
+        // }
         try {
             const study = await Study.find( 
                 { 
@@ -83,8 +99,9 @@ export class StudiesService {
                         studyIdx: studyIdx
                     },
                     relations: [
-                        "userStudies"
-                    ]
+                        'userStudies',
+                        'userStudies.user'
+                    ] 
             });
             return new ResultSuccessResponse(study);
         } catch(error) {
