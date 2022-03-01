@@ -6,7 +6,7 @@ import { Connection, Like, Repository } from 'typeorm';
 import { CreateReservationDto } from './dto/create-reservation.dto';
 import { DeleteReservationDto } from './dto/delete-reservation.dto';
 import { UpdateReservationDto } from './dto/update-reservation.dto';
-import { Reservation, reservationStatus } from './entitiy/reservation.entity';
+import { Reservation } from './entitiy/reservation.entity';
 
 @Injectable()
 export class ReservationService {
@@ -72,7 +72,7 @@ export class ReservationService {
         await queryRunner.connect();
         try{
             const reservation = await this.findIdx(reservationIdx);
-            reservation.status = reservationStatus.accepted;
+            reservation.status = 'accepted';
             await queryRunner.manager.save(reservation);
             return new BaseSuccessResponse();
         }catch(error){
@@ -88,7 +88,7 @@ export class ReservationService {
         await queryRunner.connect();
         try{
             const reservation = await this.findIdx(reservationIdx);
-            reservation.status = reservationStatus.rejected;
+            reservation.status = 'rejected';
             await queryRunner.manager.save(reservation);
             return new BaseSuccessResponse();
         }catch(error){
@@ -104,7 +104,7 @@ export class ReservationService {
         await queryRunner.connect();
         try{
             const reservation = await this.findIdx(reservationIdx);
-            reservation.status = reservationStatus.processing;
+            reservation.status = 'processing';
             await queryRunner.manager.save(reservation);
             return new BaseSuccessResponse();
         }catch(error){
