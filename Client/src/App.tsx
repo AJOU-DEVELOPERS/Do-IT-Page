@@ -26,29 +26,31 @@ import PhotosPage from "@Pages/Phtos";
 
 const App = () => {
   return (
-    <Suspense fallback={<Spin />}>
-      <Switch>
-        <PublicRoute path="/" component={Page} exact />
-        <PublicRoute path="/before" component={BeforePage} exact />
-        <PublicRoute path="/login" component={LoginPage} exact />
-        <PublicRoute path="/register" component={RegisterPage} exact />
+    <div style={{ width: "100vw" }}>
+      <Suspense fallback={<Spin />}>
+        <Switch>
+          <PublicRoute path="/" component={Page} exact />
+          <PublicRoute path="/before" component={BeforePage} exact />
+          <PublicRoute path="/login" component={LoginPage} exact />
+          <PublicRoute path="/register" component={RegisterPage} exact />
 
-        <PrivateRoute path="/main" component={MainPage} exact />
-        <PrivateRoute path="/board" component={BoardPage} />
-        <PrivateRoute path="/notice" component={NoticePage} />
+          <PrivateRoute path="/main" component={MainPage} exact />
+          <PrivateRoute path="/board" component={BoardPage} />
+          <PrivateRoute path="/notice" component={NoticePage} />
 
-        <PrivateRoute path="/project" component={ProjectPage} exact />
-        <PrivateRoute path="/study" component={StudyPage} exact />
+          <PrivateRoute path="/project" component={ProjectPage} exact />
+          <PrivateRoute path="/study" component={StudyPage} exact />
 
-        <PrivateRoute path="/mypage" component={MyPage} exact />
-        <PrivateRoute path={ROOM_BOARD_URL} component={ReservePage} exact />
-        <PrivateRoute path="/rank" component={RankingPage} exact />
-        <PrivateRoute path="/photos" component={PhotosPage} />
+          <PrivateRoute path="/mypage" component={MyPage} exact />
+          <PrivateRoute path={ROOM_BOARD_URL} component={ReservePage} exact />
+          <PrivateRoute path="/rank" component={RankingPage} exact />
+          <PrivateRoute path="/photos" component={PhotosPage} />
 
-        <AdminRoute path="/admin" component={AdminPage} />
-        <Route path="*" component={ErrorPage} exact />
-      </Switch>
-    </Suspense>
+          <AdminRoute path="/admin" component={AdminPage} />
+          <Route path="*" component={ErrorPage} exact />
+        </Switch>
+      </Suspense>
+    </div>
   );
 };
 

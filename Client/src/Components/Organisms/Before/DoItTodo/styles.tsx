@@ -1,3 +1,4 @@
+import { TABLET_WIDTH } from "@Constant/.";
 import styled from "styled-components";
 
 const Box = styled.div`
@@ -6,6 +7,11 @@ const Box = styled.div`
   opacity: 0.7;
   width: 100%;
   height: 500px;
+
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    height: 100%;
+    padding: 30px 0;
+  }
 `;
 
 const Container = styled.div`
@@ -15,6 +21,10 @@ const Container = styled.div`
   align-items: center;
   width: 60%;
   height: 100%;
+
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    flex-direction: column;
+  }
 `;
 
 export { Box, Container };

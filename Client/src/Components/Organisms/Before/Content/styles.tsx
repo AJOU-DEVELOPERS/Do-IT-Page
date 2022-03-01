@@ -1,3 +1,4 @@
+import { TABLET_WIDTH } from "@Constant/.";
 import styled, { css } from "styled-components";
 
 interface Props {
@@ -24,6 +25,10 @@ const Container = styled.div<Props>`
   text-align: center;
   ${({ type }) => type === "true" && TrueStyle}
   ${({ type }) => type === "false" && FalseStyle}
+
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    padding: 40px 0;
+  }
 `;
 
 export { Container, Box };
