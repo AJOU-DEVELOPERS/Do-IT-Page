@@ -65,7 +65,8 @@ export class User extends BaseEntity {
   @UpdateDateColumn()
   updatedAt: string;
   @ApiProperty()
-
+  @Column()
+  status: string;
   // @OneToMany((_type) => UserTechStack, (_type) => _type.user)
   // userTechStacks: UserTechStack[];
   @OneToMany(

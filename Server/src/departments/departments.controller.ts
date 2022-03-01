@@ -21,7 +21,7 @@ import {
   BaseSuccessResponse,
   ResultSuccessResponse,
 } from 'src/commons/dto/response-common.dto';
-
+import { GetDepartmentResponseDto } from './dto/get-department.dto';
 @Controller('departments')
 @ApiTags('Department API')
 export class DepartmentsController {
@@ -36,7 +36,7 @@ export class DepartmentsController {
   @ApiOperation({ summary: '학과 목록 조회 API', description: '' })
   @ApiOkResponse({
     description: '학과별 인덱스, 이름',
-    type: ResultSuccessResponse,
+    type: GetDepartmentResponseDto,
   })
   findAll() {
     return this.departmentsService.findAll();

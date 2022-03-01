@@ -8,9 +8,8 @@ import {
   IsArray,
   isArray,
   IsNotEmpty,
-  isNotEmpty,
   Min,
-  Max
+  Max,
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { extend, object } from 'joi';

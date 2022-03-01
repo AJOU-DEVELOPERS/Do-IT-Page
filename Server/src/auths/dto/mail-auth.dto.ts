@@ -1,13 +1,7 @@
-import {
-  IsInt,
-  Length,
-  IsEmail,
-  MinLength,
-  MaxLength,
-  IsString,
-} from 'class-validator';
+import { Length, IsEmail, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-
+import { BaseSuccessResponse } from 'src/commons/dto/response-common.dto';
+import { string } from 'joi';
 export class SendMailDto {
   @IsEmail()
   @ApiProperty({
@@ -16,6 +10,7 @@ export class SendMailDto {
   })
   email: string;
 }
+
 export class VerifyMailDto {
   @IsString()
   @Length(6, 6)
@@ -24,11 +19,29 @@ export class VerifyMailDto {
     example: 'kgKD23',
   })
   cacheKey: string;
+  @IsString()
   @Length(6, 6)
-  @IsInt()
   @ApiProperty({
     description: '인증 번호 6자리',
     example: '295135',
   })
-  authNum: number;
+  authNum: string;
+}
+export class SendMailResponseDto extends BaseSuccessResponse {
+  @ApiProperty({
+    type: 'object',
+    properties: {
+      cacheKey: {
+        type: 'string',
+        description: '해시키 6자리',
+        example: 'SDK2M3',
+      },
+    },
+  })
+  res: {
+    cacheKey: string;
+  };
+  constructor() {
+    super();
+  }
 }
