@@ -15,6 +15,9 @@ const Title = styled.div`
   color: ${DefaultColor};
   text-shadow: 0px 3px 3px #00000029;
   ${HoverPointer};
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    margin-top: 0;
+  }
 `;
 
 const NavContainer = styled.div`
