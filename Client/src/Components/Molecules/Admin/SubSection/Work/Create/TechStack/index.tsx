@@ -6,19 +6,19 @@ const TechStack = ({
   setStack,
 }: {
   stackRef: React.MutableRefObject<HTMLInputElement | null>;
-  stack: any;
-  setStack: Dispatch<any>;
+  stack: string[];
+  setStack: Dispatch<string[]>;
 }) => {
   const handleAddStack = () => {
     if (!stackRef.current) {
       alert("기술 스택을 입력하세요");
       return;
     }
-    setStack(stackRef?.current?.value);
+    setStack([...stack, stackRef?.current?.value]);
   };
   return (
     <>
-      {stack.map((item: any) => (
+      {stack.map((item: string) => (
         <div>{item}</div>
       ))}
       <input ref={stackRef} placeholder="추가할 스택을 입력하세요" />

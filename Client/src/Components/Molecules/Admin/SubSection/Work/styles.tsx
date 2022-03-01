@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StudyContainerStyle = styled.div`
+export const WorkContainerStyle = styled.div`
   position: relative;
 `;
 

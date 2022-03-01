@@ -1,51 +1,48 @@
-import { API } from "@API/.";
-import { getStudyData } from "@API/Study";
 import {
   Table,
   TableHead,
   TableRow,
   TableTitle,
   TableBody,
-  TableData,
 } from "@Atoms/Table/styles";
 import { Dispatch } from "react";
+import { workClick } from "../../util";
 
-const StudyList = ({
-  studyList,
-  setStudy,
+const WorkList = ({
+  workList,
+  setWork,
+  type,
 }: {
-  studyList: any;
-  setStudy: Dispatch<any>;
+  workList: any;
+  setWork: Dispatch<any>;
+  type: string | undefined;
 }) => {
-  const handleStudyClick = async ({
-    currentTarget,
-  }: {
-    currentTarget: any;
-  }) => {
-    const idx = currentTarget.getAttribute("data-idx");
-    const res = await API({ api: getStudyData, data: idx });
-    setStudy(res[0]);
-    console.log(res[0]);
+  const handleWorkClick = async ({ currentTarget }: { currentTarget: any }) => {
+    const res = await workClick({ currentTarget, type });
+    if (!res) {
+      alert("에러");
+      return;
+    }
+    setWork(res[0]);
   };
-
   return (
     <Table>
       <TableHead>
         <TableRow>
-          {STUDY_TITLE.map((item) => (
+          {PROJECT_TITLE.map((item) => (
             <TableTitle key={item.key}>{item.title}</TableTitle>
           ))}
         </TableRow>
       </TableHead>
       <TableBody>
-        {studyList.map((item: any) => (
+        {workList.map((item: any) => (
           <TableRow
             key={item.studyIdx}
-            onClick={handleStudyClick}
+            onClick={handleWorkClick}
             data-idx={item.studyIdx}
           >
-            {STUDY_TITLE.map((title) => (
-              <TableData key={title.key}>{item[title.key]}</TableData>
+            {PROJECT_TITLE.map((title) => (
+              <TableTitle key={title.key}>{item[title.key]}</TableTitle>
             ))}
           </TableRow>
         ))}
@@ -54,9 +51,9 @@ const StudyList = ({
   );
 };
 
-export default StudyList;
+export default WorkList;
 
-const STUDY_TITLE = [
+export const PROJECT_TITLE = [
   {
     key: "name",
     title: "스터디 명",

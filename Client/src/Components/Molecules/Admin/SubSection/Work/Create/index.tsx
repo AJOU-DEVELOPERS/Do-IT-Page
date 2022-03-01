@@ -1,38 +1,25 @@
-import { API } from "@API/.";
-import { postCreateProject } from "@API/Project";
 import { useRef, useState } from "react";
+import Button from "@Atoms/Button";
+import { SmallButtonType } from "@Style/.";
+import { Label } from "./styles";
 import TechStack from "./TechStack";
+import { BasicType } from "../type";
+import { checkStudy, WorkCreate } from "../util";
 
-const CreateProject = () => {
+const CreateWork = ({ type }: BasicType) => {
   const inputRef = useRef<HTMLInputElement[]>([]);
   const stackRef = useRef<HTMLInputElement>(null);
-  const [stack, setStack] = useState();
+  const [stack, setStack] = useState<string[]>([]);
 
-  const handleCreateStudy = async () => {
+  const handleCreateWork = () => {
     if (!inputRef?.current) return;
-
-    const data = {
-      ...CREATE_PROJECT_ARR.reduce((acc, cur) => {
-        const tempValue = inputRef.current[cur.key].value;
-        const value =
-          cur.value === "totalHeadcount" ? Number(tempValue) : tempValue;
-        return {
-          ...acc,
-          [cur.value]: value,
-        };
-      }, {}),
-      leaderUserIdx: 1,
-      leaderName: "김영진",
-      techStacks: stack,
-    };
-    const res = await API({ api: postCreateProject, data });
-    res !== "true" ? alert("에러") : alert("성공");
-    return;
+    WorkCreate({ inputRef, stack, type });
   };
+
   return (
     <>
       {CREATE_PROJECT_ARR.map((item: any) => (
-        <div key={item.key}>
+        <Label key={item.key}>
           <div>{item.title}</div>
           <input
             placeholder={item.text}
@@ -41,15 +28,22 @@ const CreateProject = () => {
                 el as HTMLInputElement)
             }
           />
-        </div>
+        </Label>
       ))}
-      <TechStack stackRef={stackRef} stack={stack} setStack={setStack} />
-      <button onClick={handleCreateStudy}>생성하기</button>
+      {!checkStudy({ type }) && (
+        <TechStack stackRef={stackRef} stack={stack} setStack={setStack} />
+      )}
+      <Button
+        {...SmallButtonType}
+        color="#000000"
+        onClick={handleCreateWork}
+        title="생성하기"
+      />
     </>
   );
 };
 
-export default CreateProject;
+export default CreateWork;
 
 export const CREATE_PROJECT_ARR = [
   {

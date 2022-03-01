@@ -1,9 +1,17 @@
 import { Select, StudyFilterBarContainer } from "./styles";
 
-const StudyFilterBar = ({ handleStudySearch }: { handleStudySearch: any }) => {
+const StudyFilterBar = ({
+  handleWorkSearch,
+}: {
+  handleWorkSearch: ({
+    target: { value },
+  }: {
+    target: { value: string };
+  }) => void;
+}) => {
   return (
     <StudyFilterBarContainer>
-      <Select onChange={handleStudySearch}>
+      <Select onChange={handleWorkSearch}>
         {STUDY_TYPE.map((item, idx) => (
           <option key={idx}>{item}</option>
         ))}

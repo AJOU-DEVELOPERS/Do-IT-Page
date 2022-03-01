@@ -3,28 +3,25 @@ import { API } from "@API/.";
 import { getStudyAccept, getStudyDeny } from "@API/Study";
 import {
   Table,
-  TableBody,
-  TableData,
   TableHead,
   TableRow,
   TableTitle,
+  TableBody,
+  TableData,
 } from "@Atoms/Table/styles";
 import { PROJECT_TITLE } from "../List";
+import { DeepWorkType, UserWorkType } from "../../type";
+import { AcceptClick, DenyClick } from "../../util";
 
-const Project = ({ project }: { project: any }) => {
-  const handleAcceptClick = async ({ target }: { target: any }) => {
-    const container = target.closest("#userContainer");
-    const idx = container.getAttribute("data-idx");
-    const res = await API({ api: getStudyAccept, data: idx });
-    console.log(res);
-  };
+const Work = ({ work, type }: DeepWorkType) => {
+  const userWork: UserWorkType[] = work.userStudies ?? work.userProjects;
 
-  const handleDenyClick = async ({ target }: { target: any }) => {
-    const container = target.closest("#userContainer");
-    const idx = container.getAttribute("data-idx");
-    const res = await API({ api: getStudyDeny, data: idx });
-    console.log(res);
-  };
+  const handleAcceptClick = async ({ target }: { target: any }) =>
+    AcceptClick({ target, type });
+
+  const handleDenyClick = ({ target }: { target: any }) =>
+    DenyClick({ target, type });
+
   return (
     <Table>
       <TableHead>
@@ -37,7 +34,7 @@ const Project = ({ project }: { project: any }) => {
         </TableRow>
       </TableHead>
       <TableBody>
-        {project?.userProjects?.map((item: any) => (
+        {userWork?.map((item: UserWorkType) => (
           <TableRow
             key={item.studyIdx}
             id="userContainer"
@@ -55,4 +52,4 @@ const Project = ({ project }: { project: any }) => {
   );
 };
 
-export default React.memo(Project);
+export default React.memo(Work);
