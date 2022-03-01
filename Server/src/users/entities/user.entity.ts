@@ -21,19 +21,6 @@ import { Project, ProjectTechStack } from 'src/projects/entity/project.entity';
 import { Reservation } from 'src/reservation/entitiy/reservation.entity';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { ThrowFailResponse } from 'src/commons/dto/response-common.dto';
-export enum UserStudyStatus {
-  leader = 'leader',
-  accepted = 'accepted',
-  rejected = 'rejected',
-  waiting = 'waiting',
-}
-
-export enum UserProjectStatus {
-  leader = 'leader',
-  accepted = 'accepted',
-  rejected = 'rejected',
-  waiting = 'waiting',
-}
 
 @Entity('User')
 export class User extends BaseEntity {
@@ -177,11 +164,9 @@ export class UserStudy extends BaseEntity {
   studyIdx: number;
   @ApiProperty()
   @Column({
-    type: 'enum',
-    enum: UserStudyStatus,
-    default: 'waiting',
+    default: 'waiting'
   })
-  status: UserStudyStatus;
+  status: string;
   @ManyToOne(() => User, (user) => user.userStudies)
   @JoinColumn({ name: 'userIdx', referencedColumnName: 'userIdx' })
   user: User;
@@ -203,11 +188,9 @@ export class UserProject extends BaseEntity {
   projectIdx: number;
   @ApiProperty()
   @Column({
-    type: 'enum',
-    enum: UserProjectStatus,
     default: 'waiting',
   })
-  status: UserProjectStatus;
+  status: string;
   @ManyToOne(() => User, (user) => user.userProjects)
   @JoinColumn({ name: 'userIdx', referencedColumnName: 'userIdx' })
   user: User;

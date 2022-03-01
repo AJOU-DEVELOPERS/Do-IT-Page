@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { BaseFailResponse, BaseSuccessResponse, ResultSuccessResponse } from 'src/commons/dto/response-common.dto';
-import { User, UserProject, UserProjectStatus } from 'src/users/entities/user.entity';
+import { User, UserProject } from 'src/users/entities/user.entity';
 import { Connection } from 'typeorm';
 import { CreateProjectDto } from './dto/create-project.dto';
 import { UpdateProjectDto } from './dto/update-project.dto';
@@ -33,7 +33,7 @@ export class ProjectsService {
             const userProject = new UserProject();
             userProject.user = user;
             userProject.project = project;
-            userProject.status = UserProjectStatus.leader;
+            userProject.status = 'leader';
 
             await queryRunner.manager.save(userProject);
 
@@ -142,7 +142,9 @@ export class ProjectsService {
         await queryRunner.connect();
         await queryRunner.startTransaction();
         try {
-            await queryRunner.manager.softDelete(Project, projectIdx);
+            await queryRunner.manager.update(Project, projectIdx, {
+                status: 'deleted'
+            });
             await queryRunner.commitTransaction();
             return new BaseSuccessResponse();
         } catch(error) {
@@ -194,7 +196,7 @@ export class ProjectsService {
         await queryRunner.startTransaction();
         try {
             await queryRunner.manager.update(UserProject, userProjectIdx, {
-                status: UserProjectStatus.accepted
+                status: 'accepted'
             });
             await queryRunner.commitTransaction();
             return new BaseSuccessResponse();
@@ -214,7 +216,7 @@ export class ProjectsService {
         await queryRunner.startTransaction();
         try {
             await queryRunner.manager.update(UserProject, userProjectIdx, {
-                status: UserProjectStatus.rejected
+                status: 'rejected'
             });
             await queryRunner.commitTransaction();
             return new BaseSuccessResponse();
