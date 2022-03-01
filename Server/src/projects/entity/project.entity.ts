@@ -1,12 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { UserProject } from "src/users/entities/user.entity";
-import { BaseEntity, Column, DeleteDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-
-export enum projectStatus {
-    processing = "processing",
-    collecting = "collecting",
-    done = "done", 
-};
+import { BaseEntity, Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity('Project')
 export class Project extends BaseEntity {
@@ -29,31 +23,36 @@ export class Project extends BaseEntity {
     leaderName: string;
     @ApiProperty()
     @Column({
-        type: "enum",
-        enum: projectStatus,
-        default: "collecting"
+        default: 'collecting'
     })
-    status: projectStatus;
+    status: string;
+    @ApiProperty()
+    @CreateDateColumn()
+    createdAt: string;
+    @ApiProperty()
+    @UpdateDateColumn()
+    updatedAt: string;
     @OneToMany((_type) => UserProject, (_type) => _type.project)
     userProjects: UserProject[];
     @OneToMany((_type) => ProjectTechStack, (_type) => _type.project)
     projectTechStacks: ProjectTechStack[];
-    @ApiProperty()
-    @DeleteDateColumn()
-    deletedAt?: Date;
 }
 
 @Entity()
 export class ProjectTechStack extends BaseEntity {
+    @ApiProperty()
     @PrimaryGeneratedColumn()
     projectTechStackIdx: number
+    @ApiProperty()
     @Column()
     projectIdx: number
+    @ApiProperty()
     @Column()
     name: string
+    @ApiProperty()
+    @DeleteDateColumn()
+    deletedAt?: string;
     @ManyToOne(() => Project, (project) => project.projectTechStacks)
     @JoinColumn({ name: 'projectIdx', referencedColumnName: 'projectIdx' })
     project: Project
-    @DeleteDateColumn()
-    deletedAt?: Date;
 }

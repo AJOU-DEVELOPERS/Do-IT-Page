@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BaseFailResponse, BaseSuccessResponse, ResultSuccessResponse } from 'src/commons/dto/response-common.dto';
-import { User, UserStudy, UserStudyStatus } from 'src/users/entities/user.entity';
+import { User, UserStudy } from 'src/users/entities/user.entity';
 import { Connection, getRepository, Repository } from 'typeorm';
 import { CreateStudyDto } from './dto/create-study.dto';
 import { UpdateStudyDto } from './dto/update-study.dto';
@@ -33,7 +33,7 @@ export class StudiesService {
             const userStudy = new UserStudy();
             userStudy.user = user;
             userStudy.study = study;
-            userStudy.status = UserStudyStatus.leader;
+            userStudy.status = 'leader';
     
             await queryRunner.manager.save(userStudy);
             await queryRunner.commitTransaction();
@@ -76,22 +76,6 @@ export class StudiesService {
     }
 
     async findOne(studyIdx: number) {
-        
-        // try {
-        //     const study = await Study.find( 
-        //         { 
-        //             where: {
-        //                 studyIdx: studyIdx
-        //             },
-        //             relations: [
-        //                 "userStudies"
-        //             ],   
-        //     });
-        //     return new ResultSuccessResponse(study);
-        // } catch(error) {
-        //     console.log(error);
-        //     return new BaseFailResponse('스터디 불러오기를 실패했습니다.');
-        // }
         try {
             const study = await Study.find( 
                 { 
@@ -116,7 +100,9 @@ export class StudiesService {
         await queryRunner.connect();
         await queryRunner.startTransaction();
         try {
-            await queryRunner.manager.softDelete(Study, studyIdx);
+            await queryRunner.manager.update(Study, studyIdx, {
+                status: 'deleted'
+            });
             await queryRunner.commitTransaction();
             return new BaseSuccessResponse();
         } catch(error) {
@@ -168,7 +154,7 @@ export class StudiesService {
         await queryRunner.startTransaction();
         try {
             await queryRunner.manager.update(UserStudy, userStudyIdx, {
-                status: UserStudyStatus.accepted
+                status: 'accepted'
             })
             await queryRunner.commitTransaction();
             return new BaseSuccessResponse();
@@ -188,7 +174,7 @@ export class StudiesService {
         await queryRunner.startTransaction();
         try {
             await queryRunner.manager.update(UserStudy, userStudyIdx, {
-                status: UserStudyStatus.rejected
+                status: 'rejected'
             })
             await queryRunner.commitTransaction();
             return new BaseSuccessResponse();
