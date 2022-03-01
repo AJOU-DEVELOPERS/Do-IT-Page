@@ -16,7 +16,7 @@ export class ReservationService {
     ) {}
     
     async createReservation(createReservationDto: CreateReservationDto){
-        const {reservationStartDate, reservationStartHour, reservationEndDate, reservationEndHour, userIdx, userName} = createReservationDto;
+        const {reservationStartDate, reservationStartHour, reservationEndDate, reservationEndHour, userIdx} = createReservationDto;
         const reservation = new Reservation();
         const queryRunner = this.connection.createQueryRunner();
         reservation.reservationStartDate = reservationStartDate;
@@ -24,17 +24,19 @@ export class ReservationService {
         reservation.reservationEndDate = reservationEndDate;
         reservation.reservationEndHour = reservationEndHour;
         reservation.userIdx = userIdx;
-        reservation.userName = userName;
-        reservation.status = 'created';
 
         await queryRunner.connect();
         try {
             const user: User = await queryRunner.manager.findOne(User, {
                 userIdx: createReservationDto.userIdx,
             })
+            if(!user){
+                return new BaseFailResponse('존재하지 않는 유저입니다.')
+            }
             reservation.user = user;
+            reservation.userName = user.name;
             await queryRunner.manager.save(reservation);
-            return reservation;
+            return new BaseSuccessResponse();
         } catch(error) {
             console.log(error);
             return new BaseFailResponse('과방 예약에 실패했습니다.');
@@ -60,6 +62,54 @@ export class ReservationService {
         }catch(error){
             console.log(error);
             return new BaseFailResponse('예약 정보 변경에 실패했습니다.');
+        }finally{
+            await queryRunner.release();
+        }
+    }
+
+    async accept(reservationIdx: number) {
+        const queryRunner = this.connection.createQueryRunner();
+        await queryRunner.connect();
+        try{
+            const reservation = await this.findIdx(reservationIdx);
+            reservation.status = 'accepted';
+            await queryRunner.manager.save(reservation);
+            return new BaseSuccessResponse();
+        }catch(error){
+            console.log(error);
+            return new BaseFailResponse('예약 정보 승인에 실패했습니다.');
+        }finally{
+            await queryRunner.release();
+        }
+    }
+
+    async reject(reservationIdx: number) {
+        const queryRunner = this.connection.createQueryRunner();
+        await queryRunner.connect();
+        try{
+            const reservation = await this.findIdx(reservationIdx);
+            reservation.status = 'rejected';
+            await queryRunner.manager.save(reservation);
+            return new BaseSuccessResponse();
+        }catch(error){
+            console.log(error);
+            return new BaseFailResponse('예약 정보 거절에 실패했습니다.');
+        }finally{
+            await queryRunner.release();
+        }
+    }
+
+    async processing(reservationIdx: number) {
+        const queryRunner = this.connection.createQueryRunner();
+        await queryRunner.connect();
+        try{
+            const reservation = await this.findIdx(reservationIdx);
+            reservation.status = 'processing';
+            await queryRunner.manager.save(reservation);
+            return new BaseSuccessResponse();
+        }catch(error){
+            console.log(error);
+            return new BaseFailResponse('예약 정보 진행중으로 변경에 실패했습니다.');
         }finally{
             await queryRunner.release();
         }
@@ -143,7 +193,7 @@ export class ReservationService {
             }
         } catch(error) {
             console.log(error);
-            return new BaseFailResponse('스터디 삭제에 실패했습니다.');
+            return new BaseFailResponse('예약 정보 삭제에 실패했습니다.');
         } finally {
             await queryRunner.release();
         }

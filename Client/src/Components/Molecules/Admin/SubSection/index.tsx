@@ -2,9 +2,8 @@ import { ADMIN_CATEGORY } from "@Constant/.";
 import MemberContainer from "./Member";
 import MemberRegisterContainer from "./MemberRegister";
 import NoticeContainer from "./Notice";
-import ProjectContainer from "./Project";
 import RoomRegisterContainer from "./RoomRegister";
-import StudyContainer from "./Study";
+import WorkContainer from "./Work";
 
 const SubSection = ({ category }: { category: number }) => {
   const getSubToCategory = (category: number) => {
@@ -14,9 +13,9 @@ const SubSection = ({ category }: { category: number }) => {
       case "동아리 신청 관리":
         return <MemberRegisterContainer />;
       case "스터디 관리":
-        return <StudyContainer />;
+        return <WorkContainer type="스터디" />;
       case "프로젝트 관리":
-        return <ProjectContainer />;
+        return <WorkContainer type="프로젝트" />;
       case "과방 신청 관리":
         return <RoomRegisterContainer />;
       case "공지사항 관리":

@@ -6,8 +6,8 @@ import {
   postRegisterInfo,
   postRequestMail,
 } from "@API/Account";
-import { LoginClickType, RegisterHandlerType } from "@Type/Account";
 import React from "react";
+import { LoginClickType, RegisterHandlerType } from "@Type/Account";
 
 export const LoginClick = async ({ idRef, pwRef, history }: LoginClickType) => {
   if (!idRef?.current || !pwRef?.current) return;

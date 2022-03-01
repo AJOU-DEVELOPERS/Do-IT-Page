@@ -1,3 +1,4 @@
+import { API } from "@API/.";
 import { postReservationRoom } from "@API/Reservation";
 import Button from "@Atoms/Button";
 import {
@@ -23,7 +24,7 @@ const ReserveBox = ({
   const startTimeRef = useRef<HTMLInputElement | null>(null);
   const endTimeRef = useRef<HTMLInputElement | null>(null);
 
-  const handleCreateClick = () => {
+  const handleCreateClick = async () => {
     if (
       !userNameRef?.current ||
       !startDateRef?.current ||
@@ -34,14 +35,15 @@ const ReserveBox = ({
       return;
 
     const body = makeReservationRoomType({
-      reservationStartDate: "22" + startDateRef.current.value,
-      reservationStartHour: "22" + endDateRef.current.value,
+      reservationStartDate: "20" + startDateRef.current.value,
+      reservationStartHour: "20" + endDateRef.current.value,
       reservationEndDate: startTimeRef.current.value + ":00",
       reservationEndHour: endTimeRef.current.value + ":00",
-      reservationName: userNameRef.current.value,
+      userName: userNameRef.current.value,
     });
 
-    const res = postReservationRoom(body);
+    const res = await API({ api: postReservationRoom, data: body });
+    console.log(res);
     // if (!res) alert("error");
     if (!checkTablet()) return;
     setBoxOpen(false);

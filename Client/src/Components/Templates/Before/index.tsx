@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import { History } from "history";
 
 import DoItCarousel from "@Organisms/Before/DoItCarousel";
-import Header from "@Organisms/Header";
+import Header from "@Organisms/Common/Header";
 import Content from "@Organisms/Before/Content";
 import DoItTodo from "@Organisms/Before/DoItTodo";
 import DoItInfo from "@Organisms/Before/DoItInfo";
@@ -16,12 +16,13 @@ import ContentContainer from "./styles";
 
 import { CONTENT } from "@Constant/.";
 import MainImg from "@Organisms/Before/MainImg";
+import { checkTablet, checkMobile } from "@Util/.";
 
 const BeforePageTemplate = ({ history }: { history: History }) => {
   const handleLoginClick = useCallback(() => {
     history.push("/login");
   }, []);
-
+  const YearWidth = checkTablet() ? "500" : "1000";
   return (
     <>
       <Header onClick={handleLoginClick} />
@@ -30,9 +31,11 @@ const BeforePageTemplate = ({ history }: { history: History }) => {
         <Content text={() => Context(CONTENT[0])} type="basic" />
       </ContentContainer>
 
-      <Year>
-        <img src="/assets/Content/year.png" height={500} />
-      </Year>
+      {!checkMobile() && (
+        <Year>
+          <img src="/assets/Content/year.png" width={YearWidth} height={500} />
+        </Year>
+      )}
 
       <DoItTodo />
 

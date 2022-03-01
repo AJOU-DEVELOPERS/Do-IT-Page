@@ -1,8 +1,8 @@
 import { _BOARD_INFOS } from "@Constant/.";
-import Footer from "@Molecules/BoardPage/Footer";
+import Footer from "@Molecules/Board/BoardPage/Footer";
 import PhotoList from "@Organisms/Photos/List";
 import { TitleContainer } from "@Organisms/BoardBody/styles";
-import Header from "@Organisms/Header";
+import Header from "@Organisms/Common/Header";
 import { GetBoardContentLengthSelector } from "@Recoil/BoardContent";
 import { hasBoardContent } from "@Util/.";
 import { useMemo, useState } from "react";

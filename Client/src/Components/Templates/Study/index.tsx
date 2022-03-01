@@ -1,4 +1,4 @@
-import Header from "@Organisms/Header";
+import Header from "@Organisms/Common/Header";
 import Content from "@Molecules/Content/studyProject";
 import { Title } from "./styles";
 import { useCallback } from "react";

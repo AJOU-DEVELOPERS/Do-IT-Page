@@ -33,7 +33,9 @@ export class Reservation extends BaseEntity{
     userName: string;
 
     @ApiProperty()
-    @Column()
+    @Column({
+        default: "processing"
+    })
     status: string;
 
     @ApiProperty()

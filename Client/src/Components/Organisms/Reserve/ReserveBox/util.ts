@@ -5,14 +5,14 @@ export const makeReservationRoomType = ({
   reservationStartHour,
   reservationEndDate,
   reservationEndHour,
-  reservationName,
+  userName,
 }: ReservationRoomData): postReservationRoomBodyProps => {
   return {
     reservationStartDate,
     reservationStartHour,
     reservationEndDate,
     reservationEndHour,
-    reservationName,
+    userName,
     userIdx: 0,
   };
 };

@@ -69,6 +69,36 @@ export class ReservationController {
         return this.reservationService.updateReservation(reservationIdx, updateReservationDto);
     }
 
+    @Patch('accept/:idx')
+    @ApiOperation({
+        summary: '과방 신청 승인 API',
+        description: 'true false 반환'
+    })
+    @ApiOkResponse({ description: '과방 신청 승인 성공', type: BaseSuccessResponse })
+    accept(@Param('idx') reservationIdx: number) {
+        return this.reservationService.accept(reservationIdx);
+    }
+
+    @Patch('reject/:idx')
+    @ApiOperation({
+        summary: '과방 신청 거절 API',
+        description: 'true false 반환'
+    })
+    @ApiOkResponse({ description: '과방 신청 거절 성공', type: BaseSuccessResponse })
+    reject(@Param('idx') reservationIdx: number) {
+        return this.reservationService.reject(reservationIdx);
+    }
+
+    @Patch('processing/:idx')
+    @ApiOperation({
+        summary: '과방 신청 진행중 API',
+        description: 'true false 반환'
+    })
+    @ApiOkResponse({ description: '과방 신청 진행중 성공', type: BaseSuccessResponse })
+    processing(@Param('idx') reservationIdx: number) {
+        return this.reservationService.processing(reservationIdx);
+    }
+
     @Delete(':idx')
     @ApiOperation({
         summary: '과방 신청 정보 삭제 API',

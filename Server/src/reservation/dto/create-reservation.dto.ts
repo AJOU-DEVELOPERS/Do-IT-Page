@@ -29,13 +29,7 @@ export class CreateReservationDto {
     @IsInt()
     @ApiProperty({
         description: '신청 유저 인덱스',
-        example: '1'
+        example: 1
     })
     userIdx: number;
-    @IsString()
-    @ApiProperty({
-        description: '신청 유저 이름',
-        example: '홍길동'
-    })
-    userName: string;
 }

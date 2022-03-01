@@ -1,4 +1,4 @@
-import { Container } from "@Organisms/Header/styles";
+import { Container } from "@Organisms/Common/Header/styles";
 import styled from "styled-components";
 
 const AdminContainer = styled(Container)`
