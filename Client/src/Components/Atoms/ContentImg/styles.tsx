@@ -1,3 +1,4 @@
+import { TABLET_WIDTH } from "@Constant/.";
 import { ContentImgProps, ImgProps } from "@src/Common/Type";
 import styled from "styled-components";
 
