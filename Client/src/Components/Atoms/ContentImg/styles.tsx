@@ -3,8 +3,6 @@ import { ContentImgProps, ImgProps } from "@src/Common/Type";
 import styled from "styled-components";
 
 const Img = styled.img<ImgProps>`
-  /* ${({ url }) => url && "content: url(${({ url }) => url});"} */
-  content: url(${({ url }) => url});
   width: ${({ width }) => (width ? width : "45%")};
 `;
 
