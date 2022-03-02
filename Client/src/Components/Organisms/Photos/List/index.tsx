@@ -20,8 +20,8 @@ const PhotoList = ({ type, pageNum }: { type: string; pageNum: number }) => {
 
   const boardType = type === "사진첩" ? "image" : "image";
 
-  const handleDetailMove = (e: any) => {
-    const target = e.target.closest("#boardContainer");
+  const handleDetailMove = (e: React.MouseEvent<HTMLElement>) => {
+    const target = (e.target as HTMLElement).closest("#boardContainer");
     if (!target) return;
     const idx = target.getAttribute("data-idx");
     const nextPath = `${pageSrc}/${idx}`;
