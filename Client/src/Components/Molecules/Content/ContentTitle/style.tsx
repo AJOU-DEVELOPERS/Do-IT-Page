@@ -13,6 +13,9 @@ export const Container = styled.div`
   padding-bottom: 5px;
   ${AlignCenterBetween};
   border-bottom: 1px solid ${DefaultColor};
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    padding-bottom: 10px;
+  }
 `;
 
 export const Title = styled.p<Props>`
@@ -21,7 +24,7 @@ export const Title = styled.p<Props>`
   font-weight: 700;
   ${textOverflowSafe};
   @media only screen and (max-width: ${TABLET_WIDTH}px) {
-    font-size: 1.2rem;
+    font-size: 1.05rem;
   }
 `;
 

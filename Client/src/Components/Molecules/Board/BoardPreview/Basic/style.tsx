@@ -22,7 +22,7 @@ const Text = styled.p`
   span {
     margin-right: 27px;
   }
-  @media only screen and (max-width: 640px) {
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
     font-size: 0.75rem;
   }
 `;

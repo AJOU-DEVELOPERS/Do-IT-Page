@@ -32,8 +32,10 @@ export const ContentContainer = styled.div<ContentProps>`
   margin: auto;
   justify-content: center;
   @media screen and (max-width: ${TABLET_WIDTH}px) {
-    height: 210px;
+    height: 80%;
     justify-content: flex-start;
+    margin: 10px auto;
+    overflow: auto;
   }
 `;
 

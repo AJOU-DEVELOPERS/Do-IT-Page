@@ -19,9 +19,9 @@ export const GridContainer = styled.div`
       "자유게시판" 1fr
       "스터디" 1fr
       "프로젝트" 1fr
-      "백준랭킹" 1fr
-      "사진첩" 1fr
-      "과방대여" 1.2fr
+      "백준랭킹" 300px
+      "사진첩" 300px
+      "과방대여" 360px
       "마이페이지" 1fr
       /300px;
     gap: 5vw;

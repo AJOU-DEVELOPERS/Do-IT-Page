@@ -1,3 +1,4 @@
+import { TABLET_WIDTH } from "@Constant/.";
 import { textOverflowSafe } from "@Style/.";
 import styled, { css } from "styled-components";
 
@@ -7,6 +8,9 @@ const CommonStyle = css`
   width: 90%;
   overflow-y: scroll;
   /* ${textOverflowSafe}; */
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    height: 60px;
+  }
 `;
 
 const PreviewContentText = styled.p`
