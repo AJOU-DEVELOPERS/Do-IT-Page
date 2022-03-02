@@ -17,6 +17,7 @@ const Title = styled.div`
   ${HoverPointer};
   @media only screen and (max-width: ${TABLET_WIDTH}px) {
     margin-top: 0;
+    font-size: 24px;
   }
 `;
 

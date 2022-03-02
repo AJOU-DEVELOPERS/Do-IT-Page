@@ -1,3 +1,4 @@
+import { TABLET_WIDTH } from "@Constant/index";
 import { MAIN_PREVIEW_IMAGE } from "@Constant/img";
 import { AlignCenterAround, DefaultBoxShadow, HoverPointer } from "@Style/.";
 import styled from "styled-components";
@@ -30,6 +31,10 @@ export const ContentContainer = styled.div<ContentProps>`
   height: 85%;
   margin: auto;
   justify-content: center;
+  @media screen and (max-width: ${TABLET_WIDTH}px) {
+    height: 210px;
+    justify-content: flex-start;
+  }
 `;
 
 export const BoardPreviewContainer = styled.div`
