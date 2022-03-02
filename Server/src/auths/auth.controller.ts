@@ -19,6 +19,7 @@ import {
   BaseSuccessResponse,
   ResultSuccessResponse,
 } from 'src/commons/dto/response-common.dto';
+import { SendMailResponseDto } from './dto/mail-auth.dto';
 @Controller('auths')
 @ApiTags('Auth API')
 export class AuthController {
@@ -28,7 +29,7 @@ export class AuthController {
     summary: '메일 발송 요청 API',
     description: 'cacheKey 반환',
   })
-  @ApiOkResponse({ description: '메일 발송 성공', type: ResultSuccessResponse })
+  @ApiOkResponse({ description: '메일 발송 성공', type: SendMailResponseDto })
   async sendMail(@Body() sendMailDto: SendMailDto) {
     return await this.authsService.sendMail(sendMailDto);
   }

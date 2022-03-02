@@ -17,8 +17,7 @@ export class AuthsService {
     private readonly mailerService: MailerService,
     @Inject(CACHE_MANAGER) private cacheManager: Cache,
     //private connection: Connection,
-    private readonly jwtService: JwtService,
-    //@InjectRepository(User) private userRepository: Repository<User>,
+    private readonly jwtService: JwtService, //@InjectRepository(User) private userRepository: Repository<User>,
   ) {}
   async sendMail(SendMailDto: SendMailDto) {
     try {
@@ -41,19 +40,19 @@ export class AuthsService {
         html: '6자리 인증 코드 : ' + `<b> ${authNum}</b>`, // HTML body content
       });
       await this.cacheManager.set(cacheKey, authNum, { ttl: 180 });
-      return new ResultSuccessResponse({ 
+      return new ResultSuccessResponse({
         cacheKey,
-        message: true,
-       });
+      });
     } catch (err) {
       console.log(err);
       return new BaseFailResponse();
     }
   }
   async verifyMail(verifyMailDto: VerifyMailDto) {
-    const cacheValue: number = await this.cacheManager.get(
+    const cacheValue: string = await this.cacheManager.get(
       verifyMailDto.cacheKey,
     );
+
     if (cacheValue !== verifyMailDto.authNum) return new BaseFailResponse();
     return new BaseSuccessResponse();
   }
@@ -63,16 +62,15 @@ export class AuthsService {
       userId: number;
     } = { userId };
     const token = this.jwtService.sign(payload);
-    
+
     return token;
   }
-  async validateUser(id: string, password: string){
-    const userInfo = await User.findByLogin(id, password)
-    if(!userInfo)
-    return null;
+  async validateUser(id: string, password: string) {
+    const userInfo = await User.findByLogin(id, password);
+    if (!userInfo) return null;
     const result = {
-      userId : userInfo.userIdx
-    }
-    return result
+      userId: userInfo.userIdx,
+    };
+    return result;
   }
 }
