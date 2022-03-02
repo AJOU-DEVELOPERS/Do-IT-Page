@@ -22,5 +22,8 @@ const StyledNav = styled(Link)<LinkProps>`
   align-items: center;
   ${NavItemHover}
   height:100%;
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    color: whitesmoke;
+  }
 `;
 export { StyledLink, StyledNav };

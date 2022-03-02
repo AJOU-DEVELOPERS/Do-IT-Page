@@ -29,14 +29,25 @@ const NavContainer = styled.div`
 
   @media only screen and (max-width: ${TABLET_WIDTH}px) {
     position: fixed;
-    width: 100px;
-    top: 100px;
+    width: 120px;
+    height: 340px;
+    top: 70px;
     right: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     z-index: 1;
-    background-color: #ffffff;
+    background-color: #28282f;
+    animation-duration: 0.5s;
+    animation-name: slidein;
+    @keyframes slidein {
+      from {
+        height: 0;
+      }
+      to {
+        height: 340px;
+      }
+    }
   }
 `;
 
