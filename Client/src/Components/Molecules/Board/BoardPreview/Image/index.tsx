@@ -22,6 +22,7 @@ const ImageBoardPreview = ({
         width="80%"
         radius="5px"
         maxWidth={type === "detail" ? "60%" : "100%"}
+        loading="lazy"
       />
       <ContentTitle title={title} text={date} type="small" />
       <ContentText type="preview" text={text} />
