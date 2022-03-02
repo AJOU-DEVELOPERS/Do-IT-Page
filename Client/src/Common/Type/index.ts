@@ -3,6 +3,7 @@ import React from "react";
 export interface ImgProps {
   url?: string;
   width?: string;
+  loading?: string;
 }
 
 export interface ContentImgProps extends ImgAltProps {
