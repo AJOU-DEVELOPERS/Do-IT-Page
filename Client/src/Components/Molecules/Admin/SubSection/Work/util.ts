@@ -22,7 +22,7 @@ export const getWorkListType = ({ type }: BasicType) =>
   checkStudy({ type }) ? getStudyAllSelector : getProjectAllSelector;
 
 export const getDataIdx = ({ target }: { target: any }) =>
-  target.getAttribute("data-idx");
+  target?.getAttribute("data-idx");
 
 export const getIdx = ({ target }: { target: any }) =>
   getDataIdx(target.closest("#userContainer"));
@@ -113,9 +113,9 @@ export const workClick = async ({
   currentTarget: any;
   type: string | undefined;
 }) => {
-  const data = getDataIdx(currentTarget);
+  const data = getDataIdx({ target: currentTarget });
+
   const api = checkStudy({ type }) ? getStudyData : getProjectData;
   const res = await API({ api, data });
-  console.log(res);
   return res;
 };
