@@ -14,11 +14,7 @@ export const postLoginInfo = async (body: LoginInfoType) => {
 };
 
 export const postRegisterInfo = async (body: RegisterInfoType) => {
-  const { pw: password } = body;
-  const { data } = await axios.post(POST_REGISTER_INFO, {
-    ...body,
-    password,
-  });
+  const { data } = await axios.post(POST_REGISTER_INFO, body);
   return data;
 };
 

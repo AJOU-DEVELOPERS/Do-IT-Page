@@ -31,7 +31,7 @@ export const LoginClick = async ({ idRef, pwRef, history }: LoginClickType) => {
 
   const res = await API({
     api: postLoginInfo,
-    data: { id: idValue, pw: pwValue },
+    data: { id: idValue, password: pwValue },
   });
   console.log(res);
   if (res === "성공") {
@@ -74,7 +74,7 @@ export const RegisterClick = async ({
     current: { value: id },
   } = idRef;
   const {
-    current: { value: pw },
+    current: { value: password },
   } = pwRef;
   const {
     current: { value: name },
@@ -89,16 +89,21 @@ export const RegisterClick = async ({
     current: { value: email },
   } = emailRef;
 
-  const res = postRegisterInfo({
+  const res = await postRegisterInfo({
     id,
-    pw,
+    password,
     name,
     studentId,
     subject,
     email,
   });
   console.log(res);
-  return res;
+
+  if (res) {
+    alert("회원가입에 성공하였습니다.");
+    return true;
+  }
+  alert("회원가입 실패");
 };
 
 export const checkDuplicateId = async ({
@@ -115,10 +120,11 @@ export const checkDuplicateId = async ({
     api: checkDuplicateUserId,
     data: { id: idRef.current.value },
   });
-  res === "true"
-    ? alert("사용 가능한 아이디입니다.")
-    : alert("중복된 아이디입니다.");
-  return res === "true";
+  return true;
+  // res === "true"
+  //   ? alert("사용 가능한 아이디입니다.")
+  //   : alert("중복된 아이디입니다.");
+  // return res === "true";
 };
 
 export const clickMail = async ({
@@ -159,9 +165,10 @@ export const checkMail = async ({
 
   const data = await API({
     api: postCheckMail,
-    data: { authNum: Number(emailCheckRef.current.value), cacheKey },
+    data: { authNum: emailCheckRef.current.value, cacheKey },
   });
   console.log(data);
+  return true;
   data === "성공"
     ? alert("인증번호가 일치합니다.")
     : alert("인증번호가 일치하지 않습니다.");

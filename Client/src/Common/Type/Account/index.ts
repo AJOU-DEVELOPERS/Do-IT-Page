@@ -1,6 +1,6 @@
 export interface LoginInfoType {
   id: string;
-  pw: string;
+  password: string;
 }
 
 export interface RegisterInfoType extends LoginInfoType {

@@ -14,13 +14,14 @@ const TechStack = ({
       alert("기술 스택을 입력하세요");
       return;
     }
-    setStack([...stack, stackRef?.current?.value]);
+    setStack([...stack, stackRef.current?.value]);
   };
   return (
     <>
       {stack.map((item: string) => (
-        <div>{item}</div>
+        <span>{item}</span>
       ))}
+      <br />
       <input ref={stackRef} placeholder="추가할 스택을 입력하세요" />
       <div onClick={handleAddStack}>추가하기</div>
     </>

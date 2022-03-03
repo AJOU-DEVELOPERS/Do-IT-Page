@@ -6,6 +6,7 @@ import {
   LoginInputType,
 } from "@Style/.";
 import { useRef, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { RegisterContainer, Title, Section, SubWrapper } from "./styles";
 import { checkDuplicateId, checkMail, clickMail, RegisterClick } from "./util";
 
@@ -22,8 +23,10 @@ const RegisterInput = () => {
   const emailRef = useRef<HTMLInputElement | null>(null);
   const emailCheckRef = useRef<HTMLInputElement | null>(null);
 
-  const handleRegisterClick = () =>
-    RegisterClick({
+  const history = useHistory();
+
+  const handleRegisterClick = async () => {
+    const res = await RegisterClick({
       idRef,
       pwRef,
       nameRef,
@@ -33,6 +36,8 @@ const RegisterInput = () => {
       checkId,
       mailCheck,
     });
+    if (res) history.push("/login");
+  };
 
   const handleCheckDuplicateId = async () => {
     const data = await checkDuplicateId({ idRef });
