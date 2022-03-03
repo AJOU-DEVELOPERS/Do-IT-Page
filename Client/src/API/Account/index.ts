@@ -1,4 +1,6 @@
 import {
+  API_GET_OPTION,
+  GET_DEPARTMENT_DATA,
   POST_CHECK_DUPLICATE_USER_ID,
   POST_CHECK_MAIL,
   POST_LOGIN_INFO,
@@ -8,6 +10,10 @@ import {
 import { LoginInfoType, RegisterInfoType } from "@Type/Account";
 import axios from "axios";
 
+export const getDepartment = async () => {
+  const { data } = await axios.get(GET_DEPARTMENT_DATA, API_GET_OPTION);
+  return data;
+};
 export const postLoginInfo = async (body: LoginInfoType) => {
   const { data } = await axios.post(POST_LOGIN_INFO, body);
   return data;

@@ -25,6 +25,8 @@ export const POST_RESERVATION_URL = `${TARGET_URL}/reservation`;
 export const GET_RESERVATION_URL = `${TARGET_URL}/reservation`;
 
 /**--------------------- Auth ------------------------ */
+export const GET_DEPARTMENT_DATA = `${TARGET_URL}/departments`;
+
 export const POST_LOGIN_INFO = `${TARGET_URL}/users/sign-in`;
 
 export const POST_REGISTER_INFO = `${TARGET_URL}/users/sign-up`;
