@@ -120,9 +120,6 @@ export class ReservationService {
         await queryRunner.connect();
         try {
             const reservations = await queryRunner.manager.find(Reservation);
-            if(!reservations){
-                return new BaseFailResponse('예약 정보가 없습니다.');
-            }
             return reservations;
         } catch(error) {
             console.log(error);
@@ -134,9 +131,6 @@ export class ReservationService {
 
     async findOne(reservationIdx: number){
         const reservation = await this.findIdx(reservationIdx);
-        if(!reservation){
-            throw new ThrowFailResponse('예약 정보가 없습니다');
-        }
         return reservation;
     }
 
@@ -168,13 +162,10 @@ export class ReservationService {
                 { 
                     reservationStartDate: Like(`${time}%`),
             });
-            if(reservation.length === 0){
-                throw new ThrowFailResponse(`예약 정보 확인에 실패했습니다.`);
-            }
             return reservation;
         } catch(error) {
             console.log(error);
-            throw new ThrowFailResponse(`예약 정보 확인에 실패했습니다.`);
+            return new BaseFailResponse(`예약 정보 확인에 실패했습니다.`);
         } finally {
             await queryRunner.release();
         }

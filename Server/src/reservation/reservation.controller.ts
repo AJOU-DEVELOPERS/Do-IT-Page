@@ -42,6 +42,9 @@ export class ReservationController {
     @ApiOkResponse({ description: '특정 과방 신청 정보 불러오기 성공', type: ResultSuccessResponse })
     async findOne(@Param('idx') reservationIdx: number){
         const reservation = await this.reservationService.findOne(reservationIdx);
+        if(!reservation){
+            return new ResultSuccessResponse([]);
+        }
         return new ResultSuccessResponse(reservation);
     }
 
