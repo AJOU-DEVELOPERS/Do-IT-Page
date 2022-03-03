@@ -15,7 +15,6 @@ export const getUsersInfoSelector = selector<any>({
       api: getBoardContents,
       apiSrc: GET_USERS_INFO_URL,
     });
-    console.log(res);
     return res;
   },
 });
