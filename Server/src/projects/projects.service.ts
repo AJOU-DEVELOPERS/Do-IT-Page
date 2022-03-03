@@ -111,7 +111,11 @@ export class ProjectsService {
 
     async findAll() {
         try {
-            const projects = await Project.find();
+            const projects = await Project.find({
+                relations: [
+                    "projectTechStacks"
+                ]
+            });
             return new ResultSuccessResponse(projects);
         } catch(error) {
             console.log(error);
@@ -126,7 +130,8 @@ export class ProjectsService {
                     projectIdx: projectIdx
                 },
                 relations: [
-                    "userProjects"
+                    "userProjects",
+                    "projectTechStacks"
                 ]
             });
             return new ResultSuccessResponse(project);
