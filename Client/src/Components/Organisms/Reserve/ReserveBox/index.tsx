@@ -47,7 +47,7 @@ const ReserveBox = ({
     });
 
     const res = await API({ api: postReservationRoom, data: body });
-    console.log(res);
+
     // if (!res) alert("error");
     if (!checkTablet()) return;
     setBoxOpen(false);
