@@ -31,6 +31,7 @@ const MemberContainer = () => {
               id="MemberInfo"
               data-idx={userIdx}
               onClick={handleDetailMove}
+              key={`${name}/${id}/${studentId}`}
             >
               <MemberInfo
                 name={name}

@@ -1,8 +1,8 @@
 import { ContentType, StudyContentType } from "@Type/.";
 import { Title, Info, Container, Wrapper } from "./styles";
 const StudyModalSubject = (props: ContentType) => {
-  console.log(props);
-  const { name, leaderName, leaderUserIdx, totalHeadcount } = props as StudyContentType;
+  const { name, leaderName, leaderUserIdx, totalHeadcount } =
+    props as StudyContentType;
   return (
     <>
       <Container>

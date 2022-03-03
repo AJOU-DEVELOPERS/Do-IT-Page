@@ -15,7 +15,7 @@ const MemberDetail = ({ idx }: { idx: number }) => {
     phoneNumber,
     email,
   } = userInfo;
-  console.log(userInfo);
+
   return (
     <DetailContainer>
       <Wrapper>
