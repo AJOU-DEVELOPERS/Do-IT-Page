@@ -6,9 +6,9 @@ import {
   GET_USERS_INFO_URL,
 } from "@Constant/API";
 import { UserInfoData } from "@Type/API";
-import { selector } from "recoil";
+import { GetRecoilValue, selector, selectorFamily } from "recoil";
 
-export const getUsersInfoSelector = selector<any>({
+export const getUsersInfoSelector = selector<UserInfoData[]>({
   key: "getUsersInfoSelector",
   get: async () => {
     const res = await _API({
@@ -18,7 +18,20 @@ export const getUsersInfoSelector = selector<any>({
     return res;
   },
 });
-export const getStudyAllSelector = selector<UserInfoData[]>({
+
+export const getUserInfoSelector = selectorFamily<UserInfoData[], number>({
+  key: "getUsersInfoSelector",
+  get:
+    (idx) =>
+    async ({ get }: { get: GetRecoilValue }): Promise<UserInfoData[]> => {
+      const userInfoList = get(getUsersInfoSelector);
+      return userInfoList.filter(
+        (userInfo: UserInfoData) => userInfo.userIdx === idx
+      );
+    },
+});
+
+export const getStudyAllSelector = selector<any>({
   key: "getStudyAllSelector",
   get: async () => {
     const res = await _API({
