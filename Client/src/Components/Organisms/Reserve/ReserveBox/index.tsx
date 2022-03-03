@@ -10,7 +10,11 @@ import { ReserveBoxText } from "@Molecules/ReserveForm/style";
 import { LoginButtonType } from "@Style/.";
 import { checkTablet } from "@Util/.";
 import { Dispatch, SetStateAction, useRef } from "react";
-import { ButtonContainer, ReserveBoxContainer } from "./styles";
+import {
+  ButtonContainer,
+  ReserveBoxContainer,
+  ReserveBoxTextContainer,
+} from "./styles";
 import { makeReservationRoomType } from "./util";
 
 const ReserveBox = ({
@@ -52,7 +56,9 @@ const ReserveBox = ({
     <ReserveBoxContainer>
       <ReserveBoxHeader />
       <ReserveBoxName nameRef={userNameRef} />
-      <ReserveBoxText>날짜</ReserveBoxText>
+      <ReserveBoxTextContainer>
+        <ReserveBoxText>날짜</ReserveBoxText>
+      </ReserveBoxTextContainer>
       <ReserveInputForm
         sDateRef={startDateRef}
         eDateRef={endDateRef}
