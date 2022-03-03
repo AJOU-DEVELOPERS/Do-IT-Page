@@ -8,6 +8,7 @@ import {
 } from "@API/Account";
 import React from "react";
 import { LoginClickType, RegisterHandlerType } from "@Type/Account";
+import { REF_NUM } from "./common";
 
 export const LoginClick = async ({ idRef, pwRef, history }: LoginClickType) => {
   if (!idRef?.current || !pwRef?.current) return;
@@ -31,7 +32,7 @@ export const LoginClick = async ({ idRef, pwRef, history }: LoginClickType) => {
 
   const res = await API({
     api: postLoginInfo,
-    data: { id: idValue, pw: pwValue },
+    data: { id: idValue, password: pwValue },
   });
   console.log(res);
   if (res === "성공") {
@@ -40,27 +41,12 @@ export const LoginClick = async ({ idRef, pwRef, history }: LoginClickType) => {
 };
 
 export const RegisterClick = async ({
-  idRef,
-  pwRef,
-  nameRef,
-  studentIdRef,
+  inputRef,
   subjectRef,
-  emailRef,
   checkId,
   mailCheck,
 }: RegisterHandlerType) => {
-  if (
-    !idRef?.current ||
-    !pwRef?.current ||
-    !nameRef?.current ||
-    !studentIdRef?.current ||
-    !subjectRef?.current ||
-    !emailRef?.current
-  ) {
-    alert("모든 내용을 입력해주세요.");
-    return;
-  }
-
+  if (!subjectRef.current) return;
   if (!checkId) {
     alert("아이디 중복확인 해주세요");
     return;
@@ -69,74 +55,75 @@ export const RegisterClick = async ({
     alert("메일 인증 해주세요");
     return;
   }
+  const id = inputRef.current[REF_NUM.ID].value;
+  const password = inputRef.current[REF_NUM.PW].value;
+  const name = inputRef.current[REF_NUM.이름].value;
+  const studentId = inputRef.current[REF_NUM.학번].value;
+  const email = inputRef.current[REF_NUM.이메일].value;
+  const phoneNumber = inputRef.current[REF_NUM.핸드폰번호].value;
+  const { value: idx, label } = subjectRef.current.selectedOptions[0];
 
-  const {
-    current: { value: id },
-  } = idRef;
-  const {
-    current: { value: pw },
-  } = pwRef;
-  const {
-    current: { value: name },
-  } = nameRef;
-  const {
-    current: { value: studentId },
-  } = studentIdRef;
-  const {
-    current: { value: subject },
-  } = subjectRef;
-  const {
-    current: { value: email },
-  } = emailRef;
-
-  const res = postRegisterInfo({
+  const res = await postRegisterInfo({
     id,
-    pw,
+    password,
     name,
-    studentId,
-    subject,
+    studentId: Number(studentId),
     email,
+    phoneNumber,
+    department: [
+      {
+        departmentIdx: Number(idx),
+        name: label,
+        sort: "major",
+      },
+    ],
   });
   console.log(res);
-  return res;
+
+  if (res) {
+    alert("회원가입에 성공하였습니다.");
+    return true;
+  }
+  alert("회원가입 실패");
 };
 
 export const checkDuplicateId = async ({
-  idRef,
+  ref,
+  idx,
 }: {
-  idRef: React.MutableRefObject<HTMLInputElement | null>;
+  ref: React.MutableRefObject<HTMLInputElement[]>;
+  idx: number;
 }) => {
-  if (!idRef?.current) return;
-  if (!idRef.current.value) {
+  if (!ref.current[idx].value) {
     alert("아이디 입력하세요");
     return;
   }
-  const res = await API({
+  await API({
     api: checkDuplicateUserId,
-    data: { id: idRef.current.value },
+    data: { id: ref.current[idx].value },
   });
-  res === "true"
-    ? alert("사용 가능한 아이디입니다.")
-    : alert("중복된 아이디입니다.");
-  return res === "true";
+  alert("사용가능한 아이디입니다.");
+  return true;
 };
 
 export const clickMail = async ({
-  emailRef,
+  ref,
+  idx,
 }: {
-  emailRef: React.MutableRefObject<HTMLInputElement | null>;
+  ref: React.MutableRefObject<HTMLInputElement[]>;
+  idx: number;
 }) => {
-  if (!emailRef?.current) {
+  if (!ref.current[idx].value) {
     alert("메일 입력하세요");
     return;
   }
-  if (!emailRef.current.value.includes("@ajou.ac.kr")) {
+  if (!ref.current[idx].value.includes("@ajou.ac.kr")) {
     alert("아주대 메일이어야합니다~");
     return;
   }
   const { cacheKey, message } = await API({
     api: postRequestMail,
-    data: { email: emailRef.current.value },
+    data: { email: ref.current[idx].value },
   });
   message === true
     ? alert("인증번호를 확인해주세요.")
@@ -145,25 +132,23 @@ export const clickMail = async ({
 };
 
 export const checkMail = async ({
-  emailCheckRef,
+  ref,
+  idx,
   cacheKey,
 }: {
-  emailCheckRef: React.MutableRefObject<HTMLInputElement | null>;
+  ref: React.MutableRefObject<HTMLInputElement[]>;
+  idx: number;
   cacheKey: string;
 }) => {
-  if (!emailCheckRef?.current) return;
-  if (!emailCheckRef.current.value) {
+  if (!ref.current[idx].value) {
     alert("인증번호를 입력하세요");
     return;
   }
 
   const data = await API({
     api: postCheckMail,
-    data: { authNum: Number(emailCheckRef.current.value), cacheKey },
+    data: { authNum: ref.current[idx].value, cacheKey },
   });
-  console.log(data);
-  data === "성공"
-    ? alert("인증번호가 일치합니다.")
-    : alert("인증번호가 일치하지 않습니다.");
-  return data === "성공";
+  alert("인증번호가 일치합니다.");
+  return true;
 };

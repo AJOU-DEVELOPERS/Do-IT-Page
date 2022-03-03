@@ -37,6 +37,7 @@ export const WorkCreate = async ({
   type: string | undefined;
 }) => {
   const api = checkStudy({ type }) ? postCreateStudy : postCreateProject;
+  const bodyOption = checkStudy({ type }) ? {} : { techStacks: stack };
   const data = {
     ...CREATE_PROJECT_ARR.reduce((acc, cur) => {
       const tempValue = (inputRef.current as HTMLInputElement[])[cur.key].value;
@@ -46,12 +47,13 @@ export const WorkCreate = async ({
         ...acc,
         [cur.value]: value,
       };
-    }, {}),
+    }, bodyOption),
     leaderUserIdx: 1,
     leaderName: "김영진",
-    techStacks: stack,
   };
+  console.log(data);
   const res = await API({ api, data });
+  console.log(res);
   res === "true" ? alert("성공") : alert("실패");
   return;
 };

@@ -2,17 +2,17 @@ export interface BasicType {
   type?: string;
 }
 
-export interface BasicWorkType {
+interface Indexable {
+  [key: string]: any;
+}
+
+export interface BasicWorkType extends Indexable {
   name: string;
   description: string;
   totalHeadcount: number;
   leaderName: string;
   status: string;
   deletedAt?: Date;
-}
-
-interface Indexable {
-  [key: string]: string | number;
 }
 
 export interface UserStudy extends Indexable {

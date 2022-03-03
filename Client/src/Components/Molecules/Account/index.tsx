@@ -1,4 +1,4 @@
-import RegisterInput from "@Molecules/Account/RegisterInput";
+import RegisterInput from "@Molecules/Account/RegisterInput/RegisterInput";
 import LoginInput from "./LoginInput";
 
 const AccountFormItem = ({ type }: { type: string }) => {
