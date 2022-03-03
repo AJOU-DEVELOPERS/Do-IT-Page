@@ -24,22 +24,20 @@ export class BaseSuccessResponse {
     example: 200,
   })
   code: number;
-  res: any;
 
-  constructor(isSuccess = true, code = 200, res = "true") {
-    this.res = res;
+  constructor(isSuccess = true, code = 200) {
     this.isSuccess = isSuccess;
     this.code = code;
   }
 }
 
 export class ResultSuccessResponse extends BaseSuccessResponse {
+  @ApiProperty()
+  res: any;
   constructor(res: any) {
     super();
     this.res = res;
   }
-  @ApiProperty()
-  result: any;
 }
 
 export class BaseFailResponse extends BaseSuccessResponse {

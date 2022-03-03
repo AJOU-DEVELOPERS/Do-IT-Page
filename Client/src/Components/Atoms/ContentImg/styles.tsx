@@ -3,14 +3,15 @@ import { ContentImgProps, ImgProps } from "@src/Common/Type";
 import styled from "styled-components";
 
 const Img = styled.img<ImgProps>`
-  /* ${({ url }) => url && "content: url(${({ url }) => url});"} */
-  content: url(${({ url }) => url});
   width: ${({ width }) => (width ? width : "45%")};
 `;
 
 const ContentImg = styled(Img)<ContentImgProps>`
   border-radius: ${({ radius }) => (radius ? radius : "0px")};
   max-width: ${({ maxWidth }) => (maxWidth ? maxWidth : "100%")};
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    max-width: 50%;
+  }
 `;
 
 const MiddleBox = styled.div`

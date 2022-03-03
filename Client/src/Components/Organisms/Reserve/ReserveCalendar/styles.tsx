@@ -1,3 +1,4 @@
+import { TABLET_WIDTH } from "@Constant/.";
 import { DefaultBorderColor, DefaultColor } from "@Style/.";
 import styled from "styled-components";
 
@@ -9,6 +10,9 @@ export const ReserveCalendarContainer = styled.div`
   border-radius: 21px;
   padding: 40px;
   min-width: 480px;
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    min-width: 375px;
+  }
 `;
 
 export const ReserveCalendarTitle = styled.p`

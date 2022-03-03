@@ -6,6 +6,7 @@ import {
   TableBody,
 } from "@Atoms/Table/styles";
 import { Dispatch } from "react";
+import { WorkType } from "../../type";
 import { workClick } from "../../util";
 
 const WorkList = ({
@@ -13,8 +14,8 @@ const WorkList = ({
   setWork,
   type,
 }: {
-  workList: any;
-  setWork: Dispatch<any>;
+  workList: WorkType[];
+  setWork: Dispatch<WorkType>;
   type: string | undefined;
 }) => {
   const handleWorkClick = async ({ currentTarget }: { currentTarget: any }) => {
@@ -35,7 +36,7 @@ const WorkList = ({
         </TableRow>
       </TableHead>
       <TableBody>
-        {workList.map((item: any) => (
+        {workList.map((item: WorkType) => (
           <TableRow
             key={item.studyIdx}
             onClick={handleWorkClick}

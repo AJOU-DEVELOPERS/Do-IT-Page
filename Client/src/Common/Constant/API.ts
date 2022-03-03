@@ -25,6 +25,8 @@ export const POST_RESERVATION_URL = `${TARGET_URL}/reservation`;
 export const GET_RESERVATION_URL = `${TARGET_URL}/reservation`;
 
 /**--------------------- Auth ------------------------ */
+export const GET_DEPARTMENT_DATA = `${TARGET_URL}/departments`;
+
 export const POST_LOGIN_INFO = `${TARGET_URL}/users/sign-in`;
 
 export const POST_REGISTER_INFO = `${TARGET_URL}/users/sign-up`;
@@ -52,6 +54,9 @@ export const GET_PROJECT_DATA = `${TARGET_URL}/projects`;
 export const GET_PROJECT_ACCEPT = `${TARGET_URL}/projects/accept`;
 
 export const GET_PROJECT_DENY = `${TARGET_URL}/projects/reject`;
+
+/*----------------------- Admin ------------------------- */
+export const GET_USERS_INFO_URL = `${TARGET_URL}/users`;
 
 /**--------------------- Common ------------------------ */
 export const API_GET_OPTION = {

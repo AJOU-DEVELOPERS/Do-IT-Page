@@ -10,6 +10,8 @@ import {
   ReservorContainer,
   SpliteTimeSpan,
   TimerContainer,
+  SpiltTimeSpanMobile,
+  SplitTimeSpanContainer,
 } from "./style";
 
 export const ReserveBoxHeader = () => (
@@ -77,12 +79,15 @@ export const ReserveInputForm = ({
           />
         </span>
         <SpliteTimeSpan>-</SpliteTimeSpan>
-        <ReserveInput
-          {...ReserveSmallInputType}
-          ref={eTimeRef}
-          placeholder="21:00"
-          type="text"
-        />
+        <SplitTimeSpanContainer>
+          <SpiltTimeSpanMobile>~</SpiltTimeSpanMobile>
+          <ReserveInput
+            {...ReserveSmallInputType}
+            ref={eTimeRef}
+            placeholder="21:00"
+            type="text"
+          />
+        </SplitTimeSpanContainer>
       </TimerContainer>
     </InputDataContainer>
   );

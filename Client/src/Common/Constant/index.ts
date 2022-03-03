@@ -11,6 +11,8 @@ import {
   GET_PHOTO_CONTENT_URL,
 } from "./API";
 
+export const WEB_SERVER_URL = "http://localhost:3000";
+
 export const MOBILE_WIDTH = 640;
 export const TABLET_WIDTH = 1024;
 
@@ -62,10 +64,9 @@ export const MAIN_BOARD_PREVIEW_LIST = [
   "자유게시판",
   "백준랭킹",
   "프로젝트",
-  "스터디",
   "과방 대여",
   "마이페이지",
-  "사진첩"
+  "사진첩",
 ];
 
 export enum STUDY_STATUS {

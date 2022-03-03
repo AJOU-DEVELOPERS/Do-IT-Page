@@ -52,7 +52,8 @@ export class User extends BaseEntity {
   @UpdateDateColumn()
   updatedAt: string;
   @ApiProperty()
-
+  @Column()
+  status: string;
   // @OneToMany((_type) => UserTechStack, (_type) => _type.user)
   // userTechStacks: UserTechStack[];
   @OneToMany(
@@ -163,7 +164,7 @@ export class UserStudy extends BaseEntity {
   studyIdx: number;
   @ApiProperty()
   @Column({
-    default: 'waiting'
+    default: 'waiting',
   })
   status: string;
   @ManyToOne(() => User, (user) => user.userStudies)

@@ -1,21 +1,17 @@
+import { ApiProperty } from '@nestjs/swagger';
 import {
-  IsInt,
-  Length,
-  IsEmail,
+  IsNotEmpty,
+  IsString,
   MinLength,
   MaxLength,
-  IsString,
-  IsArray,
-  isArray,
-  IsNotEmpty,
   Min,
-  Max,
+  IsInt,
+  IsEmail,
+  IsArray,
 } from 'class-validator';
-import { ApiProperty } from '@nestjs/swagger';
-import { extend, object } from 'joi';
+import { SignupUserDepartmentDto } from './create-user.dto';
 
-// 회원가입 Request body data
-export class SignupUserDto {
+export class UserDto {
   @IsNotEmpty()
   @ApiProperty({
     description: '유저 아이디',
@@ -39,12 +35,6 @@ export class SignupUserDto {
     example: '201823815',
   })
   studentId: number;
-  @IsNotEmpty()
-  @ApiProperty({
-    description: '유저 비밀번호',
-    example: 'ASDJ123sa',
-  })
-  password: string;
   @MinLength(11)
   @IsNotEmpty()
   @ApiProperty({
@@ -64,31 +54,4 @@ export class SignupUserDto {
   @IsArray()
   @ApiProperty({ isArray: true, type: () => [SignupUserDepartmentDto] })
   department: SignupUserDepartmentDto[];
-}
-export class Department {
-  @IsInt()
-  @ApiProperty({
-    description: '학과 인덱스',
-    example: 1,
-  })
-  departmentIdx: number;
-  @IsString()
-  @ApiProperty({
-    description: '학과 이름',
-    example: '미디어학과',
-  })
-  name: string;
-  userDepartments: any;
-}
-// 회원가입 Request 학과 object data
-export class SignupUserDepartmentDto extends Department {
-  constructor() {
-    super();
-  }
-  @IsString()
-  @ApiProperty({
-    description: '전공 종류',
-    example: 'major',
-  })
-  sort: string;
 }

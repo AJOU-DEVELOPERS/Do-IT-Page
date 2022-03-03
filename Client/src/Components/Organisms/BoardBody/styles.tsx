@@ -1,3 +1,4 @@
+import { TABLET_WIDTH } from "@Constant/.";
 import { DefaultColor } from "@Style/.";
 import styled from "styled-components";
 
@@ -6,6 +7,10 @@ const TitleContainer = styled.div`
   font-size: 32px;
   padding: 30px 0 50px 0;
   color: ${DefaultColor};
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    font-size: 25px;
+    padding: 20px 0 20px 0;
+  }
 `;
 
 const BoardListContainer = styled.div`
