@@ -164,7 +164,7 @@ export class UserStudy extends BaseEntity {
   studyIdx: number;
   @ApiProperty()
   @Column({
-    default: 'waiting'
+    default: 'waiting',
   })
   status: string;
   @ManyToOne(() => User, (user) => user.userStudies)

@@ -1,11 +1,13 @@
+import { WEB_SERVER_URL } from ".";
+
 export const MAIN_PREVIEW_IMAGE = "/assets/MainPage/codeImage.jpg";
 
 // content
 
 export const MIDDLE_IMG_URL = [
-  "/assets/Content/process_logo.png",
-  "/assets/Content/study_logo.png",
-  "/assets/Content/room_logo.png",
+  `${WEB_SERVER_URL}/assets/Content/process_logo.png`,
+  `${WEB_SERVER_URL}/assets/Content/study_logo.png`,
+  `${WEB_SERVER_URL}/assets/Content/room_logo.png`,
 ];
 
 export const LAST_IMG_URL = [
