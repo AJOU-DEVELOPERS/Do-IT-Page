@@ -1,3 +1,5 @@
+import { SetterOrUpdater } from "recoil";
+
 export interface LoginInfoType {
   id: string;
   password: string;
@@ -21,6 +23,7 @@ export interface LoginClickType {
   idRef: React.MutableRefObject<HTMLInputElement | null>;
   pwRef: React.MutableRefObject<HTMLInputElement | null>;
   history: any;
+  setUser: SetterOrUpdater<any>;
 }
 
 export interface RegisterHandlerType {

@@ -1,5 +1,5 @@
 import { useRecoilValue } from "recoil";
-import { checkLoginSelector } from "@Recoil/CheckLogin";
+import { userInfoAtom } from "@Recoil/CheckLogin";
 
 import { SmallLoginButtonType } from "@Style/.";
 
@@ -9,8 +9,7 @@ import HeaderLeftSide from "@Molecules/Common/Header";
 import HeaderNav from "@Molecules/Common/Header/Nav";
 
 const Header = ({ onClick }: { onClick?: () => void }) => {
-  // const user = false;
-  const user = useRecoilValue(checkLoginSelector);
+  const user = useRecoilValue<boolean | any>(userInfoAtom);
 
   return (
     <Container>

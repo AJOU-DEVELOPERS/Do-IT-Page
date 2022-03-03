@@ -1,6 +1,5 @@
 import { useRef } from "react";
 import { useHistory, withRouter } from "react-router-dom";
-import { History } from "history";
 
 import LoginButton from "@Atoms/Button/Login";
 import Input from "@Atoms/Input";
@@ -8,15 +7,21 @@ import Input from "@Atoms/Input";
 import { LoginButtonType, LoginInputType } from "@Style/.";
 import { Wrapper, Title, LoginContainer, Footer } from "./styles";
 import { LoginClick } from "./util";
+import { useSetRecoilState } from "recoil";
+import { userInfoAtom } from "@Recoil/CheckLogin";
 
 const LoginInput = () => {
+  const setUser = useSetRecoilState(userInfoAtom);
   const idRef = useRef<HTMLInputElement | null>(null);
   const pwRef = useRef<HTMLInputElement | null>(null);
   const history = useHistory();
 
-  const handleLoginClick = () => LoginClick({ idRef, pwRef, history });
+  const handleLoginClick = () => LoginClick({ idRef, pwRef, history, setUser });
   const handleRegisterClick = () => {
     history.push("/register");
+  };
+  const handleFindInfo = () => {
+    alert("관리자에게 문의하세요");
   };
   return (
     <LoginContainer>
@@ -44,7 +49,7 @@ const LoginInput = () => {
         onClick={handleLoginClick}
       />
       <Footer>
-        <p>아이디/비밀번호 찾기</p>
+        <p onClick={handleFindInfo}>아이디/비밀번호 찾기</p>
         <p onClick={handleRegisterClick}>회원가입</p>
       </Footer>
     </LoginContainer>

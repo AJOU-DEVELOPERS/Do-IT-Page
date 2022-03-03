@@ -1,7 +1,7 @@
+import { ReactElement, useEffect } from "react";
 import { Redirect, Route } from "react-router-dom";
-import { useRecoilValue } from "recoil";
-import { checkLoginSelector } from "@src/Recoil/CheckLogin";
-import { ReactElement } from "react";
+import { useRecoilState } from "recoil";
+import { checkLoginNow } from "@src/Recoil/CheckLogin";
 
 interface Props {
   element: ReactElement;
@@ -14,9 +14,11 @@ const PrivateRoute = ({
   path,
   exact = false,
 }: Props): JSX.Element => {
-  // const user = useRecoilValue(checkLoginSelector);
-  const user = true;
-
+  const [user, setUser] = useRecoilState<boolean | any>(checkLoginNow);
+  useEffect(() => {
+    if (!user) return;
+    setUser(user);
+  }, []);
   return (
     <Route
       exact={exact}

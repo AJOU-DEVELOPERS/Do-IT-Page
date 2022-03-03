@@ -1,12 +1,10 @@
 import { Redirect, Route } from "react-router-dom";
-import { useRecoilValue } from "recoil";
-import { checkLoginSelector } from "@src/Recoil/CheckLogin";
-import { LazyExoticComponent, ReactElement } from "react";
+import { useRecoilState } from "recoil";
+import { checkLoginNow } from "@src/Recoil/CheckLogin";
+import { ReactElement, useEffect } from "react";
 
 interface Props {
-  // component: () => JSX.Element;
   element: ReactElement;
-  // element: LazyExoticComponent<any>;
   path: string;
   exact: boolean;
 }
@@ -16,8 +14,11 @@ const PublicRoute = ({
   path,
   exact,
 }: Props): JSX.Element => {
-  // const user = useRecoilValue(checkLoginSelector);
-  const user = false;
+  const [user, setUser] = useRecoilState<boolean | any>(checkLoginNow);
+  useEffect(() => {
+    if (!user) return;
+    setUser(user);
+  }, []);
   return (
     <Route
       exact={exact}
