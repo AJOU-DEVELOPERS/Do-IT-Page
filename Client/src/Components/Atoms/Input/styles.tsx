@@ -1,3 +1,4 @@
+import { TABLET_WIDTH } from "@Constant/.";
 import { BasicInputProps } from "@src/Common/Type";
 import { HoverPointer } from "@Style/.";
 import styled from "styled-components";
@@ -25,4 +26,8 @@ export const ReserveInput = styled.input<{ height: string; width: string }>`
   width: ${({ width }) => width};
   height: ${({ height }) => height};
   padding: 0 10px;
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    width: 150px;
+    height: 30px;
+  }
 `;

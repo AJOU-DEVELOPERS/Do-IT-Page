@@ -55,6 +55,9 @@ export const GET_PROJECT_ACCEPT = `${TARGET_URL}/projects/accept`;
 
 export const GET_PROJECT_DENY = `${TARGET_URL}/projects/reject`;
 
+/*----------------------- Admin ------------------------- */
+export const GET_USERS_INFO_URL = `${TARGET_URL}/users`;
+
 /**--------------------- Common ------------------------ */
 export const API_GET_OPTION = {
   withCredentials: true,

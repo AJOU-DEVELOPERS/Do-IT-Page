@@ -11,6 +11,8 @@ import {
   GET_PHOTO_CONTENT_URL,
 } from "./API";
 
+export const WEB_SERVER_URL = "http://localhost:3000";
+
 export const MOBILE_WIDTH = 640;
 export const TABLET_WIDTH = 1024;
 

@@ -9,8 +9,8 @@ const MainPageTemplate = () => {
     <>
       <Header />
       <GridContainer>
-        {MAIN_BOARD_PREVIEW_LIST.map((boardName: string) => (
-          <BoardContent boardName={boardName} key={boardName} />
+        {MAIN_BOARD_PREVIEW_LIST.map((boardName: string, idx: number) => (
+          <BoardContent boardName={boardName} key={`${boardName}/${idx}`} />
         ))}
       </GridContainer>
       <Footer />

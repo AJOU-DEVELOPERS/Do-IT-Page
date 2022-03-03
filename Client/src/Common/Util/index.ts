@@ -31,3 +31,5 @@ export const handleHeaderClick = (history: History) => {
 
 export const checkTablet = () => window.innerWidth < TABLET_WIDTH;
 export const checkMobile = () => window.innerWidth < MOBILE_WIDTH;
+
+export const getDateFromUTC = (date: string): string => date.substring(0, 10);
