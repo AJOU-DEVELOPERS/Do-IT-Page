@@ -1,16 +1,29 @@
 import { atom, selector } from "recoil";
 import { API } from "@API/.";
-import { getLoginInfo } from "@API/test";
+import { getCheckLogin } from "@API/Account";
 
-export const checkLoginAtom = atom<boolean | any>({
-  key: "checkLogin",
+export const userInfoAtom = atom<boolean | any>({
+  key: "userInfoAtom",
   default: false,
 });
 
-export const checkLoginSelector = selector<boolean | any>({
-  key: "checkLoginSelector",
+export const getCheckToken = selector({
+  key: "getCheckToken",
   get: async () => {
-    const res = await API({ api: getLoginInfo });
+    const res = await API({ api: getCheckLogin });
     return res;
+  },
+});
+
+export const checkLoginNow = selector({
+  key: "checkLoginNow",
+  get: async ({ get }) => {
+    const getUserInfo = await get(userInfoAtom);
+    if (getUserInfo) return getUserInfo;
+    const getTokenInfo = await get(getCheckToken);
+    return getTokenInfo;
+  },
+  set: ({ set }, newValue) => {
+    set(userInfoAtom, newValue);
   },
 });

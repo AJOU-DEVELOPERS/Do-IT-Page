@@ -10,7 +10,12 @@ import React from "react";
 import { LoginClickType, RegisterHandlerType } from "@Type/Account";
 import { REF_NUM } from "./common";
 
-export const LoginClick = async ({ idRef, pwRef, history }: LoginClickType) => {
+export const LoginClick = async ({
+  idRef,
+  pwRef,
+  history,
+  setUser,
+}: LoginClickType) => {
   if (!idRef?.current || !pwRef?.current) return;
 
   const {
@@ -30,14 +35,17 @@ export const LoginClick = async ({ idRef, pwRef, history }: LoginClickType) => {
     return;
   }
 
-  const res = await API({
+  const { userId } = await API({
     api: postLoginInfo,
     data: { id: idValue, password: pwValue },
   });
-  console.log(res);
-  if (res === "성공") {
-    history.push("/main");
+
+  if (!userId) {
+    alert("아이디 및 비밀번호를 확인해주세요");
+    return;
   }
+  setUser({ userId });
+  history.push("/main");
 };
 
 export const RegisterClick = async ({

@@ -4,3 +4,8 @@ export interface Props {
   studentId: number;
   createdAt: string;
 }
+
+export interface DetailProps extends Props {
+  phoneNumber: string;
+  email: string;
+}

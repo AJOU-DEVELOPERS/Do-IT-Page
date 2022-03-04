@@ -1,5 +1,7 @@
 {
   "isSuccess": true,
-  "res": true,
+  "res": {
+    "userId": 4
+  },
   "status": 200
 }
