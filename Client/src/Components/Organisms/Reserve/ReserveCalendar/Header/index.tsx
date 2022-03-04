@@ -1,5 +1,6 @@
 import { DateAction } from "@Type/.";
-import { Dispatch, SetStateAction } from "react";
+import { postReservationRoomBodyProps } from "@Type/API";
+import { Dispatch } from "react";
 import { CalendarHeaderContainer } from "./styles";
 
 export interface DateProps {
@@ -7,6 +8,9 @@ export interface DateProps {
   month: number;
 }
 
+export interface CalendarBodyProps extends DateProps {
+  data: postReservationRoomBodyProps[];
+}
 interface HeaderProps extends DateProps {
   setDate: Dispatch<DateAction>;
 }
