@@ -109,6 +109,26 @@ export class ProjectsService {
         }
     }
 
+    async acceptCreate(projectIdx: number) {
+        const queryRunner = this.connection.createQueryRunner();
+
+        await queryRunner.connect();
+        await queryRunner.startTransaction();
+        try {
+            await queryRunner.manager.update(Project, projectIdx, {
+                status: 'collecting'
+            });
+            await queryRunner.commitTransaction();
+            return new BaseSuccessResponse();
+        } catch(error) {
+            console.log(error);
+            await queryRunner.rollbackTransaction();
+            return new BaseFailResponse('프로젝트 생성 요청 승인에 실패했습니다.');
+        } finally {
+            await queryRunner.release();
+        }
+    }
+
     async findAll() {
         try {
             const projects = await Project.find({
@@ -194,7 +214,7 @@ export class ProjectsService {
         }
     }
 
-    async accept(userProjectIdx: number) {
+    async acceptParticipation(userProjectIdx: number) {
         const queryRunner = this.connection.createQueryRunner();
 
         await queryRunner.connect();
@@ -214,7 +234,7 @@ export class ProjectsService {
         }
     }
 
-    async reject(userProjectIdx: number) {
+    async rejectParticipation(userProjectIdx: number) {
         const queryRunner = this.connection.createQueryRunner();
 
         await queryRunner.connect();
