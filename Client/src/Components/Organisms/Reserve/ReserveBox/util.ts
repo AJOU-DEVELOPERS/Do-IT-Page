@@ -13,6 +13,6 @@ export const makeReservationRoomType = ({
     reservationEndDate,
     reservationEndHour,
     userName,
-    userIdx: 0,
+    userIdx: 4,
   };
 };
