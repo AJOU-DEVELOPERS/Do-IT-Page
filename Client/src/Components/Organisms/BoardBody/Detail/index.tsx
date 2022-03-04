@@ -6,14 +6,14 @@ import { SmallButtonType } from "@Style/.";
 import { BoardContentType } from "@Type/.";
 import { hasBoardContent } from "@Util/.";
 import { Suspense } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { ButtonContainer, DetailContainer } from "./styles";
 
 const BoardDetailBody = ({ type }: { type: string }) => {
   const { id } = useParams<{ id: string }>();
   const { boardApiSrc, pageSrc } = _BOARD_INFOS[type];
-  const history = useHistory();
+  const navigator = useNavigate();
 
   const content =
     (hasBoardContent(boardApiSrc ?? "", type) &&
@@ -23,7 +23,7 @@ const BoardDetailBody = ({ type }: { type: string }) => {
     [];
 
   const handleListClick = () => {
-    history.push(pageSrc);
+    navigator(pageSrc);
   };
 
   if (content.length > 1) return null;

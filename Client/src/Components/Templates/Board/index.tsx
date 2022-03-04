@@ -1,16 +1,16 @@
 import BoardBody from "@Organisms/BoardBody";
 import Header from "@Organisms/Common/Header";
-import { withRouter } from "react-router-dom";
-import { History } from "history";
 import { handleHeaderClick } from "@Util/.";
+import { useNavigate } from "react-router-dom";
 
-const BoardTemplate = ({ history }: { history: History }) => {
+const BoardTemplate = () => {
+  const navigator = useNavigate();
   return (
     <>
-      <Header onClick={() => handleHeaderClick(history)} />
+      <Header onClick={() => handleHeaderClick(navigator)} />
       <BoardBody type="자유게시판" />
     </>
   );
 };
 
-export default withRouter(BoardTemplate);
+export default BoardTemplate;

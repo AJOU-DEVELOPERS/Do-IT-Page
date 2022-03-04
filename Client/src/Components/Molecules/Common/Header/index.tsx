@@ -1,13 +1,14 @@
 import { MAIN_URL, BEFORE_URL } from "@Constant/.";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 import { LeftContainer, Title } from "./style";
 
 const HeaderLeftSide = ({ user }: { user: boolean }) => {
-  const history = useHistory();
+  const navigator = useNavigate();
 
   const handleMoveHome = () => {
     const path = user ? MAIN_URL : BEFORE_URL;
-    history.push(path);
+    navigator(path);
   };
   return (
     <LeftContainer>

@@ -1,13 +1,14 @@
 import Header from "@Organisms/Common/Header";
 import { useCallback } from "react";
-import { withRouter } from "react-router-dom";
-import { History } from "history";
+
 import { PageContainer, HeaderContainer, BodyContainer } from "./styles";
 import Footer from "@Organisms/Page/Footer";
+import { useNavigate } from "react-router-dom";
 
-const PageTemplate = ({ history }: { history: History }) => {
+const PageTemplate = () => {
+  const navigator = useNavigate();
   const handleLoginClick = useCallback(() => {
-    history.push("/login");
+    navigator("/login");
   }, []);
 
   return (
@@ -23,4 +24,4 @@ const PageTemplate = ({ history }: { history: History }) => {
   );
 };
 
-export default withRouter(PageTemplate);
+export default PageTemplate;

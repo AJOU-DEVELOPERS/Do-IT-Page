@@ -2,7 +2,8 @@ import LoginButton from "@Atoms/Button/Login";
 import { getDepartmentsSelector } from "@Recoil/Register";
 import { RegisterButtonType, CheckDuplicateButton } from "@Style/.";
 import { useRef, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 import { useRecoilValue } from "recoil";
 import { REF_NUM, REGISTER_DATAS } from "../common";
 import { RegisterContainer, Title, Section, SubWrapper } from "../styles";
@@ -17,8 +18,7 @@ const RegisterInput = () => {
 
   const inputRef = useRef<HTMLInputElement[]>([]);
   const subjectRef = useRef<HTMLSelectElement>(null);
-
-  const history = useHistory();
+  const navigator = useNavigate();
 
   const handleRegisterClick = async () => {
     const res = await RegisterClick({
@@ -27,7 +27,7 @@ const RegisterInput = () => {
       checkId,
       mailCheck,
     });
-    if (res) history.push("/login");
+    if (res) navigator("/login");
   };
 
   const handleCheckDuplicateId = async () => {

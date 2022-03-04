@@ -1,5 +1,5 @@
 import { ReactElement, useEffect } from "react";
-import { Redirect, Route } from "react-router-dom";
+import { Navigate, Route } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { checkLoginNow } from "@src/Recoil/CheckLogin";
 
@@ -9,11 +9,7 @@ interface Props {
   exact?: boolean;
 }
 
-const PrivateRoute = ({
-  element: Component,
-  path,
-  exact = false,
-}: Props): JSX.Element => {
+const PrivateRoute = ({ element: Component, path }: Props): JSX.Element => {
   const [user, setUser] = useRecoilState<boolean | any>(checkLoginNow);
   useEffect(() => {
     if (!user) return;
@@ -21,9 +17,8 @@ const PrivateRoute = ({
   }, []);
   return (
     <Route
-      exact={exact}
       path={path}
-      render={() => (user ? Component : <Redirect to="/login" />)}
+      element={() => (user ? Component : <Navigate to="/login" />)}
     />
   );
 };
