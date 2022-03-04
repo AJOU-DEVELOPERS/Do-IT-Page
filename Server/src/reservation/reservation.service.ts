@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { BaseFailResponse, BaseSuccessResponse, ThrowFailResponse } from 'src/commons/dto/response-common.dto';
+import { BaseFailResponse, BaseSuccessResponse, ResultSuccessResponse, ThrowFailResponse } from 'src/commons/dto/response-common.dto';
 import { User } from 'src/users/entities/user.entity';
 import { Connection, Like, Repository } from 'typeorm';
 import { CreateReservationDto } from './dto/create-reservation.dto';
@@ -31,12 +31,12 @@ export class ReservationService {
                 userIdx: createReservationDto.userIdx,
             })
             if(!user){
-                return new BaseFailResponse('존재하지 않는 유저입니다.')
+                return new ResultSuccessResponse(false)
             }
             reservation.user = user;
             reservation.userName = user.name;
             await queryRunner.manager.save(reservation);
-            return new BaseSuccessResponse();
+            return new ResultSuccessResponse(true);
         } catch(error) {
             console.log(error);
             return new BaseFailResponse('과방 예약에 실패했습니다.');
@@ -57,8 +57,9 @@ export class ReservationService {
                 reservation.reservationEndDate = reservationEndDate;
                 reservation.reservationEndHour = reservationEndHour;
                 await queryRunner.manager.save(reservation);
-                return new BaseSuccessResponse();
+                return new ResultSuccessResponse(true);
             }
+            return new ResultSuccessResponse(false);
         }catch(error){
             console.log(error);
             return new BaseFailResponse('예약 정보 변경에 실패했습니다.');
@@ -74,7 +75,7 @@ export class ReservationService {
             const reservation = await this.findIdx(reservationIdx);
             reservation.status = 'accepted';
             await queryRunner.manager.save(reservation);
-            return new BaseSuccessResponse();
+            return new ResultSuccessResponse(true);
         }catch(error){
             console.log(error);
             return new BaseFailResponse('예약 정보 승인에 실패했습니다.');
@@ -90,7 +91,7 @@ export class ReservationService {
             const reservation = await this.findIdx(reservationIdx);
             reservation.status = 'rejected';
             await queryRunner.manager.save(reservation);
-            return new BaseSuccessResponse();
+            return new ResultSuccessResponse(true);
         }catch(error){
             console.log(error);
             return new BaseFailResponse('예약 정보 거절에 실패했습니다.');
@@ -106,7 +107,7 @@ export class ReservationService {
             const reservation = await this.findIdx(reservationIdx);
             reservation.status = 'processing';
             await queryRunner.manager.save(reservation);
-            return new BaseSuccessResponse();
+            return new ResultSuccessResponse(true);
         }catch(error){
             console.log(error);
             return new BaseFailResponse('예약 정보 진행중으로 변경에 실패했습니다.');
@@ -155,6 +156,9 @@ export class ReservationService {
 
     async findMonth(year: string, month: string){
         const queryRunner = this.connection.createQueryRunner();
+        if(month.length<2){
+            month = '0' + month;
+        }
         const time = year + '-' + month;
         await queryRunner.connect();
         try {
@@ -180,8 +184,9 @@ export class ReservationService {
             const reservation = await this.findIdx(reservationIdx);
             if(reservation.userIdx == userIdx){
                 await queryRunner.manager.delete(Reservation, reservationIdx);
-                return new BaseSuccessResponse();
+                return new ResultSuccessResponse(true);
             }
+            return new ResultSuccessResponse(false);
         } catch(error) {
             console.log(error);
             return new BaseFailResponse('예약 정보 삭제에 실패했습니다.');
