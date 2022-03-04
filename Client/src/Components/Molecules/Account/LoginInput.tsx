@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { useHistory, withRouter } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import LoginButton from "@Atoms/Button/Login";
 import Input from "@Atoms/Input";
@@ -14,11 +14,11 @@ const LoginInput = () => {
   const setUser = useSetRecoilState(userInfoAtom);
   const idRef = useRef<HTMLInputElement | null>(null);
   const pwRef = useRef<HTMLInputElement | null>(null);
-  const history = useHistory();
+  const navigator = useNavigate();
 
   const handleLoginClick = () => LoginClick({ idRef, pwRef, history, setUser });
   const handleRegisterClick = () => {
-    history.push("/register");
+    navigator("/register");
   };
   const handleFindInfo = () => {
     alert("관리자에게 문의하세요");
@@ -56,4 +56,4 @@ const LoginInput = () => {
   );
 };
 
-export default withRouter(LoginInput);
+export default LoginInput;

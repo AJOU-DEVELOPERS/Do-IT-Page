@@ -38,7 +38,7 @@ export interface BasicButtonProps extends BasicAtomProps {
   backGroundColor?: string;
   title?: string;
   color?: string;
-  onClick?: () => void;
+  onClick?: (e: any) => void;
   onClickCapture?: (e: any) => void;
   buttonRef?: React.RefObject<HTMLButtonElement> | undefined;
 }

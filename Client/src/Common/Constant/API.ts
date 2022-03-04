@@ -20,9 +20,15 @@ export const GET_NOTICE_POST_URL = "/dummyData/NoticeBoardContent.json";
 
 export const GET_BOARD_POST_URL = "/dummyData/FreeBoardContent.json";
 
+/**--------------------- Reservation ------------------------ */
+
 export const POST_RESERVATION_URL = `${TARGET_URL}/reservation`;
 
 export const GET_RESERVATION_URL = `${TARGET_URL}/reservation`;
+
+export const PATCH_RESERVATION_ACCEPT = `${TARGET_URL}/reservation/accept/`;
+
+export const PATCH_RESERVATION_DENY = `${TARGET_URL}/reservation/reject/`;
 
 /**--------------------- Auth ------------------------ */
 export const GET_DEPARTMENT_DATA = `${TARGET_URL}/departments`;

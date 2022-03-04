@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { Redirect, Route } from "react-router-dom";
+import { Navigate, Route } from "react-router-dom";
 
 interface Props {
   element: ReactElement;
@@ -12,7 +12,7 @@ const AdminRoute = ({ element: Component, path }: Props): JSX.Element => {
   return (
     <Route
       path={path}
-      render={() => (admin ? Component : <Redirect to="/error" />)}
+      element={() => (admin ? Component : <Navigate to="/error" />)}
     />
   );
 };

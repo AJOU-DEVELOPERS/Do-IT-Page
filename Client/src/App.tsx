@@ -1,5 +1,5 @@
 import { Suspense, lazy } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 const Page = lazy(() => import("@Pages/."));
 const BeforePage = lazy(() => import("@Pages/Before"));
@@ -19,36 +19,36 @@ import PublicRoute from "@Route/PublicRoute";
 import PrivateRoute from "@Route/PrivateRoute";
 import AdminRoute from "@Route/AdminRoute";
 
-import Spin from "@Atoms/Spinner";
 import RegisterPage from "@Pages/Register";
 import { ROOM_BOARD_URL } from "@Constant/.";
 import PhotosPage from "@Pages/Phtos";
+import Spin from "@Atoms/Spinner";
 
 const App = () => {
   return (
     <div style={{ width: "100vw" }}>
       <Suspense fallback={<Spin />}>
-        <Switch>
-          <PublicRoute path="/" element={<Page />} exact />
-          <PublicRoute path="/before" element={<BeforePage />} exact />
-          <PublicRoute path="/login" element={<LoginPage />} exact />
-          <PublicRoute path="/register" element={<RegisterPage />} exact />
+        <Routes>
+          <PublicRoute path="/" element={<Page />} />
+          <PublicRoute path="/before" element={<BeforePage />} />
+          <PublicRoute path="/login" element={<LoginPage />} />
+          <PublicRoute path="/register" element={<RegisterPage />} />
 
-          <PrivateRoute path="/main" element={<MainPage />} exact />
+          <PrivateRoute path="/main" element={<MainPage />} />
           <PrivateRoute path="/board" element={<BoardPage />} />
           <PrivateRoute path="/notice" element={<NoticePage />} />
 
-          <PrivateRoute path="/project" element={<ProjectPage />} exact />
-          <PrivateRoute path="/study" element={<StudyPage />} exact />
+          <PrivateRoute path="/project" element={<ProjectPage />} />
+          <PrivateRoute path="/study" element={<StudyPage />} />
 
-          <PrivateRoute path="/mypage" element={<MyPage />} exact />
-          <PrivateRoute path={ROOM_BOARD_URL} element={<ReservePage />} exact />
-          <PrivateRoute path="/rank" element={<RankingPage />} exact />
+          <PrivateRoute path="/mypage" element={<MyPage />} />
+          <PrivateRoute path={ROOM_BOARD_URL} element={<ReservePage />} />
+          <PrivateRoute path="/rank" element={<RankingPage />} />
           <PrivateRoute path="/photos" element={<PhotosPage />} />
 
           <AdminRoute path="/admin" element={<AdminPage />} />
-          <Route path="*" render={() => ErrorPage} exact />
-        </Switch>
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
       </Suspense>
     </div>
   );
