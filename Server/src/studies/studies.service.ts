@@ -65,6 +65,26 @@ export class StudiesService {
         }
     }
 
+    async acceptCreate(studyIdx: number) {
+        const queryRunner = this.connection.createQueryRunner();
+
+        await queryRunner.connect();
+        await queryRunner.startTransaction();
+        try {
+            await queryRunner.manager.update(Study, studyIdx, {
+                status: 'collecting'
+            });
+            await queryRunner.commitTransaction();
+            return new BaseSuccessResponse();
+        } catch(error) {
+            console.log(error);
+            await queryRunner.rollbackTransaction();
+            return new BaseFailResponse('스터디 생성 요청 승인에 실패했습니다.');
+        } finally {
+            await queryRunner.release();
+        }
+    }
+
     async findAll() {
         try {
             const studies = await Study.find();
@@ -147,7 +167,7 @@ export class StudiesService {
         }
     }
 
-    async accept(userStudyIdx: number) {
+    async acceptParticipation(userStudyIdx: number) {
         const queryRunner = this.connection.createQueryRunner();
 
         await queryRunner.connect();
@@ -167,7 +187,7 @@ export class StudiesService {
         }
     }
 
-    async reject(userStudyIdx: number) {
+    async rejectParticipation(userStudyIdx: number) {
         const queryRunner = this.connection.createQueryRunner();
 
         await queryRunner.connect();
