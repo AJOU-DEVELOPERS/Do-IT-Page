@@ -1,5 +1,5 @@
 import { API } from "@API/.";
-import { postReservationAccept } from "@API/Reservation";
+import { postReservationAccept, postReservationDeny } from "@API/Reservation";
 
 export const getContainer = ({ target }: { target: any }) =>
   target.closest("#reservationContainer");
@@ -7,18 +7,20 @@ export const getContainer = ({ target }: { target: any }) =>
 export const getIdx = ({ target }: { target: any }) =>
   target.getAttribute("data-idx");
 
-export const reserveAccept = async ({ target }: { target: any }) => {
-  const data = getIdx({ target: getContainer({ target }) });
-  const res = await API({ api: postReservationAccept, data });
-  if (!res) {
-    alert("관리자에게 문의해주세요");
-    return [];
-  }
-  return res;
+export const getAPI = ({ type }: { type: string }) => {
+  type === "accept" ? postReservationAccept : postReservationDeny;
 };
-export const reserveDeny = async ({ target }: { target: any }) => {
+
+export const reserveUpdate = async ({
+  target,
+  type,
+}: {
+  target: any;
+  type: string;
+}) => {
   const data = getIdx({ target: getContainer({ target }) });
-  const res = await API({ api: postReservationAccept, data });
+  const api = getAPI({ type });
+  const res = await API({ api, data });
   if (!res) {
     alert("관리자에게 문의해주세요");
     return [];

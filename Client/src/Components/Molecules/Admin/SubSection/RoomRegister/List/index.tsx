@@ -10,7 +10,7 @@ import {
 import { SmallButtonType } from "@Style/.";
 import { postReservationRoomBodyProps } from "@Type/API";
 import { RESERVATION_TITLE } from "../common";
-import { reserveAccept, reserveDeny } from "../util";
+import { reserveUpdate } from "../util";
 import { ButtonContainer } from "./styles";
 
 const RoomRegisterList = ({
@@ -19,9 +19,9 @@ const RoomRegisterList = ({
   list: postReservationRoomBodyProps[];
 }) => {
   const handleReserveAccept = ({ target }: { target: any }) =>
-    reserveAccept({ target });
+    reserveUpdate({ target, type: "accept" });
   const handleReserveDeny = ({ target }: { target: any }) =>
-    reserveDeny({ target });
+    reserveUpdate({ target, type: "deny" });
 
   return (
     <Table>
