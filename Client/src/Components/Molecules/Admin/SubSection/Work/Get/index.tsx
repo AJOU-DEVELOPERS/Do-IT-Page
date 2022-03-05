@@ -16,7 +16,6 @@ const GetWork = ({ type }: BasicType) => {
       (item: { status: string }) => item.status === "waiting"
     )
   );
-  console.log(totalWorkList);
   const [work, setWork] = useState<WorkType>();
 
   const handleSearch = ({
