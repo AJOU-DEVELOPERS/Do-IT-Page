@@ -29,7 +29,7 @@ const Content = ({ type }: Props) => {
       .split(" ");
     const status = data[1],
       index = data[2];
-    console.log(typeContents[status][index]);
+
     setModalOnOff(typeContents[status][index]);
   };
 

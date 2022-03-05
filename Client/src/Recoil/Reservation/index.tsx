@@ -15,11 +15,11 @@ export const reservationRoomSelector = selectorFamily<
   get:
     ({ year, month }: ReservationRecoilProps) =>
     async () => {
-      const { message, res } = await API({
+      const res = await API({
         api: getReservationRoom,
         data: `/${year}/${month}`,
       });
-      return message ? res : [];
+      return res;
     },
 });
 

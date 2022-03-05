@@ -49,8 +49,6 @@ export const checkReserve = (
   date: any,
   reserveDate: reservationDatasProps[]
 ): boolean => {
-  console.log(reserveDate);
-  console.log(date);
   return (
     reserveDate
       ?.map((item: reservationDatasProps) => item.date)

@@ -24,7 +24,7 @@ const CalendarBody = ({ month, year, data }: CalendarBodyProps) => {
   const MonthDays: any[] = getMonthDays({ month, year });
 
   const reserveDatas = getReserveDatas(data);
-  console.log(reserveDatas);
+
   return (
     <Suspense fallback={null}>
       <>
