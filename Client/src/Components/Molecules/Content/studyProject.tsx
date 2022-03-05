@@ -40,11 +40,13 @@ const Content = ({ type }: Props) => {
     );
 
   const typeContents = boardContents?.slice(0, 7).reduce(
-    (result: any, element: any) => {
-      result[element.status].push(element);
-      return result;
+    (acc: any, cur: any) => {
+      return {
+        ...acc,
+        [cur.status]: [...acc[cur.status], cur],
+      };
     },
-    { collecting: [], processing: [], done: [] }
+    { collecting: [], processing: [], done: [], waiting: [] }
   );
 
   const fn = useCallback(() => {

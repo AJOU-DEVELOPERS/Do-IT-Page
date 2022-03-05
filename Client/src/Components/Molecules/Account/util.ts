@@ -13,7 +13,7 @@ import { REF_NUM } from "./common";
 export const LoginClick = async ({
   idRef,
   pwRef,
-  history,
+  navigator,
   setUser,
 }: LoginClickType) => {
   if (!idRef?.current || !pwRef?.current) return;
@@ -46,7 +46,7 @@ export const LoginClick = async ({
     return;
   }
   setUser(res.userInfo);
-  history.push("/main");
+  navigator("/main");
 };
 
 export const RegisterClick = async ({

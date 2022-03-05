@@ -1,3 +1,4 @@
+import { NavigateFunction } from "react-router-dom";
 import { SetterOrUpdater } from "recoil";
 
 export interface userInfo {
@@ -26,7 +27,7 @@ export interface RegisterInfoType extends LoginInfoType {
 export interface LoginClickType {
   idRef: React.MutableRefObject<HTMLInputElement | null>;
   pwRef: React.MutableRefObject<HTMLInputElement | null>;
-  history: any;
+  navigator: NavigateFunction;
   setUser: SetterOrUpdater<any>;
 }
 
