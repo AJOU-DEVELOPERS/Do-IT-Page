@@ -29,24 +29,123 @@ const App = () => {
     <div style={{ width: "100vw" }}>
       <Suspense fallback={<Spin />}>
         <Routes>
-          <PublicRoute path="/" element={<Page />} />
-          <PublicRoute path="/before" element={<BeforePage />} />
-          <PublicRoute path="/login" element={<LoginPage />} />
-          <PublicRoute path="/register" element={<RegisterPage />} />
+          {/* PublicRoute */}
+          <Route
+            path="/"
+            element={
+              <PublicRoute>
+                <Page />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/before"
+            element={
+              <PublicRoute>
+                <BeforePage />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <PublicRoute>
+                <LoginPage />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <PublicRoute>
+                <RegisterPage />
+              </PublicRoute>
+            }
+          />
+          {/* PrivateRoute */}
+          <Route
+            path="/main"
+            element={
+              <PrivateRoute>
+                <MainPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/board"
+            element={
+              <PrivateRoute>
+                <BoardPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/notice"
+            element={
+              <PrivateRoute>
+                <NoticePage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/project"
+            element={
+              <PrivateRoute>
+                <ProjectPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/study"
+            element={
+              <PrivateRoute>
+                <StudyPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/mypage"
+            element={
+              <PrivateRoute>
+                <MyPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path={ROOM_BOARD_URL}
+            element={
+              <PrivateRoute>
+                <ReservePage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/rank"
+            element={
+              <PrivateRoute>
+                <RankingPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/photos"
+            element={
+              <PrivateRoute>
+                <PhotosPage />
+              </PrivateRoute>
+            }
+          />
 
-          <PrivateRoute path="/main" element={<MainPage />} />
-          <PrivateRoute path="/board" element={<BoardPage />} />
-          <PrivateRoute path="/notice" element={<NoticePage />} />
+          {/* AdminRoute */}
+          <Route
+            path="/admin"
+            element={
+              <AdminRoute>
+                <AdminPage />
+              </AdminRoute>
+            }
+          />
 
-          <PrivateRoute path="/project" element={<ProjectPage />} />
-          <PrivateRoute path="/study" element={<StudyPage />} />
-
-          <PrivateRoute path="/mypage" element={<MyPage />} />
-          <PrivateRoute path={ROOM_BOARD_URL} element={<ReservePage />} />
-          <PrivateRoute path="/rank" element={<RankingPage />} />
-          <PrivateRoute path="/photos" element={<PhotosPage />} />
-
-          <AdminRoute path="/admin" element={<AdminPage />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </Suspense>
