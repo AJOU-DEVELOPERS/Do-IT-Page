@@ -22,7 +22,7 @@ const BeforePageTemplate = () => {
   const handleLoginClick = useCallback(() => {
     navigator("/login");
   }, []);
-  const YearWidth = checkTablet() ? "500" : "1000";
+  //const YearWidth = checkTablet() ? "500" : "1000";
   return (
     <>
       <Header onClick={handleLoginClick} />
@@ -31,11 +31,9 @@ const BeforePageTemplate = () => {
         <Content text={() => Context(CONTENT[0])} type="basic" />
       </ContentContainer>
 
-      {!checkMobile() && (
-        <Year>
-          <img src="/assets/Content/year.png" width={YearWidth} height={500} />
-        </Year>
-      )}
+      <Year>
+        <img src="/assets/Content/year.png"/>
+      </Year>
 
       <DoItTodo />
 
