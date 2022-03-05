@@ -1,3 +1,4 @@
+import { TABLET_WIDTH } from "@Constant/.";
 import {
   ApplyButtonProps,
   BasicButtonProps,
@@ -31,7 +32,7 @@ const EnterContainer = styled(ButtonContainer)`
   color: #6c6c6c;
   box-shadow: 0px 0px 6px #00000029;
   border-radius: 16px;
-  font-size: 32px;
+  font-size: 32px; 
 `;
 
 const ApplyContainer = styled(ButtonContainer)<ApplyButtonProps>`

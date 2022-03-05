@@ -1,3 +1,4 @@
+import { TABLET_WIDTH } from "@Constant/.";
 import { DefaultColor } from "@Style/.";
 import styled, { css } from "styled-components";
 
@@ -31,6 +32,9 @@ const Title = styled.h1<TitleProps>`
   font-weight: 500;
   margin-bottom: 10px;
   padding: 20px 0;
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    font-size: medium;
+  }
 
   color: ${DefaultColor} span {
     color: #000000;
@@ -45,6 +49,11 @@ const Text = styled.div<TitleProps>`
   margin-top: 10px;
   font-size: 20px;
   color: #858383;
+
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    font-size: medium;
+  }
+  
   ${({ type }) => type === "Info" && InfoStyle};
   ${({ type }) => type === "Todo" && TodoTextStyle};
 `;
@@ -55,10 +64,18 @@ const Wrapper = styled.div`
 
 const InfoStyle = css`
   margin-bottom: 40px;
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    font-size: medium;
+    margin-left: 10vw;
+    margin-right: 10vw;
+  }
 `;
 
 const TodoTitleStyle = css`
   margin-top: 20px;
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    font-size: medium;
+  }
 `;
 const TodoTextStyle = css`
   font-size: 16px;
