@@ -74,13 +74,16 @@ export class UsersController {
     description: '유저가 로그인하는 api입니다.',
   })
   @ApiBody({ type: LoginUserDto })
-  @ApiOkResponse({ description: '로그인 성공', type: BaseSuccessResponse })
+  @ApiOkResponse({ description: '로그인 성공', type: LoginUserResponseDto })
   async logIn(
     @Req() req,
     @Body() loginUserDto: LoginUserDto,
     @Res({ passthrough: true }) res: Response,
   ) {
-    const cookie = this.authsService.getCookieWithJwtToken(req.user.userIdx);
+    const cookie = await this.authsService.getCookieWithJwtToken(
+      req.user.userIdx,
+      req.user.userName,
+    );
     res.cookie('Bearer', cookie);
 
     return new LoginUserResponseDto(req.user);
@@ -106,5 +109,16 @@ export class UsersController {
   @Post('sign-up/club')
   async signUpClub(@Req() req) {
     return this.usersService.signUpClub(req.user.userIdx);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @ApiOperation({
+    summary: '토큰 검증',
+    description: '토큰 검증 api.',
+  })
+  @ApiOkResponse({ description: '검증 성공', type: LoginUserResponseDto })
+  @Get('tokenCheck')
+  async tokenCheck(@Req() req) {
+    return new LoginUserResponseDto(req.user);
   }
 }

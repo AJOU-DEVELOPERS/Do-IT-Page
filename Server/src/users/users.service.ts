@@ -63,7 +63,10 @@ export class UsersService {
       return new BaseSuccessResponse('이미 존재하지 않는 이메일입니다.');
     if (!(await compare(loginUserDto.password, userInfo.password)))
       return new BaseSuccessResponse('비밀번호가 틀렸습니다.');
-    return this.authsService.getCookieWithJwtToken(userInfo.userIdx);
+    return this.authsService.getCookieWithJwtToken(
+      userInfo.userIdx,
+      userInfo.name,
+    );
   }
 
   async findById(id: string) {

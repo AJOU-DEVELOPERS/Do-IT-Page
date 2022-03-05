@@ -62,10 +62,11 @@ export class AuthsService {
     return new BaseSuccessResponse();
   }
 
-  async getCookieWithJwtToken(userIdx: number) {
+  async getCookieWithJwtToken(userIdx: number, userName: string) {
     const payload: {
       userIdx: number;
-    } = { userIdx };
+      userName: string;
+    } = { userIdx, userName };
     const token = this.jwtService.sign(payload);
 
     return token;
@@ -73,6 +74,7 @@ export class AuthsService {
   async validateUser(id: string, password: string) {
     const userInfo = await User.findByLogin(id, password);
     if (!userInfo) return null;
+    else if (userInfo.status === 'Y') return 'secession';
     const result = {
       userIdx: userInfo.userIdx,
       userName: userInfo.name,
