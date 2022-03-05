@@ -20,7 +20,15 @@ import PrivateRoute from "@Route/PrivateRoute";
 import AdminRoute from "@Route/AdminRoute";
 
 import RegisterPage from "@Pages/Register";
-import { ROOM_BOARD_URL } from "@Constant/.";
+import {
+  FREE_BOARD_URL,
+  NOTICE_URL,
+  PHOTO_BOARD_URL,
+  PROJECT_BOARD_URL,
+  RANKING_BOARD_URL,
+  ROOM_BOARD_URL,
+  STUDY_BOARD_URL,
+} from "@Constant/.";
 import PhotosPage from "@Pages/Phtos";
 import Spin from "@Atoms/Spinner";
 
@@ -72,7 +80,7 @@ const App = () => {
             }
           />
           <Route
-            path="/board"
+            path={FREE_BOARD_URL}
             element={
               <PrivateRoute>
                 <BoardPage />
@@ -80,15 +88,16 @@ const App = () => {
             }
           />
           <Route
-            path="/notice"
+            path={NOTICE_URL + "/*"}
             element={
               <PrivateRoute>
                 <NoticePage />
               </PrivateRoute>
             }
           />
+
           <Route
-            path="/project"
+            path={PROJECT_BOARD_URL}
             element={
               <PrivateRoute>
                 <ProjectPage />
@@ -96,7 +105,7 @@ const App = () => {
             }
           />
           <Route
-            path="/study"
+            path={STUDY_BOARD_URL}
             element={
               <PrivateRoute>
                 <StudyPage />
@@ -120,7 +129,7 @@ const App = () => {
             }
           />
           <Route
-            path="/rank"
+            path={RANKING_BOARD_URL}
             element={
               <PrivateRoute>
                 <RankingPage />
@@ -128,7 +137,7 @@ const App = () => {
             }
           />
           <Route
-            path="/photos"
+            path={PHOTO_BOARD_URL + "/*"}
             element={
               <PrivateRoute>
                 <PhotosPage />

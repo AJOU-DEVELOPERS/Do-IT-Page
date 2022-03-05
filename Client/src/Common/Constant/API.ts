@@ -43,6 +43,8 @@ export const POST_CHECK_MAIL = `${TARGET_URL}/auths/verify-mail`;
 
 export const POST_CHECK_DUPLICATE_USER_ID = `${TARGET_URL}/users/duplicateCheck/`;
 
+export const POST_CIRCLE_JOIN = `${TARGET_URL}/user/sign-up/club`;
+
 /**--------------------- Study ------------------------ */
 export const POST_CREATE_STUDY = `${TARGET_URL}/studies`;
 
