@@ -29,7 +29,7 @@ import {
   BaseSuccessResponse,
   ResultSuccessResponse,
 } from 'src/commons/dto/response-common.dto';
-import { LoginUserDto } from './dto/login-user.dto';
+import { LoginUserDto, LoginUserResponseDto } from './dto/login-user.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { Response } from 'express';
 import { LocalAuthGuard } from 'src/auths/auth.local.guard';
@@ -68,9 +68,10 @@ export class UsersController {
     @Body() loginUserDto: LoginUserDto,
     @Res({ passthrough: true }) res: Response,
   ) {
-    const cookie = await this.usersService.login(loginUserDto);
+    const cookie = this.authsService.getCookieWithJwtToken(req.user.userIdx);
     res.cookie('Bearer', cookie);
-    return new ResultSuccessResponse(req.user);
+
+    return new LoginUserResponseDto(req.user);
   }
 
   @ApiOperation({

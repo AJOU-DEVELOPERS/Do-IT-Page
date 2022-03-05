@@ -44,7 +44,7 @@ export class UsersService {
         id: user.id,
       });
       if (emailInfo || idInfo)
-        return new BaseFailResponse('이미 존재하는 계정입니다.');
+        return new BaseSuccessResponse('이미 존재하는 계정입니다.');
       await queryRunner.manager.save(user);
       await queryRunner.commitTransaction();
       return new BaseSuccessResponse();
@@ -60,15 +60,15 @@ export class UsersService {
   async login(loginUserDto: LoginUserDto) {
     const userInfo = await User.findOne({ id: loginUserDto.id });
     if (!userInfo)
-      return new BaseFailResponse('이미 존재하지 않는 이메일입니다.');
+      return new BaseSuccessResponse('이미 존재하지 않는 이메일입니다.');
     if (!(await compare(loginUserDto.password, userInfo.password)))
-      return new BaseFailResponse('비밀번호가 틀렸습니다.');
+      return new BaseSuccessResponse('비밀번호가 틀렸습니다.');
     return this.authsService.getCookieWithJwtToken(userInfo.userIdx);
   }
 
   async findById(id: string) {
     const user = await User.findOne({ where: id });
-    if (user) return new BaseFailResponse('이미 존재하는 아이디입니다.');
+    if (user) return new BaseSuccessResponse('이미 존재하는 아이디입니다.');
     return new BaseSuccessResponse();
   }
 
@@ -80,7 +80,7 @@ export class UsersService {
     const duplicateCheck = UserPayCheck.findOne({
       where: { userIdx, semesterIdx },
     });
-    if (duplicateCheck) return new BaseFailResponse('이미 신청하였습니다.');
+    if (duplicateCheck) return new BaseSuccessResponse('이미 신청하였습니다.');
     userPayCheck.userIdx = userIdx;
     userPayCheck.semesterIdx = semesterIdx;
 
