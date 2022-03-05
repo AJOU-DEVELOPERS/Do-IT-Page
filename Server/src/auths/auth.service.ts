@@ -1,7 +1,11 @@
 import { Injectable, CACHE_MANAGER, Inject } from '@nestjs/common';
 import { MailerService } from '@nestjs-modules/mailer';
 import { Cache } from 'cache-manager';
-import { SendMailDto, VerifyMailDto } from './dto/mail-auth.dto';
+import {
+  SendMailDto,
+  SendMailResponseDto,
+  VerifyMailDto,
+} from './dto/mail-auth.dto';
 import { Repository, Connection } from 'typeorm';
 import {
   BaseSuccessResponse,
@@ -24,7 +28,8 @@ export class AuthsService {
       let authNum: string = '';
       let cacheKey: string = '';
       const userInfo = await User.findOne({ email: SendMailDto.email });
-      if (userInfo) return new BaseFailResponse('이미 존재하는 이메일입니다.');
+      if (userInfo)
+        return new BaseSuccessResponse('이미 존재하는 이메일입니다.');
 
       const chars: string =
         '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
@@ -40,12 +45,11 @@ export class AuthsService {
         html: '6자리 인증 코드 : ' + `<b> ${authNum}</b>`, // HTML body content
       });
       await this.cacheManager.set(cacheKey, authNum, { ttl: 180 });
-      return new ResultSuccessResponse({
-        cacheKey,
-      });
+
+      return new SendMailResponseDto(cacheKey);
     } catch (err) {
       console.log(err);
-      return new BaseFailResponse();
+      return new BaseFailResponse('메일 요청에 실패하였습니다.');
     }
   }
   async verifyMail(verifyMailDto: VerifyMailDto) {
@@ -53,14 +57,16 @@ export class AuthsService {
       verifyMailDto.cacheKey,
     );
 
-    if (cacheValue !== verifyMailDto.authNum) return new BaseFailResponse();
+    if (cacheValue !== verifyMailDto.authNum)
+      return new BaseSuccessResponse('인증번호가 틀렸습니다.');
     return new BaseSuccessResponse();
   }
 
-  async getCookieWithJwtToken(userId: number) {
+  async getCookieWithJwtToken(userIdx: number, userName: string) {
     const payload: {
-      userId: number;
-    } = { userId };
+      userIdx: number;
+      userName: string;
+    } = { userIdx, userName };
     const token = this.jwtService.sign(payload);
 
     return token;
@@ -68,8 +74,10 @@ export class AuthsService {
   async validateUser(id: string, password: string) {
     const userInfo = await User.findByLogin(id, password);
     if (!userInfo) return null;
+    else if (userInfo.status === 'Y') return 'secession';
     const result = {
-      userId: userInfo.userIdx,
+      userIdx: userInfo.userIdx,
+      userName: userInfo.name,
     };
     return result;
   }

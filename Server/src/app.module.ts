@@ -15,7 +15,7 @@ import { DepartmentsModule } from './departments/departments.module';
 import { StudiesModule } from './studies/studies.module';
 import { ProjectsModule } from './projects/projects.module';
 import { ReservationModule } from './reservation/reservation.module';
-
+import { SemesterModule } from './semester/semester.module';
 @Module({
   imports: [
     AuthsModule,
@@ -73,6 +73,7 @@ import { ReservationModule } from './reservation/reservation.module';
     StudiesModule,
     ReservationModule,
     ProjectsModule,
+    SemesterModule,
   ],
   controllers: [AppController],
   providers: [AppService],
