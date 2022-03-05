@@ -4,6 +4,7 @@ import { BaseFailResponse, BaseSuccessResponse, ResultSuccessResponse } from 'sr
 import { User, UserStudy } from 'src/users/entities/user.entity';
 import { Connection, getRepository, Repository } from 'typeorm';
 import { CreateStudyDto } from './dto/create-study.dto';
+import { GetStudiesResponseDto, GetStudyResponseDto } from './dto/get-study.dto';
 import { UpdateStudyDto } from './dto/update-study.dto';
 import { Study } from './entity/study.entity';
 
@@ -88,7 +89,7 @@ export class StudiesService {
     async findAll() {
         try {
             const studies = await Study.find();
-            return new ResultSuccessResponse(studies);
+            return new GetStudiesResponseDto(studies);
         } catch(error) {
             console.log(error);
             return new BaseFailResponse('모든 스터디 불러오기를 실패했습니다.');
@@ -107,7 +108,7 @@ export class StudiesService {
                         'userStudies.user'
                     ] 
             });
-            return new ResultSuccessResponse(study);
+            return new GetStudyResponseDto(study);
         } catch(error) {
             console.log(error);
             return new BaseFailResponse('스터디 불러오기를 실패했습니다.');

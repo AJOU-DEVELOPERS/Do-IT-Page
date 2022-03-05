@@ -3,6 +3,7 @@ import { BaseFailResponse, BaseSuccessResponse, ResultSuccessResponse } from 'sr
 import { User, UserProject } from 'src/users/entities/user.entity';
 import { Connection } from 'typeorm';
 import { CreateProjectDto } from './dto/create-project.dto';
+import { GetProjectResponseDto, GetProjectsResponseDto } from './dto/get-project.dto';
 import { UpdateProjectDto } from './dto/update-project.dto';
 import { Project, ProjectTechStack } from './entity/project.entity';
 
@@ -136,7 +137,7 @@ export class ProjectsService {
                     "projectTechStacks"
                 ]
             });
-            return new ResultSuccessResponse(projects);
+            return new GetProjectsResponseDto(projects);
         } catch(error) {
             console.log(error);
             return new BaseFailResponse('모든 프로젝트 불러오기를 실패했습니다.');
@@ -154,7 +155,7 @@ export class ProjectsService {
                     "projectTechStacks"
                 ]
             });
-            return new ResultSuccessResponse(project);
+            return new GetProjectResponseDto(project);
         } catch(error) {
             console.log(error);
             return new BaseFailResponse('프로젝트 불러오기를 실패했습니다.');
