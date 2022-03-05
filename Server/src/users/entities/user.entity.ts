@@ -17,7 +17,7 @@ import * as bcrypt from 'bcrypt';
 import { InternalServerErrorException } from '@nestjs/common';
 import { ApiProperty } from '@nestjs/swagger';
 import { ForbiddenException } from '@nestjs/common';
-import { Project, ProjectTechStack } from 'src/projects/entity/project.entity';
+import { Project } from 'src/projects/entity/project.entity';
 import { Reservation } from 'src/reservation/entitiy/reservation.entity';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { ThrowFailResponse } from 'src/commons/dto/response-common.dto';
@@ -191,7 +191,7 @@ export class UserDepartment extends BaseEntity {
   department: Department;
 }
 
-@Entity()
+@Entity('UserStudy')
 export class UserStudy extends BaseEntity {
   @ApiProperty()
   @PrimaryGeneratedColumn()
@@ -215,7 +215,7 @@ export class UserStudy extends BaseEntity {
   study: Study;
 }
 
-@Entity()
+@Entity('UserProject')
 export class UserProject extends BaseEntity {
   @ApiProperty()
   @PrimaryGeneratedColumn()
