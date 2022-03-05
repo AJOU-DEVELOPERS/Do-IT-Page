@@ -1,5 +1,5 @@
 import { getReservationAcceptSelector } from "@Recoil/Reservation";
-import { dateReducer } from "@src/Hook/test";
+import { dateReducer } from "@src/Hook";
 import { postReservationRoomBodyProps } from "@Type/API";
 import { getYearMonth } from "@Util/.";
 import { useReducer } from "react";
