@@ -6,8 +6,6 @@ export interface ContextProps {
   type?: string | undefined;
 }
 
-const DEFAULT_MARGIN_BOTTOM = "10px";
-
 const Context = ({ title, text, type }: ContextProps) => {
   const [colorText, nonColorText] = title.split("/");
   return (

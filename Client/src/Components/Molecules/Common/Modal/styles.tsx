@@ -17,11 +17,13 @@ const Background = styled.div`
   background: rgba(0, 0, 0, 0.5);
 `;
 const Title = styled.p<TitleProps>`
-  width: 80%;
   border-bottom: ${({ borderBottom }) => borderBottom};
+  text-align: left;
+  padding: 1rem 0;
 `;
 const Info = styled.p`
   font-size: 1rem;
+  padding: 1rem 0;
 `;
 
 const Content = styled.div`
@@ -30,12 +32,29 @@ const Content = styled.div`
 
 const Container = styled.div`
   width: 100%;
-  height: 30%;
   column-gap: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 2rem;
 `;
 const Wrapper = styled.div`
   display: flex;
-  width: 80%;
-  ${AlignCenterBetween}
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
 `;
-export { Background, Content, Wrapper, Title, Info, Container };
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+`;
+export {
+  Background,
+  Content,
+  Wrapper,
+  Title,
+  Info,
+  Container,
+  ButtonContainer,
+};

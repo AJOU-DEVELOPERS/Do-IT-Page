@@ -1,31 +1,21 @@
-import { Redirect, Route } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { checkLoginNow } from "@src/Recoil/CheckLogin";
 import { ReactElement, useEffect } from "react";
 
 interface Props {
-  element: ReactElement;
-  path: string;
-  exact: boolean;
+  children: ReactElement;
 }
 
 const PublicRoute = ({
-  element: Component,
-  path,
-  exact,
-}: Props): JSX.Element => {
+  children: Component,
+}: Props): React.ReactElement | null => {
   const [user, setUser] = useRecoilState<boolean | any>(checkLoginNow);
   useEffect(() => {
     if (!user) return;
     setUser(user);
   }, []);
-  return (
-    <Route
-      exact={exact}
-      path={path}
-      render={() => (user ? <Redirect to="/main" /> : Component)}
-    />
-  );
+  return user ? <Navigate to="/main" /> : Component;
 };
 
 export default PublicRoute;

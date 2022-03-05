@@ -21,37 +21,74 @@ import { Project } from 'src/projects/entity/project.entity';
 import { Reservation } from 'src/reservation/entitiy/reservation.entity';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { ThrowFailResponse } from 'src/commons/dto/response-common.dto';
-
+import { Semester } from 'src/semester/entities/semester.entity';
+import {
+  IsNotEmpty,
+  IsString,
+  MinLength,
+  MaxLength,
+  Min,
+  IsInt,
+  IsEmail,
+} from 'class-validator';
 @Entity('User')
 export class User extends BaseEntity {
   @ApiProperty()
   @PrimaryGeneratedColumn()
   userIdx: number;
-  @ApiProperty()
+  @IsNotEmpty()
+  @ApiProperty({
+    description: '유저 아이디',
+    example: 'kyi9592',
+  })
   @Column()
   id: string;
-  @ApiProperty()
+  @IsNotEmpty()
+  @ApiProperty({
+    description: '유저 비밀번호',
+    example: 'ASDJ123sa',
+  })
   @Column()
   password: string;
-  @ApiProperty()
+  @Min(9)
+  @IsNotEmpty()
+  @IsInt()
+  @ApiProperty({
+    description: '학번',
+    example: '201823815',
+  })
   @Column()
   studentId: number;
-  @ApiProperty()
+  @IsNotEmpty()
+  @IsString()
+  @MinLength(2)
+  @MaxLength(5)
+  @ApiProperty({
+    description: '유저 이름',
+    example: '곽영일',
+  })
   @Column()
   name: string;
-  @ApiProperty()
+  @MinLength(11)
+  @IsNotEmpty()
+  @ApiProperty({
+    description: '유저 핸드폰 번호',
+    example: '01012345678',
+  })
   @Column()
   phoneNumber: string;
-  @ApiProperty()
+  @IsNotEmpty()
+  @IsEmail()
+  @ApiProperty({
+    description: '유저 이메일',
+    example: 'kyi9592@ajou.ac.kr',
+  })
   @Column({ unique: true })
   email: string;
-  @ApiProperty()
   @CreateDateColumn()
   createdAt: string;
-  @ApiProperty()
   @UpdateDateColumn()
   updatedAt: string;
-  @ApiProperty()
   @Column()
   status: string;
   // @OneToMany((_type) => UserTechStack, (_type) => _type.user)
@@ -73,6 +110,9 @@ export class User extends BaseEntity {
 
   @OneToMany((_type) => Reservation, (_type) => _type.user)
   reservations: Reservation[];
+
+  @OneToMany((_type) => UserPayCheck, (_type) => _type.user)
+  userPayChecks: UserPayCheck[];
 
   @BeforeInsert()
   async hashPassword() {
@@ -225,4 +265,27 @@ export class UserSocial extends BaseEntity {
 
   @ManyToOne((_type) => User, (_type) => _type.userSocials)
   user: User;
+}
+
+@Entity('UserPayCheck')
+export class UserPayCheck extends BaseEntity {
+  @ApiProperty()
+  @PrimaryGeneratedColumn()
+  userPayCheckIdx: number;
+  @ApiProperty()
+  @Column()
+  userIdx: number;
+  @ApiProperty()
+  @Column()
+  semesterIdx: number;
+  @ApiProperty()
+  @Column()
+  isPay: number;
+
+  @ManyToOne((_type) => User, (_type) => _type.userPayChecks)
+  @JoinColumn({ name: 'userIdx', referencedColumnName: 'userIdx' })
+  user: User;
+  @ManyToOne((_type) => Semester, (_type) => _type.userPayChecks)
+  @JoinColumn({ name: 'semesterIdx', referencedColumnName: 'semesterIdx' })
+  semester: Semester;
 }

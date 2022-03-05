@@ -15,6 +15,8 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     const user = await this.AuthService.validateUser(id, password);
     if (!user)
       throw new ThrowFailResponse('아이디와 비밀번호를 다시 입력해주세요.');
+    else if (user === 'secession')
+      throw new ThrowFailResponse('탈퇴한 회원입니다.');
 
     return user;
   }

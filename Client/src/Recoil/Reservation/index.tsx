@@ -22,3 +22,36 @@ export const reservationRoomSelector = selectorFamily<
       return data;
     },
 });
+
+export const getReservationAcceptSelector = selectorFamily<
+  postReservationRoomBodyProps[],
+  {
+    year: number;
+    month: number;
+  }
+>({
+  key: "getReservationAcceptSelector",
+  get:
+    ({ year, month }: ReservationRecoilProps) =>
+    async ({ get }) => {
+      const list = get(reservationRoomSelector({ year, month }));
+      return list?.filter((item) => item.status === "accepted");
+    },
+});
+
+// 관리자페이지에서 보일거
+export const getReservationProcessingSelector = selectorFamily<
+  postReservationRoomBodyProps[],
+  {
+    year: number;
+    month: number;
+  }
+>({
+  key: "getReservationProcessingSelector",
+  get:
+    ({ year, month }: ReservationRecoilProps) =>
+    async ({ get }) => {
+      const list = get(reservationRoomSelector({ year, month }));
+      return list?.filter((item) => item.status === "processing");
+    },
+});

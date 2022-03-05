@@ -1,16 +1,16 @@
 import Header from "@Organisms/Common/Header";
-import { withRouter } from "react-router-dom";
-import { History } from "history";
 import BoardBody from "@Organisms/BoardBody";
 import { handleHeaderClick } from "@Util/.";
+import { useNavigate } from "react-router-dom";
 
-const NoticeTemplate = ({ history }: { history: History }) => {
+const NoticeTemplate = () => {
+  const navigator = useNavigate();
   return (
     <>
-      <Header onClick={() => handleHeaderClick(history)} />
+      <Header onClick={() => handleHeaderClick(navigator)} />
       <BoardBody type="공지사항" />
     </>
   );
 };
 
-export default withRouter(NoticeTemplate);
+export default NoticeTemplate;

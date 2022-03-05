@@ -28,9 +28,18 @@ export class VerifyMailDto {
   authNum: string;
 }
 export class SendMailResponseDto extends BaseSuccessResponse {
+  constructor(cacheKey: string) {
+    super();
+    this.res.cacheKey = cacheKey;
+  }
   @ApiProperty({
     type: 'object',
     properties: {
+      message: {
+        type: 'string',
+        description: '에러 혹은 응답에 대한 메시지',
+        example: 'true',
+      },
       cacheKey: {
         type: 'string',
         description: '해시키 6자리',
@@ -38,10 +47,5 @@ export class SendMailResponseDto extends BaseSuccessResponse {
       },
     },
   })
-  res: {
-    cacheKey: string;
-  };
-  constructor() {
-    super();
-  }
+  res: any;
 }

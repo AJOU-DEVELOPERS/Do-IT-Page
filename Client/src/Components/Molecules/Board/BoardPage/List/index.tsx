@@ -11,7 +11,7 @@ import { useRecoilValue } from "recoil";
 import BoardPreview from "@Molecules/Board/BoardPreview";
 import { BoardContainer } from "./styles";
 import Footer from "../Footer";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const BoardList = ({ type }: { type: string }) => {
   const {
@@ -21,7 +21,7 @@ const BoardList = ({ type }: { type: string }) => {
     viewSize,
   } = _BOARD_INFOS[type];
   const [pageNum, setPageNum] = useState<number>(0);
-  const history = useHistory();
+  const navigator = useNavigate();
 
   const boardContents =
     hasBoardContent(apiSrc, type) &&
@@ -41,7 +41,7 @@ const BoardList = ({ type }: { type: string }) => {
     if (!target) return;
     const idx = target.getAttribute("data-idx");
     const { pageSrc: path } = _BOARD_INFOS[type];
-    history.push(`${path}/${idx}`);
+    navigator(`${path}/${idx}`);
   };
 
   const boardType = type === "사진첩" ? "image" : "image";
