@@ -57,10 +57,10 @@ export class AuthsService {
     return new BaseSuccessResponse();
   }
 
-  async getCookieWithJwtToken(userId: number) {
+  async getCookieWithJwtToken(userIdx: number) {
     const payload: {
-      userId: number;
-    } = { userId };
+      userIdx: number;
+    } = { userIdx };
     const token = this.jwtService.sign(payload);
 
     return token;
@@ -69,7 +69,7 @@ export class AuthsService {
     const userInfo = await User.findByLogin(id, password);
     if (!userInfo) return null;
     const result = {
-      userId: userInfo.userIdx,
+      userIdx: userInfo.userIdx,
     };
     return result;
   }
