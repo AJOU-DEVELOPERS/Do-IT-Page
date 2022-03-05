@@ -34,21 +34,29 @@ export const getUserInfoSelector = selectorFamily<UserInfoData[], number>({
 export const getStudyAllSelector = selector<any>({
   key: "getStudyAllSelector",
   get: async () => {
-    const res = await _API({
+    const { message, studies } = await _API({
       api: getBoardContents,
       apiSrc: GET_STUDY_CONTENT_URL,
     });
-    return res;
+    if (!message) {
+      alert("디비에러");
+      return [];
+    }
+    return studies;
   },
 });
 
 export const getProjectAllSelector = selector<any>({
   key: "getProjectAllSelector",
   get: async () => {
-    const res = await _API({
+    const { message, projects } = await _API({
       api: getBoardContents,
       apiSrc: GET_PROJECT_CONTENT_URL,
     });
-    return res;
+    if (!message) {
+      alert("디비에러");
+      return [];
+    }
+    return projects;
   },
 });

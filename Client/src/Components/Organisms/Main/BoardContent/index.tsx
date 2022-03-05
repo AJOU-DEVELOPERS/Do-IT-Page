@@ -37,6 +37,7 @@ const BoardContent = ({ boardName }: { boardName: string }) => {
     navigator(nextPath);
   };
 
+  console.log(boardContents);
   return (
     <BoardContainer boardName={_boardName}>
       {boardName !== "이미지" && (
