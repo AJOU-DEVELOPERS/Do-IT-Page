@@ -1,6 +1,6 @@
 import { TARGET_URL } from "@API/.";
 
-export const GET_CHECK_LOGIN_URL = "/dummyData/checkLogin.json";
+export const GET_CHECK_LOGIN_URL = `${TARGET_URL}/users/tokenCheck`;
 
 export const GET_NOTICE_CONTENT_URL = "/dummyData/NoticeBoardContent.json";
 

@@ -18,6 +18,7 @@ const RoomRegisterList = ({
 }: {
   list: postReservationRoomBodyProps[];
 }) => {
+  //recoilRefresh
   const handleReserveAccept = ({ target }: { target: any }) =>
     reserveUpdate({ target, type: "accept" });
   const handleReserveDeny = ({ target }: { target: any }) =>

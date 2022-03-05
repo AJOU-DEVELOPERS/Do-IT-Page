@@ -6,12 +6,18 @@ import BoardContent from "@Organisms/Main/BoardContent";
 import Button from "@Atoms/Button";
 import { SmallButtonType } from "@Style/.";
 import { CircleJoin } from "./util";
+import { getCheckLogin } from "@API/Account";
 
 const MainPageTemplate = () => {
   const handleCircleClick = () => CircleJoin();
+  const test = async () => {
+    const data = await getCheckLogin();
+    console.log(data);
+  };
   return (
     <>
       <Header />
+      <button onClick={test}>토큰 검증 테스트</button>
       <ButtonContainer>
         <Button
           {...SmallButtonType}

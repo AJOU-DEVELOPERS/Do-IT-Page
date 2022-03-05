@@ -7,9 +7,10 @@ import Button from "@Atoms/Button";
 import { Container } from "./styles";
 import HeaderLeftSide from "@Molecules/Common/Header";
 import HeaderNav from "@Molecules/Common/Header/Nav";
+import { userInfo } from "@Type/Account";
 
 const Header = ({ onClick }: { onClick?: () => void }) => {
-  const user = useRecoilValue<boolean | any>(userInfoAtom);
+  const user = useRecoilValue<boolean | userInfo>(userInfoAtom);
 
   return (
     <Container>

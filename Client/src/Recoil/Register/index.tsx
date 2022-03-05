@@ -5,7 +5,8 @@ import { getDepartment } from "@API/Account";
 export const getDepartmentsSelector = selector({
   key: "getDepartmentsSelector",
   get: async () => {
-    const data = await API({ api: getDepartment });
-    return data;
+    const { message, departments } = await API({ api: getDepartment });
+    if (message) return departments;
+    return [];
   },
 });

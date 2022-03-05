@@ -1,5 +1,9 @@
 import { SetterOrUpdater } from "recoil";
 
+export interface userInfo {
+  userIdx: number;
+  userName: string;
+}
 export interface LoginInfoType {
   id: string;
   password: string;

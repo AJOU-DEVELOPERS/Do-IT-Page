@@ -5,6 +5,7 @@ import { ReserveBoxHeader, ReserveInputForm } from "@Molecules/ReserveForm";
 import { ReserveBoxText } from "@Molecules/ReserveForm/style";
 import { userInfoAtom } from "@Recoil/CheckLogin";
 import { LoginButtonType } from "@Style/.";
+import { userInfo } from "@Type/Account";
 import { checkTablet } from "@Util/.";
 import { Dispatch, SetStateAction, useRef } from "react";
 import { useRecoilValue } from "recoil";
@@ -13,7 +14,7 @@ import {
   ReserveBoxContainer,
   ReserveBoxTextContainer,
 } from "./styles";
-import { makeReservationRoomType } from "./util";
+import { makeReservationRoomType, reservationClick } from "./util";
 
 const ReserveBox = ({
   setBoxOpen,
@@ -24,26 +25,17 @@ const ReserveBox = ({
   const endDateRef = useRef<HTMLInputElement | null>(null);
   const startTimeRef = useRef<HTMLInputElement | null>(null);
   const endTimeRef = useRef<HTMLInputElement | null>(null);
-  const { userId } = useRecoilValue(userInfoAtom);
+  const { userIdx } = useRecoilValue(userInfoAtom) as userInfo;
 
   const handleCreateClick = async () => {
-    if (
-      !startDateRef?.current ||
-      !endDateRef?.current ||
-      !startTimeRef?.current ||
-      !endTimeRef?.current
-    )
-      return;
-
-    const body = makeReservationRoomType({
-      reservationStartDate: "20" + startDateRef.current.value,
-      reservationEndDate: "20" + endDateRef.current.value,
-      reservationStartHour: startTimeRef.current.value + ":00",
-      reservationEndHour: endTimeRef.current.value + ":00",
-      userIdx: Number(userId),
+    const res = await reservationClick({
+      startDateRef,
+      endDateRef,
+      startTimeRef,
+      endTimeRef,
+      userIdx,
     });
-
-    const res = await API({ api: postReservationRoom, data: body });
+    if (!res) return;
     if (!checkTablet()) return;
     setBoxOpen(false);
   };

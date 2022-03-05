@@ -61,8 +61,6 @@ export const WorkCreate = async ({
     leaderUserIdx: userId,
     inputRef,
   });
-  const res = await API({ api, data });
-  console.log(res);
-  res === "true" ? alert("성공") : alert("실패");
-  return;
+  const { message } = await API({ api, data });
+  message ? alert("신청 되었습니다.") : alert("실패");
 };

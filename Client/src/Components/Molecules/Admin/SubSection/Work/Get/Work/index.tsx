@@ -1,6 +1,4 @@
 import React from "react";
-import { API } from "@API/.";
-import { getStudyAccept, getStudyDeny } from "@API/Study";
 import {
   Table,
   TableHead,
