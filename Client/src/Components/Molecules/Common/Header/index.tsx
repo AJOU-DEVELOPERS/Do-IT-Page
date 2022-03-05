@@ -1,9 +1,10 @@
 import { MAIN_URL, BEFORE_URL } from "@Constant/.";
+import { userInfo } from "@Type/Account";
 import { useNavigate } from "react-router-dom";
 
 import { LeftContainer, Title } from "./style";
 
-const HeaderLeftSide = ({ user }: { user: boolean }) => {
+const HeaderLeftSide = ({ user }: { user: boolean | userInfo }) => {
   const navigator = useNavigate();
 
   const handleMoveHome = () => {

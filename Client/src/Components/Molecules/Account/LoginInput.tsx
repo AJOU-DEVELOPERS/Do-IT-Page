@@ -16,7 +16,8 @@ const LoginInput = () => {
   const pwRef = useRef<HTMLInputElement | null>(null);
   const navigator = useNavigate();
 
-  const handleLoginClick = () => LoginClick({ idRef, pwRef, history, setUser });
+  const handleLoginClick = () =>
+    LoginClick({ idRef, pwRef, navigator, setUser });
   const handleRegisterClick = () => {
     navigator("/register");
   };

@@ -22,7 +22,7 @@ export const API = async ({ api, data }: Props) => {
     if (isSuccess) return res;
     throw new Error(error);
   } catch (err) {
-    console.log(err, "에러핸들링 추가");
+    console.log(err, "서버 및 디비 에러");
   }
 };
 
@@ -32,6 +32,6 @@ export const _API = async ({ api, apiSrc, data }: _Props) => {
     if (isSuccess) return res;
     throw new Error(error);
   } catch (err) {
-    console.log(err, "에러핸들링 추가");
+    console.log(err, "서버 및 디비 에러");
   }
 };

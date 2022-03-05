@@ -17,15 +17,16 @@ export const getIdx = ({ target }: { target: any }) =>
 
 export const WorkSearch = ({
   value,
-  workList,
+  totalWorkList,
   setWorkList,
 }: {
   value: string;
-  workList: any;
+  totalWorkList: any;
   setWorkList: Dispatch<any>;
 }) => {
-  // setStudyList(
-  //   studyList.filter(
+  console.log(value);
+  // setWorkList(
+  //   totalWorkList.filter(
   //     (item: { status: string }) => item.status === STUDY_STATE[value]
   //   )
   // );
@@ -40,11 +41,9 @@ export const AcceptClick = async ({
 }) => {
   const data = getIdx({ target });
   const api = checkStudy({ type }) ? getStudyAccept : getProjectAccept;
-  const res = await API({ api, data });
-  res === "true" ? alert("성공") : alert("실패");
-
-  console.log(res);
-  return;
+  const { message } = await API({ api, data });
+  message ? alert("성공") : alert("실패");
+  return message;
 };
 
 export const DenyClick = async ({
@@ -56,11 +55,9 @@ export const DenyClick = async ({
 }) => {
   const data = getIdx({ target });
   const api = checkStudy({ type }) ? getStudyDeny : getProjectDeny;
-  const res = await API({ api, data });
-  res === "true" ? alert("성공") : alert("실패");
-
-  console.log(res);
-  return;
+  const { message } = await API({ api, data });
+  message ? alert("성공") : alert("실패");
+  return message;
 };
 
 export const workClick = async ({
@@ -73,6 +70,10 @@ export const workClick = async ({
   const data = getDataIdx({ target: currentTarget });
 
   const api = checkStudy({ type }) ? getStudyData : getProjectData;
-  const res = await API({ api, data });
+  const { message, res } = await API({ api, data });
+  if (!message) {
+    alert("실패");
+    return [];
+  }
   return res;
 };

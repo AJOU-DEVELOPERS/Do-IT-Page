@@ -36,10 +36,10 @@ const RegisterInput = () => {
       ref: inputRef,
       idx: REF_NUM.ID,
     });
-    console.log(data);
     if (!data) return;
     setCheckId(true);
   };
+
   const handleClickMail = async () => {
     const cacheKey = await clickMail({
       ref: inputRef,
@@ -53,7 +53,6 @@ const RegisterInput = () => {
       idx: REF_NUM["인증번호"],
       cacheKey: mailKey,
     });
-    console.log(data);
     if (!data) return;
     setMailCheck(true);
   };

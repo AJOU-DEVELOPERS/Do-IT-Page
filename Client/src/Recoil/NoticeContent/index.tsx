@@ -11,6 +11,7 @@ export const noticeContentAtom = atom<BoardContentType[]>({
 export const noticeContentSelector = selector<BoardContentType[]>({
   key: "checkLoginSelector",
   get: async () => {
+    // api res 수정
     const res = await API({ api: getNoticeContents });
     return res;
   },

@@ -9,9 +9,12 @@ import { WorkCreate, checkStudy } from "@Molecules/Content/util";
 import useCloseModal from "@src/Hook/useCloseModal";
 import { userInfoAtom } from "@Recoil/CheckLogin";
 import { useRecoilValue } from "recoil";
+import { userInfo } from "@Type/Account";
 
 const CreateModal = ({ type, handleToggleStudy }: ModalType) => {
-  const { userId } = useRecoilValue(userInfoAtom);
+  const { userIdx: userId, userName } = useRecoilValue(
+    userInfoAtom
+  ) as userInfo;
   const [stack, setStack] = useState<string[]>([]);
 
   const modalRef = useRef<HTMLDivElement>(null);
@@ -22,7 +25,7 @@ const CreateModal = ({ type, handleToggleStudy }: ModalType) => {
 
   const handleCreateWork = () => {
     if (!inputRef?.current) return;
-    WorkCreate({ inputRef, stack, type, userId });
+    WorkCreate({ inputRef, stack, type, userId, userName });
   };
 
   useCloseModal({ ref: modalRef, fn: handleToggleStudy });

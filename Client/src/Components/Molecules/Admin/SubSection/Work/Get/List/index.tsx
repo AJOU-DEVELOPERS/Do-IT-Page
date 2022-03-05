@@ -20,10 +20,6 @@ const WorkList = ({
 }) => {
   const handleWorkClick = async ({ currentTarget }: { currentTarget: any }) => {
     const res = await workClick({ currentTarget, type });
-    if (!res) {
-      alert("에러");
-      return;
-    }
     setWork(res[0]);
   };
   return (
