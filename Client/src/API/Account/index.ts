@@ -4,6 +4,7 @@ import {
   GET_DEPARTMENT_DATA,
   POST_CHECK_DUPLICATE_USER_ID,
   POST_CHECK_MAIL,
+  POST_CIRCLE_JOIN,
   POST_LOGIN_INFO,
   POST_REGISTER_INFO,
   POST_REQUEST_MAIL,
@@ -47,5 +48,10 @@ export const checkDuplicateUserId = async ({ id }: { id: string }) => {
   const { data } = await axios.post(POST_CHECK_DUPLICATE_USER_ID, {
     id,
   });
+  return data;
+};
+
+export const postCircleJoin = async () => {
+  const { data } = await axios.post(POST_CIRCLE_JOIN, API_GET_OPTION);
   return data;
 };
