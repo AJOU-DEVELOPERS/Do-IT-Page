@@ -46,7 +46,7 @@ const Content = ({ type }: Props) => {
         [cur.status]: [...acc[cur.status], cur],
       };
     },
-    { collecting: [], processing: [], done: [], waiting: [] }
+    { collecting: [], processing: [], done: [], waiting: [], deleted: [] }
   );
 
   const fn = useCallback(() => {

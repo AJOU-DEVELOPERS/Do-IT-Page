@@ -25,6 +25,7 @@ export const WorkSearch = ({
   setWorkList: Dispatch<any>;
 }) => {
   console.log(value);
+  console.log(STUDY_STATE[value]);
   // setWorkList(
   //   totalWorkList.filter(
   //     (item: { status: string }) => item.status === STUDY_STATE[value]
