@@ -20,11 +20,19 @@ export const GET_NOTICE_POST_URL = "/dummyData/NoticeBoardContent.json";
 
 export const GET_BOARD_POST_URL = "/dummyData/FreeBoardContent.json";
 
+/**--------------------- Reservation ------------------------ */
+
 export const POST_RESERVATION_URL = `${TARGET_URL}/reservation`;
 
 export const GET_RESERVATION_URL = `${TARGET_URL}/reservation`;
 
+export const PATCH_RESERVATION_ACCEPT = `${TARGET_URL}/reservation/accept/`;
+
+export const PATCH_RESERVATION_DENY = `${TARGET_URL}/reservation/reject/`;
+
 /**--------------------- Auth ------------------------ */
+export const GET_DEPARTMENT_DATA = `${TARGET_URL}/departments`;
+
 export const POST_LOGIN_INFO = `${TARGET_URL}/users/sign-in`;
 
 export const POST_REGISTER_INFO = `${TARGET_URL}/users/sign-up`;
@@ -44,6 +52,8 @@ export const GET_STUDY_ACCEPT = `${TARGET_URL}/studies/accept`;
 
 export const GET_STUDY_DENY = `${TARGET_URL}/studies/reject`;
 
+export const POST_STUDY_APPLY = `${TARGET_URL}/studies`;
+
 /**--------------------- Project ------------------------ */
 export const POST_CREATE_PROJECT = `${TARGET_URL}/projects`;
 
@@ -52,6 +62,9 @@ export const GET_PROJECT_DATA = `${TARGET_URL}/projects`;
 export const GET_PROJECT_ACCEPT = `${TARGET_URL}/projects/accept`;
 
 export const GET_PROJECT_DENY = `${TARGET_URL}/projects/reject`;
+
+/*----------------------- Admin ------------------------- */
+export const GET_USERS_INFO_URL = `${TARGET_URL}/users`;
 
 /**--------------------- Common ------------------------ */
 export const API_GET_OPTION = {

@@ -4,13 +4,14 @@ import { BoardContentPagenationSelector } from "@Recoil/BoardContent";
 import { ContentType } from "@Type/.";
 import { hasBoardContent } from "@Util/.";
 import { Suspense } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 import { useRecoilValue } from "recoil";
 import { ContentContainer, BoardContainer } from "./style";
 
 const PhotoList = ({ type, pageNum }: { type: string; pageNum: number }) => {
   const { apiSrc, previewType, viewSize, pageSrc } = _BOARD_INFOS[type];
-  const history = useHistory();
+  const navigator = useNavigate();
 
   const boardContents =
     hasBoardContent(apiSrc, type) &&
@@ -20,12 +21,12 @@ const PhotoList = ({ type, pageNum }: { type: string; pageNum: number }) => {
 
   const boardType = type === "사진첩" ? "image" : "image";
 
-  const handleDetailMove = (e: any) => {
-    const target = e.target.closest("#boardContainer");
+  const handleDetailMove = (e: React.MouseEvent<HTMLElement>) => {
+    const target = (e.target as HTMLElement).closest("#boardContainer");
     if (!target) return;
     const idx = target.getAttribute("data-idx");
     const nextPath = `${pageSrc}/${idx}`;
-    history.push(nextPath);
+    navigator(nextPath);
   };
 
   return (

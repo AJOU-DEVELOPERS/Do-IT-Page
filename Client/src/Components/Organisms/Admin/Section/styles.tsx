@@ -17,6 +17,7 @@ const SubSectionContainer = styled.div`
   margin: 2vh;
   height: 80%;
   border: 1px solid;
+  overflow: auto;
 `;
 
 const SearchButton = styled.div`

@@ -1,3 +1,4 @@
+import { TABLET_WIDTH } from "@Constant/.";
 import styled from "styled-components";
 
 export const ReserveBoxContainer = styled.div`
@@ -13,4 +14,19 @@ export const ButtonContainer = styled.div`
   margin: auto;
   width: 150px;
   height: 50px;
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    margin-top: 32px;
+  }
+`;
+
+export const ReserveBoxTextContainer = styled.div`
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    width: 270px;
+    text-align: center;
+    margin: 35px 0 15px 0;
+    span {
+      font-weight: 500;
+      font-size: 18px;
+    }
+  }
 `;

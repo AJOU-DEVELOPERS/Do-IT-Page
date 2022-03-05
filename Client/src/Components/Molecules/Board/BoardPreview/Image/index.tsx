@@ -17,11 +17,12 @@ const ImageBoardPreview = ({
   return (
     <Container type={type}>
       <ContentImg
-        src={images[0]}
+        src="http://localhost:3000/70205497.jfif"
         alt={`${title} logo image`}
         width="80%"
         radius="5px"
         maxWidth={type === "detail" ? "60%" : "100%"}
+        loading="lazy"
       />
       <ContentTitle title={title} text={date} type="small" />
       <ContentText type="preview" text={text} />

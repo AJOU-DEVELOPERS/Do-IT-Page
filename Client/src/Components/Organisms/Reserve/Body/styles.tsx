@@ -7,6 +7,10 @@ export const ReserveCalendarContainer = styled.div`
   margin-right: 20px;
   min-width: 480px;
   position: relative;
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    min-width: 375px;
+    margin: 0;
+  }
 `;
 
 export const ReserveBodyContainer = styled(BoardListContainer)`
@@ -19,9 +23,10 @@ export const ReserveBoxContainer = styled.div`
   width: 40%;
   @media only screen and (max-width: ${TABLET_WIDTH}px) {
     position: fixed;
-    width: 500px;
+    width: 350px;
     top: auto;
     left: auto;
+    height: 470px;
   }
 `;
 
@@ -31,4 +36,10 @@ export const ToggleButtonContainer = styled.div`
   position: absolute;
   top: 10px;
   left: 50%;
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    width: 150px;
+    height: 30px;
+    top: 35px;
+    left: 55%;
+  }
 `;

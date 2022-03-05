@@ -1,6 +1,7 @@
+import { BasicType } from "@Molecules/Content/type";
 import { Suspense, useState } from "react";
 import { useRecoilValue } from "recoil";
-import { BasicType, WorkType } from "../type";
+import { WorkType } from "../type";
 
 import { getWorkListType, WorkSearch } from "../util";
 import FilterBar from "./FilterBar";

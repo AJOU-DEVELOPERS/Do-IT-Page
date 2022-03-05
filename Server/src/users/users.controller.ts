@@ -35,6 +35,7 @@ import { Response } from 'express';
 import { LocalAuthGuard } from 'src/auths/auth.local.guard';
 import { duplicateCheckUserId } from './dto/duplicateCheck-userId.dto';
 import { JwtAuthGuard } from 'src/auths/auth.jwt.guard';
+import { UserDto } from './dto/get-user.dto';
 @Controller('users')
 @ApiTags('User API')
 export class UsersController {
@@ -42,6 +43,17 @@ export class UsersController {
     private readonly usersService: UsersService,
     private readonly authsService: AuthsService,
   ) {}
+  @HttpCode(200)
+  @Get('')
+  @ApiOperation({ summary: '유저 목록 API', description: '유저 목록 반환' })
+  @ApiBody({ type: UserDto })
+  @ApiOkResponse({
+    description: '유저 목록 획득 성공',
+    type: ResultSuccessResponse,
+  })
+  async getUsers() {
+    return this.usersService.findAll();
+  }
   @HttpCode(200)
   @Post('sign-up')
   @ApiOperation({ summary: '회원가입 API', description: 'true false 반환' })

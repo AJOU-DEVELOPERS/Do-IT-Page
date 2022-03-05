@@ -40,7 +40,7 @@ const PhotosTemplate = () => {
         />
         <Route
           path="/photos/:id"
-          render={() => <PhotoDetail apiSrc={apiSrc} />}
+          element={() => <PhotoDetail apiSrc={apiSrc} />}
         />
       </Container>
     </>

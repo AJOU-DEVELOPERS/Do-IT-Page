@@ -87,9 +87,18 @@ export class UsersService {
     await userPayCheck.save();
     return new BaseSuccessResponse();
   }
-  // findAll() {
-  //   return `This action returns all users`;
-  // }
+  async findAll() {
+    const queryRunner = this.connection.createQueryRunner();
+    await queryRunner.connect();
+    try {
+      const userList = await User.find({});
+      console.log(userList);
+      return new ResultSuccessResponse(userList);
+    } catch (error) {
+      console.log(error);
+      return new BaseFailResponse('유저 목록을 불러오는데 실패했습니다');
+    }
+  }
 
   // findOne(id: number) {
   //   return `This action returns a #${id} user`;

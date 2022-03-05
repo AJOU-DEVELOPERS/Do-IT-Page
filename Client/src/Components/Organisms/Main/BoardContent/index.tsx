@@ -10,11 +10,11 @@ import { _BOARD_INFOS } from "@Constant/.";
 import { hasBoardContent } from "@Util/.";
 import BoardPreview from "@Molecules/Board/BoardPreview";
 import { ContentType } from "@Type/.";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const BoardContent = ({ boardName }: { boardName: string }) => {
   const _boardName = boardName.replaceAll(" ", "");
-
+  const navigator = useNavigate();
   const {
     pageSrc,
     apiSrc,
@@ -23,18 +23,18 @@ const BoardContent = ({ boardName }: { boardName: string }) => {
     alignPreview = "column;",
   } = _BOARD_INFOS[boardName];
 
-  const history = useHistory();
   const boardContents =
     hasBoardContent(apiSrc, boardName) &&
     useRecoilValue<ContentType[]>(BoardContentSelector(apiSrc));
   // 재사용으로 빼고싶음 // Molecules/Boardpage/List/index.tsx
+
   const handleDetailMove = (e: any) => {
     const target = e.target.closest(`#${boardName}`);
     if (!target) return;
     const idx = target.getAttribute("data-idx");
     const { pageSrc: path } = _BOARD_INFOS[boardName];
     const nextPath = idx ? `${path}/${idx}` : path;
-    history.push(nextPath);
+    navigator(nextPath);
   };
 
   return (

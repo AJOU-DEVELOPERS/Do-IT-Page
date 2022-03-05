@@ -10,11 +10,10 @@ const BoardBody = ({ type }: { type: string }) => {
     <>
       <TitleContainer>{type}</TitleContainer>
       <BoardListContainer>
-        <Route path={pageSrc} render={() => <BoardList type={type} />} exact />
+        <Route path={pageSrc} element={() => <BoardList type={type} />} />
         <Route
           path={pageSrc + "/:id"}
-          render={() => <BoardDetailBody type={type} />}
-          exact
+          element={() => <BoardDetailBody type={type} />}
         />
       </BoardListContainer>
     </>

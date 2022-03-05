@@ -72,23 +72,43 @@ export class ProjectsController {
         return this.projectsService.apply(userIdx, projectIdx);
     }
 
-    @Get('accept/:userProjectIdx')
+    @Get('accept/create/:projectIdx')
+    @ApiOperation({
+        summary: '프로젝트 생성 요청 승인',
+        description: 'true false 반환'
+    })
+    @ApiOkResponse({ description: '프로젝트 생성 요청 승인 성공 '})
+    acceptCreate(@Param('projectIdx') projectIdx: number) {
+        return this.projectsService.acceptCreate(projectIdx);
+    }
+
+    @Get('reject/create/:projectIdx')
+    @ApiOperation({
+        summary: '프로젝트 생성 요청 거부',
+        description: 'true false 반환'
+    })
+    @ApiOkResponse({ description: '프로젝트 생성 요청 거부 성공 '})
+    rejectCreate(@Param('projectIdx') projectIdx: number) {
+        return this.projectsService.remove(projectIdx);
+    }
+
+    @Get('accept/participation/:userProjectIdx')
     @ApiOperation({
         summary: '프로젝트 참여 요청 승인',
         description: 'true false 반환'
     })
     @ApiOkResponse({ description: '프로젝트 참여 요청 승인 성공' })
     accept(@Param('userProjectIdx') userProjectIdx: number) {
-        return this.projectsService.accept(userProjectIdx);
+        return this.projectsService.acceptParticipation(userProjectIdx);
     }
 
-    @Get('reject/:userProjectIdx')
+    @Get('reject/participation/:userProjectIdx')
     @ApiOperation({
         summary: '프로젝트 참여 요청 거부',
         description: 'true false 반환'
     })
     @ApiOkResponse({ description: '프로젝트 참여 요청 거부 성공' })
     reject(@Param('userProjectIdx') userProjectIdx: number) {
-        return this.projectsService.reject(userProjectIdx);
+        return this.projectsService.rejectParticipation(userProjectIdx);
     }
 }

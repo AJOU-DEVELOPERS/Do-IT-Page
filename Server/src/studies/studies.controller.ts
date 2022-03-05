@@ -73,23 +73,43 @@ export class StudiesController {
         return this.studiesService.apply(userIdx, studyIdx);
     }
 
-    @Get('accept/:userStudyIdx')
+    @Get('accept/create/:studyIdx')
+    @ApiOperation({
+        summary: '스터디 생성 요청 승인',
+        description: 'true false 반환'
+    })
+    @ApiOkResponse({ description: '스터디 생성 요청 승인 성공 '})
+    acceptCreate(@Param('studyIdx') studyIdx: number) {
+        return this.studiesService.acceptCreate(studyIdx);
+    }
+
+    @Get('reject/create/:studyIdx')
+    @ApiOperation({
+        summary: '스터디 생성 요청 거부',
+        description: 'true false 반환'
+    })
+    @ApiOkResponse({ description: '스터디 생성 요청 거부 성공 '})
+    rejectCreate(@Param('studyIdx') studyIdx: number) {
+        return this.studiesService.remove(studyIdx);
+    }
+
+    @Get('accept/participation/:userStudyIdx')
     @ApiOperation({
         summary: '스터디 참여 요청 승인',
         description: 'true false 반환'
     })
     @ApiOkResponse({ description: '스터디 참여 요청 승인 성공' })
-    accept(@Param('userStudyIdx') userStudyIdx: number) {
-        return this.studiesService.accept(userStudyIdx);
+    acceptParticipation(@Param('userStudyIdx') userStudyIdx: number) {
+        return this.studiesService.acceptParticipation(userStudyIdx);
     }
 
-    @Get('reject/:userStudyIdx')
+    @Get('reject/participation/:userStudyIdx')
     @ApiOperation({
         summary: '스터디 참여 요청 거부',
         description: 'true false 반환'
     })
     @ApiOkResponse({ description: '스터디 참여 요청 거부 성공' })
     reject(@Param('userStudyIdx') userStudyIdx: number) {
-        return this.studiesService.reject(userStudyIdx);
+        return this.studiesService.rejectParticipation(userStudyIdx);
     }
 }

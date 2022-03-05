@@ -23,7 +23,7 @@ export class Study extends BaseEntity {
     leaderName: string;
     @ApiProperty()
     @Column({
-        default: 'collecting'
+        default: 'waiting'
     })
     status: string;
     @ApiProperty()

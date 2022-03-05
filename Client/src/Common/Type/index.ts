@@ -3,6 +3,7 @@ import React from "react";
 export interface ImgProps {
   url?: string;
   width?: string;
+  loading?: string;
 }
 
 export interface ContentImgProps extends ImgAltProps {
@@ -37,7 +38,7 @@ export interface BasicButtonProps extends BasicAtomProps {
   backGroundColor?: string;
   title?: string;
   color?: string;
-  onClick?: () => void;
+  onClick?: (e: any) => void;
   onClickCapture?: (e: any) => void;
   buttonRef?: React.RefObject<HTMLButtonElement> | undefined;
 }

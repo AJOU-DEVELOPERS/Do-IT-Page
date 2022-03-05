@@ -1,28 +1,34 @@
+import { SetterOrUpdater } from "recoil";
+
 export interface LoginInfoType {
   id: string;
-  pw: string;
+  password: string;
+}
+
+export interface DepartmentType {
+  departmentIdx: number;
+  name: string;
+  sort: string;
 }
 
 export interface RegisterInfoType extends LoginInfoType {
   name: string;
-  studentId: string;
-  subject: string;
+  studentId: number;
+  phoneNumber: string;
   email: string;
+  department: DepartmentType[];
 }
 
 export interface LoginClickType {
   idRef: React.MutableRefObject<HTMLInputElement | null>;
   pwRef: React.MutableRefObject<HTMLInputElement | null>;
   history: any;
+  setUser: SetterOrUpdater<any>;
 }
 
 export interface RegisterHandlerType {
-  idRef: React.MutableRefObject<HTMLInputElement | null>;
-  pwRef: React.MutableRefObject<HTMLInputElement | null>;
-  nameRef: React.MutableRefObject<HTMLInputElement | null>;
-  studentIdRef: React.MutableRefObject<HTMLInputElement | null>;
-  subjectRef: React.MutableRefObject<HTMLInputElement | null>;
-  emailRef: React.MutableRefObject<HTMLInputElement | null>;
+  inputRef: React.MutableRefObject<HTMLInputElement[]>;
+  subjectRef: React.MutableRefObject<HTMLSelectElement | null>;
   checkId: boolean;
   mailCheck: boolean;
 }

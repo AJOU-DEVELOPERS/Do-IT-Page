@@ -1,16 +1,18 @@
 import { API } from "@API/.";
 import { postReservationRoom } from "@API/Reservation";
 import Button from "@Atoms/Button";
-import {
-  ReserveBoxHeader,
-  ReserveBoxName,
-  ReserveInputForm,
-} from "@Molecules/ReserveForm";
+import { ReserveBoxHeader, ReserveInputForm } from "@Molecules/ReserveForm";
 import { ReserveBoxText } from "@Molecules/ReserveForm/style";
+import { userInfoAtom } from "@Recoil/CheckLogin";
 import { LoginButtonType } from "@Style/.";
 import { checkTablet } from "@Util/.";
 import { Dispatch, SetStateAction, useRef } from "react";
-import { ButtonContainer, ReserveBoxContainer } from "./styles";
+import { useRecoilValue } from "recoil";
+import {
+  ButtonContainer,
+  ReserveBoxContainer,
+  ReserveBoxTextContainer,
+} from "./styles";
 import { makeReservationRoomType } from "./util";
 
 const ReserveBox = ({
@@ -18,15 +20,14 @@ const ReserveBox = ({
 }: {
   setBoxOpen: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const userNameRef = useRef<HTMLInputElement | null>(null);
   const startDateRef = useRef<HTMLInputElement | null>(null);
   const endDateRef = useRef<HTMLInputElement | null>(null);
   const startTimeRef = useRef<HTMLInputElement | null>(null);
   const endTimeRef = useRef<HTMLInputElement | null>(null);
+  const { userId } = useRecoilValue(userInfoAtom);
 
   const handleCreateClick = async () => {
     if (
-      !userNameRef?.current ||
       !startDateRef?.current ||
       !endDateRef?.current ||
       !startTimeRef?.current ||
@@ -39,20 +40,20 @@ const ReserveBox = ({
       reservationStartHour: "20" + endDateRef.current.value,
       reservationEndDate: startTimeRef.current.value + ":00",
       reservationEndHour: endTimeRef.current.value + ":00",
-      userName: userNameRef.current.value,
+      userIdx: Number(userId),
     });
 
     const res = await API({ api: postReservationRoom, data: body });
-    console.log(res);
-    // if (!res) alert("error");
+
     if (!checkTablet()) return;
     setBoxOpen(false);
   };
   return (
     <ReserveBoxContainer>
       <ReserveBoxHeader />
-      <ReserveBoxName nameRef={userNameRef} />
-      <ReserveBoxText>날짜</ReserveBoxText>
+      <ReserveBoxTextContainer>
+        <ReserveBoxText>날짜</ReserveBoxText>
+      </ReserveBoxTextContainer>
       <ReserveInputForm
         sDateRef={startDateRef}
         eDateRef={endDateRef}

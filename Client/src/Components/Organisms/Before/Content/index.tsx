@@ -18,7 +18,7 @@ const Content = ({ type, url, text }: Props) => {
         ) : (
           <></>
         ))}
-      {type !== "basic" && <Img alt="contentImage" url={url} />}
+      {type !== "basic" && <Img alt="contentImage" src={url} loading="lazy" />}
       {text()}
       {type === "false" && <Box />}
     </Container>

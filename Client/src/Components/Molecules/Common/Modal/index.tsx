@@ -4,9 +4,10 @@ import { ReactChild, ReactChildren } from "react";
 const Modal = ({
   children,
   onClick,
-}: {
+}: // onClick,
+{
   children: ReactChild | ReactChildren;
-  onClick: (e: React.MouseEvent<HTMLElement>) => void;
+  onClick?: (e: React.MouseEvent<HTMLElement>) => void;
 }) => {
   return (
     <Portal>

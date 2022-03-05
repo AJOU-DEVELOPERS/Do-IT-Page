@@ -4,7 +4,7 @@ import { CardContainer, Info } from "./style";
 const RankingCard = ({ name }: { name: string }) => {
   return (
     <CardContainer>
-      <Info url={GET_SOLVED_CARD_URL(name)} alt="랭킹" />
+      <Info url={GET_SOLVED_CARD_URL(name)} alt="랭킹" loading="lazy" />
     </CardContainer>
   );
 };
