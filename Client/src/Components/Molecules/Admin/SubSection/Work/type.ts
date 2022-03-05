@@ -1,6 +1,4 @@
-export interface BasicType {
-  type?: string;
-}
+import { BasicType } from "@Molecules/Content/type";
 
 interface Indexable {
   [key: string]: any;

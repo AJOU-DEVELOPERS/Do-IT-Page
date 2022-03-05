@@ -1,30 +1,11 @@
-import { useState } from "react";
-import Button from "@Atoms/Button";
-import { SmallButtonType } from "@Style/.";
-import CreateWork from "./Create";
+import { BasicType } from "@Molecules/Content/type";
 import GetWork from "./Get";
-import { ButtonContainer, WorkContainerStyle } from "./styles";
-import { BasicType } from "./type";
+import { WorkContainerStyle } from "./styles";
 
 const WorkContainer = ({ type }: BasicType) => {
-  const [create, setCreate] = useState<boolean>(false);
-
-  const handleToggleStudy = () => {
-    setCreate(!create);
-  };
-
   return (
     <WorkContainerStyle>
-      <ButtonContainer>
-        <Button
-          {...SmallButtonType}
-          color="#000000"
-          onClick={handleToggleStudy}
-          title={create ? "돌아가기" : `${type} 생성`}
-        />
-      </ButtonContainer>
-      {create && <CreateWork type={type} />}
-      {!create && <GetWork type={type} />}
+      <GetWork type={type} />
     </WorkContainerStyle>
   );
 };

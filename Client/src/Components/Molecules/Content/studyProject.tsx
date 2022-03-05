@@ -61,7 +61,7 @@ const Content = ({ type }: Props) => {
           )}
         </Modal>
       )}
-      <Container onClick={(e) => handlePosticClick(e)}>
+      <Container onClick={handlePosticClick}>
         {Object.keys(STUDY_STATUS).map((element, i) => (
           <StudyContainer
             key={i}
