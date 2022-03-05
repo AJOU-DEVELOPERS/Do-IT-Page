@@ -17,15 +17,16 @@ export const getIdx = ({ target }: { target: any }) =>
 
 export const WorkSearch = ({
   value,
-  workList,
+  totalWorkList,
   setWorkList,
 }: {
   value: string;
-  workList: any;
+  totalWorkList: any;
   setWorkList: Dispatch<any>;
 }) => {
-  // setStudyList(
-  //   studyList.filter(
+  console.log(value);
+  // setWorkList(
+  //   totalWorkList.filter(
   //     (item: { status: string }) => item.status === STUDY_STATE[value]
   //   )
   // );

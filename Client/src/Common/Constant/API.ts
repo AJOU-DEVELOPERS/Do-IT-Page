@@ -50,20 +50,30 @@ export const POST_CREATE_STUDY = `${TARGET_URL}/studies`;
 
 export const GET_STUDY_DATA = `${TARGET_URL}/studies`;
 
-export const GET_STUDY_ACCEPT = `${TARGET_URL}/studies/accept`;
+export const GET_STUDY_APPLY_ACCEPT = `${TARGET_URL}/studies/accept/participation`;
 
-export const GET_STUDY_DENY = `${TARGET_URL}/studies/reject`;
+export const GET_STUDY_APPLY_DENY = `${TARGET_URL}/studies/reject/participation`;
+
+export const GET_STUDY_CREATE_ACCEPT = `${TARGET_URL}/studies/accept/create`;
+
+export const GET_STUDY_CREATE_DENY = `${TARGET_URL}/studies/reject/create`;
 
 export const POST_STUDY_APPLY = `${TARGET_URL}/studies`;
 
 /**--------------------- Project ------------------------ */
 export const POST_CREATE_PROJECT = `${TARGET_URL}/projects`;
 
+export const POST_PROJECT_APPLY = `${TARGET_URL}/projects`;
+
 export const GET_PROJECT_DATA = `${TARGET_URL}/projects`;
 
-export const GET_PROJECT_ACCEPT = `${TARGET_URL}/projects/accept`;
+export const GET_PROJECT_APPLY_ACCEPT = `${TARGET_URL}/projects/accept/participation`;
 
-export const GET_PROJECT_DENY = `${TARGET_URL}/projects/reject`;
+export const GET_PROJECT_APPLY_DENY = `${TARGET_URL}/projects/reject/participation`;
+
+export const GET_PROJECT_CREATE_ACCEPT = `${TARGET_URL}/projects/accept/create`;
+
+export const GET_PROJECT_CREATE_DENY = `${TARGET_URL}/projects/reject/create`;
 
 /*----------------------- Admin ------------------------- */
 export const GET_USERS_INFO_URL = `${TARGET_URL}/users`;
