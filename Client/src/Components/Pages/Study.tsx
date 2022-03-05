@@ -1,7 +1,5 @@
 import StudyTemp from "@Templates/Study";
 
-const StudyPage = () => {
-  return <StudyTemp />;
-};
+const StudyPage = () => <StudyTemp />;
 
 export default StudyPage;

@@ -5,7 +5,7 @@ import { postReservationRoomBodyProps } from "@Type/API";
 import CalendarBody from "@Organisms/Reserve/ReserveCalendar/Body";
 import { Container } from "./style";
 import CalendarHeader from "@Organisms/Reserve/ReserveCalendar/Header";
-import { dateReducer } from "@src/Hook/test";
+import { dateReducer } from "@src/Hook";
 import { getYearMonth } from "@Util/.";
 
 const Calendar = () => {
