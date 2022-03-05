@@ -13,7 +13,6 @@ import { AcceptClick, DenyClick } from "../../util";
 
 const Work = ({ work, type }: DeepWorkType) => {
   const userWork: UserWorkType[] = work.userStudies ?? work.userProjects;
-
   const handleAcceptClick = async ({ target }: { target: any }) =>
     AcceptClick({ target, type });
 
@@ -34,13 +33,15 @@ const Work = ({ work, type }: DeepWorkType) => {
       <TableBody>
         {userWork?.map((item: UserWorkType) => (
           <TableRow
-            key={item.studyIdx}
+            key={item.studyIdx ?? item.projectIdx}
             id="userContainer"
-            data-idx={item.studyIdx}
+            data-idx={item.studyIdx ?? item.projectIdx}
           >
-            {PROJECT_TITLE.map((title) => (
-              <TableData key={title.key}>{item[title.key]}</TableData>
-            ))}
+            {PROJECT_TITLE.map((title) => {
+              const text =
+                title.key === "status" ? item[title.key] : work[title.key];
+              return <TableData key={title.key}>{text}</TableData>;
+            })}
             <TableData onClick={handleAcceptClick}>승인</TableData>
             <TableData onClick={handleDenyClick}>거절</TableData>
           </TableRow>
