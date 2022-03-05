@@ -34,6 +34,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { Response } from 'express';
 import { LocalAuthGuard } from 'src/auths/auth.local.guard';
 import { duplicateCheckUserId } from './dto/duplicateCheck-userId.dto';
+import { JwtAuthGuard } from 'src/auths/auth.jwt.guard';
 @Controller('users')
 @ApiTags('User API')
 export class UsersController {
@@ -45,7 +46,10 @@ export class UsersController {
   @Post('sign-up')
   @ApiOperation({ summary: '회원가입 API', description: 'true false 반환' })
   @ApiBody({ type: SignupUserDto })
-  @ApiOkResponse({ description: '회원가입 성공', type: BaseSuccessResponse })
+  @ApiOkResponse({
+    description: '회원가입 성공',
+    type: BaseSuccessResponse,
+  })
   create(@Body() createUserDto: SignupUserDto) {
     return this.usersService.createUser(createUserDto);
   }
@@ -65,7 +69,7 @@ export class UsersController {
     @Res({ passthrough: true }) res: Response,
   ) {
     const cookie = await this.usersService.login(loginUserDto);
-    res.cookie('JWT', cookie);
+    res.cookie('Bearer', cookie);
     return new ResultSuccessResponse(req.user);
   }
 
@@ -80,22 +84,14 @@ export class UsersController {
     return this.usersService.findById(id);
   }
 
-  // findAll() {
-  //   return this.usersService.findAll();
-  // }
-
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.usersService.findOne(+id);
-  // }
-
-  // // @Patch(':id')
-  // // update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-  // //   return this.usersService.update(+id, updateUserDto);
-  // // }
-
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.usersService.remove(+id);
-  // }
+  @UseGuards(JwtAuthGuard)
+  @ApiOperation({
+    summary: '동아리 신청',
+    description: '동아리 신청 api.',
+  })
+  @ApiOkResponse({ description: '신청 성공', type: BaseSuccessResponse })
+  @Post('sign-up/club')
+  async signUpClub(@Req() req) {
+    return this.usersService.signUpClub(req.user.userIdx);
+  }
 }

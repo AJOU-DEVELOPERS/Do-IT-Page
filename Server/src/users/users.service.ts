@@ -8,7 +8,7 @@ import { SignupUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Connection } from 'typeorm';
-import { User } from './entities/user.entity';
+import { User, UserPayCheck } from './entities/user.entity';
 import {
   BaseSuccessResponse,
   ResultSuccessResponse,
@@ -17,6 +17,7 @@ import {
 import { LoginUserDto } from './dto/login-user.dto';
 import { AuthsService } from 'src/auths/auth.service';
 import { compare } from 'bcrypt';
+import { Semester } from 'src/semester/entities/semester.entity';
 @Injectable()
 export class UsersService {
   constructor(
@@ -64,9 +65,26 @@ export class UsersService {
       return new BaseFailResponse('비밀번호가 틀렸습니다.');
     return this.authsService.getCookieWithJwtToken(userInfo.userIdx);
   }
+
   async findById(id: string) {
     const user = await User.findOne({ where: id });
     if (user) return new BaseFailResponse('이미 존재하는 아이디입니다.');
+    return new BaseSuccessResponse();
+  }
+
+  //동아리 신청 중복신청  처리필요
+  async signUpClub(userIdx: number) {
+    const userPayCheck = new UserPayCheck();
+    const semester = new Semester();
+    const semesterIdx = (await semester.findNowSemester()).semesterIdx;
+    const duplicateCheck = UserPayCheck.findOne({
+      where: { userIdx, semesterIdx },
+    });
+    if (duplicateCheck) return new BaseFailResponse('이미 신청하였습니다.');
+    userPayCheck.userIdx = userIdx;
+    userPayCheck.semesterIdx = semesterIdx;
+
+    await userPayCheck.save();
     return new BaseSuccessResponse();
   }
   // findAll() {
