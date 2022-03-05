@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { useRecoilValue } from "recoil";
 import StudyContainer from "@Organisms/Study";
 import Modal from "@Molecules/Common/Modal";
@@ -12,13 +12,14 @@ import { ContentType } from "@Type/.";
 import BoardPreview from "@Molecules/Board/BoardPreview";
 import { Container, ModalContainer, Wrapper } from "./styles";
 import { getContentAPI, getContentType } from "./util";
+import useCloseModal from "@src/Hook/useCloseModal";
 
 interface Props {
   type?: "study" | "project";
 }
 const Content = ({ type }: Props) => {
   const [modalOnOff, setModalOnOff] = useState<ContentType>();
-  const outSection = useRef(null);
+  const outSection = useRef<HTMLDivElement>(null);
 
   const handlePosticClick = (e: any) => {
     const target = e.target.closest("button");
@@ -28,6 +29,7 @@ const Content = ({ type }: Props) => {
       .split(" ");
     const status = data[1],
       index = data[2];
+    console.log(typeContents[status][index]);
     setModalOnOff(typeContents[status][index]);
   };
 
@@ -45,17 +47,22 @@ const Content = ({ type }: Props) => {
     { collecting: [], processing: [], done: [] }
   );
 
+  const fn = useCallback(() => {
+    if (modalOnOff) setModalOnOff(undefined);
+  }, [modalOnOff]);
+
+  useCloseModal({ ref: outSection, fn });
+
   return (
     <>
       {modalOnOff && (
-        <Modal
-          onClick={(e) =>
-            outSection.current !== e.target && setModalOnOff(undefined)
-          }
-        >
+        <Modal>
           {modalOnOff && (
             <ModalContainer ref={outSection}>
-              {type === "study" && <StudyModalSubject {...modalOnOff} />}
+              {type === "study" && (
+                <StudyModalSubject {...modalOnOff} />
+                // <StudyModalSubject {...modalOnOff} fn={fn} />
+              )}
               {type !== "study" && <ProjectModalSubject {...modalOnOff} />}
             </ModalContainer>
           )}

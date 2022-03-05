@@ -12,11 +12,14 @@ import { useRecoilValue } from "recoil";
 
 const CreateModal = ({ type, handleToggleStudy }: ModalType) => {
   const { userId } = useRecoilValue(userInfoAtom);
+  const [stack, setStack] = useState<string[]>([]);
+
   const modalRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement[]>([]);
   const stackRef = useRef<HTMLInputElement>(null);
-  const [stack, setStack] = useState<string[]>([]);
+
   const WORK_ARR = checkStudy({ type }) ? CREATE_STUDY_ARR : CREATE_PROJECT_ARR;
+
   const handleCreateWork = () => {
     if (!inputRef?.current) return;
     WorkCreate({ inputRef, stack, type, userId });

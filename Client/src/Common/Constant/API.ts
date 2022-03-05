@@ -52,6 +52,8 @@ export const GET_STUDY_ACCEPT = `${TARGET_URL}/studies/accept`;
 
 export const GET_STUDY_DENY = `${TARGET_URL}/studies/reject`;
 
+export const POST_STUDY_APPLY = `${TARGET_URL}/studies`;
+
 /**--------------------- Project ------------------------ */
 export const POST_CREATE_PROJECT = `${TARGET_URL}/projects`;
 
