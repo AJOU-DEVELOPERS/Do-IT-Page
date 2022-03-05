@@ -77,7 +77,7 @@ export class ProjectsService {
 
             const deletingTechStacks = exTechStacks.map(async (exTechStack) => {
                 if (!updateProjectDto.techStacks.includes(exTechStack.name)) {
-                    await queryRunner.manager.softDelete(ProjectTechStack, exTechStack.projectTechStackIdx);
+                    await queryRunner.manager.delete(ProjectTechStack, exTechStack.projectTechStackIdx);
                 }
             });
             await Promise.all(deletingTechStacks);
