@@ -1,20 +1,16 @@
 import { ReactElement } from "react";
-import { Navigate, Route } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 interface Props {
-  element: ReactElement;
-  path: string;
+  children: ReactElement;
 }
 
-const AdminRoute = ({ element: Component, path }: Props): JSX.Element => {
+const AdminRoute = ({
+  children: Component,
+}: Props): React.ReactElement | null => {
   const admin = true;
 
-  return (
-    <Route
-      path={path}
-      element={() => (admin ? Component : <Navigate to="/error" />)}
-    />
-  );
+  return admin ? Component : <Navigate to="/error" />;
 };
 
 export default AdminRoute;
