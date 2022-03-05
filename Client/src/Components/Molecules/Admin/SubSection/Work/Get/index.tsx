@@ -18,7 +18,7 @@ const GetWork = ({ type }: BasicType) => {
   }: {
     target: { value: string };
   }) => {
-    WorkSearch({ value, workList, setWorkList });
+    WorkSearch({ value, totalWorkList, setWorkList });
   };
 
   return (

@@ -7,9 +7,8 @@ export const getContainer = ({ target }: { target: any }) =>
 export const getIdx = ({ target }: { target: any }) =>
   target.getAttribute("data-idx");
 
-export const getAPI = ({ type }: { type: string }) => {
+export const getAPI = ({ type }: { type: string }) =>
   type === "accept" ? postReservationAccept : postReservationDeny;
-};
 
 export const reserveUpdate = async ({
   target,
