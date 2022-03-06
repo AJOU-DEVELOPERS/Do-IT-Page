@@ -65,7 +65,7 @@ export const MAIN_BOARD_PREVIEW_LIST = [
   "백준랭킹",
   "프로젝트",
   "과방 대여",
-  "마이페이지",
+  // "마이페이지",
   "사진첩",
 ];
 

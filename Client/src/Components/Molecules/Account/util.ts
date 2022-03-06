@@ -13,7 +13,7 @@ import { REF_NUM } from "./common";
 export const LoginClick = async ({
   idRef,
   pwRef,
-  history,
+  navigator,
   setUser,
 }: LoginClickType) => {
   if (!idRef?.current || !pwRef?.current) return;
@@ -35,17 +35,18 @@ export const LoginClick = async ({
     return;
   }
 
-  const { userId } = await API({
+  const res = await API({
     api: postLoginInfo,
     data: { id: idValue, password: pwValue },
   });
 
-  if (!userId) {
+  console.log(res);
+  if (!res.message) {
     alert("아이디 및 비밀번호를 확인해주세요");
     return;
   }
-  setUser({ userId });
-  history.push("/main");
+  setUser(res.userInfo);
+  navigator("/main");
 };
 
 export const RegisterClick = async ({
@@ -71,7 +72,7 @@ export const RegisterClick = async ({
   const phoneNumber = inputRef.current[REF_NUM.핸드폰번호].value;
   const { value: idx, label } = subjectRef.current.selectedOptions[0];
 
-  const res = await postRegisterInfo({
+  const { message } = await postRegisterInfo({
     id,
     password,
     name,
@@ -86,9 +87,8 @@ export const RegisterClick = async ({
       },
     ],
   });
-  console.log(res);
 
-  if (res) {
+  if (message) {
     alert("회원가입에 성공하였습니다.");
     return true;
   }
@@ -106,12 +106,13 @@ export const checkDuplicateId = async ({
     alert("아이디 입력하세요");
     return;
   }
-  await API({
+  const { message } = await API({
     api: checkDuplicateUserId,
     data: { id: ref.current[idx].value },
   });
-  alert("사용가능한 아이디입니다.");
-  return true;
+
+  message ? alert("사용가능한 아이디입니다.") : alert("중복된 아이디 입니다.");
+  return message;
 };
 
 export const clickMail = async ({
@@ -129,6 +130,7 @@ export const clickMail = async ({
     alert("아주대 메일이어야합니다~");
     return;
   }
+  alert("잠시만 기다려주세요");
   const { cacheKey, message } = await API({
     api: postRequestMail,
     data: { email: ref.current[idx].value },
@@ -153,10 +155,12 @@ export const checkMail = async ({
     return;
   }
 
-  const data = await API({
+  const { message } = await API({
     api: postCheckMail,
     data: { authNum: ref.current[idx].value, cacheKey },
   });
-  alert("인증번호가 일치합니다.");
-  return true;
+  message
+    ? alert("인증번호가 일치합니다.")
+    : alert("인증번호가 일치하지 않습니다");
+  return message;
 };

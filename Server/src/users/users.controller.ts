@@ -15,11 +15,9 @@ import {
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { SignupUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 import { AuthsService } from 'src/auths/auth.service';
 import {
   ApiBody,
-  ApiCreatedResponse,
   ApiOperation,
   ApiTags,
   ApiOkResponse,
@@ -36,6 +34,8 @@ import { LocalAuthGuard } from 'src/auths/auth.local.guard';
 import { duplicateCheckUserId } from './dto/duplicateCheck-userId.dto';
 import { JwtAuthGuard } from 'src/auths/auth.jwt.guard';
 import { UserDto } from './dto/get-user.dto';
+import { RolesGuard } from 'src/auths/roles.guard';
+import { Roles } from 'src/auths/roles.decorator';
 @Controller('users')
 @ApiTags('User API')
 export class UsersController {
@@ -43,6 +43,10 @@ export class UsersController {
     private readonly usersService: UsersService,
     private readonly authsService: AuthsService,
   ) {}
+
+  @Roles('M')
+  @UseGuards(RolesGuard)
+  @UseGuards(JwtAuthGuard)
   @HttpCode(200)
   @Get('')
   @ApiOperation({ summary: '유저 목록 API', description: '유저 목록 반환' })
@@ -83,6 +87,7 @@ export class UsersController {
     const cookie = await this.authsService.getCookieWithJwtToken(
       req.user.userIdx,
       req.user.userName,
+      req.user.status,
     );
     res.cookie('Bearer', cookie);
 
@@ -100,16 +105,16 @@ export class UsersController {
     return this.usersService.findById(id);
   }
 
-  @UseGuards(JwtAuthGuard)
-  @ApiOperation({
-    summary: '동아리 신청',
-    description: '동아리 신청 api.',
-  })
-  @ApiOkResponse({ description: '신청 성공', type: BaseSuccessResponse })
-  @Post('sign-up/club')
-  async signUpClub(@Req() req) {
-    return this.usersService.signUpClub(req.user.userIdx);
-  }
+  // @UseGuards(JwtAuthGuard)
+  // @ApiOperation({
+  //   summary: '동아리 신청',
+  //   description: '동아리 신청 api.',
+  // })
+  // @ApiOkResponse({ description: '신청 성공', type: BaseSuccessResponse })
+  // @Post('sign-up')
+  // async signUpClub(@Req() req) {
+  //   return this.usersService.signUpClub(req.user.userIdx);
+  // }
 
   @UseGuards(JwtAuthGuard)
   @ApiOperation({

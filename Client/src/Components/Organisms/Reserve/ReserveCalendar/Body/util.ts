@@ -76,9 +76,11 @@ export const getReserveDatas = (
       ...acc,
       ...new Array(diff).fill(0).map((_, idx) => {
         return {
-          date: [startDate[0], startDate[1], Number(startDate[2]) + idx].join(
-            "-"
-          ),
+          date: [
+            startDate[0],
+            Number(startDate[1]),
+            Number(startDate[2]) + idx,
+          ].join("-"),
           hour: `${reservationStartHour} - ${reservationEndHour}`,
           host: userName,
         };

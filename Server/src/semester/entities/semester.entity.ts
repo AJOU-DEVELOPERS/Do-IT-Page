@@ -6,8 +6,7 @@ import {
   BaseEntity,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
-import { UserPayCheck } from 'src/users/entities/user.entity';
-import { createQueryBuilder } from 'typeorm';
+import { ClubUser } from 'src/club/entities/club.entity';
 @Entity('Semester')
 export class Semester extends BaseEntity {
   @ApiProperty()
@@ -26,8 +25,8 @@ export class Semester extends BaseEntity {
   @Column()
   semesterEndDate: string;
 
-  @OneToMany((_type) => UserPayCheck, (_type) => _type.semester)
-  userPayChecks: UserPayCheck[];
+  @OneToMany((_type) => ClubUser, (_type) => _type.semester)
+  clubs: ClubUser[];
 
   async findNowSemester(): Promise<Semester> {
     return Semester.findOne({

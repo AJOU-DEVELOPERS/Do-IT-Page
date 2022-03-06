@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { LoginProps } from "@Type/index";
+import { TABLET_WIDTH } from "@Constant/.";
 const Container = styled.div`
   width: 100%;
   height: 100%;
@@ -17,9 +18,12 @@ const LoginContainer = styled(Container)`
     ". pwd button ." 2fr
     ". footer footer ." 6fr
     / 1fr 6fr 2fr 1fr;
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    min-width: 80vw;
+  }
 `;
 const RegisterContainer = styled(Container)`
-  width: 30vw;
+  min-width: 30vw;
   height: 60vh;
   display: grid;
   grid-template:
@@ -27,6 +31,9 @@ const RegisterContainer = styled(Container)`
     ". section ." 8fr
     ". button ." 2fr
     / 1fr 6fr 1fr;
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    min-width: 80vw;
+  }
 `;
 
 const Wrapper = styled(Container)<LoginProps>`

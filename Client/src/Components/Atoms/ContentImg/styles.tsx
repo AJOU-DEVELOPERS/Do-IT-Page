@@ -31,11 +31,17 @@ const MiddleImg = styled.div<ImgProps>`
 `;
 
 const Year = styled.div`
-  width: 60%;
+  width: 1000;
+  height: 500;
   margin: auto;
   display: flex;
   justify-content: center;
   margin-top: 200px;
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    margin-top: 100px;
+    width: 50vw;
+    height: 50vw;
+  }
 `;
 
 export { Img, Year, MiddleImg, MiddleBox, ContentImg };

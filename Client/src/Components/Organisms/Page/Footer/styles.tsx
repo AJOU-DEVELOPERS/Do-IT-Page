@@ -1,3 +1,4 @@
+import { TABLET_WIDTH } from "@Constant/.";
 import styled from "styled-components";
 
 const PageFooterContainer = styled.div`
@@ -10,7 +11,7 @@ const PageFooterText = styled.div`
   text-align: right;
   color: #afaaaa;
   text-shadow: -3px 3px 3px #00000029;
-  font-size: 22px;
+  font-size: 1.25em;
   line-height: 1.2;
 `;
 
@@ -23,6 +24,9 @@ const PageFooterTitle = styled.div`
   font-family: Roboto;
   color: #ffffff;
   margin: 10px 0px;
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    color: black;
+  }
 `;
 
 export { PageFooterContainer, PageFooterText, PageFooterTitle };

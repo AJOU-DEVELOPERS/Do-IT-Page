@@ -30,7 +30,7 @@ export const TableTitle = styled.th`
 
 export const TableBody = styled.tbody`
   display: block;
-  height: 30vh;
+  max-height: 30vh;
   overflow-y: auto;
   overflow-x: hidden;
   &::-webkit-scrollbar {

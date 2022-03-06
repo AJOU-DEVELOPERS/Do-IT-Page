@@ -8,7 +8,7 @@ import { useRecoilValue } from "recoil";
 import { REF_NUM, REGISTER_DATAS } from "../common";
 import { RegisterContainer, Title, Section, SubWrapper } from "../styles";
 import { checkDuplicateId, checkMail, clickMail, RegisterClick } from "../util";
-import { Container } from "./styles";
+import { Container, SelectBox } from "./styles";
 
 const RegisterInput = () => {
   const departments = useRecoilValue(getDepartmentsSelector);
@@ -36,10 +36,10 @@ const RegisterInput = () => {
       ref: inputRef,
       idx: REF_NUM.ID,
     });
-    console.log(data);
     if (!data) return;
     setCheckId(true);
   };
+
   const handleClickMail = async () => {
     const cacheKey = await clickMail({
       ref: inputRef,
@@ -53,7 +53,6 @@ const RegisterInput = () => {
       idx: REF_NUM["인증번호"],
       cacheKey: mailKey,
     });
-    console.log(data);
     if (!data) return;
     setMailCheck(true);
   };
@@ -116,17 +115,20 @@ const RegisterInput = () => {
           />
         </Container>
 
-        <select ref={subjectRef}>
-          {departments.map((item: any) => (
-            <option
-              key={item.departmentIdx}
-              value={item.departmentIdx}
-              label={item.name}
-            >
+        <SelectBox>
+          <select ref={subjectRef}>
+            {departments.map((item: any) => (
+              <option
+                key={item.departmentIdx}
+                value={item.departmentIdx}
+                label={item.name}
+              >
               {item.name}
-            </option>
-          ))}
-        </select>
+              </option>
+            ))}
+          </select>
+        </SelectBox>
+        
         <SubWrapper>
           <Container>
             <div>{REGISTER_DATAS[REF_NUM.이메일].title}</div>

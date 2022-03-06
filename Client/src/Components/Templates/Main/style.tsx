@@ -28,3 +28,13 @@ export const GridContainer = styled.div`
     margin: 2vh auto;
   }
 `;
+
+export const ButtonContainer = styled.div`
+  width: 85%;
+  height: 100px;
+  display: flex;
+  justify-content: end;
+  @media only screen and (max-width: ${MOBILE_WIDTH}px) {
+    width: 95%;
+  }
+`;

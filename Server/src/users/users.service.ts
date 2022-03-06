@@ -8,7 +8,7 @@ import { SignupUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Connection } from 'typeorm';
-import { User, UserPayCheck } from './entities/user.entity';
+import { User } from './entities/user.entity';
 import {
   BaseSuccessResponse,
   ResultSuccessResponse,
@@ -16,8 +16,7 @@ import {
 } from 'src/commons/dto/response-common.dto';
 import { LoginUserDto } from './dto/login-user.dto';
 import { AuthsService } from 'src/auths/auth.service';
-import { compare } from 'bcrypt';
-import { Semester } from 'src/semester/entities/semester.entity';
+
 @Injectable()
 export class UsersService {
   constructor(
@@ -57,17 +56,17 @@ export class UsersService {
     }
   }
 
-  async login(loginUserDto: LoginUserDto) {
-    const userInfo = await User.findOne({ id: loginUserDto.id });
-    if (!userInfo)
-      return new BaseSuccessResponse('이미 존재하지 않는 이메일입니다.');
-    if (!(await compare(loginUserDto.password, userInfo.password)))
-      return new BaseSuccessResponse('비밀번호가 틀렸습니다.');
-    return this.authsService.getCookieWithJwtToken(
-      userInfo.userIdx,
-      userInfo.name,
-    );
-  }
+  // async login(loginUserDto: LoginUserDto) {
+  //   const userInfo = await User.findOne({ id: loginUserDto.id });
+  //   if (!userInfo)
+  //     return new BaseSuccessResponse('이미 존재하지 않는 이메일입니다.');
+  //   if (!(await compare(loginUserDto.password, userInfo.password)))
+  //     return new BaseSuccessResponse('비밀번호가 틀렸습니다.');
+  //   return this.authsService.getCookieWithJwtToken(
+  //     userInfo.userIdx,
+  //     userInfo.name,
+  //   );
+  // }
 
   async findById(id: string) {
     const user = await User.findOne({ where: id });
@@ -75,27 +74,12 @@ export class UsersService {
     return new BaseSuccessResponse();
   }
 
-  //동아리 신청 중복신청  처리필요
-  async signUpClub(userIdx: number) {
-    const userPayCheck = new UserPayCheck();
-    const semester = new Semester();
-    const semesterIdx = (await semester.findNowSemester()).semesterIdx;
-    const duplicateCheck = UserPayCheck.findOne({
-      where: { userIdx, semesterIdx },
-    });
-    if (duplicateCheck) return new BaseSuccessResponse('이미 신청하였습니다.');
-    userPayCheck.userIdx = userIdx;
-    userPayCheck.semesterIdx = semesterIdx;
-
-    await userPayCheck.save();
-    return new BaseSuccessResponse();
-  }
   async findAll() {
     const queryRunner = this.connection.createQueryRunner();
     await queryRunner.connect();
     try {
       const userList = await User.find({});
-      console.log(userList);
+      //console.log(userList);
       return new ResultSuccessResponse(userList);
     } catch (error) {
       console.log(error);

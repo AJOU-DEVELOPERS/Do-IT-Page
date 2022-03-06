@@ -22,4 +22,4 @@ const StudyFilterBar = ({
 
 export default StudyFilterBar;
 
-const STUDY_TYPE = ["모집중", "진행중", "종료"];
+const STUDY_TYPE = ["대기중", "모집중", "진행중", "종료", "거절"];

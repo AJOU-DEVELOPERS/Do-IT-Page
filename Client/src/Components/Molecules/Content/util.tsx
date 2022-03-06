@@ -20,11 +20,13 @@ export const makeRequestBody = ({
   techStacks,
   inputRef,
   leaderUserIdx,
+  leaderName,
 }: {
   type: string | undefined;
   techStacks: string[];
   inputRef: React.RefObject<HTMLInputElement[]>;
   leaderUserIdx: number;
+  leaderName: string;
 }) => {
   const bodyOption = checkStudy({ type }) ? {} : { techStacks };
   const WORK_ARR = checkStudy({ type }) ? CREATE_STUDY_ARR : CREATE_PROJECT_ARR;
@@ -40,7 +42,7 @@ export const makeRequestBody = ({
       };
     }, bodyOption),
     leaderUserIdx,
-    leaderName: "김영진",
+    leaderName,
   };
 };
 export const WorkCreate = async ({
@@ -48,11 +50,13 @@ export const WorkCreate = async ({
   stack,
   type,
   userId,
+  userName,
 }: {
   inputRef: React.RefObject<HTMLInputElement[]>;
   stack: string[];
   type: string | undefined;
   userId: number;
+  userName: string;
 }) => {
   const api = checkStudy({ type }) ? postCreateStudy : postCreateProject;
   const data = makeRequestBody({
@@ -60,9 +64,8 @@ export const WorkCreate = async ({
     techStacks: stack,
     leaderUserIdx: userId,
     inputRef,
+    leaderName: userName,
   });
-  const res = await API({ api, data });
-  console.log(res);
-  res === "true" ? alert("성공") : alert("실패");
-  return;
+  const { message } = await API({ api, data });
+  message ? alert("신청 되었습니다.") : alert("실패");
 };

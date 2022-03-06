@@ -1,5 +1,6 @@
 import { Img, MiddleBox, MiddleImg } from "@Atoms/ContentImg/styles";
 import { ImgProps } from "@src/Common/Type";
+import { checkMobile } from "@Util/.";
 import { Box, Container } from "./styles";
 
 interface Props extends ImgProps {
@@ -18,7 +19,7 @@ const Content = ({ type, url, text }: Props) => {
         ) : (
           <></>
         ))}
-      {type !== "basic" && <Img alt="contentImage" src={url} loading="lazy" />}
+      {!checkMobile() && type !== "basic" && <Img alt="contentImage" src={url} loading="lazy" />}
       {text()}
       {type === "false" && <Box />}
     </Container>
