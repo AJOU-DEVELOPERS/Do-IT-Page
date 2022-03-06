@@ -34,4 +34,5 @@ export class Study extends BaseEntity {
     updatedAt: string;
     @OneToMany((_type) => UserStudy, (_type) => _type.study)
     userStudies: UserStudy[];
+    numParticipant: number;
 }

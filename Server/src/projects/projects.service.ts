@@ -134,8 +134,12 @@ export class ProjectsService {
         try {
             const projects = await Project.find({
                 relations: [
+                    "userProjects",
                     "projectTechStacks"
                 ]
+            });
+            projects.forEach((project) => {
+                project.numParticipant = project.userProjects.filter((userProject) => userProject.status == 'leader' || userProject.status == 'accepted').length;
             });
             return new GetProjectsResponseDto(projects);
         } catch(error) {

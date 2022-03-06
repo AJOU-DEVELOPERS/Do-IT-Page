@@ -88,7 +88,14 @@ export class StudiesService {
 
     async findAll() {
         try {
-            const studies = await Study.find();
+            const studies = await Study.find({
+                relations: [
+                    'userStudies'
+                ]
+            });
+            studies.forEach((study) => {
+                study.numParticipant = study.userStudies.filter((userStudy) => userStudy.status == 'leader' || userStudy.status == 'accepted').length;
+            });
             return new GetStudiesResponseDto(studies);
         } catch(error) {
             console.log(error);
