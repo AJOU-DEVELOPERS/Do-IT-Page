@@ -13,6 +13,8 @@ import BoardPreview from "@Molecules/Board/BoardPreview";
 import { Container, ModalContainer, Wrapper } from "./styles";
 import { getContentAPI, getContentType } from "./util";
 import useCloseModal from "@src/Hook/useCloseModal";
+import { userInfoAtom } from "@Recoil/CheckLogin";
+import { userInfo } from "@Type/Account";
 
 interface Props {
   type?: "study" | "project";
@@ -20,13 +22,12 @@ interface Props {
 const Content = ({ type }: Props) => {
   const [modalOnOff, setModalOnOff] = useState<ContentType>();
   const outSection = useRef<HTMLDivElement>(null);
+  const { userIdx, userName } = useRecoilValue(userInfoAtom) as userInfo;
 
   const handlePosticClick = (e: any) => {
     const target = e.target.closest("button");
     if (!target) return;
-    const data = target.parentNode.parentNode
-      .getAttribute("data-idx")
-      .split(" ");
+    const data = target.parentNode.parentNode.getAttribute("data-idx").split(" ");
     const status = data[1],
       index = data[2];
 
@@ -35,9 +36,7 @@ const Content = ({ type }: Props) => {
 
   const boardContents =
     hasBoardContent(GET_STUDY_CONTENT_URL, getContentType({ type })) &&
-    useRecoilValue<ContentType[]>(
-      BoardContentSelector(getContentAPI({ type }))
-    );
+    useRecoilValue<ContentType[]>(BoardContentSelector(getContentAPI({ type })));
 
   const typeContents = boardContents?.slice(0, 7).reduce(
     (acc: any, cur: any) => {
@@ -61,31 +60,20 @@ const Content = ({ type }: Props) => {
         <Modal>
           {modalOnOff && (
             <ModalContainer ref={outSection}>
-              {type === "study" && (
-                <StudyModalSubject {...modalOnOff} />
-                // <StudyModalSubject {...modalOnOff} fn={fn} />
-              )}
-              {type !== "study" && <ProjectModalSubject {...modalOnOff} />}
+              {type === "study" && <StudyModalSubject {...modalOnOff} fn={fn} userIdx={userIdx} />}
+              {type !== "study" && <ProjectModalSubject {...modalOnOff} fn={fn} userIdx={userIdx} />}
             </ModalContainer>
           )}
         </Modal>
       )}
       <Container onClick={handlePosticClick}>
         {Object.keys(STUDY_STATUS).map((element, i) => (
-          <StudyContainer
-            key={i}
-            title={STUDY_STATUS[element as keyof typeof STUDY_STATUS]}
-          >
-            {typeContents[element].map(
-              (content: ContentType, index: number) => (
-                <Wrapper
-                  key={index}
-                  data-idx={type + " " + element + " " + index}
-                >
-                  <BoardPreview previewType={"card"} content={content} />
-                </Wrapper>
-              )
-            )}
+          <StudyContainer key={i} title={STUDY_STATUS[element as keyof typeof STUDY_STATUS]}>
+            {typeContents[element].map((content: ContentType, index: number) => (
+              <Wrapper key={index} data-idx={type + " " + element + " " + index}>
+                <BoardPreview previewType={"card"} content={content} />
+              </Wrapper>
+            ))}
           </StudyContainer>
         ))}
       </Container>
