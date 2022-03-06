@@ -52,6 +52,6 @@ export const checkDuplicateUserId = async ({ id }: { id: string }) => {
 };
 
 export const postCircleJoin = async () => {
-  const { data } = await axios.post(POST_CIRCLE_JOIN, API_GET_OPTION);
+  const { data } = await axios.post(POST_CIRCLE_JOIN, {}, API_GET_OPTION);
   return data;
 };
