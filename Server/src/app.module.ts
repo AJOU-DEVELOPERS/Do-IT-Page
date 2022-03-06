@@ -16,11 +16,9 @@ import { StudiesModule } from './studies/studies.module';
 import { ProjectsModule } from './projects/projects.module';
 import { ReservationModule } from './reservation/reservation.module';
 import { SemesterModule } from './semester/semester.module';
+import { ClubModule } from './club/club.module';
 @Module({
   imports: [
-    AuthsModule,
-    UsersModule,
-    DepartmentsModule,
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: ['.env.dev'],
@@ -74,6 +72,7 @@ import { SemesterModule } from './semester/semester.module';
     ReservationModule,
     ProjectsModule,
     SemesterModule,
+    ClubModule,
   ],
   controllers: [AppController],
   providers: [AppService],

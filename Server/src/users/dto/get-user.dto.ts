@@ -9,49 +9,15 @@ import {
   IsEmail,
   IsArray,
 } from 'class-validator';
+import { User } from '../entities/user.entity';
 import { SignupUserDepartmentDto } from './create-user.dto';
 
-export class UserDto {
-  @IsNotEmpty()
-  @ApiProperty({
-    description: '유저 아이디',
-    example: 'kyi9592',
-  })
-  id: string;
-  @IsNotEmpty()
-  @IsString()
-  @MinLength(2)
-  @MaxLength(5)
-  @ApiProperty({
-    description: '유저 이름',
-    example: '곽영일',
-  })
-  name: string;
-  @Min(9)
-  @IsNotEmpty()
-  @IsInt()
-  @ApiProperty({
-    description: '학번',
-    example: '201823815',
-  })
-  studentId: number;
-  @MinLength(11)
-  @IsNotEmpty()
-  @ApiProperty({
-    description: '유저 핸드폰 번호',
-    example: '01012345678',
-  })
-  phoneNumber: string;
-  @IsNotEmpty()
-  @IsEmail()
-  @ApiProperty({
-    description: '유저 이메일',
-    example: 'kyi9592@ajou.ac.kr',
-  })
-  @IsNotEmpty()
-  email: string;
+export class UserDto extends User {
+  constructor() {
+    super();
+  }
   @IsNotEmpty()
   @IsArray()
-  @ApiProperty({ isArray: true, type: () => [SignupUserDepartmentDto] })
+  @ApiProperty({ isArray: false, type: () => [SignupUserDepartmentDto] })
   department: SignupUserDepartmentDto[];
 }
