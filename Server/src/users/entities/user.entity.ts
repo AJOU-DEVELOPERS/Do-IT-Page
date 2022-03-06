@@ -21,7 +21,6 @@ import { Project, ProjectTechStack } from 'src/projects/entity/project.entity';
 import { Reservation } from 'src/reservation/entitiy/reservation.entity';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { ThrowFailResponse } from 'src/commons/dto/response-common.dto';
-import { Semester } from 'src/semester/entities/semester.entity';
 import {
   IsNotEmpty,
   IsString,
@@ -31,9 +30,13 @@ import {
   IsInt,
   IsEmail,
 } from 'class-validator';
+import { ClubUser } from 'src/club/entities/club.entity';
 @Entity('User')
 export class User extends BaseEntity {
-  @ApiProperty()
+  @ApiProperty({
+    description: '유저 인덱스',
+    example: 2,
+  })
   @PrimaryGeneratedColumn()
   userIdx: number;
   @IsNotEmpty()
@@ -111,8 +114,8 @@ export class User extends BaseEntity {
   @OneToMany((_type) => Reservation, (_type) => _type.user)
   reservations: Reservation[];
 
-  @OneToMany((_type) => UserPayCheck, (_type) => _type.user)
-  userPayChecks: UserPayCheck[];
+  @OneToMany((_type) => ClubUser, (_type) => _type.user)
+  clubs: ClubUser[];
 
   @BeforeInsert()
   async hashPassword() {
@@ -265,27 +268,4 @@ export class UserSocial extends BaseEntity {
 
   @ManyToOne((_type) => User, (_type) => _type.userSocials)
   user: User;
-}
-
-@Entity('UserPayCheck')
-export class UserPayCheck extends BaseEntity {
-  @ApiProperty()
-  @PrimaryGeneratedColumn()
-  userPayCheckIdx: number;
-  @ApiProperty()
-  @Column()
-  userIdx: number;
-  @ApiProperty()
-  @Column()
-  semesterIdx: number;
-  @ApiProperty()
-  @Column()
-  isPay: number;
-
-  @ManyToOne((_type) => User, (_type) => _type.userPayChecks)
-  @JoinColumn({ name: 'userIdx', referencedColumnName: 'userIdx' })
-  user: User;
-  @ManyToOne((_type) => Semester, (_type) => _type.userPayChecks)
-  @JoinColumn({ name: 'semesterIdx', referencedColumnName: 'semesterIdx' })
-  semester: Semester;
 }
