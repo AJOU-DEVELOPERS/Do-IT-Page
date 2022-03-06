@@ -23,7 +23,7 @@ export const REGISTER_DATAS = [
   },
   {
     title: "이메일",
-    text: "아이디를 입력하세요.",
+    text: "이메일을 입력하세요.",
     idx: 4,
   },
   {

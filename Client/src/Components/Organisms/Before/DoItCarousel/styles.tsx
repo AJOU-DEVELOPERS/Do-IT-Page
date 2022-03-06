@@ -1,3 +1,4 @@
+import { TABLET_WIDTH } from "@Constant/.";
 import { ImgProps } from "@src/Common/Type";
 import styled from "styled-components";
 
@@ -25,8 +26,13 @@ const MainTitle = styled.div`
   justify-content: center;
 
   span {
+    width: 100vw;
+    height: 5vh;
     color: #ffffff;
     padding: 10px;
+    @media only screen and (max-width: ${TABLET_WIDTH}px) {
+        font-size: medium;
+    }
   }
 `;
 

@@ -6,8 +6,12 @@ import { BoardContentType, ContentType } from "@Type/.";
 export const BoardContentSelector = selectorFamily<ContentType[], string>({
   key: "BoardContentSelector",
   get: (apiSrc: string) => async () => {
-    const res = await _API({ api: getBoardContents, apiSrc });
-    return res;
+    const { message, ...data } = await _API({ api: getBoardContents, apiSrc });
+    if (!message) {
+      alert("서버에러");
+      return [];
+    }
+    return data[Object.keys(data)[0]];
   },
 });
 

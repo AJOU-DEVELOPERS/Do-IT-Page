@@ -3,6 +3,7 @@ import { ApiBody, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { number } from 'joi';
 import { BaseSuccessResponse } from 'src/commons/dto/response-common.dto';
 import { CreateStudyDto } from './dto/create-study.dto';
+import { GetStudiesResponseDto, GetStudyResponseDto } from './dto/get-study.dto';
 import { UpdateStudyDto } from './dto/update-study.dto';
 import { StudiesService } from './studies.service';
 
@@ -27,7 +28,10 @@ export class StudiesController {
         summary: '전체 스터디 불러오기 API',
         description: '성공 시 전체 스터디 혹은 빈 배열 반환, 실패 시 false 반환'
     })
-    @ApiOkResponse({ description: '전체 스터디 불러오기 성공' })
+    @ApiOkResponse({
+        type: GetStudiesResponseDto,
+        description: '전체 스터디 불러오기 성공' 
+    })
     findAll() {
         return this.studiesService.findAll();
     }
@@ -37,7 +41,10 @@ export class StudiesController {
         summary: '특정 스터디 불러오기 API',
         description: '성공 시 스터디 반환, 실패 시 false 반환'
     })
-    @ApiOkResponse({ description: '특정 스터디 불러오기 성공' })
+    @ApiOkResponse({ 
+        type: GetStudyResponseDto,
+        description: '특정 스터디 불러오기 성공' 
+    })
     findOne(@Param('studyIdx') studyIdx: number) {
         return this.studiesService.findOne(studyIdx);
     }
