@@ -62,11 +62,16 @@ export class AuthsService {
     return new BaseSuccessResponse();
   }
 
-  async getCookieWithJwtToken(userIdx: number, userName: string) {
+  async getCookieWithJwtToken(
+    userIdx: number,
+    userName: string,
+    status: string,
+  ) {
     const payload: {
       userIdx: number;
       userName: string;
-    } = { userIdx, userName };
+      status: string;
+    } = { userIdx, userName, status };
     const token = this.jwtService.sign(payload);
 
     return token;
@@ -78,6 +83,7 @@ export class AuthsService {
     const result = {
       userIdx: userInfo.userIdx,
       userName: userInfo.name,
+      status: userInfo.status,
     };
     return result;
   }
