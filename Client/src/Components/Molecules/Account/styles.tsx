@@ -23,7 +23,7 @@ const LoginContainer = styled(Container)`
   }
 `;
 const RegisterContainer = styled(Container)`
-  width: 30vw;
+  min-width: 30vw;
   height: 60vh;
   display: grid;
   grid-template:
@@ -31,6 +31,9 @@ const RegisterContainer = styled(Container)`
     ". section ." 8fr
     ". button ." 2fr
     / 1fr 6fr 1fr;
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    min-width: 80vw;
+  }
 `;
 
 const Wrapper = styled(Container)<LoginProps>`
