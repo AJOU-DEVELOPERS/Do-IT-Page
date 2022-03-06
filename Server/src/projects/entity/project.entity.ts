@@ -36,6 +36,7 @@ export class Project extends BaseEntity {
     userProjects: UserProject[];
     @OneToMany((_type) => ProjectTechStack, (_type) => _type.project)
     projectTechStacks: ProjectTechStack[];
+    numParticipant: number;
 }
 
 @Entity({name: 'TechStack'})
