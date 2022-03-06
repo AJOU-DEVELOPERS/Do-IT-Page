@@ -1,3 +1,4 @@
+import { TABLET_WIDTH } from "@Constant/.";
 import styled from "styled-components";
 
 const PageContainer = styled.img`
@@ -7,6 +8,10 @@ const PageContainer = styled.img`
   background-size: cover;
   width: 100vw;
   height: 100vh;
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    margin-top: 100px;
+    height: auto;
+  }
 `;
 
 const HeaderContainer = styled.div`
@@ -21,6 +26,9 @@ const BodyContainer = styled.div`
   position: fixed;
   bottom: 100px;
   right: 100px;
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    right: 10px;
+  }
 `;
 
 export { PageContainer, HeaderContainer, BodyContainer };
