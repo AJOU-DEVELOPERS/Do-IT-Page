@@ -9,6 +9,7 @@ import { Wrapper, Title, LoginContainer, Footer } from "./styles";
 import { LoginClick } from "./util";
 import { useSetRecoilState } from "recoil";
 import { userInfoAtom } from "@Recoil/CheckLogin";
+import { checkMobile } from "@Util/.";
 
 const LoginInput = () => {
   const setUser = useSetRecoilState(userInfoAtom);
@@ -29,20 +30,36 @@ const LoginInput = () => {
       <Title>로그인</Title>
       <Wrapper type={"id"}>
         <p>ID</p>
-        <Input
-          {...LoginInputType}
+        {!checkMobile() ? 
+        (<Input
+          {...LoginInputType} 
           placeholder="ID를 입력하세요."
           inputRef={idRef}
-        />
+        />) : 
+        (<Input
+          {...LoginInputType} width="25vw"
+          placeholder="ID를 입력하세요."
+          inputRef={idRef}
+        />)
+        }
+        
       </Wrapper>
       <Wrapper type={"pwd"}>
         <p>PW</p>
-        <Input
+        {!checkMobile() ? 
+        (<Input
           {...LoginInputType}
           placeholder="패스워드를 입력하세요."
           type="password"
           inputRef={pwRef}
-        />
+        />) :
+        (<Input
+            {...LoginInputType} width="25vw"
+            placeholder="패스워드를 입력하세요."
+            type="password"
+            inputRef={pwRef}
+        />)
+        }
       </Wrapper>
       <LoginButton
         {...LoginButtonType}
