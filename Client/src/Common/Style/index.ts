@@ -73,7 +73,7 @@ export const RegisterButtonType = {
 
 export const CheckDuplicateButton = {
   grid: "check",
-  width: "30%",
+  width: "5em",
   height: "100%",
   borderColor: "rgba(93,93,93,0.1)",
   backGroundColor: "white",
