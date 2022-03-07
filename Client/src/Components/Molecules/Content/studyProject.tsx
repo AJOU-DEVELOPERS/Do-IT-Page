@@ -40,8 +40,8 @@ const Content = ({ type }: Props) => {
     useRecoilValue<ContentType[]>(
       BoardContentSelector(getContentAPI({ type }))
     );
-  console.log(boardContents);
-  const typeContents = boardContents?.slice(0, 7).reduce(
+  const typeContents = boardContents?.reduce(
+    // const typeContents = boardContents?.slice(0, 7).reduce(
     (acc: any, cur: any) => {
       return {
         ...acc,

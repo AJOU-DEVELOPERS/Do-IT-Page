@@ -15,7 +15,7 @@ const URL = [
   "http://192.168.0.42:4000", // 재명이집 호용이컴터
   "http://211.110.23.222:4000",
 ];
-export const TARGET_URL = URL[0];
+export const TARGET_URL = URL[2];
 
 export const API = async ({ api, data }: Props) => {
   try {
