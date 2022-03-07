@@ -95,6 +95,7 @@ export class StudiesService {
             });
             studies.forEach((study) => {
                 study.numParticipant = study.userStudies.filter((userStudy) => userStudy.status == 'leader' || userStudy.status == 'accepted').length;
+                delete study.userStudies
             });
             return new GetStudiesResponseDto(studies);
         } catch(error) {

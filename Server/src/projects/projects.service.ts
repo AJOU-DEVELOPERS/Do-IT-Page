@@ -140,6 +140,7 @@ export class ProjectsService {
             });
             projects.forEach((project) => {
                 project.numParticipant = project.userProjects.filter((userProject) => userProject.status == 'leader' || userProject.status == 'accepted').length;
+                delete project.userProjects;
             });
             return new GetProjectsResponseDto(projects);
         } catch(error) {
