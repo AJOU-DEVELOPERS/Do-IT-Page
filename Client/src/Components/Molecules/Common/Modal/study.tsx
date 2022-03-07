@@ -12,7 +12,8 @@ type Props = {
 // 예 눌렀을때 studyIdx보내야하는데 type때문에 안되는듯
 const StudyModalSubject = (props: ContentType & Props) => {
   const { fn, userIdx } = props;
-  const { name, leaderName, leaderUserIdx, totalHeadcount, idx } = props as StudyContentType;
+  const { name, leaderName, numParticipant, totalHeadcount, idx } =
+    props as StudyContentType;
   const handleApplyClick = async (e: any) => {
     e.stopPropagation();
     await studyApply({ studyIdx: idx, userIdx });
@@ -22,8 +23,8 @@ const StudyModalSubject = (props: ContentType & Props) => {
       <Container>
         <Title>스터디명 : {name}</Title>
         <Wrapper>
-          <Info>{`이름 : ${leaderName}`}</Info>
-          <Info>{`인원 : ${leaderUserIdx} / ${totalHeadcount}`}</Info>
+          <Info>{`리더 : ${leaderName}`}</Info>
+          <Info>{`인원 : ${numParticipant} / ${totalHeadcount}`}</Info>
         </Wrapper>
       </Container>
       <div>신청하시겠습니까?</div>
