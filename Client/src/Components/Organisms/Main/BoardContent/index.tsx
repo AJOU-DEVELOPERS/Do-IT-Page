@@ -9,7 +9,7 @@ import { BoardContentSelector } from "@Recoil/BoardContent";
 import { _BOARD_INFOS } from "@Constant/.";
 import { hasBoardContent } from "@Util/.";
 import BoardPreview from "@Molecules/Board/BoardPreview";
-import { ContentType } from "@Type/.";
+import { BoardContentType, ContentType, ProjectContentType } from "@Type/.";
 import { useNavigate } from "react-router-dom";
 
 const BoardContent = ({ boardName }: { boardName: string }) => {
@@ -37,7 +37,6 @@ const BoardContent = ({ boardName }: { boardName: string }) => {
     navigator(nextPath);
   };
 
-  console.log(boardContents);
   return (
     <BoardContainer boardName={_boardName}>
       {boardName !== "이미지" && (
@@ -47,15 +46,17 @@ const BoardContent = ({ boardName }: { boardName: string }) => {
             alignPreview={alignPreview}
             onClick={handleDetailMove}
           >
-            {boardContents?.slice(0, previewSize).map((content) => (
-              <BoardPreviewContainer
-                key={content.idx}
-                data-idx={content.idx}
-                id={boardName}
-              >
-                <BoardPreview previewType={previewType} content={content} />
-              </BoardPreviewContainer>
-            ))}
+            {boardContents?.slice(0, previewSize).map((content) => {
+              const key =
+                (content as ProjectContentType).projectIdx ??
+                (content as ProjectContentType).studyIdx ??
+                (content as BoardContentType).idx;
+              return (
+                <BoardPreviewContainer key={key} data-idx={key} id={boardName}>
+                  <BoardPreview previewType={previewType} content={content} />
+                </BoardPreviewContainer>
+              );
+            })}
           </ContentContainer>
         </>
       )}

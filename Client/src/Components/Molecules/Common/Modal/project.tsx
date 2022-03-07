@@ -10,12 +10,11 @@ type Props = {
 
 const ProjectModalSubject = (props: ContentType & Props) => {
   const { fn, userIdx } = props;
-  console.log(props);
-  const { name, leaderName, numParticipant, totalHeadcount, idx } =
+  const { name, leaderName, numParticipant, totalHeadcount, projectIdx } =
     props as ProjectContentType;
   const handleApplyClick = async (e: any) => {
     e.stopPropagation();
-    await projectApply({ projectIdx: idx, userIdx });
+    await projectApply({ projectIdx, userIdx });
   };
   return (
     <>

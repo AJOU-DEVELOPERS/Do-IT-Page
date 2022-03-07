@@ -20,7 +20,7 @@ export const postStudyApply = async ({
   studyIdx,
   userIdx,
 }: {
-  studyIdx: number;
+  studyIdx: number | undefined;
   userIdx: number;
 }) => {
   const { data } = await axios.post(POST_STUDY_APPLY + `/${studyIdx}`, {

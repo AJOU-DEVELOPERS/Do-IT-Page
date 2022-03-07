@@ -12,11 +12,11 @@ type Props = {
 // 예 눌렀을때 studyIdx보내야하는데 type때문에 안되는듯
 const StudyModalSubject = (props: ContentType & Props) => {
   const { fn, userIdx } = props;
-  const { name, leaderName, numParticipant, totalHeadcount, idx } =
+  const { name, leaderName, numParticipant, totalHeadcount, studyIdx } =
     props as StudyContentType;
   const handleApplyClick = async (e: any) => {
     e.stopPropagation();
-    await studyApply({ studyIdx: idx, userIdx });
+    await studyApply({ studyIdx, userIdx });
   };
   return (
     <>

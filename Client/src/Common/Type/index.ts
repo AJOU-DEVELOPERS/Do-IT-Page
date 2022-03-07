@@ -111,7 +111,7 @@ export interface StudyContentType {
   leaderName: string;
   numParticipant: number;
   status: "processing" | "collecting" | "done";
-  idx: number;
+  studyIdx?: number;
 }
 
 interface teckStacksType {
@@ -119,6 +119,7 @@ interface teckStacksType {
 }
 export interface ProjectContentType extends StudyContentType {
   projectTechStacks?: teckStacksType[];
+  projectIdx: number;
 }
 
 export interface RankingContentType {
