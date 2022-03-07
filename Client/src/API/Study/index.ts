@@ -16,8 +16,16 @@ export const getStudyData = async (studyIdx: number) => {
 };
 
 // 스터디 참가 신청
-export const postStudyApply = async (studyIdx: number) => {
-  const { data } = await axios.post(POST_STUDY_APPLY + `/${studyIdx}`);
+export const postStudyApply = async ({
+  studyIdx,
+  userIdx,
+}: {
+  studyIdx: number;
+  userIdx: number;
+}) => {
+  const { data } = await axios.post(POST_STUDY_APPLY + `/${studyIdx}`, {
+    userIdx,
+  });
   return data;
 };
 

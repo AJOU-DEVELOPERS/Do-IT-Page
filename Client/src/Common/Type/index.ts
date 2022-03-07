@@ -106,16 +106,19 @@ export interface BoardContentType {
 export interface StudyContentType {
   index: number;
   name: string;
-  decription: string;
+  description: string;
   totalHeadcount: number;
-  leaderUserIdx: number;
   leaderName: string;
+  numParticipant: number;
   status: "processing" | "collecting" | "done";
   idx: number;
 }
 
+interface teckStacksType {
+  name: string;
+}
 export interface ProjectContentType extends StudyContentType {
-  techStack?: string[];
+  projectTechStacks?: teckStacksType[];
 }
 
 export interface RankingContentType {
