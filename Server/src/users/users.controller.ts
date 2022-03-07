@@ -89,9 +89,8 @@ export class UsersController {
       req.user.userName,
       req.user.status,
     );
-    res.cookie('Bearer', cookie);
-
-    return new LoginUserResponseDto(req.user);
+    res.cookie('access-token', cookie); //6h
+    return new LoginUserResponseDto(req.user, cookie);
   }
 
   @ApiOperation({
@@ -124,6 +123,6 @@ export class UsersController {
   @ApiOkResponse({ description: '검증 성공', type: LoginUserResponseDto })
   @Get('tokenCheck')
   async tokenCheck(@Req() req) {
-    return new LoginUserResponseDto(req.user);
+    return new LoginUserResponseDto(req.user, 'true');
   }
 }

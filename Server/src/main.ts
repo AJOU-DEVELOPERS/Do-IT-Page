@@ -7,7 +7,11 @@ async function bootstrap() {
   await makeOrmConfig();
   const app = await NestFactory.create(AppModule);
   app.enableCors({
-    origin: ['http://localhost:4000', 'http://localhost:3000'],
+    origin: [
+      'http://localhost:4000',
+      'http://localhost:3000',
+      'http://211.110.23.222:3000',
+    ],
     credentials: true,
   });
   app.use(cookieParser());
