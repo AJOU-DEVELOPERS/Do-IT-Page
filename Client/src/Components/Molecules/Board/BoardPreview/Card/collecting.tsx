@@ -27,7 +27,7 @@ const CardBoardPreview = ({
         <Status>{STUDY_STATUS[status]}</Status>
         <Info>{techStackStr}</Info>
       </Head>
-      <Title>스터디명 : {name}</Title>
+      <Title>제목 : {name}</Title>
       <Title>소개 : {description}</Title>
       <CollectingInfoContainer>
         <Info>{`리더 : ${leaderName}`}</Info>

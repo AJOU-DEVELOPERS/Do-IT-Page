@@ -33,13 +33,15 @@ const Work = ({ work, type }: DeepWorkType) => {
       <TableBody>
         {userWork?.map((item: UserWorkType) => (
           <TableRow
-            key={item.studyIdx ?? item.projectIdx}
+            key={item.userStudyIdx ?? item.userProjectIdx}
             id="userContainer"
-            data-idx={item.studyIdx ?? item.projectIdx}
+            data-idx={item.userStudyIdx ?? item.userProjectIdx}
           >
             {PROJECT_TITLE.map((title) => {
               const text =
-                title.key === "status" ? item[title.key] : work[title.key];
+                title.key === ("status" || "userName")
+                  ? item[title.key]
+                  : work[title.key];
               return <TableData key={title.key}>{text}</TableData>;
             })}
             <TableData onClick={handleAcceptClick}>승인</TableData>

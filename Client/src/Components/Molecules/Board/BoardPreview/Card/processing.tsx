@@ -28,7 +28,7 @@ const CardBoardPreview = ({
       <Title borderBottom={"0.2px solid rgba(112, 112, 112, 1)"}>{name}</Title>
       <ProcessingInfoContainer>
         <Info>{`리더 : ${leaderName}`}</Info>
-        <p>프로젝트 설명 : {description}</p>
+        <p>설명 : {description}</p>
         <Info>{`인원 : ${numParticipant} / ${totalHeadcount}`}</Info>
       </ProcessingInfoContainer>
     </LargeContainer>

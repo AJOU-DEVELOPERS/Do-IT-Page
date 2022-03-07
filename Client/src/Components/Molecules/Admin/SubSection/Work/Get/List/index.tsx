@@ -90,4 +90,8 @@ export const PROJECT_TITLE = [
     key: "leaderName",
     title: "스터디 장",
   },
+  // {
+  //   key: "userName",
+  //   title: "회원 이름",
+  // },
 ];

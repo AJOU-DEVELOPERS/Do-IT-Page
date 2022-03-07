@@ -21,7 +21,7 @@ const StudyModalSubject = (props: ContentType & Props) => {
   return (
     <>
       <Container>
-        <Title>스터디명 : {name}</Title>
+        <Title>제목 : {name}</Title>
         <Wrapper>
           <Info>{`리더 : ${leaderName}`}</Info>
           <Info>{`인원 : ${numParticipant} / ${totalHeadcount}`}</Info>

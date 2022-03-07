@@ -41,7 +41,6 @@ const Content = ({ type }: Props) => {
       BoardContentSelector(getContentAPI({ type }))
     );
   const typeContents = boardContents?.reduce(
-    // const typeContents = boardContents?.slice(0, 7).reduce(
     (acc: any, cur: any) => {
       return {
         ...acc,
