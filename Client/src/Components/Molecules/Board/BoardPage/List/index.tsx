@@ -4,7 +4,7 @@ import {
   BoardContentPagenationSelector,
   GetBoardContentLengthSelector,
 } from "@Recoil/BoardContent";
-import { ContentType } from "@Type/.";
+import { BoardContentType, ContentType, ProjectContentType } from "@Type/.";
 import { hasBoardContent } from "@Util/.";
 import { Suspense, useState } from "react";
 import { useRecoilValue } from "recoil";
@@ -53,19 +53,20 @@ const BoardList = ({ type }: { type: string }) => {
           alignPreview={alignPreview}
           onClick={handleDetailMove}
         >
-          {boardContents?.map((content) => (
-            <BoardContainer
-              key={content.idx}
-              data-idx={content.idx}
-              id="boardContainer"
-            >
-              <BoardPreview
-                previewType={previewType}
-                content={content}
-                type={boardType}
-              />
-            </BoardContainer>
-          ))}
+          {boardContents?.map((content) => {
+            const key =
+              (content as ProjectContentType).projectIdx ??
+              (content as BoardContentType).idx;
+            return (
+              <BoardContainer key={key} data-idx={key} id="boardContainer">
+                <BoardPreview
+                  previewType={previewType}
+                  content={content}
+                  type={boardType}
+                />
+              </BoardContainer>
+            );
+          })}
           <Footer
             pageNum={pageNum}
             setPageNum={setPageNum}

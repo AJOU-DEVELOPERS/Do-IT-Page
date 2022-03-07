@@ -27,18 +27,20 @@ const Content = ({ type }: Props) => {
   const handlePosticClick = (e: any) => {
     const target = e.target.closest("button");
     if (!target) return;
-    const data = target.parentNode.parentNode.getAttribute("data-idx").split(" ");
+    const data = target.parentNode.parentNode
+      .getAttribute("data-idx")
+      .split(" ");
     const status = data[1],
       index = data[2];
-
     setModalOnOff(typeContents[status][index]);
   };
 
   const boardContents =
     hasBoardContent(GET_STUDY_CONTENT_URL, getContentType({ type })) &&
-    useRecoilValue<ContentType[]>(BoardContentSelector(getContentAPI({ type })));
-
-  const typeContents = boardContents?.slice(0, 7).reduce(
+    useRecoilValue<ContentType[]>(
+      BoardContentSelector(getContentAPI({ type }))
+    );
+  const typeContents = boardContents?.reduce(
     (acc: any, cur: any) => {
       return {
         ...acc,
@@ -60,20 +62,36 @@ const Content = ({ type }: Props) => {
         <Modal>
           {modalOnOff && (
             <ModalContainer ref={outSection}>
-              {type === "study" && <StudyModalSubject {...modalOnOff} fn={fn} userIdx={userIdx} />}
-              {type !== "study" && <ProjectModalSubject {...modalOnOff} fn={fn} userIdx={userIdx} />}
+              {type === "study" && (
+                <StudyModalSubject {...modalOnOff} fn={fn} userIdx={userIdx} />
+              )}
+              {type !== "study" && (
+                <ProjectModalSubject
+                  {...modalOnOff}
+                  fn={fn}
+                  userIdx={userIdx}
+                />
+              )}
             </ModalContainer>
           )}
         </Modal>
       )}
       <Container onClick={handlePosticClick}>
         {Object.keys(STUDY_STATUS).map((element, i) => (
-          <StudyContainer key={i} title={STUDY_STATUS[element as keyof typeof STUDY_STATUS]}>
-            {typeContents[element].map((content: ContentType, index: number) => (
-              <Wrapper key={index} data-idx={type + " " + element + " " + index}>
-                <BoardPreview previewType={"card"} content={content} />
-              </Wrapper>
-            ))}
+          <StudyContainer
+            key={i}
+            title={STUDY_STATUS[element as keyof typeof STUDY_STATUS]}
+          >
+            {typeContents[element].map(
+              (content: ContentType, index: number) => (
+                <Wrapper
+                  key={index}
+                  data-idx={type + " " + element + " " + index}
+                >
+                  <BoardPreview previewType={"card"} content={content} />
+                </Wrapper>
+              )
+            )}
           </StudyContainer>
         ))}
       </Container>

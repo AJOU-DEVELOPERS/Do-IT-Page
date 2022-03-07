@@ -10,7 +10,8 @@ import { Container, InfoContainer } from "./styles";
 import React, { useState } from "react";
 
 const MemberContainer = () => {
-  const usersInfo = useRecoilValue<UserInfoData[]>(getUsersInfoSelector);
+  // const usersInfo = useRecoilValue<UserInfoData[]>(getUsersInfoSelector);
+  const usersInfo: any = [];
   const [idx, setIdx] = useState<number>(0);
 
   const handleModalClose = (e: React.MouseEvent<HTMLElement>) => setIdx(0);

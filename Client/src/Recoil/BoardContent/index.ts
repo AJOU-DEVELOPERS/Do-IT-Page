@@ -1,7 +1,7 @@
 import { GetRecoilValue, selectorFamily } from "recoil";
 import { _API } from "@API/.";
 import { getBoardContents } from "@API/test";
-import { BoardContentType, ContentType } from "@Type/.";
+import { BoardContentType, ContentType, ProjectContentType } from "@Type/.";
 
 export const BoardContentSelector = selectorFamily<ContentType[], string>({
   key: "BoardContentSelector",
@@ -39,10 +39,13 @@ export const BoardContentPagenationSelector = selectorFamily<
     async ({ get }: { get: GetRecoilValue }) => {
       const list = get(BoardContentSelector(apiSrc));
       const size = viewSize ? viewSize : 10;
-      return (list as Array<ContentType>).filter(
-        (item: ContentType) =>
-          item.idx > num * size && item.idx <= (num + 1) * size
-      ) as ContentType[];
+      return (list as Array<ContentType>).filter((item: ContentType) => {
+        const key =
+          (item as ProjectContentType).projectIdx ??
+          (item as ProjectContentType).studyIdx ??
+          (item as BoardContentType).idx;
+        return key > num * size && key <= (num + 1) * size;
+      }) as ContentType[];
     },
 });
 

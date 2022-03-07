@@ -10,10 +10,11 @@ type Props = {
 
 const ProjectModalSubject = (props: ContentType & Props) => {
   const { fn, userIdx } = props;
-  const { name, leaderName, leaderUserIdx, totalHeadcount, idx } = props as ProjectContentType;
+  const { name, leaderName, numParticipant, totalHeadcount, projectIdx } =
+    props as ProjectContentType;
   const handleApplyClick = async (e: any) => {
     e.stopPropagation();
-    await projectApply({ projectIdx: idx, userIdx });
+    await projectApply({ projectIdx, userIdx });
   };
   return (
     <>
@@ -21,7 +22,7 @@ const ProjectModalSubject = (props: ContentType & Props) => {
         <Title>프로젝트명 : {name}</Title>
         <Wrapper>
           <Info>{`이름 : ${leaderName}`}</Info>
-          <Info>{`인원 : ${leaderUserIdx} / ${totalHeadcount}`}</Info>
+          <Info>{`인원 : ${numParticipant} / ${totalHeadcount}`}</Info>
         </Wrapper>
       </Container>
       <div>신청하시겠습니까?</div>

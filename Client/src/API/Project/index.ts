@@ -16,8 +16,16 @@ export const getProjectData = async (projectIdx: number) => {
 };
 
 // 프로젝트 참가 신청
-export const postProjectApply = async (projectIdx: number) => {
-  const { data } = await axios.post(POST_PROJECT_APPLY + `/${projectIdx}`);
+export const postProjectApply = async ({
+  projectIdx,
+  userIdx,
+}: {
+  projectIdx: number;
+  userIdx: number;
+}) => {
+  const { data } = await axios.post(POST_PROJECT_APPLY + `/${projectIdx}`, {
+    userIdx,
+  });
   return data;
 };
 

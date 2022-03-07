@@ -11,14 +11,14 @@ import {
 
 const CardBoardPreview = ({
   name,
-  decription,
+  description,
   totalHeadcount,
-  leaderUserIdx,
+  numParticipant,
   leaderName,
   status,
-  techStack = [],
+  projectTechStacks = [],
 }: ProjectContentType) => {
-  const techStackStr = techStack.join("/");
+  const techStackStr = projectTechStacks.map((item) => item.name).join("/");
   return (
     <LargeContainer>
       <Head>
@@ -27,14 +27,9 @@ const CardBoardPreview = ({
       </Head>
       <Title borderBottom={"0.2px solid rgba(112, 112, 112, 1)"}>{name}</Title>
       <ProcessingInfoContainer>
-        <Info>{`참여자 : ${leaderName}`}</Info>
-        <p>김영진, 김영진, 김영진, 김영진</p>
-        <Info>{`인원 : ${leaderUserIdx} / ${totalHeadcount}`}</Info>
-        <p>
-          ~하고 ~하고 ~할 것이다. ~하고 ~하고 ~할 것이다. ~하고 ~하고 ~할 것
-          이다.~하고 ~하고 ~할 것이다. ~하고 ~하고 ~할 것이다. ~하고 ~하고 ~할
-          것이다.~하고 ~하고 ~할 것이다. ~하고 ~하고 ~할 것이다.
-        </p>
+        <Info>{`리더 : ${leaderName}`}</Info>
+        <p>설명 : {description}</p>
+        <Info>{`인원 : ${numParticipant} / ${totalHeadcount}`}</Info>
       </ProcessingInfoContainer>
     </LargeContainer>
   );
