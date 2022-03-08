@@ -1,12 +1,12 @@
 import { STUDY_STATUS } from "@Constant/.";
 import { ProjectContentType } from "@Type/.";
 import {
-  LargeContainer,
+  Container,
   Head,
   Status,
   Info,
-  Title,
   ProcessingInfoContainer,
+  ProcessingTitle,
 } from "./style";
 
 const CardBoardPreview = ({
@@ -20,18 +20,18 @@ const CardBoardPreview = ({
 }: ProjectContentType) => {
   const techStackStr = projectTechStacks.map((item) => item.name).join("/");
   return (
-    <LargeContainer>
-      <Head>
+    <Container>
+      <Head status={status}>
         <Status>{STUDY_STATUS[status]}</Status>
         <Info>{techStackStr}</Info>
       </Head>
-      <Title borderBottom={"0.2px solid rgba(112, 112, 112, 1)"}>{name}</Title>
+      <ProcessingTitle>{name}</ProcessingTitle>
       <ProcessingInfoContainer>
         <Info>{`리더 : ${leaderName}`}</Info>
-        <p>설명 : {description}</p>
+        <Info>설명 : {description}</Info>
         <Info>{`인원 : ${numParticipant} / ${totalHeadcount}`}</Info>
       </ProcessingInfoContainer>
-    </LargeContainer>
+    </Container>
   );
 };
 

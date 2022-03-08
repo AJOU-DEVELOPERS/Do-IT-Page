@@ -9,6 +9,7 @@ import {
   Info,
   Title,
   CollectingInfoContainer,
+  MobileApplyBtnContainer,
 } from "./style";
 
 const CardBoardPreview = ({
@@ -27,13 +28,15 @@ const CardBoardPreview = ({
         <Status>{STUDY_STATUS[status]}</Status>
         <Info>{techStackStr}</Info>
       </Head>
-      <Title>제목 : {name}</Title>
-      <Title>소개 : {description}</Title>
       <CollectingInfoContainer>
+        <Title>제목 : {name}</Title>
+        <Title>소개 : {description}</Title>
         <Info>{`리더 : ${leaderName}`}</Info>
         <Info>{`인원 : ${numParticipant} / ${totalHeadcount}`}</Info>
       </CollectingInfoContainer>
-      <ApplyButton {...ApplyButtonType()} />
+      <MobileApplyBtnContainer>
+        <ApplyButton {...ApplyButtonType()} />
+      </MobileApplyBtnContainer>
     </Container>
   );
 };

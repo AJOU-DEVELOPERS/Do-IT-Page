@@ -72,6 +72,7 @@ export const MAIN_BOARD_PREVIEW_LIST = [
 export enum STUDY_STATUS {
   collecting = "모집 중",
   processing = "진행 중",
+  deleted = "삭제",
   done = "마감",
 }
 

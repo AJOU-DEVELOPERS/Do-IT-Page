@@ -1,3 +1,4 @@
+import { TABLET_WIDTH } from "@Constant/.";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -10,6 +11,9 @@ const Container = styled.div`
     background-color: white;
   }
   justify-items: center;
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    grid-template-columns: repeat(auto-fill, minmax(50vw, 1fr));
+  }
 `;
 
 const Title = styled.p`
