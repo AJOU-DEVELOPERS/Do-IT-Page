@@ -53,7 +53,7 @@ const Text = styled.div<TitleProps>`
   @media only screen and (max-width: ${TABLET_WIDTH}px) {
     font-size: medium;
   }
-  
+
   ${({ type }) => type === "Info" && InfoStyle};
   ${({ type }) => type === "Todo" && TodoTextStyle};
 `;
