@@ -18,7 +18,13 @@ export const getDepartment = async () => {
 };
 
 export const getCheckLogin = async () => {
-  const { data } = await axios.get(GET_CHECK_LOGIN_URL, API_GET_OPTION);
+  const token = localStorage.getItem("token") as string;
+
+  const { data } = await axios.get(GET_CHECK_LOGIN_URL, {
+    headers: {
+      "access-token": token,
+    },
+  });
   return data;
 };
 export const postLoginInfo = async (body: LoginInfoType) => {

@@ -40,11 +40,12 @@ export const LoginClick = async ({
     data: { id: idValue, password: pwValue },
   });
 
-  console.log(res);
   if (!res.message) {
     alert("아이디 및 비밀번호를 확인해주세요");
     return;
   }
+
+  localStorage.setItem("token", res.message);
   setUser(res.userInfo);
   navigator("/main");
 };
