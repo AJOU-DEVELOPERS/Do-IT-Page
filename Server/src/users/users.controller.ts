@@ -114,7 +114,20 @@ export class UsersController {
   // async signUpClub(@Req() req) {
   //   return this.usersService.signUpClub(req.user.userIdx);
   // }
-
+  @Roles('M')
+  @UseGuards(RolesGuard)
+  @UseGuards(JwtAuthGuard)
+  @HttpCode(200)
+  @Get('checkAdmin')
+  @ApiOperation({ summary: '관리자 확인 API', description: '관리자 여부' })
+  @ApiBody({ type: UserDto })
+  @ApiOkResponse({
+    description: '관리자 확인',
+    type: ResultSuccessResponse,
+  })
+  async checkAdmin(@Req() req) {
+    return new LoginUserResponseDto(req.user, 'true');
+  }
   @UseGuards(JwtAuthGuard)
   @ApiOperation({
     summary: '토큰 검증',
