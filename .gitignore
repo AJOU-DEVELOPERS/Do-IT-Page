@@ -3,3 +3,4 @@ node_modules
 /Server/.env.dev
 /Server/dist
 /Server/node_modules
+.env
