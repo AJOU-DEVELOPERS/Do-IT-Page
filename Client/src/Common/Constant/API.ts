@@ -83,8 +83,8 @@ export const API_GET_OPTION = {
   withCredentials: true,
 };
 
-export const HEADER_TOKEN = {
+export const GET_HEADER_TOKEN = () => ({
   headers: {
     "access-token": localStorage.getItem("token") as string,
   },
-};
+});
