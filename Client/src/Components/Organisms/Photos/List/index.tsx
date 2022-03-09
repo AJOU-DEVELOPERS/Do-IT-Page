@@ -13,11 +13,7 @@ const PhotoList = ({ type, pageNum }: { type: string; pageNum: number }) => {
   const { apiSrc, previewType, viewSize, pageSrc } = _BOARD_INFOS[type];
   const navigator = useNavigate();
 
-  const boardContents =
-    hasBoardContent(apiSrc, type) &&
-    useRecoilValue<ContentType[]>(
-      BoardContentPagenationSelector([pageNum, apiSrc, viewSize])
-    );
+  const boardContents = hasBoardContent(apiSrc, type) && useRecoilValue<ContentType[]>(BoardContentPagenationSelector([pageNum, apiSrc, viewSize]));
 
   const boardType = type === "사진첩" ? "image" : "image";
 
@@ -34,16 +30,10 @@ const PhotoList = ({ type, pageNum }: { type: string; pageNum: number }) => {
       <Suspense fallback={null}>
         <ContentContainer onClick={handleDetailMove}>
           {boardContents?.map((content) => {
-            const key =
-              (content as ProjectContentType).projectIdx ??
-              (content as BoardContentType).idx;
+            const key = (content as ProjectContentType).projectIdx ?? (content as BoardContentType).idx;
             return (
               <BoardContainer key={key} data-idx={key} id="boardContainer">
-                <BoardPreview
-                  previewType={previewType}
-                  content={content}
-                  type={boardType}
-                />
+                <BoardPreview previewType={previewType} content={content} type={boardType} />
               </BoardContainer>
             );
           })}

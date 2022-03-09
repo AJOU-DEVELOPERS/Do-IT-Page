@@ -78,6 +78,8 @@ export const GET_PROJECT_CREATE_DENY = `${TARGET_URL}/projects/reject/create`;
 /*----------------------- Admin ------------------------- */
 export const GET_USERS_INFO_URL = `${TARGET_URL}/users`;
 
+export const GET_CHECK_ADMIN = `${TARGET_URL}/users/checkAdmin`;
+
 /**--------------------- Common ------------------------ */
 export const API_GET_OPTION = {
   withCredentials: true,

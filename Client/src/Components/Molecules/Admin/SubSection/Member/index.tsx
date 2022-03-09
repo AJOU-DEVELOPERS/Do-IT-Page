@@ -10,8 +10,7 @@ import { Container, InfoContainer } from "./styles";
 import React, { useState } from "react";
 
 const MemberContainer = () => {
-  // const usersInfo = useRecoilValue<UserInfoData[]>(getUsersInfoSelector);
-  const usersInfo: any = [];
+  const usersInfo = useRecoilValue<UserInfoData[]>(getUsersInfoSelector);
   const [idx, setIdx] = useState<number>(0);
 
   const handleModalClose = (e: React.MouseEvent<HTMLElement>) => setIdx(0);
@@ -26,23 +25,11 @@ const MemberContainer = () => {
     <>
       <Container>
         <MemberInfoHeader />
-        {usersInfo.map(
-          ({ name, id, studentId, createdAt, userIdx }: UserInfoData) => (
-            <InfoContainer
-              id="MemberInfo"
-              data-idx={userIdx}
-              onClick={handleDetailMove}
-              key={`${name}/${id}/${studentId}`}
-            >
-              <MemberInfo
-                name={name}
-                userId={id}
-                studentId={studentId}
-                createdAt={getDateFromUTC(createdAt)}
-              />
-            </InfoContainer>
-          )
-        )}
+        {usersInfo.map(({ name, id, studentId, createdAt, userIdx }: UserInfoData) => (
+          <InfoContainer id="MemberInfo" data-idx={userIdx} onClick={handleDetailMove} key={`${name}/${id}/${studentId}`}>
+            <MemberInfo name={name} userId={id} studentId={studentId} createdAt={getDateFromUTC(createdAt)} />
+          </InfoContainer>
+        ))}
       </Container>
       {idx !== 0 && (
         <Modal onClick={handleModalClose}>
