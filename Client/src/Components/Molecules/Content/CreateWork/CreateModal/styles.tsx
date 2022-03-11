@@ -3,7 +3,7 @@ import { DefaultBorderColor } from "@Style/.";
 import styled from "styled-components";
 
 export const ModalContainer = styled.div`
-  min-width: 500px;
+  width: 500px;
   min-height: 400px;
   padding: 10px 0;
   position: fixed;

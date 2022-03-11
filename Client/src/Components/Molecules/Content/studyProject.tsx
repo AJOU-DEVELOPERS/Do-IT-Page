@@ -7,10 +7,7 @@ import ProjectModalSubject from "@Molecules/Common/Modal/project";
 import { STUDY_STATUS } from "@Constant/index";
 import { GET_STUDY_CONTENT_URL } from "@Constant/API";
 import { hasBoardContent } from "@Util/index";
-import {
-  BoardContentSelector,
-  FilterViewBoardContentSelector,
-} from "@Recoil/BoardContent";
+import { FilterViewBoardContentSelector } from "@Recoil/BoardContent";
 import { ContentType } from "@Type/.";
 import BoardPreview from "@Molecules/Board/BoardPreview";
 import { Container, ModalContainer, Wrapper } from "./styles";

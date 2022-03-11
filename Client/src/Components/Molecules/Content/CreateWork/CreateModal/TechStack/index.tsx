@@ -1,4 +1,5 @@
 import { Dispatch } from "react";
+import { StackContainer } from "../../styles";
 
 const TechStack = ({
   stackRef,
@@ -18,9 +19,11 @@ const TechStack = ({
   };
   return (
     <>
-      {stack.map((item: string) => (
-        <span>{item}</span>
-      ))}
+      <StackContainer>
+        {stack.map((item: string) => (
+          <p>{item}</p>
+        ))}
+      </StackContainer>
       <br />
       <input ref={stackRef} placeholder="추가할 스택을 입력하세요" />
       <div onClick={handleAddStack}>추가하기</div>
