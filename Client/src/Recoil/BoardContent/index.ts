@@ -11,7 +11,9 @@ export const BoardContentSelector = selectorFamily<ContentType[], string>({
       alert("서버에러");
       return [];
     }
-    return data[Object.keys(data)[0]];
+    return data[Object.keys(data)[0]].filter(
+      (item: any) => item?.status !== "deleted"
+    );
   },
 });
 
