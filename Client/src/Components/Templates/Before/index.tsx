@@ -14,7 +14,6 @@ import ContentContainer from "./styles";
 
 import { CONTENT } from "@Constant/.";
 import MainImg from "@Organisms/Before/MainImg";
-import { checkTablet, checkMobile } from "@Util/.";
 import { useNavigate } from "react-router-dom";
 
 const BeforePageTemplate = () => {
@@ -22,7 +21,6 @@ const BeforePageTemplate = () => {
   const handleLoginClick = useCallback(() => {
     navigator("/login");
   }, []);
-  //const YearWidth = checkTablet() ? "500" : "1000";
   return (
     <>
       <Header onClick={handleLoginClick} />
@@ -32,7 +30,7 @@ const BeforePageTemplate = () => {
       </ContentContainer>
 
       <Year>
-        <img src="/assets/Content/year.png"/>
+        <img src="/assets/Content/year.png" />
       </Year>
 
       <DoItTodo />

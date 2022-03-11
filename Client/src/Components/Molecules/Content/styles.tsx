@@ -36,7 +36,8 @@ const Title = styled.h1<TitleProps>`
     font-size: medium;
   }
 
-  color: ${DefaultColor} span {
+  color: ${DefaultColor};
+  span {
     color: #000000;
     font-size: 48px;
   }
