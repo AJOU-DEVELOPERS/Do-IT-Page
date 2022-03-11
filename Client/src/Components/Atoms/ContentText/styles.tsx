@@ -1,13 +1,13 @@
 import { TABLET_WIDTH } from "@Constant/.";
-import { textOverflowSafe } from "@Style/.";
 import styled, { css } from "styled-components";
 
 const CommonStyle = css`
   margin: auto;
   margin-top: 10px;
   width: 90%;
+  height: 40%;
   overflow-y: scroll;
-  /* ${textOverflowSafe}; */
+  max-height: 160px;
   @media only screen and (max-width: ${TABLET_WIDTH}px) {
     height: 60px;
   }

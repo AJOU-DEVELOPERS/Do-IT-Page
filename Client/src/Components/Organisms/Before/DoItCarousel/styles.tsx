@@ -11,7 +11,8 @@ const FirstContainer = styled.div<ImgProps>`
   height: 70vh;
   background-image: url(${({ url }) => url});
   background-repeat: no-repeat;
-  background-size: cover;
+  background-position: bottom;
+  object-fit: cover;
 `;
 
 const MainTitle = styled.div`
@@ -31,7 +32,7 @@ const MainTitle = styled.div`
     color: #ffffff;
     padding: 10px;
     @media only screen and (max-width: ${TABLET_WIDTH}px) {
-        font-size: medium;
+      font-size: medium;
     }
   }
 `;

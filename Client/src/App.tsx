@@ -14,6 +14,7 @@ const ProjectPage = lazy(() => import("@Pages/Project"));
 const StudyPage = lazy(() => import("@Pages/Study"));
 const ReservePage = lazy(() => import("@Pages/Reserve"));
 const RankingPage = lazy(() => import("@Pages/Ranking"));
+const UpdatePage = lazy(() => import("@Pages/Update"));
 
 import PublicRoute from "@Route/PublicRoute";
 import PrivateRoute from "@Route/PrivateRoute";
@@ -31,6 +32,7 @@ import {
 } from "@Constant/.";
 import PhotosPage from "@Pages/Phtos";
 import Spin from "@Atoms/Spinner";
+import UpdateRoute from "@Route/UpdateRoute";
 
 const App = () => {
   return (
@@ -80,10 +82,12 @@ const App = () => {
             }
           />
           <Route
-            path={FREE_BOARD_URL}
+            path={FREE_BOARD_URL + "/*"}
             element={
               <PrivateRoute>
-                <BoardPage />
+                <UpdateRoute>
+                  <BoardPage />
+                </UpdateRoute>
               </PrivateRoute>
             }
           />
@@ -116,7 +120,9 @@ const App = () => {
             path="/mypage"
             element={
               <PrivateRoute>
-                <MyPage />
+                <UpdateRoute>
+                  <MyPage />
+                </UpdateRoute>
               </PrivateRoute>
             }
           />
@@ -129,10 +135,12 @@ const App = () => {
             }
           />
           <Route
-            path={RANKING_BOARD_URL}
+            path={RANKING_BOARD_URL + "/*"}
             element={
               <PrivateRoute>
-                <RankingPage />
+                <UpdateRoute>
+                  <RankingPage />
+                </UpdateRoute>
               </PrivateRoute>
             }
           />
@@ -140,7 +148,9 @@ const App = () => {
             path={PHOTO_BOARD_URL + "/*"}
             element={
               <PrivateRoute>
-                <PhotosPage />
+                <UpdateRoute>
+                  <PhotosPage />
+                </UpdateRoute>
               </PrivateRoute>
             }
           />
@@ -154,7 +164,7 @@ const App = () => {
               </AdminRoute>
             }
           />
-
+          <Route path="/update" element={<UpdatePage />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </Suspense>

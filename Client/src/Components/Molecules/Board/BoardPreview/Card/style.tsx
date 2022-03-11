@@ -40,6 +40,7 @@ export const Container = styled.div<ContainerProps>`
 `;
 export const Head = styled.div<HeaderProps>`
   display: flex;
+  justify-content: space-around;
   width: 80%;
   padding-top: 5px;
   color: ${BlueColor};
@@ -100,7 +101,6 @@ export const ProcessingInfoContainer = styled(CollectingInfoContainer)`
 `;
 
 export const Info = styled.p`
-  width: 80%;
   font-size: 0.8rem;
   margin-top: 10px;
   &:first-child {
