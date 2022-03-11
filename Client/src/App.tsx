@@ -120,9 +120,9 @@ const App = () => {
             path="/mypage"
             element={
               <PrivateRoute>
-                {/* <UpdateRoute> */}
-                <MyPage />
-                {/* </UpdateRoute> */}
+                <UpdateRoute>
+                  <MyPage />
+                </UpdateRoute>
               </PrivateRoute>
             }
           />
