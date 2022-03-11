@@ -7,7 +7,10 @@ import ProjectModalSubject from "@Molecules/Common/Modal/project";
 import { STUDY_STATUS } from "@Constant/index";
 import { GET_STUDY_CONTENT_URL } from "@Constant/API";
 import { hasBoardContent } from "@Util/index";
-import { BoardContentSelector } from "@Recoil/BoardContent";
+import {
+  BoardContentSelector,
+  FilterViewBoardContentSelector,
+} from "@Recoil/BoardContent";
 import { ContentType } from "@Type/.";
 import BoardPreview from "@Molecules/Board/BoardPreview";
 import { Container, ModalContainer, Wrapper } from "./styles";
@@ -27,31 +30,18 @@ const Content = ({ type }: Props) => {
   const handlePosticClick = (e: any) => {
     const target = e.target.closest("button");
     if (!target) return;
-    const data = target.parentNode.parentNode
-      .getAttribute("data-idx")
-      .split(" ");
+
+    const data = target.closest(`#${type}`).getAttribute("data-idx").split(" ");
+
     const status = data[1],
       index = data[2];
-    setModalOnOff(typeContents[status][index]);
+    setModalOnOff((boardContents as any)[status][index]);
   };
-
   const boardContents =
     hasBoardContent(GET_STUDY_CONTENT_URL, getContentType({ type })) &&
     useRecoilValue<ContentType[]>(
-      BoardContentSelector(getContentAPI({ type }))
+      FilterViewBoardContentSelector(getContentAPI({ type }))
     );
-  const typeContents = boardContents?.reduce(
-    (acc: any, cur: any) => {
-      console.log(cur.status);
-      console.log(acc?.[cur.status]);
-      if (!acc?.[cur.status]) return acc;
-      return {
-        ...acc,
-        [cur.status]: [...acc[cur.status], cur],
-      };
-    },
-    { collecting: [], processing: [], waiting: [], done: [] }
-  );
 
   const fn = useCallback(() => {
     if (modalOnOff) setModalOnOff(undefined);
@@ -85,11 +75,12 @@ const Content = ({ type }: Props) => {
             key={i}
             title={STUDY_STATUS[element as keyof typeof STUDY_STATUS]}
           >
-            {typeContents[element].map(
+            {(boardContents as any)[element].map(
               (content: ContentType, index: number) => (
                 <Wrapper
                   key={index}
                   data-idx={type + " " + element + " " + index}
+                  id={type}
                 >
                   <BoardPreview previewType={"card"} content={content} />
                 </Wrapper>

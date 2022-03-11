@@ -15,6 +15,29 @@ export const BoardContentSelector = selectorFamily<ContentType[], string>({
   },
 });
 
+export const FilterViewBoardContentSelector = selectorFamily<
+  ContentType[],
+  string
+>({
+  key: "FilterViewBoardContentSelector",
+  get:
+    (apiSrc: string) =>
+    async ({ get }) => {
+      const list = get(BoardContentSelector(apiSrc));
+      if (list.length === 0) return [];
+      return list.reduce(
+        (acc: any, cur: any) => {
+          if (!acc?.[cur.status]) return acc;
+          return {
+            ...acc,
+            [cur.status]: [...acc[cur.status], cur],
+          };
+        },
+        { collecting: [], processing: [], waiting: [], done: [] }
+      );
+    },
+});
+
 export const GetBoardContentLengthSelector = selectorFamily<
   number,
   [string, number | undefined]
