@@ -85,9 +85,9 @@ const App = () => {
             path={FREE_BOARD_URL + "/*"}
             element={
               <PrivateRoute>
-                <UpdateRoute>
-                  <BoardPage />
-                </UpdateRoute>
+                {/* <UpdateRoute> */}
+                <BoardPage />
+                {/* </UpdateRoute> */}
               </PrivateRoute>
             }
           />
