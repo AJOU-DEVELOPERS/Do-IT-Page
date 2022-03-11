@@ -42,12 +42,15 @@ const Content = ({ type }: Props) => {
     );
   const typeContents = boardContents?.reduce(
     (acc: any, cur: any) => {
+      console.log(cur.status);
+      console.log(acc?.[cur.status]);
+      if (!acc?.[cur.status]) return acc;
       return {
         ...acc,
         [cur.status]: [...acc[cur.status], cur],
       };
     },
-    { collecting: [], processing: [], done: [], waiting: [], deleted: [] }
+    { collecting: [], processing: [], waiting: [], done: [] }
   );
 
   const fn = useCallback(() => {
