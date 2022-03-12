@@ -16,7 +16,9 @@ export const checkAdmin = async () => {
 
 export const getUsersInfo = async () => {
   const {
-    data: { res },
+    data: {
+      res: { clubUserList },
+    },
   } = await axios.get(GET_USERS_INFO_URL, GET_HEADER_TOKEN());
-  return res;
+  return clubUserList;
 };

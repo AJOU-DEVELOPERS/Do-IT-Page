@@ -76,7 +76,7 @@ export const GET_PROJECT_CREATE_ACCEPT = `${TARGET_URL}/projects/accept/create`;
 export const GET_PROJECT_CREATE_DENY = `${TARGET_URL}/projects/reject/create`;
 
 /*----------------------- Admin ------------------------- */
-export const GET_USERS_INFO_URL = `${TARGET_URL}/users`;
+export const GET_USERS_INFO_URL = `${TARGET_URL}/clubs`;
 
 export const GET_CHECK_ADMIN = `${TARGET_URL}/users/checkAdmin`;
 
