@@ -30,9 +30,9 @@ export const RANKING_IMG_URL = [
 
 // carousel
 export const CAROUSEL_URL = [
-  "/assets/CAROUSEL/봄.jpeg",
-  "/assets/CAROUSEL/가을.jpeg",
-  "/assets/CAROUSEL/겨울.jpeg",
+  "/assets/CAROUSEL/봄.png",
+  "/assets/CAROUSEL/가을.png",
+  "/assets/CAROUSEL/겨울.png",
 ];
 
 export const USER_ICON_URL = "/assets/MainPage/userIcon.png";
