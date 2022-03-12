@@ -12,7 +12,7 @@ const FirstContainer = styled.div<ImgProps>`
   background-image: url(${({ url }) => url});
   background-repeat: no-repeat;
   background-position: bottom;
-  object-fit: cover;
+  background-size: cover;
 `;
 
 const MainTitle = styled.div`
