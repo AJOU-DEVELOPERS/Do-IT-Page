@@ -20,7 +20,7 @@ import { ForbiddenException } from '@nestjs/common';
 import { Project } from 'src/projects/entity/project.entity';
 import { Reservation } from 'src/reservation/entitiy/reservation.entity';
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { ThrowFailResponse } from 'src/commons/dto/response-common.dto';
+import { BaseFailResponse, ThrowFailResponse } from 'src/commons/dto/response-common.dto';
 import {
   IsNotEmpty,
   IsString,
@@ -29,6 +29,8 @@ import {
   Min,
   IsInt,
   IsEmail,
+  Matches,
+  Max,
 } from 'class-validator';
 import { ClubUser } from 'src/club/entities/club.entity';
 @Entity('User')
@@ -40,12 +42,14 @@ export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   userIdx: number;
   @IsNotEmpty()
+  @MaxLength(45)
   @ApiProperty({
     description: '유저 아이디',
     example: 'kyi9592',
   })
   @Column()
   id: string;
+  @MaxLength(500)
   @IsNotEmpty()
   @ApiProperty({
     description: '유저 비밀번호',
@@ -53,7 +57,8 @@ export class User extends BaseEntity {
   })
   @Column()
   password: string;
-  @Min(9)
+  @Min(100000000)
+  @Max(999999999)
   @IsNotEmpty()
   @IsInt()
   @ApiProperty({
@@ -72,7 +77,9 @@ export class User extends BaseEntity {
   })
   @Column()
   name: string;
-  @MinLength(11)
+  @MinLength(10)
+  @MaxLength(11)
+  @Matches(/^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/, { message: '핸드폰번호를 \'-\' 없이 정확히 입력해주세요.' })
   @IsNotEmpty()
   @ApiProperty({
     description: '유저 핸드폰 번호',
@@ -82,6 +89,7 @@ export class User extends BaseEntity {
   phoneNumber: string;
   @IsNotEmpty()
   @IsEmail()
+  @MaxLength(45)
   @ApiProperty({
     description: '유저 이메일',
     example: 'kyi9592@ajou.ac.kr',
