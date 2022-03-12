@@ -1,14 +1,17 @@
 import { CAROUSEL_TIME } from "@Constant/.";
 import { CAROUSEL_URL } from "@Constant/img";
 import Carousel from "@Molecules/Common/Carousel";
-import { Container, FirstContainer, MainTitle } from "./styles";
+import { Container, FirstContainer, FirstCropContainer, MainTitle } from "./styles";
 
 const DoItCarousel = () => {
   return (
     <Container>
       <Carousel timer={Number(CAROUSEL_TIME)}>
         {CAROUSEL_URL.map((data: string, idx: number) => (
-          <FirstContainer key={idx} url={data} />
+          <div>
+            <FirstCropContainer key={idx} url={data + ".jpeg"} />
+            <FirstContainer key={idx} url={data + ".png"} />
+          </div>
         ))}
       </Carousel>
       <MainTitle>

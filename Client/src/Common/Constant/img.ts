@@ -29,13 +29,8 @@ export const RANKING_IMG_URL = [
 ];
 
 // carousel
-export const CAROUSEL_URL = [
-  "/assets/CAROUSEL/봄.png",
-  "/assets/CAROUSEL/가을.png",
-  "/assets/CAROUSEL/겨울.png",
-];
+export const CAROUSEL_URL = ["/assets/CAROUSEL/봄", "/assets/CAROUSEL/가을", "/assets/CAROUSEL/겨울"];
 
 export const USER_ICON_URL = "/assets/MainPage/userIcon.png";
 
-export const GET_SOLVED_CARD_URL = (id: string) =>
-  `http://mazassumnida.wtf/api/v2/generate_badge?boj=${id}`;
+export const GET_SOLVED_CARD_URL = (id: string) => `http://mazassumnida.wtf/api/v2/generate_badge?boj=${id}`;
