@@ -16,7 +16,7 @@ import {
 } from 'src/commons/dto/response-common.dto';
 import { LoginUserDto } from './dto/login-user.dto';
 import { AuthsService } from 'src/auths/auth.service';
-import { compare } from 'bcrypt';
+
 @Injectable()
 export class UsersService {
   constructor(
@@ -43,7 +43,7 @@ export class UsersService {
         id: user.id,
       });
       if (emailInfo || idInfo)
-        return new BaseFailResponse('이미 존재하는 계정입니다.');
+        return new BaseSuccessResponse('이미 존재하는 계정입니다.');
       await queryRunner.manager.save(user);
       await queryRunner.commitTransaction();
       return new BaseSuccessResponse();
@@ -56,25 +56,30 @@ export class UsersService {
     }
   }
 
-  async login(loginUserDto: LoginUserDto) {
-    const userInfo = await User.findOne({ id: loginUserDto.id });
-    if (!userInfo)
-      return new BaseFailResponse('이미 존재하지 않는 이메일입니다.');
-    if (!(await compare(loginUserDto.password, userInfo.password)))
-      return new BaseFailResponse('비밀번호가 틀렸습니다.');
-    return this.authsService.getCookieWithJwtToken(userInfo.userIdx);
-  }
+  // async login(loginUserDto: LoginUserDto) {
+  //   const userInfo = await User.findOne({ id: loginUserDto.id });
+  //   if (!userInfo)
+  //     return new BaseSuccessResponse('이미 존재하지 않는 이메일입니다.');
+  //   if (!(await compare(loginUserDto.password, userInfo.password)))
+  //     return new BaseSuccessResponse('비밀번호가 틀렸습니다.');
+  //   return this.authsService.getCookieWithJwtToken(
+  //     userInfo.userIdx,
+  //     userInfo.name,
+  //   );
+  // }
+
   async findById(id: string) {
     const user = await User.findOne({ where: id });
-    if (user) return new BaseFailResponse('이미 존재하는 아이디입니다.');
+    if (user) return new BaseSuccessResponse('이미 존재하는 아이디입니다.');
     return new BaseSuccessResponse();
   }
+
   async findAll() {
     const queryRunner = this.connection.createQueryRunner();
     await queryRunner.connect();
     try {
       const userList = await User.find({});
-      console.log(userList);
+      //console.log(userList);
       return new ResultSuccessResponse(userList);
     } catch (error) {
       console.log(error);

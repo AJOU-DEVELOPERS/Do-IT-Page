@@ -15,11 +15,9 @@ import {
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { SignupUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 import { AuthsService } from 'src/auths/auth.service';
 import {
   ApiBody,
-  ApiCreatedResponse,
   ApiOperation,
   ApiTags,
   ApiOkResponse,
@@ -29,12 +27,15 @@ import {
   BaseSuccessResponse,
   ResultSuccessResponse,
 } from 'src/commons/dto/response-common.dto';
-import { LoginUserDto } from './dto/login-user.dto';
+import { LoginUserDto, LoginUserResponseDto } from './dto/login-user.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { Response } from 'express';
 import { LocalAuthGuard } from 'src/auths/auth.local.guard';
 import { duplicateCheckUserId } from './dto/duplicateCheck-userId.dto';
+import { JwtAuthGuard } from 'src/auths/auth.jwt.guard';
 import { UserDto } from './dto/get-user.dto';
+import { RolesGuard } from 'src/auths/roles.guard';
+import { Roles } from 'src/auths/roles.decorator';
 @Controller('users')
 @ApiTags('User API')
 export class UsersController {
@@ -42,6 +43,10 @@ export class UsersController {
     private readonly usersService: UsersService,
     private readonly authsService: AuthsService,
   ) {}
+
+  @Roles('M')
+  @UseGuards(RolesGuard)
+  @UseGuards(JwtAuthGuard)
   @HttpCode(200)
   @Get('')
   @ApiOperation({ summary: '유저 목록 API', description: '유저 목록 반환' })
@@ -57,7 +62,10 @@ export class UsersController {
   @Post('sign-up')
   @ApiOperation({ summary: '회원가입 API', description: 'true false 반환' })
   @ApiBody({ type: SignupUserDto })
-  @ApiOkResponse({ description: '회원가입 성공', type: BaseSuccessResponse })
+  @ApiOkResponse({
+    description: '회원가입 성공',
+    type: BaseSuccessResponse,
+  })
   create(@Body() createUserDto: SignupUserDto) {
     return this.usersService.createUser(createUserDto);
   }
@@ -70,15 +78,20 @@ export class UsersController {
     description: '유저가 로그인하는 api입니다.',
   })
   @ApiBody({ type: LoginUserDto })
-  @ApiOkResponse({ description: '로그인 성공', type: BaseSuccessResponse })
+  @ApiOkResponse({ description: '로그인 성공', type: LoginUserResponseDto })
   async logIn(
     @Req() req,
     @Body() loginUserDto: LoginUserDto,
     @Res({ passthrough: true }) res: Response,
   ) {
-    const cookie = await this.usersService.login(loginUserDto);
-    res.cookie('JWT', cookie);
-    return new ResultSuccessResponse(req.user);
+    const cookie = await this.authsService.getCookieWithJwtToken(
+      req.user.userIdx,
+      req.user.userName,
+      req.user.status,
+    );
+    res.cookie('Bearer', cookie);
+
+    return new LoginUserResponseDto(req.user);
   }
 
   @ApiOperation({
@@ -92,22 +105,25 @@ export class UsersController {
     return this.usersService.findById(id);
   }
 
-  // findAll() {
-  //   return this.usersService.findAll();
+  // @UseGuards(JwtAuthGuard)
+  // @ApiOperation({
+  //   summary: '동아리 신청',
+  //   description: '동아리 신청 api.',
+  // })
+  // @ApiOkResponse({ description: '신청 성공', type: BaseSuccessResponse })
+  // @Post('sign-up')
+  // async signUpClub(@Req() req) {
+  //   return this.usersService.signUpClub(req.user.userIdx);
   // }
 
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.usersService.findOne(+id);
-  // }
-
-  // // @Patch(':id')
-  // // update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-  // //   return this.usersService.update(+id, updateUserDto);
-  // // }
-
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.usersService.remove(+id);
-  // }
+  @UseGuards(JwtAuthGuard)
+  @ApiOperation({
+    summary: '토큰 검증',
+    description: '토큰 검증 api.',
+  })
+  @ApiOkResponse({ description: '검증 성공', type: LoginUserResponseDto })
+  @Get('tokenCheck')
+  async tokenCheck(@Req() req) {
+    return new LoginUserResponseDto(req.user);
+  }
 }

@@ -5,7 +5,7 @@ import {
   ProjectContentType,
   RankingContentType,
 } from "@Type/.";
-import { History } from "history";
+import { NavigateFunction } from "react-router-dom";
 
 export const sayHello = (): string => "hi";
 
@@ -25,8 +25,8 @@ export const convertBoardType = (content: any): BoardContentType => content;
 
 export const convertProjectType = (content: any): ProjectContentType => content;
 
-export const handleHeaderClick = (history: History) => {
-  history.push("/main");
+export const handleHeaderClick = (navigator: NavigateFunction) => {
+  navigator("/main");
 };
 
 export const checkTablet = () => window.innerWidth < TABLET_WIDTH;

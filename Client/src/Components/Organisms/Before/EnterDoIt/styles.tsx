@@ -1,3 +1,4 @@
+import { TABLET_WIDTH } from "@Constant/.";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -12,6 +13,10 @@ const Box = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    width: 50vw;
+    height: 50vh;
+  }
 `;
 
 const ButtonContainer = styled.div`

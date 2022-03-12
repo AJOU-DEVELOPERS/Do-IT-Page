@@ -1,7 +1,7 @@
 import ImageBoardPreview from "@Molecules/Board/BoardPreview/Image";
 import { BoardContentOneBoardSelector } from "@Recoil/BoardContent";
 import React, { useRef } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { Container, ContentContainer, Button } from "./style";
 
@@ -11,7 +11,7 @@ interface Props {
 const PhotoDetail = ({ apiSrc }: Props) => {
   const modalRef = useRef(null);
   const { id } = useParams<{ id: string }>();
-  const history = useHistory();
+  const navigator = useNavigate();
 
   const [content] = useRecoilValue(
     BoardContentOneBoardSelector([Number(id), apiSrc])
@@ -23,7 +23,7 @@ const PhotoDetail = ({ apiSrc }: Props) => {
       handleDetailClose();
   };
 
-  const handleDetailClose = () => history.push("/photos");
+  const handleDetailClose = () => navigator("/photos");
 
   return (
     <Container onClick={handleOutSideClick}>

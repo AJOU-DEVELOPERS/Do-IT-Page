@@ -9,7 +9,7 @@ import { useMemo, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { Container } from "./style";
 import PhotoDetail from "@Organisms/Photos/Detail";
-import { Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 const PhotosTemplate = () => {
   const type = "사진첩";
@@ -38,10 +38,9 @@ const PhotosTemplate = () => {
           setPageNum={setPageNum}
           totalBoardContentLength={totalBoardContentLength}
         />
-        <Route
-          path="/photos/:id"
-          render={() => <PhotoDetail apiSrc={apiSrc} />}
-        />
+        <Routes>
+          <Route path=":id" element={<PhotoDetail apiSrc={apiSrc} />} />
+        </Routes>
       </Container>
     </>
   );

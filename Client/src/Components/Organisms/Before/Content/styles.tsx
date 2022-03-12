@@ -9,11 +9,17 @@ const TrueStyle = css`
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    justify-content: center;
+  }
 `;
 
 const FalseStyle = css`
   display: flex;
   justify-content: space-between;
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    justify-content: center;
+  }
 `;
 
 const Box = styled.div`

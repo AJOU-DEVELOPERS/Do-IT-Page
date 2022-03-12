@@ -23,7 +23,7 @@ export class Project extends BaseEntity {
     leaderName: string;
     @ApiProperty()
     @Column({
-        default: 'collecting'
+        default: 'waiting'
     })
     status: string;
     @ApiProperty()
@@ -36,12 +36,13 @@ export class Project extends BaseEntity {
     userProjects: UserProject[];
     @OneToMany((_type) => ProjectTechStack, (_type) => _type.project)
     projectTechStacks: ProjectTechStack[];
+    numParticipant: number;
 }
 
-@Entity()
+@Entity({name: 'TechStack'})
 export class ProjectTechStack extends BaseEntity {
     @ApiProperty()
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn({name: 'techStackIdx'})
     projectTechStackIdx: number
     @ApiProperty()
     @Column()
@@ -49,9 +50,6 @@ export class ProjectTechStack extends BaseEntity {
     @ApiProperty()
     @Column()
     name: string
-    @ApiProperty()
-    @DeleteDateColumn()
-    deletedAt?: string;
     @ManyToOne(() => Project, (project) => project.projectTechStacks)
     @JoinColumn({ name: 'projectIdx', referencedColumnName: 'projectIdx' })
     project: Project

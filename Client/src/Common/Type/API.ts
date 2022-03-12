@@ -3,10 +3,11 @@ export interface ReservationRoomData {
   reservationStartHour: string;
   reservationEndDate: string;
   reservationEndHour: string;
-  userName: string;
+  userName?: string;
+  userIdx: number;
 }
 export interface postReservationRoomBodyProps extends ReservationRoomData {
-  userIdx: number;
+  status?: string;
 }
 
 export interface UserInfoData {

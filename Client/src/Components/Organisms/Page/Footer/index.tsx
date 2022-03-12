@@ -1,10 +1,10 @@
-import { withRouter } from "react-router-dom";
-import { History } from "history";
+import { useNavigate } from "react-router-dom";
 import { PageFooterContainer, PageFooterText, PageFooterTitle } from "./styles";
 
-const Footer = ({ history }: { history: History }) => {
+const Footer = () => {
+  const navigator = useNavigate();
   const handleBeforeMove = () => {
-    history.push("/before");
+    navigator("/before");
   };
   return (
     <PageFooterContainer>
@@ -18,4 +18,4 @@ const Footer = ({ history }: { history: History }) => {
   );
 };
 
-export default withRouter(Footer);
+export default Footer;

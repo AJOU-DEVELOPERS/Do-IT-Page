@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/commo
 import { ApiBody, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { BaseSuccessResponse } from 'src/commons/dto/response-common.dto';
 import { CreateProjectDto } from './dto/create-project.dto';
+import { GetProjectResponseDto, GetProjectsResponseDto } from './dto/get-project.dto';
 import { UpdateProjectDto } from './dto/update-project.dto';
 import { ProjectsService } from './projects.service';
 
@@ -26,7 +27,10 @@ export class ProjectsController {
         summary: '전체 프로젝트 불러오기 API',
         description: '성공 시 전체 프로젝트 혹은 빈 배열 반환, 실패 시 false 반환'
     })
-    @ApiOkResponse({ description: '전체 프로젝트 불러오기 성공' })
+    @ApiOkResponse({ 
+        type: GetProjectsResponseDto,
+        description: '전체 프로젝트 불러오기 성공'
+     })
     findAll() {
         return this.projectsService.findAll();
     }
@@ -36,7 +40,10 @@ export class ProjectsController {
         summary: '특정 프로젝트 불러오기 API',
         description: '성공 시 프로젝트 반환, 실패 시 false 반환'
     })
-    @ApiOkResponse({ description: '특정 프로젝트 불러오기 성공' })
+    @ApiOkResponse({ 
+        type: GetProjectResponseDto,
+        description: '특정 프로젝트 불러오기 성공' 
+    })
     findOne(@Param('projectIdx') projectIdx: number) {
         return this.projectsService.findOne(projectIdx);
     }
@@ -72,23 +79,43 @@ export class ProjectsController {
         return this.projectsService.apply(userIdx, projectIdx);
     }
 
-    @Get('accept/:userProjectIdx')
+    @Get('accept/create/:projectIdx')
+    @ApiOperation({
+        summary: '프로젝트 생성 요청 승인',
+        description: 'true false 반환'
+    })
+    @ApiOkResponse({ description: '프로젝트 생성 요청 승인 성공 '})
+    acceptCreate(@Param('projectIdx') projectIdx: number) {
+        return this.projectsService.acceptCreate(projectIdx);
+    }
+
+    @Get('reject/create/:projectIdx')
+    @ApiOperation({
+        summary: '프로젝트 생성 요청 거부',
+        description: 'true false 반환'
+    })
+    @ApiOkResponse({ description: '프로젝트 생성 요청 거부 성공 '})
+    rejectCreate(@Param('projectIdx') projectIdx: number) {
+        return this.projectsService.remove(projectIdx);
+    }
+
+    @Get('accept/participation/:userProjectIdx')
     @ApiOperation({
         summary: '프로젝트 참여 요청 승인',
         description: 'true false 반환'
     })
     @ApiOkResponse({ description: '프로젝트 참여 요청 승인 성공' })
     accept(@Param('userProjectIdx') userProjectIdx: number) {
-        return this.projectsService.accept(userProjectIdx);
+        return this.projectsService.acceptParticipation(userProjectIdx);
     }
 
-    @Get('reject/:userProjectIdx')
+    @Get('reject/participation/:userProjectIdx')
     @ApiOperation({
         summary: '프로젝트 참여 요청 거부',
         description: 'true false 반환'
     })
     @ApiOkResponse({ description: '프로젝트 참여 요청 거부 성공' })
     reject(@Param('userProjectIdx') userProjectIdx: number) {
-        return this.projectsService.reject(userProjectIdx);
+        return this.projectsService.rejectParticipation(userProjectIdx);
     }
 }

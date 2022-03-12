@@ -1,8 +1,10 @@
 import {
   API_GET_OPTION,
+  GET_CHECK_LOGIN_URL,
   GET_DEPARTMENT_DATA,
   POST_CHECK_DUPLICATE_USER_ID,
   POST_CHECK_MAIL,
+  POST_CIRCLE_JOIN,
   POST_LOGIN_INFO,
   POST_REGISTER_INFO,
   POST_REQUEST_MAIL,
@@ -12,6 +14,11 @@ import axios from "axios";
 
 export const getDepartment = async () => {
   const { data } = await axios.get(GET_DEPARTMENT_DATA, API_GET_OPTION);
+  return data;
+};
+
+export const getCheckLogin = async () => {
+  const { data } = await axios.get(GET_CHECK_LOGIN_URL, API_GET_OPTION);
   return data;
 };
 export const postLoginInfo = async (body: LoginInfoType) => {
@@ -41,5 +48,10 @@ export const checkDuplicateUserId = async ({ id }: { id: string }) => {
   const { data } = await axios.post(POST_CHECK_DUPLICATE_USER_ID, {
     id,
   });
+  return data;
+};
+
+export const postCircleJoin = async () => {
+  const { data } = await axios.post(POST_CIRCLE_JOIN, API_GET_OPTION);
   return data;
 };

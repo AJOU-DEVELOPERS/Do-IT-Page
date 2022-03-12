@@ -4,6 +4,7 @@ import { BaseFailResponse, BaseSuccessResponse, ResultSuccessResponse } from 'sr
 import { User, UserStudy } from 'src/users/entities/user.entity';
 import { Connection, getRepository, Repository } from 'typeorm';
 import { CreateStudyDto } from './dto/create-study.dto';
+import { GetStudiesResponseDto, GetStudyResponseDto } from './dto/get-study.dto';
 import { UpdateStudyDto } from './dto/update-study.dto';
 import { Study } from './entity/study.entity';
 
@@ -65,10 +66,38 @@ export class StudiesService {
         }
     }
 
+    async acceptCreate(studyIdx: number) {
+        const queryRunner = this.connection.createQueryRunner();
+
+        await queryRunner.connect();
+        await queryRunner.startTransaction();
+        try {
+            await queryRunner.manager.update(Study, studyIdx, {
+                status: 'collecting'
+            });
+            await queryRunner.commitTransaction();
+            return new BaseSuccessResponse();
+        } catch(error) {
+            console.log(error);
+            await queryRunner.rollbackTransaction();
+            return new BaseFailResponse('스터디 생성 요청 승인에 실패했습니다.');
+        } finally {
+            await queryRunner.release();
+        }
+    }
+
     async findAll() {
         try {
-            const studies = await Study.find();
-            return new ResultSuccessResponse(studies);
+            const studies = await Study.find({
+                relations: [
+                    'userStudies'
+                ]
+            });
+            studies.forEach((study) => {
+                study.numParticipant = study.userStudies.filter((userStudy) => userStudy.status == 'leader' || userStudy.status == 'accepted').length;
+                delete study.userStudies
+            });
+            return new GetStudiesResponseDto(studies);
         } catch(error) {
             console.log(error);
             return new BaseFailResponse('모든 스터디 불러오기를 실패했습니다.');
@@ -87,7 +116,7 @@ export class StudiesService {
                         'userStudies.user'
                     ] 
             });
-            return new ResultSuccessResponse(study);
+            return new GetStudyResponseDto(study);
         } catch(error) {
             console.log(error);
             return new BaseFailResponse('스터디 불러오기를 실패했습니다.');
@@ -147,7 +176,7 @@ export class StudiesService {
         }
     }
 
-    async accept(userStudyIdx: number) {
+    async acceptParticipation(userStudyIdx: number) {
         const queryRunner = this.connection.createQueryRunner();
 
         await queryRunner.connect();
@@ -167,7 +196,7 @@ export class StudiesService {
         }
     }
 
-    async reject(userStudyIdx: number) {
+    async rejectParticipation(userStudyIdx: number) {
         const queryRunner = this.connection.createQueryRunner();
 
         await queryRunner.connect();

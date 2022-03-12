@@ -6,37 +6,57 @@ import {
   GET_USERS_INFO_URL,
 } from "@Constant/API";
 import { UserInfoData } from "@Type/API";
-import { selector } from "recoil";
+import { GetRecoilValue, selector, selectorFamily } from "recoil";
 
-export const getUsersInfoSelector = selector<any>({
+export const getUsersInfoSelector = selector<UserInfoData[]>({
   key: "getUsersInfoSelector",
   get: async () => {
     const res = await _API({
       api: getBoardContents,
       apiSrc: GET_USERS_INFO_URL,
     });
-    console.log(res);
     return res;
   },
 });
-export const getStudyAllSelector = selector<UserInfoData[]>({
+
+export const getUserInfoSelector = selectorFamily<UserInfoData[], number>({
+  key: "getUsersInfoSelector",
+  get:
+    (idx) =>
+    async ({ get }: { get: GetRecoilValue }): Promise<UserInfoData[]> => {
+      const userInfoList = get(getUsersInfoSelector);
+      return userInfoList.filter(
+        (userInfo: UserInfoData) => userInfo.userIdx === idx
+      );
+    },
+});
+
+export const getStudyAllSelector = selector<any>({
   key: "getStudyAllSelector",
   get: async () => {
-    const res = await _API({
+    const { message, studies } = await _API({
       api: getBoardContents,
       apiSrc: GET_STUDY_CONTENT_URL,
     });
-    return res;
+    if (!message) {
+      alert("디비에러");
+      return [];
+    }
+    return studies;
   },
 });
 
 export const getProjectAllSelector = selector<any>({
   key: "getProjectAllSelector",
   get: async () => {
-    const res = await _API({
+    const { message, projects } = await _API({
       api: getBoardContents,
       apiSrc: GET_PROJECT_CONTENT_URL,
     });
-    return res;
+    if (!message) {
+      alert("디비에러");
+      return [];
+    }
+    return projects;
   },
 });

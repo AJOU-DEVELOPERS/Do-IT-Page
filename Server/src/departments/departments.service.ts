@@ -9,6 +9,7 @@ import {
 import { Repository, Connection } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Department } from './entities/department.entity';
+import { GetDepartmentResponseDto } from './dto/get-department.dto';
 @Injectable()
 export class DepartmentsService {
   constructor(
@@ -23,7 +24,8 @@ export class DepartmentsService {
   async findAll() {
     try {
       const departmentList = await Department.find();
-      return new ResultSuccessResponse(departmentList);
+
+      return new GetDepartmentResponseDto(departmentList);
     } catch (error) {
       console.log(error);
       return new BaseFailResponse('학과 목록을 불러오는데 실패하였습니다.');

@@ -1,6 +1,4 @@
 import { useCallback } from "react";
-import { withRouter } from "react-router-dom";
-import { History } from "history";
 
 import DoItCarousel from "@Organisms/Before/DoItCarousel";
 import Header from "@Organisms/Common/Header";
@@ -17,12 +15,14 @@ import ContentContainer from "./styles";
 import { CONTENT } from "@Constant/.";
 import MainImg from "@Organisms/Before/MainImg";
 import { checkTablet, checkMobile } from "@Util/.";
+import { useNavigate } from "react-router-dom";
 
-const BeforePageTemplate = ({ history }: { history: History }) => {
+const BeforePageTemplate = () => {
+  const navigator = useNavigate();
   const handleLoginClick = useCallback(() => {
-    history.push("/login");
+    navigator("/login");
   }, []);
-  const YearWidth = checkTablet() ? "500" : "1000";
+  //const YearWidth = checkTablet() ? "500" : "1000";
   return (
     <>
       <Header onClick={handleLoginClick} />
@@ -31,11 +31,9 @@ const BeforePageTemplate = ({ history }: { history: History }) => {
         <Content text={() => Context(CONTENT[0])} type="basic" />
       </ContentContainer>
 
-      {!checkMobile() && (
-        <Year>
-          <img src="/assets/Content/year.png" width={YearWidth} height={500} />
-        </Year>
-      )}
+      <Year>
+        <img src="/assets/Content/year.png"/>
+      </Year>
 
       <DoItTodo />
 
@@ -48,4 +46,4 @@ const BeforePageTemplate = ({ history }: { history: History }) => {
   );
 };
 
-export default withRouter(BeforePageTemplate);
+export default BeforePageTemplate;

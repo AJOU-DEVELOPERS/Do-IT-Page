@@ -1,3 +1,4 @@
+import { TABLET_WIDTH } from "@Constant/.";
 import styled from "styled-components";
 
 const MainImgContainer = styled.div`
@@ -8,7 +9,10 @@ const MainImgContainer = styled.div`
   background-color: black;
   width: 100%;
   margin-top: 100px;
-  height: 700px;
+  height: 1020px;
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    height: 30vh;
+  }
 `;
 
 export default MainImgContainer;
