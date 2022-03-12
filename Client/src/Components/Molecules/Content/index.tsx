@@ -1,17 +1,28 @@
 import { Title, Text } from "./styles";
 
-interface Props {
+export interface ContextProps {
   title: string;
   text: string;
+  type?: string | undefined;
 }
 
-const Context = ({ title, text }: Props) => {
+const DEFAULT_MARGIN_BOTTOM = "10px";
+
+const Context = ({ title, text, type }: ContextProps) => {
+  const [colorText, nonColorText] = title.split("/");
   return (
     <div>
-      <Title>{title}</Title>
+      {nonColorText ? (
+        <Title type={type}>
+          <span>{colorText}</span>
+          {nonColorText}
+        </Title>
+      ) : (
+        <Title type={type}>{title}</Title>
+      )}
       <div>
         {text.split(`\n`).map((item) => (
-          <Text>{item}</Text>
+          <Text type={type}>{item}</Text>
         ))}
       </div>
     </div>

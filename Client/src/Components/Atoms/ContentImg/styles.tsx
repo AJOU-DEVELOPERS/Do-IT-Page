@@ -1,19 +1,24 @@
-import { ImgProps } from "@src/Common/Type";
+import { TABLET_WIDTH } from "@Constant/.";
+import { ContentImgProps, ImgProps } from "@src/Common/Type";
 import styled from "styled-components";
 
 const Img = styled.img<ImgProps>`
-  content: url(${({ url }) => url});
-  width: 45%;
+  width: ${({ width }) => (width ? width : "45%")};
+`;
+
+const ContentImg = styled(Img)<ContentImgProps>`
+  border-radius: ${({ radius }) => (radius ? radius : "0px")};
+  max-width: ${({ maxWidth }) => (maxWidth ? maxWidth : "100%")};
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    max-width: 50%;
+  }
 `;
 
 const MiddleBox = styled.div`
-  background: #ffffff;
-  border-radius: 100%;
-  width: 200px;
-  height: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0 auto;
 `;
 
 const MiddleImg = styled.div<ImgProps>`
@@ -33,4 +38,4 @@ const Year = styled.div`
   margin-top: 200px;
 `;
 
-export { Img, Year, MiddleImg, MiddleBox };
+export { Img, Year, MiddleImg, MiddleBox, ContentImg };
