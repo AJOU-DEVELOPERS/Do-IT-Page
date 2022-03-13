@@ -1,8 +1,9 @@
+import { TABLET_WIDTH } from "@Constant/.";
 import { DefaultBorderColor } from "@Style/.";
 import styled from "styled-components";
 
 export const ModalContainer = styled.div`
-  min-width: 500px;
+  width: 500px;
   min-height: 400px;
   padding: 10px 0;
   position: fixed;
@@ -16,6 +17,11 @@ export const ModalContainer = styled.div`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    min-width: 250px;
+    min-height: 300px;
+    left: 7%;
+  }
 `;
 
 export const Label = styled.div`

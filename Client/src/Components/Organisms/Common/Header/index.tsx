@@ -8,20 +8,24 @@ import { Container } from "./styles";
 import HeaderLeftSide from "@Molecules/Common/Header";
 import HeaderNav from "@Molecules/Common/Header/Nav";
 import { userInfo } from "@Type/Account";
-import { checkMobile } from "@Util/.";
+import { checkTablet } from "@Util/.";
 
 const Header = ({ onClick }: { onClick?: () => void }) => {
   const user = useRecoilValue<boolean | userInfo>(userInfoAtom);
-
+  const color = checkTablet() ? "#707070" : "#ffffff";
   return (
     <Container>
       <HeaderLeftSide user={user} />
       {user ? (
         <HeaderNav />
-      ) : !checkMobile() ? (
-        <Button {...SmallLoginButtonType} title="로그인" onClick={onClick} />
-      ) : 
-      (<Button {...SmallLoginButtonType} color="#707070" title="로그인" onClick={onClick} />)}
+      ) : (
+        <Button
+          {...SmallLoginButtonType}
+          color={color}
+          title="로그인"
+          onClick={onClick}
+        />
+      )}
     </Container>
   );
 };

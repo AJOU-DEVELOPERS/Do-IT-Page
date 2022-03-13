@@ -33,7 +33,8 @@ const BoardContent = ({ boardName }: { boardName: string }) => {
     if (!target) return;
     const idx = target.getAttribute("data-idx");
     const { pageSrc: path } = _BOARD_INFOS[boardName];
-    const nextPath = idx ? `${path}/${idx}` : path;
+    const nextPath =
+      path === "/study" || path === "/project" ? `${path}` : `${path}/${idx}`;
     navigator(nextPath);
   };
 

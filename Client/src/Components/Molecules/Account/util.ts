@@ -40,11 +40,12 @@ export const LoginClick = async ({
     data: { id: idValue, password: pwValue },
   });
 
-  console.log(res);
   if (!res.message) {
     alert("아이디 및 비밀번호를 확인해주세요");
     return;
   }
+
+  localStorage.setItem("token", res.message);
   setUser(res.userInfo);
   navigator("/main");
 };
@@ -72,20 +73,23 @@ export const RegisterClick = async ({
   const phoneNumber = inputRef.current[REF_NUM.핸드폰번호].value;
   const { value: idx, label } = subjectRef.current.selectedOptions[0];
 
-  const { message } = await postRegisterInfo({
-    id,
-    password,
-    name,
-    studentId: Number(studentId),
-    email,
-    phoneNumber,
-    department: [
-      {
-        departmentIdx: Number(idx),
-        name: label,
-        sort: "major",
-      },
-    ],
+  const { message } = await API({
+    api: postRegisterInfo,
+    data: {
+      id,
+      password,
+      name,
+      studentId: Number(studentId),
+      email,
+      phoneNumber,
+      department: [
+        {
+          departmentIdx: Number(idx),
+          name: label,
+          sort: "major",
+        },
+      ],
+    },
   });
 
   if (message) {

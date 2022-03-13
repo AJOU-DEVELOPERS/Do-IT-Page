@@ -14,25 +14,27 @@ import ContentContainer from "./styles";
 
 import { CONTENT } from "@Constant/.";
 import MainImg from "@Organisms/Before/MainImg";
-import { checkTablet, checkMobile } from "@Util/.";
 import { useNavigate } from "react-router-dom";
+import Arrow from "@Atoms/Arrow";
 
 const BeforePageTemplate = () => {
   const navigator = useNavigate();
   const handleLoginClick = useCallback(() => {
     navigator("/login");
   }, []);
-  //const YearWidth = checkTablet() ? "500" : "1000";
   return (
     <>
       <Header onClick={handleLoginClick} />
       <DoItCarousel />
+      <div style={{ textAlign: "center", width: "100%", padding: "2vh" }}>
+        <Arrow />
+      </div>
       <ContentContainer>
         <Content text={() => Context(CONTENT[0])} type="basic" />
       </ContentContainer>
 
       <Year>
-        <img src="/assets/Content/year.png"/>
+        <img src="/assets/Content/year.png" />
       </Year>
 
       <DoItTodo />

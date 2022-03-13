@@ -20,6 +20,13 @@ const HeaderContainer = styled.div`
   left: 0;
   width: 100%;
   margin: 0 auto;
+
+  div #Header__Title {
+    color: #ffffff;
+    @media only screen and (max-width: ${TABLET_WIDTH}px) {
+      color: #707070;
+    }
+  }
 `;
 
 const BodyContainer = styled.div`

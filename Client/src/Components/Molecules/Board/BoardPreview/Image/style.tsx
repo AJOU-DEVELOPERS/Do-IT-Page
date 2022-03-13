@@ -1,9 +1,4 @@
-import {
-  AlignCenterAround,
-  AlignCenterBetween,
-  DefaultBoxShadow,
-  MainItemHover,
-} from "@Style/.";
+import { AlignCenterBetween, DefaultBoxShadow, MainItemHover } from "@Style/.";
 import styled from "styled-components";
 
 interface Props {
@@ -29,8 +24,4 @@ export const Container = styled.div<Props>`
   padding: 1vw;
   ${({ type }) => type === "preview" && PreviewStyle};
   ${({ type }) => type === "detail" && DetailStyle};
-`;
-
-export const ContentText = styled.div`
-  height: 100%;
 `;

@@ -11,8 +11,6 @@ import {
   GET_PHOTO_CONTENT_URL,
 } from "./API";
 
-export const WEB_SERVER_URL = "http://localhost:3000";
-
 export const MOBILE_WIDTH = 640;
 export const TABLET_WIDTH = 1024;
 
@@ -216,7 +214,8 @@ export const CONTENT = [
     title: "T/rend",
     text: `두잇은 언제나,
 최신 기술스택을 학습하며
-
+서로의 지식을 공유하여
+함께 성장할 수 있는 분위기를 제공합니다.
 `,
   },
 ];

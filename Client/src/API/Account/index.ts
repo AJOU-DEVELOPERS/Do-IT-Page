@@ -2,6 +2,7 @@ import {
   API_GET_OPTION,
   GET_CHECK_LOGIN_URL,
   GET_DEPARTMENT_DATA,
+  GET_HEADER_TOKEN,
   POST_CHECK_DUPLICATE_USER_ID,
   POST_CHECK_MAIL,
   POST_CIRCLE_JOIN,
@@ -18,7 +19,7 @@ export const getDepartment = async () => {
 };
 
 export const getCheckLogin = async () => {
-  const { data } = await axios.get(GET_CHECK_LOGIN_URL, API_GET_OPTION);
+  const { data } = await axios.get(GET_CHECK_LOGIN_URL, GET_HEADER_TOKEN());
   return data;
 };
 export const postLoginInfo = async (body: LoginInfoType) => {
@@ -36,10 +37,7 @@ export const postRequestMail = async (body: { email: string }) => {
   return data;
 };
 
-export const postCheckMail = async (body: {
-  cacheKey: string;
-  authNum: string;
-}) => {
+export const postCheckMail = async (body: { cacheKey: string; authNum: string }) => {
   const { data } = await axios.post(POST_CHECK_MAIL, body);
   return data;
 };
@@ -52,6 +50,6 @@ export const checkDuplicateUserId = async ({ id }: { id: string }) => {
 };
 
 export const postCircleJoin = async () => {
-  const { data } = await axios.post(POST_CIRCLE_JOIN, {}, API_GET_OPTION);
+  const { data } = await axios.post(POST_CIRCLE_JOIN, {}, GET_HEADER_TOKEN());
   return data;
 };
