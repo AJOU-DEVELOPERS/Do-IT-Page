@@ -16,7 +16,6 @@ export const getCheckAdminSelector = selector<boolean>({
   key: "getCheckAdminSelector",
   get: async () => {
     const res = await checkAdmin();
-    console.log(res);
     return res;
   },
 });
@@ -25,7 +24,6 @@ export const getUsersInfoSelector = selector<UserInfoData[]>({
   key: "getUsersInfoSelector",
   get: async () => {
     const res = await getUsersInfo();
-    console.log(res);
     return res;
   },
 });
@@ -34,7 +32,7 @@ export const getClubUsersInfoSelector = selector<UserInfoData[]>({
   key: "getClubUsersInfoSelector",
   get: ({ get }) => {
     const res = get(getUsersInfoSelector);
-    return res.filter((userInfo: UserInfoData) => userInfo.isPay === 1);
+    return res.filter((userInfo: UserInfoData) => userInfo.status === "N"||userInfo.status==="M");
   },
 });
 
@@ -42,7 +40,7 @@ export const getClubRegisterUsersSelector = selector<UserInfoData[]>({
   key: "getClubRegisterUsersSelector",
   get: ({ get }) => {
     const res = get(getUsersInfoSelector);
-    return res.filter((userInfo: UserInfoData) => userInfo.isPay === 0);
+    return res.filter((userInfo: UserInfoData) => userInfo.status==="L");
   },
 });
 
