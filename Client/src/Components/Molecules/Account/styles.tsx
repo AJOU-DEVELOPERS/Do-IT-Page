@@ -46,11 +46,16 @@ const Wrapper = styled(Container)<LoginProps>`
   font-weight: bold;
   grid-area: ${({ type }) => type};
   p {
-    @media only screen and (max-width: ${TABLET_WIDTH}px) {
-      font-size: small;
-    }
     width: 2vw;
     text-align: center;
+  }
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    p {
+      font-size: small;
+    }
+    Input {
+      font-size: small;
+    }
   }
 `;
 const Section = styled.div`
