@@ -99,6 +99,15 @@ export class ProjectsController {
         return this.projectsService.remove(projectIdx);
     }
 
+    @Get('update/projectStatus/:projectIdx')
+    @ApiOperation({
+        summary: '프로젝트 상태 변경',
+        description: 'true false 반환'
+    })
+    @ApiOkResponse({ description: '프로젝트 상태 변경 성공' })
+    updateProjectStatus(@Param('projectIdx') projectIdx: number) {
+        return this.projectsService.updateProjectStatus(projectIdx);
+    }
     @Get('accept/participation/:userProjectIdx')
     @ApiOperation({
         summary: '프로젝트 참여 요청 승인',
