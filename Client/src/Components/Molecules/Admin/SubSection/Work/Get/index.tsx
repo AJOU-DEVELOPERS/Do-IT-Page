@@ -29,8 +29,11 @@ const GetWork = ({ type }: BasicType) => {
 
   useEffect(() => {
     WorkSearch({ value: search, totalWorkList, setWorkList });
-    setWork(undefined);
   }, [totalWorkList]);
+
+  useEffect(() => {
+    setWork(undefined);
+  }, [workList]);
 
   return (
     <Suspense fallback={null}>
