@@ -6,7 +6,7 @@ import {
   GET_PROJECT_APPLY_ACCEPT,
   GET_PROJECT_APPLY_DENY,
   POST_PROJECT_APPLY,
-  PATCH_PROJECT_UPDATE,
+  GET_PROJECT_UPDATE,
 } from "@Constant/API";
 import axios from "axios";
 
@@ -63,6 +63,6 @@ export const getProjectCreateDeny = async (projectIdx: number) => {
 };
 
 export const getProjectUpdate = async (projectIdx: number) => {
-  const { data } = await axios.patch(PATCH_PROJECT_UPDATE + `/${projectIdx}`);
+  const { data } = await axios.get(GET_PROJECT_UPDATE + `/${projectIdx}`);
   return data;
 };
