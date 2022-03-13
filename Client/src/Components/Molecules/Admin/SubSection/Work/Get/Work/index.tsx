@@ -7,7 +7,6 @@ import {
   TableBody,
   TableData,
 } from "@Atoms/Table/styles";
-import { PROJECT_TITLE } from "../List";
 import { DeepWorkType, UserWorkType } from "../../type";
 import { AcceptClick, DenyClick } from "../../util";
 
@@ -23,7 +22,7 @@ const Work = ({ work, type }: DeepWorkType) => {
     <Table>
       <TableHead>
         <TableRow>
-          {PROJECT_TITLE.map((item) => (
+          {WORK_USER.map((item) => (
             <TableTitle key={item.key}>{item.title}</TableTitle>
           ))}
           <TableTitle>승인</TableTitle>
@@ -37,10 +36,12 @@ const Work = ({ work, type }: DeepWorkType) => {
             id="userContainer"
             data-idx={item.userStudyIdx ?? item.userProjectIdx}
           >
-            {PROJECT_TITLE.map((title) => {
+            {WORK_USER.map((title) => {
               const text =
-                title.key === ("status" || "userName")
+                title.key === "status"
                   ? item[title.key]
+                  : title.key === "userName"
+                  ? item.user.name
                   : work[title.key];
               return <TableData key={title.key}>{text}</TableData>;
             })}
@@ -54,3 +55,22 @@ const Work = ({ work, type }: DeepWorkType) => {
 };
 
 export default React.memo(Work);
+
+export const WORK_USER = [
+  {
+    key: "name",
+    title: "스터디 명",
+  },
+  {
+    key: "description",
+    title: "설명",
+  },
+  {
+    key: "status",
+    title: "상태",
+  },
+  {
+    key: "userName",
+    title: "회원 이름",
+  },
+];

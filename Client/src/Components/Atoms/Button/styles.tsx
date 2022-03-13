@@ -18,11 +18,7 @@ const ButtonContainer = styled.button<BasicButtonProps>`
   color: ${({ color }) => color};
   background-color: ${({ backGroundColor }) => backGroundColor};
   ${HoverPointer};
-  @media only screen and (max-width: ${TABLET_WIDTH}px) {
-    min-width: 100px;
-    max-width: 130px;
-    height: 30px;
-  }
+
 `;
 
 const LoginContainer = styled(ButtonContainer)<LoginButtonProps>`
@@ -31,8 +27,6 @@ const LoginContainer = styled(ButtonContainer)<LoginButtonProps>`
   font-size: ${({ fontSize }) => fontSize};
   border-radius: ${({ radius }) => radius};
   box-shadow: 0px 0px 0px 1px rgba(93, 93, 93, 0.1);
-  min-width: 90%;
-  height: 90%;
 `;
 
 const EnterContainer = styled(ButtonContainer)`
@@ -40,10 +34,20 @@ const EnterContainer = styled(ButtonContainer)`
   box-shadow: 0px 0px 6px #00000029;
   border-radius: 16px;
   font-size: 32px;
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    min-width: 100px;
+    max-width: 130px;
+    height: 30px;
+  }
 `;
 
 const ApplyContainer = styled(ButtonContainer)<ApplyButtonProps>`
   color: ${({ color }) => color};
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    min-width: 100px;
+    max-width: 130px;
+    height: 30px;
+  }
 `;
 
 export { ButtonContainer, LoginContainer, EnterContainer, ApplyContainer };

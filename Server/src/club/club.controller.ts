@@ -29,7 +29,7 @@ import { UpdateClubDto } from './dto/update-club.dto';
 @ApiTags('Club API')
 export class ClubController {
   constructor(private readonly clubService: ClubService) {}
-  @Roles('M')
+  @Roles('L')
   @UseGuards(RolesGuard)
   @UseGuards(JwtAuthGuard)
   @ApiOperation({
