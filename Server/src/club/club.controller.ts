@@ -29,18 +29,18 @@ import { UpdateClubDto } from './dto/update-club.dto';
 @ApiTags('Club API')
 export class ClubController {
   constructor(private readonly clubService: ClubService) {}
-  // @Roles('L')
-  // @UseGuards(RolesGuard)
-  // @UseGuards(JwtAuthGuard)
-  // @ApiOperation({
-  //   summary: '동아리 신청',
-  //   description: '동아리 신청 api.',
-  // })
-  // @ApiOkResponse({ description: '신청 성공', type: BaseSuccessResponse })
-  // @Post('sign-up')
-  // create(@Req() req) {
-  //   return this.clubService.create(req.user.userIdx);
-  // }
+  @Roles('L')
+  @UseGuards(RolesGuard)
+  @UseGuards(JwtAuthGuard)
+  @ApiOperation({
+    summary: '동아리 신청',
+    description: '동아리 신청 api.',
+  })
+  @ApiOkResponse({ description: '신청 성공', type: BaseSuccessResponse })
+  @Post('sign-up')
+  create(@Req() req) {
+    return this.clubService.create(req.user.userIdx);
+  }
 
   @Roles('M')
   @UseGuards(RolesGuard)
