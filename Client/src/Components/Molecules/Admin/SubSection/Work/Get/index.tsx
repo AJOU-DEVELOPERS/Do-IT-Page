@@ -1,5 +1,5 @@
 import { BasicType } from "@Molecules/Content/type";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { WorkType } from "../type";
 
@@ -26,6 +26,14 @@ const GetWork = ({ type }: BasicType) => {
     WorkSearch({ value, totalWorkList, setWorkList });
     setSearch(value);
   };
+
+  useEffect(() => {
+    WorkSearch({ value: search, totalWorkList, setWorkList });
+  }, [totalWorkList]);
+
+  useEffect(() => {
+    setWork(undefined);
+  }, [workList]);
 
   return (
     <Suspense fallback={null}>

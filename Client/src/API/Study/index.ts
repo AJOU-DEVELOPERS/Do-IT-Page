@@ -4,6 +4,7 @@ import {
   GET_STUDY_CREATE_ACCEPT,
   GET_STUDY_CREATE_DENY,
   GET_STUDY_DATA,
+  PATCH_STUDY_UPDATE,
   POST_CREATE_STUDY,
   POST_STUDY_APPLY,
 } from "@Constant/API";
@@ -16,8 +17,16 @@ export const getStudyData = async (studyIdx: number) => {
 };
 
 // 스터디 참가 신청
-export const postStudyApply = async (studyIdx: number) => {
-  const { data } = await axios.post(POST_STUDY_APPLY + `/${studyIdx}`);
+export const postStudyApply = async ({
+  studyIdx,
+  userIdx,
+}: {
+  studyIdx: number | undefined;
+  userIdx: number;
+}) => {
+  const { data } = await axios.post(POST_STUDY_APPLY + `/${studyIdx}`, {
+    userIdx,
+  });
   return data;
 };
 
@@ -48,5 +57,10 @@ export const getStudyCreateAccept = async (studyIdx: number) => {
 // 스터디 생성 거절
 export const getStudyCreateDeny = async (studyIdx: number) => {
   const { data } = await axios.get(GET_STUDY_CREATE_DENY + `/${studyIdx}`);
+  return data;
+};
+
+export const getStudyUpdate = async (studyIdx: number) => {
+  const { data } = await axios.patch(PATCH_STUDY_UPDATE + `/${studyIdx}`);
   return data;
 };

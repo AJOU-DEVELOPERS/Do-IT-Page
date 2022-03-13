@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 const Img = styled.img<ImgProps>`
   width: ${({ width }) => (width ? width : "45%")};
+  height: 250px;
 `;
 
 const ContentImg = styled(Img)<ContentImgProps>`

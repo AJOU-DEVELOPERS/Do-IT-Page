@@ -1,7 +1,5 @@
 import ApplyButton from "@Atoms/Button/Apply";
-import Icon from "@Atoms/Icon";
 import { STUDY_STATUS } from "@Constant/.";
-import { USER_ICON_URL } from "@Constant/img";
 import { ApplyButtonType } from "@Style/.";
 import { ProjectContentType } from "@Type/.";
 import {
@@ -11,31 +9,34 @@ import {
   Info,
   Title,
   CollectingInfoContainer,
+  MobileApplyBtnContainer,
 } from "./style";
 
 const CardBoardPreview = ({
   name,
-  decription,
+  description,
   totalHeadcount,
-  leaderUserIdx,
+  numParticipant,
   leaderName,
   status,
-  techStack = [],
+  projectTechStacks = [],
 }: ProjectContentType) => {
-  const techStackStr = techStack.join("/");
+  const techStackStr = projectTechStacks.map((item) => item.name).join("/");
   return (
     <Container>
       <Head>
         <Status>{STUDY_STATUS[status]}</Status>
         <Info>{techStackStr}</Info>
       </Head>
-      <Title>{name}</Title>
       <CollectingInfoContainer>
-        <Info>{`이름 : ${leaderName}`}</Info>
-        <Info>{`인원 : ${leaderUserIdx} / ${totalHeadcount}`}</Info>
-        <Icon url={USER_ICON_URL} alt="user icon" />
+        <Title>제목 : {name}</Title>
+        <Title>소개 : {description}</Title>
+        <Info>{`리더 : ${leaderName}`}</Info>
+        <Info>{`인원 : ${numParticipant} / ${totalHeadcount}`}</Info>
       </CollectingInfoContainer>
-      <ApplyButton {...ApplyButtonType()} />
+      <MobileApplyBtnContainer>
+        <ApplyButton {...ApplyButtonType()} />
+      </MobileApplyBtnContainer>
     </Container>
   );
 };

@@ -130,6 +130,36 @@ export class ProjectsService {
         }
     }
 
+    async updateProjectStatus(projectIdx: number) {
+        const queryRunner = this.connection.createQueryRunner();
+
+        await queryRunner.connect();
+        await queryRunner.startTransaction();
+        try {
+            const exProject = await Project.findOne({
+                where: {
+                    projectIdx: projectIdx
+                }
+            });
+            if (exProject.status == "collecting") {
+                await queryRunner.manager.update(Project, projectIdx, {
+                    status: "processing"
+                });
+            } else if (exProject.status == "processing") {
+                await queryRunner.manager.update(Project, projectIdx, {
+                    status: "done"
+                });
+            }
+            await queryRunner.commitTransaction();
+            return new BaseSuccessResponse();
+        } catch(error) {
+            console.log(error);
+            await queryRunner.rollbackTransaction();
+            return new BaseFailResponse("프로젝트 상태 바꾸기에 실패했습니다.")
+        } finally {
+            await queryRunner.release();
+        }
+    }
     async findAll() {
         try {
             const projects = await Project.find({

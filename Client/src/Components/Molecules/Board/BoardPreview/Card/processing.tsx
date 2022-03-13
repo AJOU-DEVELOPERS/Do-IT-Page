@@ -1,42 +1,37 @@
 import { STUDY_STATUS } from "@Constant/.";
 import { ProjectContentType } from "@Type/.";
 import {
-  LargeContainer,
+  Container,
   Head,
   Status,
   Info,
-  Title,
   ProcessingInfoContainer,
+  ProcessingTitle,
 } from "./style";
 
 const CardBoardPreview = ({
   name,
-  decription,
+  description,
   totalHeadcount,
-  leaderUserIdx,
+  numParticipant,
   leaderName,
   status,
-  techStack = [],
+  projectTechStacks = [],
 }: ProjectContentType) => {
-  const techStackStr = techStack.join("/");
+  const techStackStr = projectTechStacks.map((item) => item.name).join("/");
   return (
-    <LargeContainer>
-      <Head>
+    <Container>
+      <Head status={status}>
         <Status>{STUDY_STATUS[status]}</Status>
         <Info>{techStackStr}</Info>
       </Head>
-      <Title borderBottom={"0.2px solid rgba(112, 112, 112, 1)"}>{name}</Title>
+      <ProcessingTitle>{name}</ProcessingTitle>
       <ProcessingInfoContainer>
-        <Info>{`참여자 : ${leaderName}`}</Info>
-        <p>김영진, 김영진, 김영진, 김영진</p>
-        <Info>{`인원 : ${leaderUserIdx} / ${totalHeadcount}`}</Info>
-        <p>
-          ~하고 ~하고 ~할 것이다. ~하고 ~하고 ~할 것이다. ~하고 ~하고 ~할 것
-          이다.~하고 ~하고 ~할 것이다. ~하고 ~하고 ~할 것이다. ~하고 ~하고 ~할
-          것이다.~하고 ~하고 ~할 것이다. ~하고 ~하고 ~할 것이다.
-        </p>
+        <Info>{`리더 : ${leaderName}`}</Info>
+        <Info>설명 : {description}</Info>
+        <Info>{`인원 : ${numParticipant} / ${totalHeadcount}`}</Info>
       </ProcessingInfoContainer>
-    </LargeContainer>
+    </Container>
   );
 };
 

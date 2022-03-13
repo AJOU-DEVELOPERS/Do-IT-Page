@@ -11,9 +11,10 @@ const HeaderLeftSide = ({ user }: { user: boolean | userInfo }) => {
     const path = user ? MAIN_URL : BEFORE_URL;
     navigator(path);
   };
+
   return (
     <LeftContainer>
-      <Title onClick={handleMoveHome} style={{ color: user ? "" : "#ffffff" }}>
+      <Title onClick={handleMoveHome} id="Header__Title">
         Do-IT
       </Title>
     </LeftContainer>

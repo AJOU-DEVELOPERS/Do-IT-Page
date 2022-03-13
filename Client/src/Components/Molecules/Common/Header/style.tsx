@@ -5,6 +5,9 @@ import { AlignCenterAround, DefaultColor, HoverPointer } from "@Style/.";
 const LeftContainer = styled.div`
   display: flex;
   align-items: center;
+  /* @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    color: #000000;
+  } */
 `;
 
 const Title = styled.div`
@@ -16,6 +19,7 @@ const Title = styled.div`
   text-shadow: 0px 3px 3px #00000029;
   ${HoverPointer};
   @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    color: rgb(112 112 112);
     margin-top: 0;
     font-size: 24px;
   }

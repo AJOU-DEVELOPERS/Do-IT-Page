@@ -9,13 +9,15 @@ interface _Props {
 }
 
 const URL = [
-  "http://121.167.35.48:4000", // 01
+  "http://118.67.131.153:3000", // ㅂㅐ포
   "http://218.209.6.69:4000", // 기윤이형집
   "http://localhost:4000",
+  "http://121.167.35.48:4000", // 01
   "http://192.168.0.42:4000", // 재명이집 호용이컴터
   "http://211.110.23.222:4000",
 ];
-export const TARGET_URL = URL[2];
+export const TARGET_URL =
+  process.env.NODE_ENV === "development" ? URL[2] : URL[0];
 
 export const API = async ({ api, data }: Props) => {
   try {

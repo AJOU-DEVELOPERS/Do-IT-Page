@@ -36,7 +36,8 @@ const Title = styled.h1<TitleProps>`
     font-size: medium;
   }
 
-  color: ${DefaultColor} span {
+  color: ${DefaultColor};
+  span {
     color: #000000;
     font-size: 48px;
   }
@@ -53,7 +54,7 @@ const Text = styled.div<TitleProps>`
   @media only screen and (max-width: ${TABLET_WIDTH}px) {
     font-size: medium;
   }
-  
+
   ${({ type }) => type === "Info" && InfoStyle};
   ${({ type }) => type === "Todo" && TodoTextStyle};
 `;

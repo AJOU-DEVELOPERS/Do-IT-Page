@@ -16,12 +16,14 @@ export interface BasicWorkType extends Indexable {
 export interface UserStudy extends Indexable {
   userStudyIdx: number;
   userIdx: number;
+  // userName:string;
   studyIdx: number;
   status: string;
 }
 export interface UserProject extends Indexable {
   userProjectIdx: number;
   userIdx: number;
+  // userName:string;
   projectIdx: number;
   status: string;
 }

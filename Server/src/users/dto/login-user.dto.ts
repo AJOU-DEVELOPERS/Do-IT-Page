@@ -27,9 +27,10 @@ export class LoginUserDto {
 }
 
 export class LoginUserResponseDto extends BaseSuccessResponse {
-  constructor(user: object) {
+  constructor(user: object, token: string) {
     super();
     this.res.userInfo = user;
+    this.res.message = token;
   }
 
   @ApiProperty({
@@ -37,8 +38,8 @@ export class LoginUserResponseDto extends BaseSuccessResponse {
     properties: {
       message: {
         type: 'string',
-        description: '에러 혹은 응답에 대한 메시지',
-        example: 'true',
+        description: '토큰',
+        example: 'trdsajwqke21saksf9s-dfsdvmd.sdadsfd',
       },
       userInfo: {
         type: 'object',

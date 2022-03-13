@@ -5,12 +5,17 @@ import {
   TableTitle,
   TableBody,
 } from "@Atoms/Table/styles";
+import { refreshAPI } from "@Util/.";
 import { Dispatch, useMemo } from "react";
+import { useRecoilRefresher_UNSTABLE } from "recoil";
 import { WorkType } from "../../type";
 import {
+  checkUpdate,
   checkWaiting,
   createWorkAccept,
   createWorkDeny,
+  getWorkListType,
+  updateWork,
   workClick,
 } from "../../util";
 
@@ -25,16 +30,21 @@ const WorkList = ({
   type: string | undefined;
   search: string;
 }) => {
-  const dataType = useMemo(() => checkWaiting({ search }), [search]);
+  const refresh = useRecoilRefresher_UNSTABLE(getWorkListType({ type }));
+  const handleRefresh = refreshAPI(refresh);
+  const waiting = useMemo(() => checkWaiting({ search }), [search]);
+  const checkStatus = useMemo(() => checkUpdate({ search }), [search]);
 
   const handleWorkClick = async ({ currentTarget }: { currentTarget: any }) => {
     const res = await workClick({ currentTarget, type });
     setWork(res[0]);
   };
-  const handleCreateAccept = async ({ target }: { target: any }) =>
-    createWorkAccept({ target, type });
-  const handleCreateDeny = async ({ target }: { target: any }) =>
-    createWorkDeny({ target, type });
+  const handleCreateAccept = async (e: any) =>
+    handleRefresh(() => createWorkAccept({ e, type }));
+  const handleCreateDeny = async (e: any) =>
+    handleRefresh(() => createWorkDeny({ e, type }));
+  const handleUpdateStudy = async (e: any) =>
+    handleRefresh(() => updateWork({ e, type }));
 
   return (
     <Table>
@@ -43,8 +53,9 @@ const WorkList = ({
           {PROJECT_TITLE.map((item) => (
             <TableTitle key={item.key}>{item.title}</TableTitle>
           ))}
-          {dataType && <TableTitle>승인</TableTitle>}
-          {dataType && <TableTitle>거부</TableTitle>}
+          {waiting && <TableTitle>승인</TableTitle>}
+          {waiting && <TableTitle>거부</TableTitle>}
+          {checkStatus && <TableTitle>상태 변경</TableTitle>}
         </TableRow>
       </TableHead>
       <TableBody>
@@ -53,16 +64,19 @@ const WorkList = ({
             key={item.studyIdx ?? item.projectIdx}
             onClick={handleWorkClick}
             data-idx={item.studyIdx ?? item.projectIdx}
-            id={dataType ? "waitContainer" : "container"}
+            id={waiting ? "waitContainer" : "container"}
           >
             {PROJECT_TITLE.map((title) => (
               <TableTitle key={title.key}>{item[title.key]}</TableTitle>
             ))}
-            {dataType && (
+            {waiting && (
               <TableTitle onClick={handleCreateAccept}>승인</TableTitle>
             )}
-            {dataType && (
+            {waiting && (
               <TableTitle onClick={handleCreateDeny}>거부</TableTitle>
+            )}
+            {checkStatus && (
+              <TableTitle onClick={handleUpdateStudy}>변경</TableTitle>
             )}
           </TableRow>
         ))}

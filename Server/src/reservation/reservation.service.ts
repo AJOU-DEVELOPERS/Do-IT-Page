@@ -3,13 +3,12 @@ import { InjectRepository } from '@nestjs/typeorm';
 import {
   BaseFailResponse,
   BaseSuccessResponse,
-  ResultSuccessResponse,
-  ThrowFailResponse,
 } from 'src/commons/dto/response-common.dto';
 import { User } from 'src/users/entities/user.entity';
 import { Connection, Like, Repository } from 'typeorm';
 import { CreateReservationDto } from './dto/create-reservation.dto';
 import { DeleteReservationDto } from './dto/delete-reservation.dto';
+import { GetResesrvationResponseDTO } from './dto/get-reservation.dto';
 import { UpdateReservationDto } from './dto/update-reservation.dto';
 import { Reservation } from './entitiy/reservation.entity';
 
@@ -142,7 +141,7 @@ export class ReservationService {
     await queryRunner.connect();
     try {
       const reservations = await queryRunner.manager.find(Reservation);
-      return reservations;
+      return new GetResesrvationResponseDTO(reservations);
     } catch (error) {
       console.log(error);
       return new BaseFailResponse('예약 정보 확인에 실패했습니다.');
@@ -153,7 +152,10 @@ export class ReservationService {
 
   async findOne(reservationIdx: number) {
     const reservation = await this.findIdx(reservationIdx);
-    return reservation;
+    if(!reservation){
+      return new GetResesrvationResponseDTO([]);
+    }
+    return new GetResesrvationResponseDTO(reservation);
   }
 
   async findIdx(reservationIdx: number) {
@@ -185,7 +187,7 @@ export class ReservationService {
       const reservation = await queryRunner.manager.find(Reservation, {
         reservationStartDate: Like(`${time}%`),
       });
-      return reservation;
+      return new GetResesrvationResponseDTO(reservation);
     } catch (error) {
       console.log(error);
       return new BaseFailResponse(`예약 정보 확인에 실패했습니다.`);

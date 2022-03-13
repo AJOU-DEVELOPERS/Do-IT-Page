@@ -89,9 +89,8 @@ export class UsersController {
       req.user.userName,
       req.user.status,
     );
-    res.cookie('Bearer', cookie);
-
-    return new LoginUserResponseDto(req.user);
+    res.cookie('access-token', cookie); //6h
+    return new LoginUserResponseDto(req.user, cookie);
   }
 
   @ApiOperation({
@@ -106,6 +105,7 @@ export class UsersController {
   }
 
   // @UseGuards(JwtAuthGuard)
+
   // @ApiOperation({
   //   summary: '동아리 신청',
   //   description: '동아리 신청 api.',
@@ -115,7 +115,20 @@ export class UsersController {
   // async signUpClub(@Req() req) {
   //   return this.usersService.signUpClub(req.user.userIdx);
   // }
-
+  @Roles('M')
+  @UseGuards(RolesGuard)
+  @UseGuards(JwtAuthGuard)
+  @HttpCode(200)
+  @Get('checkAdmin')
+  @ApiOperation({ summary: '관리자 확인 API', description: '관리자 여부' })
+  @ApiBody({ type: UserDto })
+  @ApiOkResponse({
+    description: '관리자 확인',
+    type: ResultSuccessResponse,
+  })
+  async checkAdmin(@Req() req) {
+    return new LoginUserResponseDto(req.user, 'true');
+  }
   @UseGuards(JwtAuthGuard)
   @ApiOperation({
     summary: '토큰 검증',
@@ -124,6 +137,6 @@ export class UsersController {
   @ApiOkResponse({ description: '검증 성공', type: LoginUserResponseDto })
   @Get('tokenCheck')
   async tokenCheck(@Req() req) {
-    return new LoginUserResponseDto(req.user);
+    return new LoginUserResponseDto(req.user, 'true');
   }
 }

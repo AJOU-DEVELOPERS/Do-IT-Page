@@ -6,6 +6,7 @@ import {
   GET_PROJECT_APPLY_ACCEPT,
   GET_PROJECT_APPLY_DENY,
   POST_PROJECT_APPLY,
+  PATCH_PROJECT_UPDATE,
 } from "@Constant/API";
 import axios from "axios";
 
@@ -16,8 +17,16 @@ export const getProjectData = async (projectIdx: number) => {
 };
 
 // 프로젝트 참가 신청
-export const postProjectApply = async (projectIdx: number) => {
-  const { data } = await axios.post(POST_PROJECT_APPLY + `/${projectIdx}`);
+export const postProjectApply = async ({
+  projectIdx,
+  userIdx,
+}: {
+  projectIdx: number;
+  userIdx: number;
+}) => {
+  const { data } = await axios.post(POST_PROJECT_APPLY + `/${projectIdx}`, {
+    userIdx,
+  });
   return data;
 };
 
@@ -50,5 +59,10 @@ export const getProjectCreateAccept = async (projectIdx: number) => {
 // 프로젝트 생성 거절
 export const getProjectCreateDeny = async (projectIdx: number) => {
   const { data } = await axios.get(GET_PROJECT_CREATE_DENY + `/${projectIdx}`);
+  return data;
+};
+
+export const getProjectUpdate = async (projectIdx: number) => {
+  const { data } = await axios.patch(PATCH_PROJECT_UPDATE + `/${projectIdx}`);
   return data;
 };

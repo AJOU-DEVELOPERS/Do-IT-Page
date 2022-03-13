@@ -1,7 +1,7 @@
 import { _BOARD_INFOS } from "@Constant/.";
 import BoardPreview from "@Molecules/Board/BoardPreview";
 import { BoardContentPagenationSelector } from "@Recoil/BoardContent";
-import { ContentType } from "@Type/.";
+import { BoardContentType, ContentType, ProjectContentType } from "@Type/.";
 import { hasBoardContent } from "@Util/.";
 import { Suspense } from "react";
 import { useNavigate } from "react-router-dom";
@@ -13,11 +13,7 @@ const PhotoList = ({ type, pageNum }: { type: string; pageNum: number }) => {
   const { apiSrc, previewType, viewSize, pageSrc } = _BOARD_INFOS[type];
   const navigator = useNavigate();
 
-  const boardContents =
-    hasBoardContent(apiSrc, type) &&
-    useRecoilValue<ContentType[]>(
-      BoardContentPagenationSelector([pageNum, apiSrc, viewSize])
-    );
+  const boardContents = hasBoardContent(apiSrc, type) && useRecoilValue<ContentType[]>(BoardContentPagenationSelector([pageNum, apiSrc, viewSize]));
 
   const boardType = type === "사진첩" ? "image" : "image";
 
@@ -33,19 +29,14 @@ const PhotoList = ({ type, pageNum }: { type: string; pageNum: number }) => {
     <>
       <Suspense fallback={null}>
         <ContentContainer onClick={handleDetailMove}>
-          {boardContents?.map((content) => (
-            <BoardContainer
-              key={content.idx}
-              data-idx={content.idx}
-              id="boardContainer"
-            >
-              <BoardPreview
-                previewType={previewType}
-                content={content}
-                type={boardType}
-              />
-            </BoardContainer>
-          ))}
+          {boardContents?.map((content) => {
+            const key = (content as ProjectContentType).projectIdx ?? (content as BoardContentType).idx;
+            return (
+              <BoardContainer key={key} data-idx={key} id="boardContainer">
+                <BoardPreview previewType={previewType} content={content} type={boardType} />
+              </BoardContainer>
+            );
+          })}
         </ContentContainer>
       </Suspense>
     </>

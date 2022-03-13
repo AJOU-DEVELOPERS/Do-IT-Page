@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { LoginProps } from "@Type/index";
-import { TABLET_WIDTH } from "@Constant/.";
+import { MOBILE_WIDTH, TABLET_WIDTH } from "@Constant/.";
 const Container = styled.div`
   width: 100%;
   height: 100%;
@@ -18,7 +18,7 @@ const LoginContainer = styled(Container)`
     ". pwd button ." 2fr
     ". footer footer ." 6fr
     / 1fr 6fr 2fr 1fr;
-  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+  @media only screen and (max-width: ${MOBILE_WIDTH}px) {
     min-width: 80vw;
   }
 `;
@@ -48,6 +48,14 @@ const Wrapper = styled(Container)<LoginProps>`
   p {
     width: 2vw;
     text-align: center;
+  }
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    p {
+      font-size: small;
+    }
+    Input {
+      font-size: small;
+    }
   }
 `;
 const Section = styled.div`
