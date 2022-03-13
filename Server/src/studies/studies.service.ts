@@ -86,6 +86,37 @@ export class StudiesService {
         }
     }
 
+    async updateStudyStatus(studyIdx: number) {
+        const queryRunner = this.connection.createQueryRunner();
+
+        await queryRunner.connect();
+        await queryRunner.startTransaction();
+        try {
+            const exStudy = await Study.findOne({
+                where: {
+                    studyIdx: studyIdx
+                }
+            });
+            if (exStudy.status == "collecting") {
+                await queryRunner.manager.update(Study, studyIdx, {
+                    status: "processing"
+                });
+            } else if (exStudy.status == "processing") {
+                await queryRunner.manager.update(Study, studyIdx, {
+                    status: "done"
+                });
+            }
+            await queryRunner.commitTransaction();
+            return new BaseSuccessResponse();
+        } catch(error) {
+            console.log(error);
+            await queryRunner.rollbackTransaction();
+            return new BaseFailResponse("스터디 상태 바꾸기에 실패했습니다.")
+        } finally {
+            await queryRunner.release();
+        }
+    }
+
     async findAll() {
         try {
             const studies = await Study.find({
