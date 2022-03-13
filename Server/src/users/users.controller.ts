@@ -70,28 +70,28 @@ export class UsersController {
     return this.usersService.createUser(createUserDto);
   }
 
-  @UseGuards(LocalAuthGuard)
-  @HttpCode(200)
-  @Post('sign-in')
-  @ApiOperation({
-    summary: '유저 로그인',
-    description: '유저가 로그인하는 api입니다.',
-  })
-  @ApiBody({ type: LoginUserDto })
-  @ApiOkResponse({ description: '로그인 성공', type: LoginUserResponseDto })
-  async logIn(
-    @Req() req,
-    @Body() loginUserDto: LoginUserDto,
-    @Res({ passthrough: true }) res: Response,
-  ) {
-    const cookie = await this.authsService.getCookieWithJwtToken(
-      req.user.userIdx,
-      req.user.userName,
-      req.user.status,
-    );
-    res.cookie('access-token', cookie); //6h
-    return new LoginUserResponseDto(req.user, cookie);
-  }
+  // @UseGuards(LocalAuthGuard)
+  // @HttpCode(200)
+  // @Post('sign-in')
+  // @ApiOperation({
+  //   summary: '유저 로그인',
+  //   description: '유저가 로그인하는 api입니다.',
+  // })
+  // @ApiBody({ type: LoginUserDto })
+  // @ApiOkResponse({ description: '로그인 성공', type: LoginUserResponseDto })
+  // async logIn(
+  //   @Req() req,
+  //   @Body() loginUserDto: LoginUserDto,
+  //   @Res({ passthrough: true }) res: Response,
+  // ) {
+  //   const cookie = await this.authsService.getCookieWithJwtToken(
+  //     req.user.userIdx,
+  //     req.user.userName,
+  //     req.user.status,
+  //   );
+  //   res.cookie('access-token', cookie); //6h
+  //   return new LoginUserResponseDto(req.user, cookie);
+  // }
 
   @ApiOperation({
     summary: '유저 아이디 중복 확인',
