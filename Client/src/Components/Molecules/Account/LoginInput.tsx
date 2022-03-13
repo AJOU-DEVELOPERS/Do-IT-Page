@@ -37,7 +37,7 @@ const LoginInput = () => {
           inputRef={idRef}
         />) : 
         (<Input
-          {...LoginInputType} width="25vw"
+          {...LoginInputType} width="30vw"
           placeholder="ID를 입력하세요."
           inputRef={idRef}
         />)
@@ -54,7 +54,7 @@ const LoginInput = () => {
           inputRef={pwRef}
         />) :
         (<Input
-            {...LoginInputType} width="25vw"
+            {...LoginInputType} width="30vw"
             placeholder="패스워드를 입력하세요."
             type="password"
             inputRef={pwRef}
