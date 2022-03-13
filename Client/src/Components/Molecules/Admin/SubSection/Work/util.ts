@@ -7,8 +7,10 @@ import {
   getStudyCreateDeny,
   getStudyData,
   getStudyDeny,
+  getStudyUpdate,
 } from "@API/Study";
 import {
+  getProjectUpdate,
   getProjectAccept,
   getProjectCreateAccept,
   getProjectCreateDeny,
@@ -94,20 +96,27 @@ export const workClick = async ({
 export const checkWaiting = ({ search }: { search: string }) =>
   search === "대기중";
 
+export const checkUpdate = ({ search }: { search: string }) =>
+  search === "모집중" || search === "진행중";
+
 const getAcceptAPI = ({ type }: { type: string | undefined }) =>
   checkStudy({ type }) ? getStudyCreateAccept : getProjectCreateAccept;
 
 const getDenyAPI = ({ type }: { type: string | undefined }) =>
   checkStudy({ type }) ? getStudyCreateDeny : getProjectCreateDeny;
 
+const getUpdateAPI = ({ type }: { type: string | undefined }) =>
+  checkStudy({ type }) ? getStudyUpdate : getProjectUpdate;
+
 export const createWorkAccept = async ({
-  target,
+  e,
   type,
 }: {
-  target: any;
+  e: any;
   type: string | undefined;
 }) => {
-  const parentTarget = target.closest("#waitContainer");
+  e.stopPropagation();
+  const parentTarget = e.target.closest("#waitContainer");
   const data = parentTarget.getAttribute("data-idx");
   const api = getAcceptAPI({ type });
   const res = await API({ api, data });
@@ -115,15 +124,31 @@ export const createWorkAccept = async ({
 };
 
 export const createWorkDeny = async ({
-  target,
+  e,
   type,
 }: {
-  target: any;
+  e: any;
   type: string | undefined;
 }) => {
-  const parentTarget = target.closest("#waitContainer");
+  e.stopPropagation();
+  const parentTarget = e.target.closest("#waitContainer");
   const data = parentTarget.getAttribute("data-idx");
   const api = getDenyAPI({ type });
+  const res = await API({ api, data });
+  console.log(res);
+};
+
+export const updateWork = async ({
+  e,
+  type,
+}: {
+  e: any;
+  type: string | undefined;
+}) => {
+  e.stopPropagation();
+  const parentTarget = e.target.closest("#container");
+  const data = parentTarget.getAttribute("data-idx");
+  const api = getUpdateAPI({ type });
   const res = await API({ api, data });
   console.log(res);
 };
