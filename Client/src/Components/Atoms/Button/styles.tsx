@@ -31,6 +31,8 @@ const LoginContainer = styled(ButtonContainer)<LoginButtonProps>`
   font-size: ${({ fontSize }) => fontSize};
   border-radius: ${({ radius }) => radius};
   box-shadow: 0px 0px 0px 1px rgba(93, 93, 93, 0.1);
+  min-width: 90%;
+  height: 90%;
 `;
 
 const EnterContainer = styled(ButtonContainer)`
