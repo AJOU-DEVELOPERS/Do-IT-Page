@@ -11,6 +11,7 @@ async function bootstrap() {
       'http://localhost:4000',
       'http://localhost:3000',
       'http://211.110.23.222:3000',
+      'http://www.do-it.kro.kr',
     ],
     credentials: true,
   });
@@ -23,7 +24,7 @@ async function bootstrap() {
       transform: true,
     }),
   );
-  await app.listen(4000);
+  await app.listen(3000);
 }
 
 async function makeOrmConfig() {}

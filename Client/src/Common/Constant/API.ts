@@ -58,6 +58,8 @@ export const GET_STUDY_CREATE_ACCEPT = `${TARGET_URL}/studies/accept/create`;
 
 export const GET_STUDY_CREATE_DENY = `${TARGET_URL}/studies/reject/create`;
 
+export const GET_STUDY_UPDATE = `${TARGET_URL}/studies/update/studyStatus`;
+
 export const POST_STUDY_APPLY = `${TARGET_URL}/studies`;
 
 /**--------------------- Project ------------------------ */
@@ -75,14 +77,18 @@ export const GET_PROJECT_CREATE_ACCEPT = `${TARGET_URL}/projects/accept/create`;
 
 export const GET_PROJECT_CREATE_DENY = `${TARGET_URL}/projects/reject/create`;
 
+export const GET_PROJECT_UPDATE = `${TARGET_URL}/projects/update/projectStatus`;
+
 /*----------------------- Admin ------------------------- */
 export const GET_USERS_INFO_URL = `${TARGET_URL}/clubs`;
 
 export const GET_CHECK_ADMIN = `${TARGET_URL}/users/checkAdmin`;
 
-export const POST_ACCEPT_CLUB_USER_URL = (clubIdx: number) => `${TARGET_URL}/clubs/accept/${clubIdx}`;
+export const POST_ACCEPT_CLUB_USER_URL = (clubIdx: number) =>
+  `${TARGET_URL}/clubs/accept/${clubIdx}`;
 
-export const POST_DENY_CLUB_USER_URL = (clubIdx: number) => `${TARGET_URL}/clubs/refuse/${clubIdx}`;
+export const POST_DENY_CLUB_USER_URL = (clubIdx: number) =>
+  `${TARGET_URL}/clubs/refuse/${clubIdx}`;
 
 /**--------------------- Common ------------------------ */
 export const API_GET_OPTION = {

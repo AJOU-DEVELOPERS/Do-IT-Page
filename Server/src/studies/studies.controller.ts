@@ -100,6 +100,16 @@ export class StudiesController {
         return this.studiesService.remove(studyIdx);
     }
 
+    @Get('update/studyStatus/:studyIdx')
+    @ApiOperation({
+        summary: '스터디 상태 변경',
+        description: 'true false 반환'
+    })
+    @ApiOkResponse({ description: '스터디 상태 변경 성공' })
+    updateStudyStatus(@Param('studyIdx') studyIdx: number) {
+        return this.studiesService.updateStudyStatus(studyIdx);
+    }
+
     @Get('accept/participation/:userStudyIdx')
     @ApiOperation({
         summary: '스터디 참여 요청 승인',

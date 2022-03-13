@@ -32,7 +32,10 @@ export const getClubUsersInfoSelector = selector<UserInfoData[]>({
   key: "getClubUsersInfoSelector",
   get: ({ get }) => {
     const res = get(getUsersInfoSelector);
-    return res.filter((userInfo: UserInfoData) => userInfo.status === "N"||userInfo.status==="M");
+    return res.filter(
+      (userInfo: UserInfoData) =>
+        userInfo.status === "N" || userInfo.status === "M"
+    );
   },
 });
 
@@ -40,7 +43,7 @@ export const getClubRegisterUsersSelector = selector<UserInfoData[]>({
   key: "getClubRegisterUsersSelector",
   get: ({ get }) => {
     const res = get(getUsersInfoSelector);
-    return res.filter((userInfo: UserInfoData) => userInfo.status==="L");
+    return res.filter((userInfo: UserInfoData) => userInfo.status === "L");
   },
 });
 
@@ -50,7 +53,9 @@ export const getUserInfoSelector = selectorFamily<UserInfoData[], number>({
     (idx) =>
     async ({ get }: { get: GetRecoilValue }): Promise<UserInfoData[]> => {
       const userInfoList = get(getUsersInfoSelector);
-      return userInfoList.filter((userInfo: UserInfoData) => userInfo.userIdx === idx);
+      return userInfoList.filter(
+        (userInfo: UserInfoData) => userInfo.userIdx === idx
+      );
     },
 });
 
