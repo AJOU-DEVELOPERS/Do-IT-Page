@@ -9,3 +9,8 @@ export interface UserInfoData {
   isPay: number;
   clubUserIdx: number;
 }
+
+export interface UserInfoProps {
+  idx: number;
+  clubIdx: number;
+}

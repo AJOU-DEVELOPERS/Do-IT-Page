@@ -2,10 +2,15 @@ import { _API } from "@API/.";
 import { checkAdmin, getUsersInfo } from "@API/Admin";
 import { getBoardContents } from "@API/test";
 import { GET_PROJECT_CONTENT_URL, GET_STUDY_CONTENT_URL } from "@Constant/API";
-import { UserInfoData } from "@Type/Member";
+import { UserInfoData, UserInfoProps } from "@Type/Member";
 import { userInfo } from "os";
 
-import { GetRecoilValue, selector, selectorFamily } from "recoil";
+import { atom, GetRecoilValue, selector, selectorFamily } from "recoil";
+
+export const userModalState = atom<UserInfoProps>({
+  key: "userModalState",
+  default: { idx: 0, clubIdx: 0 },
+});
 
 export const getCheckAdminSelector = selector<boolean>({
   key: "getCheckAdminSelector",
