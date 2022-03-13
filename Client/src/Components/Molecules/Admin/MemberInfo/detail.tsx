@@ -1,23 +1,16 @@
 import { getUserInfoSelector } from "@Recoil/Admin";
-import { UserInfoData } from "@Type/API";
+import { UserInfoData, UserInfoProps } from "@Type/Member";
+
 import { getDateFromUTC } from "@Util/.";
 import { useRecoilValue } from "recoil";
 import { DetailContainer, DetailContent, DetailTitle, Wrapper } from "./style";
-import { DetailProps } from "./type";
 
-const MemberDetail = ({ idx }: { idx: number }) => {
+const MemberDetail = ({ idx, clubIdx }: UserInfoProps) => {
   const [userInfo] = useRecoilValue<UserInfoData[]>(getUserInfoSelector(idx));
-  const {
-    name,
-    id: userId,
-    studentId,
-    createdAt,
-    phoneNumber,
-    email,
-  } = userInfo;
+  const { name, id: userId, studentId, createdAt, phoneNumber, email } = userInfo;
 
   return (
-    <DetailContainer>
+    <DetailContainer id="MemberDetail" data-idx={idx} data-club-idx={clubIdx}>
       <Wrapper>
         <DetailTitle>이름</DetailTitle>
         <DetailContent>{name}</DetailContent>

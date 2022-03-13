@@ -2,8 +2,15 @@ import { _API } from "@API/.";
 import { checkAdmin, getUsersInfo } from "@API/Admin";
 import { getBoardContents } from "@API/test";
 import { GET_PROJECT_CONTENT_URL, GET_STUDY_CONTENT_URL } from "@Constant/API";
-import { UserInfoData } from "@Type/API";
-import { GetRecoilValue, selector, selectorFamily } from "recoil";
+import { UserInfoData, UserInfoProps } from "@Type/Member";
+import { userInfo } from "os";
+
+import { atom, GetRecoilValue, selector, selectorFamily } from "recoil";
+
+export const userModalState = atom<UserInfoProps>({
+  key: "userModalState",
+  default: { idx: 0, clubIdx: 0 },
+});
 
 export const getCheckAdminSelector = selector<boolean>({
   key: "getCheckAdminSelector",
@@ -18,7 +25,24 @@ export const getUsersInfoSelector = selector<UserInfoData[]>({
   key: "getUsersInfoSelector",
   get: async () => {
     const res = await getUsersInfo();
+    console.log(res);
     return res;
+  },
+});
+
+export const getClubUsersInfoSelector = selector<UserInfoData[]>({
+  key: "getClubUsersInfoSelector",
+  get: ({ get }) => {
+    const res = get(getUsersInfoSelector);
+    return res.filter((userInfo: UserInfoData) => userInfo.isPay === 1);
+  },
+});
+
+export const getClubRegisterUsersSelector = selector<UserInfoData[]>({
+  key: "getClubRegisterUsersSelector",
+  get: ({ get }) => {
+    const res = get(getUsersInfoSelector);
+    return res.filter((userInfo: UserInfoData) => userInfo.isPay === 0);
   },
 });
 
