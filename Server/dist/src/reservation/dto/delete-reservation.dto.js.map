@@ -1,1 +1,0 @@
-{"version":3,"file":"delete-reservation.dto.js","sourceRoot":"","sources":["../../../../src/reservation/dto/delete-reservation.dto.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,6CAA8C;AAC9C,qDAAwC;AAExC,MAAa,oBAAoB;CAOhC;AADG;IALC,IAAA,uBAAK,GAAE;IACP,IAAA,qBAAW,EAAC;QACT,WAAW,EAAE,WAAW;QACxB,OAAO,EAAE,GAAG;KACf,CAAC;;qDACc;AANpB,oDAOC"}
