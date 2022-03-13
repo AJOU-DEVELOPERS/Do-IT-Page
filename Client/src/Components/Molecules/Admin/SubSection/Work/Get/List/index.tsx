@@ -5,13 +5,16 @@ import {
   TableTitle,
   TableBody,
 } from "@Atoms/Table/styles";
+import { refreshAPI } from "@Util/.";
 import { Dispatch, useMemo } from "react";
+import { useRecoilRefresher_UNSTABLE } from "recoil";
 import { WorkType } from "../../type";
 import {
   checkUpdate,
   checkWaiting,
   createWorkAccept,
   createWorkDeny,
+  getWorkListType,
   updateWork,
   workClick,
 } from "../../util";
@@ -27,6 +30,8 @@ const WorkList = ({
   type: string | undefined;
   search: string;
 }) => {
+  const refresh = useRecoilRefresher_UNSTABLE(getWorkListType({ type }));
+  const handleRefresh = refreshAPI(refresh);
   const waiting = useMemo(() => checkWaiting({ search }), [search]);
   const checkStatus = useMemo(() => checkUpdate({ search }), [search]);
 
@@ -34,9 +39,13 @@ const WorkList = ({
     const res = await workClick({ currentTarget, type });
     setWork(res[0]);
   };
-  const handleCreateAccept = async (e: any) => createWorkAccept({ e, type });
-  const handleCreateDeny = async (e: any) => createWorkDeny({ e, type });
-  const handleUpdateStudy = async (e: any) => updateWork({ e, type });
+  const handleCreateAccept = async (e: any) =>
+    handleRefresh(() => createWorkAccept({ e, type }));
+  const handleCreateDeny = async (e: any) =>
+    handleRefresh(() => createWorkDeny({ e, type }));
+  const handleUpdateStudy = async (e: any) =>
+    handleRefresh(() => updateWork({ e, type }));
+
   return (
     <Table>
       <TableHead>
@@ -95,8 +104,4 @@ export const PROJECT_TITLE = [
     key: "leaderName",
     title: "스터디 장",
   },
-  // {
-  //   key: "userName",
-  //   title: "회원 이름",
-  // },
 ];

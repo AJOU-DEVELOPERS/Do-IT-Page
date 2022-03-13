@@ -119,8 +119,8 @@ export const createWorkAccept = async ({
   const parentTarget = e.target.closest("#waitContainer");
   const data = parentTarget.getAttribute("data-idx");
   const api = getAcceptAPI({ type });
-  const res = await API({ api, data });
-  console.log(res);
+  const { message } = await API({ api, data });
+  return message;
 };
 
 export const createWorkDeny = async ({
@@ -134,8 +134,8 @@ export const createWorkDeny = async ({
   const parentTarget = e.target.closest("#waitContainer");
   const data = parentTarget.getAttribute("data-idx");
   const api = getDenyAPI({ type });
-  const res = await API({ api, data });
-  console.log(res);
+  const { message } = await API({ api, data });
+  return message;
 };
 
 export const updateWork = async ({
@@ -149,6 +149,6 @@ export const updateWork = async ({
   const parentTarget = e.target.closest("#container");
   const data = parentTarget.getAttribute("data-idx");
   const api = getUpdateAPI({ type });
-  const res = await API({ api, data });
-  console.log(res);
+  const { message } = await API({ api, data });
+  return message;
 };
