@@ -1,6 +1,8 @@
 import { DAY_NAMES } from "@Constant/.";
+import useCloseModal from "@src/Hook/useCloseModal";
 import { reservationDatasProps } from "@Type/Reservation";
-import { Suspense, useState } from "react";
+import { Suspense, useRef, useState } from "react";
+import { isTemplateSpan } from "typescript";
 
 import { CalendarBodyProps } from "../Header";
 import ReserveModal from "../Modal";
@@ -10,7 +12,10 @@ import { checkReserve, getMonthDays, getReserveDatas } from "./util";
 const CalendarBody = ({ month, year, data }: CalendarBodyProps) => {
   const [toggle, setToggle] = useState<boolean>(false);
   const [reserveDate, setReserveDate] = useState<reservationDatasProps[]>([]);
-
+  const [order, setOrder] = useState<number>(0);
+  if (order > reserveDate.length - 1) {
+    setOrder(0);
+  }
   const handleDayClick = ({ target }: { target: any }) => {
     const day = target.getAttribute("data-day");
     if (!day) return;
@@ -58,9 +63,15 @@ const CalendarBody = ({ month, year, data }: CalendarBodyProps) => {
         </div>
         {toggle && (
           <div>
-            {reserveDate.map((item, idx) => (
+            <ReserveModal
+              items={reserveDate}
+              setToggle={setToggle}
+              order={order}
+              setOrder={setOrder}
+            />
+            {/* {reserveDate.map((item, idx) => (
               <ReserveModal key={idx} item={item} />
-            ))}
+            ))} */}
           </div>
         )}
       </>
