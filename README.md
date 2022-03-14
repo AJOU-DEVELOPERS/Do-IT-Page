@@ -4,7 +4,7 @@
 
 <div align=center>
 
-[![CONTRIBUTORS](https://img.shields.io/badge/contributors-8-green.svg?style=flat-square)](https://github.com/AJOU-DEVELOPERS/Do-IT-Page)
+[![CONTRIBUTORS](https://img.shields.io/badge/contributors-9-green.svg?style=flat-square)](https://github.com/AJOU-DEVELOPERS/Do-IT-Page)
 
 <a href="https://github.com/AJOU-DEVELOPERS/Do-IT-Page/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=AJOU-DEVELOPERS/Do-IT-Page" />
@@ -67,10 +67,9 @@
 
 [Click](https://github.com/AJOU-DEVELOPERS/Do-IT-Page/wiki/%EA%B8%B0%EC%88%A0-%EC%8A%A4%ED%83%9D)
 
-## 💓 Design 초안 
+## 💓 Design 초안
 
 [Click](https://www.figma.com/file/r77c3Ps8mxVKVhjriACroN/Doit_web?node-id=0%3A1)
-
 
 ## 💓 Design 최종안
 
