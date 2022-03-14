@@ -34,9 +34,13 @@ const CardBoardPreview = ({
         <Info>{`리더 : ${leaderName}`}</Info>
         <Info>{`인원 : ${numParticipant} / ${totalHeadcount}`}</Info>
       </CollectingInfoContainer>
-      <MobileApplyBtnContainer>
-        <ApplyButton {...ApplyButtonType()} />
-      </MobileApplyBtnContainer>
+      {STUDY_STATUS[status] === "마감" ? (
+        <MobileApplyBtnContainer />
+      ) : (
+        <MobileApplyBtnContainer>
+          <ApplyButton {...ApplyButtonType()} />
+        </MobileApplyBtnContainer>
+      )}
     </Container>
   );
 };
