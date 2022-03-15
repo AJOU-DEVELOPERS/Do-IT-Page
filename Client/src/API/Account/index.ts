@@ -24,7 +24,6 @@ export const getCheckLogin = async () => {
 };
 export const postLoginInfo = async (body: LoginInfoType) => {
   const { data } = await axios.post(POST_LOGIN_INFO, body);
-  console.log(data);
   return data;
 };
 
