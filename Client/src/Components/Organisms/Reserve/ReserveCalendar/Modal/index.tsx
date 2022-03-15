@@ -1,5 +1,5 @@
 import useCloseModal from "@src/Hook/useCloseModal";
-import { useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import {
   Content,
   ModalContainer,
@@ -21,9 +21,6 @@ const ReserveModal = ({
   setToggle: any;
   setOrder: any;
 }) => {
-  if (order > items.length - 1) {
-    setOrder(0);
-  }
   const item = items[order];
 
   const handlePrevClick = () => {
@@ -39,14 +36,18 @@ const ReserveModal = ({
   const fn = () => setToggle(false);
   useCloseModal({ ref: Ref, fn });
 
+  useEffect(() => {
+    if (order > items.length - 1) {
+      setOrder(0);
+    }
+  }, [order, items]);
+
   return (
-    // <ReserveModal item={item} setOrder={setOrder} />
     <ModalContainer ref={Ref}>
       <ModalSide>
         <button className="ModalLeftButton" onClick={handlePrevClick}>
           {"<"}
         </button>
-        {/* <button className="ModalLeftButton">{"<"}</button> */}
       </ModalSide>
       <ModalContent>
         <ModalContentHeader>
@@ -71,7 +72,6 @@ const ReserveModal = ({
         </ModalContentFooter>
       </ModalContent>
       <ModalSide>
-        {/* <button className="ModalLeftButton"> */}
         <button className="ModalLeftButton" onClick={handleNextClick}>
           {">"}
         </button>
