@@ -1,9 +1,6 @@
 import { DAY_NAMES } from "@Constant/.";
-import useCloseModal from "@src/Hook/useCloseModal";
 import { reservationDatasProps } from "@Type/Reservation";
-import { Suspense, useRef, useState } from "react";
-import { isTemplateSpan } from "typescript";
-
+import { Suspense, useEffect, useState } from "react";
 import { CalendarBodyProps } from "../Header";
 import ReserveModal from "../Modal";
 import { WeekTitleContainer, CalendarContainer, WeekContainer } from "./styles";
@@ -13,9 +10,7 @@ const CalendarBody = ({ month, year, data }: CalendarBodyProps) => {
   const [toggle, setToggle] = useState<boolean>(false);
   const [reserveDate, setReserveDate] = useState<reservationDatasProps[]>([]);
   const [order, setOrder] = useState<number>(0);
-  if (order > reserveDate.length - 1) {
-    setOrder(0);
-  }
+
   const handleDayClick = ({ target }: { target: any }) => {
     const day = target.getAttribute("data-day");
     if (!day) return;
@@ -30,6 +25,9 @@ const CalendarBody = ({ month, year, data }: CalendarBodyProps) => {
 
   const reserveDatas = getReserveDatas(data);
 
+  useEffect(() => {
+    if (order > reserveDatas.length - 1) setOrder(0);
+  }, [reserveDatas]);
   return (
     <Suspense fallback={null}>
       <>
@@ -69,9 +67,6 @@ const CalendarBody = ({ month, year, data }: CalendarBodyProps) => {
               order={order}
               setOrder={setOrder}
             />
-            {/* {reserveDate.map((item, idx) => (
-              <ReserveModal key={idx} item={item} />
-            ))} */}
           </div>
         )}
       </>
