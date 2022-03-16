@@ -54,7 +54,7 @@ import { ClubModule } from './club/club.module';
           },
         },
         defaults: {
-          from: '"do-it" <kyi9470812@gmail.com>',
+          from: process.env.EMAIL_AUTH_EMAIL
         },
         template: {
           dir: process.cwd() + '/template/',
