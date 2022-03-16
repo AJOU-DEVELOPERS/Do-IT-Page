@@ -23,7 +23,7 @@ import { ClubModule } from './club/club.module';
       isGlobal: true,
       envFilePath: ['.env.dev'],
       validationSchema: Joi.object({
-        NODE_ENV: Joi.string().valid('dev').required(),
+        NODE_ENV: Joi.string().valid('dev').valid('prod').required(),
         DB_HOST: Joi.string().required(),
         DB_PORT: Joi.string().required(),
         DB_USERNAME: Joi.string().required(),
