@@ -1,4 +1,4 @@
-import { Container, Text, Date } from "./style";
+import { Container, Text, Date, Title } from "./style";
 import { BoardContentType } from "@Type/.";
 
 interface BasicBoardPreviewProps extends BoardContentType {
@@ -14,11 +14,11 @@ const BasicBoardPreview = ({
 }: BasicBoardPreviewProps) => {
   return (
     <Container>
-      <Text>
+      <Title>
         {type !== "basic" && <span>{idx}</span>}
         {type === "basic" && "•"}
         {title}
-      </Text>
+      </Title>
       <Date>{date}</Date>
       {type !== "basic" && (
         <>
