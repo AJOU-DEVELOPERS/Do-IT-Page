@@ -1,3 +1,4 @@
+import { MOBILE_WIDTH } from "@Constant/.";
 import styled from "styled-components";
 
 export const ModalContainer = styled.div`
@@ -12,6 +13,11 @@ export const ModalContainer = styled.div`
   border: 1px solid #ffffff;
   border-radius: 37px;
   display: flex;
+  @media only screen and (max-width: ${MOBILE_WIDTH}px) {
+    width: 300px;
+    height: 250px;
+    left: 10%;
+  }
 `;
 
 export const ModalContent = styled.div`
