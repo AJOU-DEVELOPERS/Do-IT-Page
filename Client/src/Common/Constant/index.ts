@@ -220,6 +220,6 @@ export const CONTENT = [
   },
 ];
 
-export const FOOTER_MESSAGE = `Do It / 임원진 김영진 010-8931-4993 / 과방 구학 234호 / Do.It.Ajou@ajou.ac.kr`;
+export const FOOTER_MESSAGE = `Do It /  과방 구학 234호 / Do.It.Ajou@ajou.ac.kr`;
 
 export const DAY_NAMES = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
