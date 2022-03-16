@@ -1,7 +1,11 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards } from '@nestjs/common';
 import { ApiBody, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { number } from 'joi';
+import { JwtAuthGuard } from 'src/auths/auth.jwt.guard';
+import { Roles } from 'src/auths/roles.decorator';
+import { RolesGuard } from 'src/auths/roles.guard';
 import { BaseSuccessResponse } from 'src/commons/dto/response-common.dto';
+import { UserDto } from 'src/users/dto/get-user.dto';
 import { CreateStudyDto } from './dto/create-study.dto';
 import { GetStudiesResponseDto, GetStudyResponseDto } from './dto/get-study.dto';
 import { UpdateStudyDto } from './dto/update-study.dto';
@@ -12,6 +16,7 @@ import { StudiesService } from './studies.service';
 export class StudiesController {
     constructor(private readonly studiesService: StudiesService) {}
 
+    @Roles('N')
     @Post()
     @ApiOperation({
         summary: '스터디 등록 API',
@@ -70,6 +75,10 @@ export class StudiesController {
         return this.studiesService.remove(studyIdx);
     }
 
+    @Roles('N')
+    @UseGuards(RolesGuard)
+    @UseGuards(JwtAuthGuard)
+    @ApiBody({ type: UserDto })
     @Post(':studyIdx')
     @ApiOperation({
         summary: '스터디 신청 API',
