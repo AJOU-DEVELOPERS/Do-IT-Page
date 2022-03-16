@@ -89,11 +89,11 @@ export const BOARD_INFOS: BoardType[] = [
     apiSrc: GET_PROJECT_CONTENT_URL,
     pageSrc: PROJECT_BOARD_URL,
   },
-  {
-    boardType: "과방 대여",
-    apiSrc: GET_ROOM_CONTENT_URL,
-    pageSrc: ROOM_BOARD_URL,
-  },
+  // {
+  //   boardType: "과방 대여",
+  //   apiSrc: GET_ROOM_CONTENT_URL,
+  //   pageSrc: ROOM_BOARD_URL,
+  // },
 ];
 
 export const _BOARD_INFOS: BoardInfoType = {
