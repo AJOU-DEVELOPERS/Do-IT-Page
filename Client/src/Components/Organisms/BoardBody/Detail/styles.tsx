@@ -1,3 +1,4 @@
+import { MOBILE_WIDTH, TABLET_WIDTH } from "@Constant/.";
 import styled from "styled-components";
 
 const DetailContainer = styled.div`
@@ -8,6 +9,10 @@ const DetailContainer = styled.div`
   margin: auto;
   padding: 30px 50px;
   height: 65vh;
+  @media only screen and (max-width: ${MOBILE_WIDTH}px) {
+    width: 80%;
+    padding: 20px 20px;
+  }
 `;
 
 const ButtonContainer = styled.div`
