@@ -15,7 +15,6 @@ interface BoardProps {
 const BoardPageDetail = ({ title, date, visitor, text }: BoardProps) => {
   const splitText = text.split(".");
   splitText.length = splitText.length - 1;
-
   return (
     <>
       <DetailTitle>제목 : {title}</DetailTitle>
@@ -26,7 +25,10 @@ const BoardPageDetail = ({ title, date, visitor, text }: BoardProps) => {
       <DetailText>
         {splitText.map((text, idx) => (
           <React.Fragment key={idx}>
-            <div>{text}.</div>
+            <div>
+              {/* {text + `${(<img src="x" onError={alert(1)} alt="img" />)}`}. */}
+              {text}.
+            </div>
             <br />
           </React.Fragment>
         ))}
