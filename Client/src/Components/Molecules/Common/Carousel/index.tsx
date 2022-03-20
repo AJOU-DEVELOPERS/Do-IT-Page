@@ -1,4 +1,4 @@
-import React, { Children, ReactChild, ReactChildren, ReactNode, useRef } from "react";
+import React, { Children, ReactNode, useRef } from "react";
 import { Slider, Container } from "./styles";
 
 // carousel 다른 프로젝트에서도 재사용 가능 판단하여 interface를 추출하지 않음.
