@@ -1,4 +1,4 @@
-import { TABLET_WIDTH } from "@Constant/.";
+import { MOBILE_WIDTH, TABLET_WIDTH } from "@Constant/.";
 import { ImgProps } from "@src/Common/Type";
 import styled from "styled-components";
 
@@ -34,7 +34,9 @@ const MainTitle = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-
+  @media only screen and (max-width: ${MOBILE_WIDTH}px) {
+    left: 10%;
+  }
   span {
     width: 80vw;
     height: 5vh;
@@ -43,6 +45,9 @@ const MainTitle = styled.div`
     font-size: 2rem;
     @media only screen and (max-width: ${TABLET_WIDTH}px) {
       font-size: 1.6rem;
+    }
+    @media only screen and (max-width: ${MOBILE_WIDTH}px) {
+      font-size: 1rem;
     }
   }
 `;
