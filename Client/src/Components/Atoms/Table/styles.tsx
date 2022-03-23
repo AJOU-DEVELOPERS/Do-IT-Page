@@ -26,6 +26,7 @@ export const TableTitle = styled.th`
   vertical-align: top;
   white-space: nowrap;
   color: #757575;
+  overflow: auto;
 `;
 
 export const TableBody = styled.tbody`
@@ -55,4 +56,5 @@ export const TableData = styled.td`
   width: 100px;
   padding: 10px;
   border-right: 1px solid #eeeeee;
+  overflow: auto;
 `;
