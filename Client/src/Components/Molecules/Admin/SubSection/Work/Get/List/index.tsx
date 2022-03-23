@@ -39,11 +39,11 @@ const WorkList = ({
     const res = await workClick({ currentTarget, type });
     setWork(res[0]);
   };
-  const handleCreateAccept = async (e: any) =>
+  const handleCreateAccept = (e: any) =>
     handleRefresh(() => createWorkAccept({ e, type }));
-  const handleCreateDeny = async (e: any) =>
+  const handleCreateDeny = (e: any) =>
     handleRefresh(() => createWorkDeny({ e, type }));
-  const handleUpdateStudy = async (e: any) =>
+  const handleUpdateStudy = (e: any) =>
     handleRefresh(() => updateWork({ e, type }));
 
   return (
