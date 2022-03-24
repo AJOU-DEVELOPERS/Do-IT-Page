@@ -8,6 +8,7 @@ export interface UserInfoData {
   createdAt: string;
   isPay: number;
   clubUserIdx: number;
+  status?: string;
 }
 
 export interface UserInfoProps {

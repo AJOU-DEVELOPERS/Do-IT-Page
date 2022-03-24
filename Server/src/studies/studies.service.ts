@@ -5,6 +5,7 @@ import { User, UserStudy } from 'src/users/entities/user.entity';
 import { Connection, getRepository, Repository } from 'typeorm';
 import { CreateStudyDto } from './dto/create-study.dto';
 import { GetStudiesResponseDto, GetStudyResponseDto } from './dto/get-study.dto';
+import { GetUserStudyResponseDto } from './../users/dto/get-userStudy.dto';
 import { UpdateStudyDto } from './dto/update-study.dto';
 import { Study } from './entity/study.entity';
 
@@ -86,6 +87,37 @@ export class StudiesService {
         }
     }
 
+    async updateStudyStatus(studyIdx: number) {
+        const queryRunner = this.connection.createQueryRunner();
+
+        await queryRunner.connect();
+        await queryRunner.startTransaction();
+        try {
+            const exStudy = await Study.findOne({
+                where: {
+                    studyIdx: studyIdx
+                }
+            });
+            if (exStudy.status == "collecting") {
+                await queryRunner.manager.update(Study, studyIdx, {
+                    status: "processing"
+                });
+            } else if (exStudy.status == "processing") {
+                await queryRunner.manager.update(Study, studyIdx, {
+                    status: "done"
+                });
+            }
+            await queryRunner.commitTransaction();
+            return new BaseSuccessResponse();
+        } catch(error) {
+            console.log(error);
+            await queryRunner.rollbackTransaction();
+            return new BaseFailResponse("스터디 상태 바꾸기에 실패했습니다.")
+        } finally {
+            await queryRunner.release();
+        }
+    }
+
     async findAll() {
         try {
             const studies = await Study.find({
@@ -120,6 +152,22 @@ export class StudiesService {
         } catch(error) {
             console.log(error);
             return new BaseFailResponse('스터디 불러오기를 실패했습니다.');
+        }
+    }
+
+    async findOneUserStudy(userIdx: number, studyIdx: number) {
+        try {
+            const userStudy: UserStudy = await UserStudy.findOne( 
+                { 
+                    where: {
+                        userIdx: userIdx,
+                        studyIdx: studyIdx
+                    },
+            });
+            return userStudy;
+        } catch(error) {
+            console.log(error);
+            return new BaseFailResponse('유저 스터디 정보 불러오기를 실패했습니다.');
         }
     }
 

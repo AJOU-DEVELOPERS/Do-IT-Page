@@ -1,4 +1,4 @@
-import { DefaultBoxShadow } from "@Style/.";
+import { TABLET_WIDTH } from "@Constant/.";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -18,6 +18,11 @@ export const ContentContainer = styled.div`
   border: 1px solid #b3b0b0;
   background-color: #ffffff;
   border-radius: 5px;
+
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    width: 80vw;
+    left: 10vw;
+  }
 `;
 
 export const Button = styled.button`

@@ -1,3 +1,4 @@
+import { TABLET_WIDTH, MOBILE_WIDTH } from "@Constant/.";
 import { HoverPointer } from "@Style/.";
 import styled from "styled-components";
 
@@ -14,4 +15,11 @@ export const BoardContainer = styled.div`
   height: 25%;
   margin: 2vh auto;
   ${HoverPointer};
+
+  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    width: 40%;
+  }
+  @media only screen and (max-width: ${MOBILE_WIDTH}px) {
+    width: 60%;
+  }
 `;

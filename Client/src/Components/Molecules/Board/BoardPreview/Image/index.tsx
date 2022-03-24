@@ -17,7 +17,7 @@ const ImageBoardPreview = ({
   return (
     <Container type={type}>
       <ContentImg
-        src="http://localhost:3000/70205497.jfif"
+        src="/제니.jpeg"
         alt={`${title} logo image`}
         width="80%"
         radius="5px"

@@ -33,3 +33,9 @@ export const checkTablet = () => window.innerWidth < TABLET_WIDTH;
 export const checkMobile = () => window.innerWidth < MOBILE_WIDTH;
 
 export const getDateFromUTC = (date: string): string => date.substring(0, 10);
+
+export const refreshAPI = (refresh: any) => async (fn: any) => {
+  const res = await fn();
+  if (!res) return;
+  refresh();
+};

@@ -105,6 +105,7 @@ export class UsersController {
   }
 
   // @UseGuards(JwtAuthGuard)
+
   // @ApiOperation({
   //   summary: '동아리 신청',
   //   description: '동아리 신청 api.',

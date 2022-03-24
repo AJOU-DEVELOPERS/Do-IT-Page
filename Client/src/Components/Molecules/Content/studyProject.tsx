@@ -72,7 +72,7 @@ const Content = ({ type }: Props) => {
             key={i}
             title={STUDY_STATUS[element as keyof typeof STUDY_STATUS]}
           >
-            {(boardContents as any)[element].map(
+            {(boardContents as any)[element]?.map(
               (content: ContentType, index: number) => (
                 <Wrapper
                   key={index}

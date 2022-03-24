@@ -64,7 +64,7 @@ export class ClubService {
     const semester = new Semester();
     const semesterIdx = (await semester.findNowSemester()).semesterIdx;
     const status = 'N'; //삭제 여부
-    const duplicateCheck = ClubUser.findOne({
+    const duplicateCheck = await ClubUser.findOne({
       where: { userIdx, semesterIdx, status },
     });
     if (duplicateCheck) return new BaseSuccessResponse('이미 신청하였습니다.');

@@ -25,7 +25,11 @@ export const Container = styled.div`
     font-size: 50%;
   }
   @media only screen and (max-width: ${TABLET_WIDTH}px) {
+    margin: 3px;
     div {
+      font-size: small;
+    }
+    input {
       font-size: small;
     }
     input::placeholder {
