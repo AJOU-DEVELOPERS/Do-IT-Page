@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query, Req, UseGuards } from '@nestjs/common';
 import { ApiBody, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { number } from 'joi';
 import { JwtAuthGuard } from 'src/auths/auth.jwt.guard';
@@ -15,7 +15,6 @@ import { StudiesService } from './studies.service';
 @ApiTags('Study API')
 export class StudiesController {
     constructor(private readonly studiesService: StudiesService) {}
-
     @Roles('N')
     @Post()
     @ApiOperation({
@@ -78,17 +77,23 @@ export class StudiesController {
     @Roles('N')
     @UseGuards(RolesGuard)
     @UseGuards(JwtAuthGuard)
-    @ApiBody({ type: UserDto })
     @Post(':studyIdx')
     @ApiOperation({
         summary: '스터디 신청 API',
         description: 'true false 반환'
     })
     @ApiOkResponse({ description: '스터디 신청 성공' })
-    apply(@Body('userIdx') userIdx: number, @Param('studyIdx') studyIdx: number) {
-        return this.studiesService.apply(userIdx, studyIdx);
+    async apply(@Req() req, @Param('studyIdx') studyIdx: number) {
+        const isApplied = await this.studiesService.findOneUserStudy(req.user.userIdx, studyIdx);
+        if (!isApplied) {
+            return this.studiesService.apply(req.user.userIdx, studyIdx);
+        }
+        return new BaseSuccessResponse("이미 신청중인 스터디입니다.");
     }
 
+    @Roles('M')
+    @UseGuards(RolesGuard)
+    @UseGuards(JwtAuthGuard)
     @Get('accept/create/:studyIdx')
     @ApiOperation({
         summary: '스터디 생성 요청 승인',
@@ -99,6 +104,9 @@ export class StudiesController {
         return this.studiesService.acceptCreate(studyIdx);
     }
 
+    @Roles('M')
+    @UseGuards(RolesGuard)
+    @UseGuards(JwtAuthGuard)
     @Get('reject/create/:studyIdx')
     @ApiOperation({
         summary: '스터디 생성 요청 거부',
