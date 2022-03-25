@@ -53,6 +53,9 @@ export class StudiesController {
         return this.studiesService.findOne(studyIdx);
     }
 
+    @Roles('M')
+    @UseGuards(RolesGuard)
+    @UseGuards(JwtAuthGuard)
     @Patch(':studyIdx')
     @ApiOperation({
         summary: '스터디 정보 수정 API',
@@ -64,6 +67,9 @@ export class StudiesController {
         return this.studiesService.updateStudy(studyIdx, updateStudyDto);
     }
 
+    @Roles('M')
+    @UseGuards(RolesGuard)
+    @UseGuards(JwtAuthGuard)
     @Delete(':studyIdx')
     @ApiOperation({
         summary: '스터디 삭제 API',
@@ -86,7 +92,7 @@ export class StudiesController {
     async apply(@Req() req, @Param('studyIdx') studyIdx: number) {
         const isApplied = await this.studiesService.findOneUserStudy(req.user.userIdx, studyIdx);
         if (!isApplied) {
-            return this.studiesService.apply(req.user.userIdx, studyIdx);
+            return this.studiesService.apply(req.user.userIdx, studyIdx);   
         }
         return new BaseSuccessResponse("이미 신청중인 스터디입니다.");
     }
@@ -117,6 +123,9 @@ export class StudiesController {
         return this.studiesService.remove(studyIdx);
     }
 
+    @Roles('M')
+    @UseGuards(RolesGuard)
+    @UseGuards(JwtAuthGuard)
     @Get('update/studyStatus/:studyIdx')
     @ApiOperation({
         summary: '스터디 상태 변경',
@@ -127,6 +136,9 @@ export class StudiesController {
         return this.studiesService.updateStudyStatus(studyIdx);
     }
 
+    @Roles('M')
+    @UseGuards(RolesGuard)
+    @UseGuards(JwtAuthGuard)
     @Get('accept/participation/:userStudyIdx')
     @ApiOperation({
         summary: '스터디 참여 요청 승인',
@@ -137,6 +149,9 @@ export class StudiesController {
         return this.studiesService.acceptParticipation(userStudyIdx);
     }
 
+    @Roles('M')
+    @UseGuards(RolesGuard)
+    @UseGuards(JwtAuthGuard)
     @Get('reject/participation/:userStudyIdx')
     @ApiOperation({
         summary: '스터디 참여 요청 거부',
