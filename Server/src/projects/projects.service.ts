@@ -198,6 +198,22 @@ export class ProjectsService {
         }
     }
 
+    async findOneUserProject(userIdx: number, projectIdx: number) {
+        try {
+            const userProject: UserProject = await UserProject.findOne( 
+                { 
+                    where: {
+                        userIdx: userIdx,
+                        projectIdx: projectIdx
+                    },
+            });
+            return userProject;
+        } catch(error) {
+            console.log(error);
+            return new BaseFailResponse('유저 프로젝트 정보 불러오기를 실패했습니다.');
+        }
+    }
+
     async remove(projectIdx: number) {
         const queryRunner = this.connection.createQueryRunner();
         
