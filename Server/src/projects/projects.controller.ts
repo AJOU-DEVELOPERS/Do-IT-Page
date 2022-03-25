@@ -30,7 +30,7 @@ export class ProjectsController {
     @ApiOkResponse({ 
         type: GetProjectsResponseDto,
         description: '전체 프로젝트 불러오기 성공'
-     })
+    })
     findAll() {
         return this.projectsService.findAll();
     }

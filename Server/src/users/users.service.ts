@@ -42,8 +42,17 @@ export class UsersService {
       const idInfo = await queryRunner.manager.findOne(User, {
         id: user.id,
       });
-      if (emailInfo || idInfo)
-        return new BaseSuccessResponse('이미 존재하는 계정입니다.');
+      const studentIdInfo = await queryRunner.manager.findOne(User, {
+        studentId: user.studentId,
+      });
+      
+      if (emailInfo)
+        return new BaseSuccessResponse('이미 존재하는 이메일입니다.');
+      if (idInfo)
+        return new BaseSuccessResponse('이미 존재하는 아이디입니다.');
+      if (studentIdInfo)
+        return new BaseSuccessResponse('이미 존재하는 학번입니다.');
+
       await queryRunner.manager.save(user);
       await queryRunner.commitTransaction();
       return new BaseSuccessResponse();

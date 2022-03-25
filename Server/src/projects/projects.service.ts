@@ -187,6 +187,7 @@ export class ProjectsService {
                 },
                 relations: [
                     "userProjects",
+                    "userProjects.user",
                     "projectTechStacks"
                 ]
             });

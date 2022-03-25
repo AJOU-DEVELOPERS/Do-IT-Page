@@ -1,7 +1,11 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query, Req, UseGuards } from '@nestjs/common';
 import { ApiBody, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { number } from 'joi';
+import { JwtAuthGuard } from 'src/auths/auth.jwt.guard';
+import { Roles } from 'src/auths/roles.decorator';
+import { RolesGuard } from 'src/auths/roles.guard';
 import { BaseSuccessResponse } from 'src/commons/dto/response-common.dto';
+import { UserDto } from 'src/users/dto/get-user.dto';
 import { CreateStudyDto } from './dto/create-study.dto';
 import { GetStudiesResponseDto, GetStudyResponseDto } from './dto/get-study.dto';
 import { UpdateStudyDto } from './dto/update-study.dto';
@@ -11,7 +15,7 @@ import { StudiesService } from './studies.service';
 @ApiTags('Study API')
 export class StudiesController {
     constructor(private readonly studiesService: StudiesService) {}
-
+    @Roles('N')
     @Post()
     @ApiOperation({
         summary: '스터디 등록 API',
@@ -49,6 +53,9 @@ export class StudiesController {
         return this.studiesService.findOne(studyIdx);
     }
 
+    @Roles('M')
+    @UseGuards(RolesGuard)
+    @UseGuards(JwtAuthGuard)
     @Patch(':studyIdx')
     @ApiOperation({
         summary: '스터디 정보 수정 API',
@@ -60,6 +67,9 @@ export class StudiesController {
         return this.studiesService.updateStudy(studyIdx, updateStudyDto);
     }
 
+    @Roles('M')
+    @UseGuards(RolesGuard)
+    @UseGuards(JwtAuthGuard)
     @Delete(':studyIdx')
     @ApiOperation({
         summary: '스터디 삭제 API',
@@ -70,16 +80,26 @@ export class StudiesController {
         return this.studiesService.remove(studyIdx);
     }
 
+    @Roles('N')
+    @UseGuards(RolesGuard)
+    @UseGuards(JwtAuthGuard)
     @Post(':studyIdx')
     @ApiOperation({
         summary: '스터디 신청 API',
         description: 'true false 반환'
     })
     @ApiOkResponse({ description: '스터디 신청 성공' })
-    apply(@Body('userIdx') userIdx: number, @Param('studyIdx') studyIdx: number) {
-        return this.studiesService.apply(userIdx, studyIdx);
+    async apply(@Req() req, @Param('studyIdx') studyIdx: number) {
+        const isApplied = await this.studiesService.findOneUserStudy(req.user.userIdx, studyIdx);
+        if (!isApplied) {
+            return this.studiesService.apply(req.user.userIdx, studyIdx);   
+        }
+        return new BaseSuccessResponse("이미 신청중인 스터디입니다.");
     }
 
+    @Roles('M')
+    @UseGuards(RolesGuard)
+    @UseGuards(JwtAuthGuard)
     @Get('accept/create/:studyIdx')
     @ApiOperation({
         summary: '스터디 생성 요청 승인',
@@ -90,6 +110,9 @@ export class StudiesController {
         return this.studiesService.acceptCreate(studyIdx);
     }
 
+    @Roles('M')
+    @UseGuards(RolesGuard)
+    @UseGuards(JwtAuthGuard)
     @Get('reject/create/:studyIdx')
     @ApiOperation({
         summary: '스터디 생성 요청 거부',
@@ -100,6 +123,9 @@ export class StudiesController {
         return this.studiesService.remove(studyIdx);
     }
 
+    @Roles('M')
+    @UseGuards(RolesGuard)
+    @UseGuards(JwtAuthGuard)
     @Get('update/studyStatus/:studyIdx')
     @ApiOperation({
         summary: '스터디 상태 변경',
@@ -110,6 +136,9 @@ export class StudiesController {
         return this.studiesService.updateStudyStatus(studyIdx);
     }
 
+    @Roles('M')
+    @UseGuards(RolesGuard)
+    @UseGuards(JwtAuthGuard)
     @Get('accept/participation/:userStudyIdx')
     @ApiOperation({
         summary: '스터디 참여 요청 승인',
@@ -120,6 +149,9 @@ export class StudiesController {
         return this.studiesService.acceptParticipation(userStudyIdx);
     }
 
+    @Roles('M')
+    @UseGuards(RolesGuard)
+    @UseGuards(JwtAuthGuard)
     @Get('reject/participation/:userStudyIdx')
     @ApiOperation({
         summary: '스터디 참여 요청 거부',
