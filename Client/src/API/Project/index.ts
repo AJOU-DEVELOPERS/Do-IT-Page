@@ -7,6 +7,7 @@ import {
   GET_PROJECT_APPLY_DENY,
   POST_PROJECT_APPLY,
   GET_PROJECT_UPDATE,
+  GET_HEADER_TOKEN,
 } from "@Constant/API";
 import axios from "axios";
 
@@ -24,9 +25,13 @@ export const postProjectApply = async ({
   projectIdx: number;
   userIdx: number;
 }) => {
-  const { data } = await axios.post(POST_PROJECT_APPLY + `/${projectIdx}`, {
-    userIdx,
-  });
+  const { data } = await axios.post(
+    POST_PROJECT_APPLY + `/${projectIdx}`,
+    {
+      userIdx,
+    },
+    GET_HEADER_TOKEN()
+  );
   return data;
 };
 

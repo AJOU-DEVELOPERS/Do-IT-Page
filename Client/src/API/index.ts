@@ -17,15 +17,16 @@ const URL = [
   "http://211.110.23.222:4000",
 ];
 export const TARGET_URL =
-  process.env.NODE_ENV === "development" ? URL[2] : URL[0];
+  process.env.NODE_ENV === "development" ? URL[1] : URL[0];
 
 export const API = async ({ api, data }: Props) => {
   try {
     const { isSuccess, code, res, error } = await api(data);
     if (isSuccess) return res;
-    throw new Error(error);
+    throw new Error(error, res);
   } catch (err) {
     console.log(err, "서버 및 디비 에러");
+    return { message: "동아리 회원이 아닙니다." };
   }
 };
 
@@ -36,5 +37,6 @@ export const _API = async ({ api, apiSrc, data }: _Props) => {
     throw new Error(error);
   } catch (err) {
     console.log(err, "서버 및 디비 에러");
+    return { message: "동아리 회원이 아닙니다." };
   }
 };

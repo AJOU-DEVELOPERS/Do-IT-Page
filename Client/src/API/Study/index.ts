@@ -1,4 +1,5 @@
 import {
+  GET_HEADER_TOKEN,
   GET_STUDY_APPLY_ACCEPT,
   GET_STUDY_APPLY_DENY,
   GET_STUDY_CREATE_ACCEPT,
@@ -24,9 +25,13 @@ export const postStudyApply = async ({
   studyIdx: number | undefined;
   userIdx: number;
 }) => {
-  const { data } = await axios.post(POST_STUDY_APPLY + `/${studyIdx}`, {
-    userIdx,
-  });
+  const { data } = await axios.post(
+    POST_STUDY_APPLY + `/${studyIdx}`,
+    {
+      userIdx,
+    },
+    GET_HEADER_TOKEN()
+  );
   return data;
 };
 
