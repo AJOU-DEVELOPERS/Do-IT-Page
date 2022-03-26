@@ -13,7 +13,10 @@ import axios from "axios";
 
 // 특정 스터디 데이터 요청
 export const getStudyData = async (studyIdx: number) => {
-  const { data } = await axios.get(GET_STUDY_DATA + `/${studyIdx}`);
+  const { data } = await axios.get(
+    GET_STUDY_DATA + `/${studyIdx}`,
+    GET_HEADER_TOKEN()
+  );
   return data;
 };
 
@@ -37,35 +40,54 @@ export const postStudyApply = async ({
 
 // 스터디 참가 승인
 export const getStudyAccept = async (studyIdx: number) => {
-  const { data } = await axios.get(GET_STUDY_APPLY_ACCEPT + `/${studyIdx}`);
+  const { data } = await axios.get(
+    GET_STUDY_APPLY_ACCEPT + `/${studyIdx}`,
+    GET_HEADER_TOKEN()
+  );
   return data;
 };
 
 // 스터디 참가 거절
 export const getStudyDeny = async (studyIdx: number) => {
-  const { data } = await axios.get(GET_STUDY_APPLY_DENY + `/${studyIdx}`);
+  const { data } = await axios.get(
+    GET_STUDY_APPLY_DENY + `/${studyIdx}`,
+    GET_HEADER_TOKEN()
+  );
   return data;
 };
 
 // 스터디 생성 신청
 export const postCreateStudy = async (body: any) => {
-  const { data } = await axios.post(POST_CREATE_STUDY, body);
+  const { data } = await axios.post(
+    POST_CREATE_STUDY,
+    body,
+    GET_HEADER_TOKEN()
+  );
   return data;
 };
 
 // 스터디 생성 승인
 export const getStudyCreateAccept = async (studyIdx: number) => {
-  const { data } = await axios.get(GET_STUDY_CREATE_ACCEPT + `/${studyIdx}`);
+  const { data } = await axios.get(
+    GET_STUDY_CREATE_ACCEPT + `/${studyIdx}`,
+    GET_HEADER_TOKEN()
+  );
   return data;
 };
 
 // 스터디 생성 거절
 export const getStudyCreateDeny = async (studyIdx: number) => {
-  const { data } = await axios.get(GET_STUDY_CREATE_DENY + `/${studyIdx}`);
+  const { data } = await axios.get(
+    GET_STUDY_CREATE_DENY + `/${studyIdx}`,
+    GET_HEADER_TOKEN()
+  );
   return data;
 };
 
 export const getStudyUpdate = async (studyIdx: number) => {
-  const { data } = await axios.get(GET_STUDY_UPDATE + `/${studyIdx}`);
+  const { data } = await axios.get(
+    GET_STUDY_UPDATE + `/${studyIdx}`,
+    GET_HEADER_TOKEN()
+  );
   return data;
 };

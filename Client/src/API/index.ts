@@ -17,7 +17,7 @@ const URL = [
   "http://211.110.23.222:4000",
 ];
 export const TARGET_URL =
-  process.env.NODE_ENV === "development" ? URL[1] : URL[0];
+  process.env.NODE_ENV === "development" ? URL[2] : URL[0];
 
 export const API = async ({ api, data }: Props) => {
   try {
