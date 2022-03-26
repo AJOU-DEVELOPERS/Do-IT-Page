@@ -44,24 +44,28 @@ export const reservationClick = async ({
   } = startDateRef;
   if (!sDValue) {
     alert("시작 날짜 입력해주세요");
+    return;
   }
   const {
     current: { value: eDValue },
   } = endDateRef;
   if (!eDValue) {
     alert("종료 날짜 입력해주세요");
+    return;
   }
   const {
     current: { value: sTValue },
   } = startTimeRef;
   if (!sTValue) {
     alert("시작 시간 입력해주세요");
+    return;
   }
   const {
     current: { value: eTValue },
   } = endTimeRef;
   if (!eTValue) {
     alert("종료 시간 입력해주세요");
+    return;
   }
   const body = makeReservationRoomType({
     reservationStartDate: "20" + sDValue,
