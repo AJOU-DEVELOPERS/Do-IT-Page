@@ -1,4 +1,4 @@
-import { ReactChild, ReactChildren, ReactFragment, ReactPortal } from "react";
+import { ReactChild, ReactChildren } from "react";
 import { Container, Title } from "./styles";
 
 interface Props {
