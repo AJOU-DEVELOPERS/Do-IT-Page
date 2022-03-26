@@ -5,6 +5,7 @@ import { User, UserStudy } from 'src/users/entities/user.entity';
 import { Connection, getRepository, Repository } from 'typeorm';
 import { CreateStudyDto } from './dto/create-study.dto';
 import { GetStudiesResponseDto, GetStudyResponseDto } from './dto/get-study.dto';
+import { GetUserStudyResponseDto } from './../users/dto/get-userStudy.dto';
 import { UpdateStudyDto } from './dto/update-study.dto';
 import { Study } from './entity/study.entity';
 
@@ -151,6 +152,22 @@ export class StudiesService {
         } catch(error) {
             console.log(error);
             return new BaseFailResponse('스터디 불러오기를 실패했습니다.');
+        }
+    }
+
+    async findOneUserStudy(userIdx: number, studyIdx: number) {
+        try {
+            const userStudy: UserStudy = await UserStudy.findOne( 
+                { 
+                    where: {
+                        userIdx: userIdx,
+                        studyIdx: studyIdx
+                    },
+            });
+            return userStudy;
+        } catch(error) {
+            console.log(error);
+            return new BaseFailResponse('유저 스터디 정보 불러오기를 실패했습니다.');
         }
     }
 
