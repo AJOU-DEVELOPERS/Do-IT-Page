@@ -22,9 +22,7 @@ const BoardDetailBody = ({ type }: { type: string }) => {
       )) ??
     [];
 
-  const handleListClick = () => {
-    navigator(pageSrc);
-  };
+  const handleListClick = () => navigator(pageSrc);
 
   if (content.length > 1) return null;
   const { title, date, visitor, text } = content[0];

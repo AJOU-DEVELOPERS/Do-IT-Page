@@ -7,6 +7,10 @@ export const studyApply = async (props: {
   userIdx: number;
 }) => {
   const { message } = await API({ api: postStudyApply, data: props });
+  if (message === true) {
+    alert("신청 완료되었습니다.");
+    return;
+  }
   alert(message ?? "신청 실패");
 };
 export const projectApply = async (props: {
@@ -14,5 +18,9 @@ export const projectApply = async (props: {
   userIdx: number;
 }) => {
   const { message } = await API({ api: postProjectApply, data: props });
+  if (message === true) {
+    alert("신청 완료되었습니다.");
+    return;
+  }
   alert(message ?? "신청 실패");
 };
