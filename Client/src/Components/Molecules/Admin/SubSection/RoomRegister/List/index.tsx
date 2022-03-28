@@ -7,22 +7,31 @@ import {
   TableBody,
   TableData,
 } from "@Atoms/Table/styles";
+import { getReservationProcessingSelector } from "@Recoil/Reservation";
 import { SmallButtonType } from "@Style/.";
 import { postReservationRoomBodyProps } from "@Type/API";
+import { useRecoilRefresher_UNSTABLE, useRecoilValue } from "recoil";
 import { RESERVATION_TITLE } from "../common";
-import { reserveUpdate } from "../util";
+import { refreshFn, reserveUpdate } from "../util";
 import { ButtonContainer } from "./styles";
 
 const RoomRegisterList = ({
-  list,
+  date,
 }: {
-  list: postReservationRoomBodyProps[];
+  date: { year: number; month: number };
 }) => {
-  //recoilRefresh
+  const list = useRecoilValue<postReservationRoomBodyProps[]>(
+    getReservationProcessingSelector(date)
+  );
+  const refreshList = useRecoilRefresher_UNSTABLE(
+    getReservationProcessingSelector(date)
+  );
+  const refresh = refreshFn(refreshList);
+
   const handleReserveAccept = ({ target }: { target: any }) =>
-    reserveUpdate({ target, type: "accept" });
+    refresh(reserveUpdate({ target, type: "accept" }));
   const handleReserveDeny = ({ target }: { target: any }) =>
-    reserveUpdate({ target, type: "deny" });
+    refresh(reserveUpdate({ target, type: "deny" }));
 
   return (
     <Table>

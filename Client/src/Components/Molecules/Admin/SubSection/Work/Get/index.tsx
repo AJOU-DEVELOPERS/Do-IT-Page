@@ -3,7 +3,7 @@ import { Suspense, useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { WorkType } from "../type";
 
-import { getWorkListType, WorkSearch } from "../util";
+import { getWorkListType, handleWorkData, WorkSearch } from "../util";
 import FilterBar from "./FilterBar";
 import WorkList from "./List";
 import Work from "./Work";
@@ -17,6 +17,7 @@ const GetWork = ({ type }: BasicType) => {
     )
   );
   const [work, setWork] = useState<WorkType>();
+  const handleSetWork = handleWorkData(setWork);
 
   const handleSearch = ({
     target: { value },
@@ -32,8 +33,13 @@ const GetWork = ({ type }: BasicType) => {
   }, [totalWorkList]);
 
   useEffect(() => {
-    setWork(undefined);
+    const data = work?.studyIdx ?? work?.projectIdx;
+    handleSetWork({ data, type });
   }, [workList]);
+
+  useEffect(() => {
+    setWork(undefined);
+  }, [search]);
 
   return (
     <Suspense fallback={null}>
