@@ -8,15 +8,21 @@ import {
   TableData,
 } from "@Atoms/Table/styles";
 import { DeepWorkType, UserWorkType, WorkType } from "../../type";
-import { AcceptClick, DenyClick } from "../../util";
+import { AcceptClick, DenyClick, getWorkListType, refreshFn } from "../../util";
+import { useRecoilRefresher_UNSTABLE } from "recoil";
 
 const Work = ({ work, type }: DeepWorkType) => {
+  const refreshWorkList = useRecoilRefresher_UNSTABLE(
+    getWorkListType({ type })
+  );
+  const refresh = refreshFn(refreshWorkList);
+
   const userWork: UserWorkType[] = work.userStudies ?? work.userProjects;
   const handleAcceptClick = async ({ target }: { target: any }) =>
-    AcceptClick({ target, type });
+    refresh(AcceptClick({ target, type }));
 
   const handleDenyClick = ({ target }: { target: any }) =>
-    DenyClick({ target, type });
+    refresh(DenyClick({ target, type }));
 
   return (
     <Table>
