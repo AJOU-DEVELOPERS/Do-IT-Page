@@ -1,5 +1,5 @@
-const MyPage = () => {
-  return <div>마이 페이지입니다.</div>;
-};
+import MyPageTemplate from "@Templates/MyPage";
+
+const MyPage = () => <MyPageTemplate />;
 
 export default MyPage;
