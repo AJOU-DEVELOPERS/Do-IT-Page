@@ -14,7 +14,7 @@ import { LoginInfoType, RegisterInfoType } from "@Type/Account";
 import axios from "axios";
 
 export const getDepartment = async () => {
-  const { data } = await axios.get(GET_DEPARTMENT_DATA, GET_HEADER_TOKEN());
+  const { data } = await axios.get(GET_DEPARTMENT_DATA);
   return data;
 };
 
@@ -28,20 +28,12 @@ export const postLoginInfo = async (body: LoginInfoType) => {
 };
 
 export const postRegisterInfo = async (body: RegisterInfoType) => {
-  const { data } = await axios.post(
-    POST_REGISTER_INFO,
-    body,
-    GET_HEADER_TOKEN()
-  );
+  const { data } = await axios.post(POST_REGISTER_INFO, body);
   return data;
 };
 
 export const postRequestMail = async (body: { email: string }) => {
-  const { data } = await axios.post(
-    POST_REQUEST_MAIL,
-    body,
-    GET_HEADER_TOKEN()
-  );
+  const { data } = await axios.post(POST_REQUEST_MAIL, body);
   return data;
 };
 
@@ -49,18 +41,14 @@ export const postCheckMail = async (body: {
   cacheKey: string;
   authNum: string;
 }) => {
-  const { data } = await axios.post(POST_CHECK_MAIL, body, GET_HEADER_TOKEN());
+  const { data } = await axios.post(POST_CHECK_MAIL, body);
   return data;
 };
 
 export const checkDuplicateUserId = async ({ id }: { id: string }) => {
-  const { data } = await axios.post(
-    POST_CHECK_DUPLICATE_USER_ID,
-    {
-      id,
-    },
-    GET_HEADER_TOKEN()
-  );
+  const { data } = await axios.post(POST_CHECK_DUPLICATE_USER_ID, {
+    id,
+  });
   return data;
 };
 
