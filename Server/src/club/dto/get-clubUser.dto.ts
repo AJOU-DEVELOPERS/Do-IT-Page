@@ -17,7 +17,6 @@ import { User } from '../../users/entities/user.entity';
 import { Department } from 'src/departments/entities/department.entity';
 import { BaseSuccessResponse } from 'src/commons/dto/response-common.dto';
 import { ClubUser } from '../entities/club.entity';
-import { SignupUserDepartmentDto } from 'src/users/dto/create-user.dto';
 
 export class ClubUserData extends PickType(User, [
   'userIdx',

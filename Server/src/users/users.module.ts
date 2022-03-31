@@ -4,7 +4,6 @@ import { UsersController } from './users.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import {
   User,
-  UserDepartment,
   UserSocial,
 } from './entities/user.entity';
 import { ConfigService } from '@nestjs/config';
@@ -13,7 +12,6 @@ import { AuthsModule } from 'src/auths/auth.module';
   imports: [
     TypeOrmModule.forFeature([
       User,
-      UserDepartment,
       UserSocial,
     ]),
     ConfigService,

@@ -7,8 +7,9 @@ import {
   ManyToMany,
   BeforeInsert,
   BaseEntity,
+  OneToOne,
 } from 'typeorm';
-import { UserDepartment } from 'src/users/entities/user.entity';
+import { User } from 'src/users/entities/user.entity';
 import { ApiProperty } from '@nestjs/swagger';
 import { IsInt, IsString } from 'class-validator';
 @Entity('Department')
@@ -16,7 +17,7 @@ export class Department extends BaseEntity {
   @IsInt()
   @ApiProperty({
     description: '학과 인덱스',
-    example: 1,
+    example: 31,
   })
   @PrimaryGeneratedColumn()
   departmentIdx: number;
@@ -28,9 +29,6 @@ export class Department extends BaseEntity {
   @Column()
   name: string;
 
-  @OneToMany(
-    (_type) => UserDepartment,
-    (userDepartments) => userDepartments.department,
-  )
-  userDepartments: UserDepartment[];
+  @OneToMany((_type) => User, (_type) => _type.department)
+  users: User[];
 }
