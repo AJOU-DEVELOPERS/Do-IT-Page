@@ -71,7 +71,7 @@ export const RegisterClick = async ({
   const studentId = inputRef.current[REF_NUM.학번].value;
   const email = inputRef.current[REF_NUM.이메일].value;
   const phoneNumber = inputRef.current[REF_NUM.핸드폰번호].value;
-  const { value: idx, label } = subjectRef.current.selectedOptions[0];
+  const { value: idx } = subjectRef.current.selectedOptions[0];
 
   const { message } = await API({
     api: postRegisterInfo,
@@ -82,17 +82,11 @@ export const RegisterClick = async ({
       studentId: Number(studentId),
       email,
       phoneNumber,
-      department: [
-        {
-          departmentIdx: Number(idx),
-          name: label,
-          sort: "major",
-        },
-      ],
+      departmentIdx: Number(idx),
     },
   });
 
-  if (message) {
+  if (message !== "동아리 회원이 아닙니다.") {
     alert("회원가입에 성공하였습니다.");
     return true;
   }
