@@ -28,7 +28,6 @@ async function bootstrap() {
   port = process.env.NODE_ENV === 'dev' ? port : parseInt(process.env.prod);
 
   await app.listen(port);
-  //test
 }
 
 async function makeOrmConfig() {}
