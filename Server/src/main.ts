@@ -25,7 +25,7 @@ async function bootstrap() {
       transform: true,
     }),
   );
-  port = process.env.prod ? parseInt(process.env.prod) : port;
+  port = process.env.NODE_ENV === "dev" ? port : parseInt(process.env.prod);
 
   await app.listen(port);
 }

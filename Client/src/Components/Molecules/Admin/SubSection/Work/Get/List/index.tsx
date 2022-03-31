@@ -14,7 +14,9 @@ import {
   checkWaiting,
   createWorkAccept,
   createWorkDeny,
+  getDataIdx,
   getWorkListType,
+  handleWorkData,
   updateWork,
   workClick,
 } from "../../util";
@@ -34,17 +36,17 @@ const WorkList = ({
   const handleRefresh = refreshAPI(refresh);
   const waiting = useMemo(() => checkWaiting({ search }), [search]);
   const checkStatus = useMemo(() => checkUpdate({ search }), [search]);
+  const handleSetWork = handleWorkData(setWork);
 
-  const handleWorkClick = async ({ currentTarget }: { currentTarget: any }) => {
-    const res = await workClick({ currentTarget, type });
-    setWork(res[0]);
+  const handleWorkClick = ({ currentTarget }: { currentTarget: any }) => {
+    const data = getDataIdx({ target: currentTarget });
+    handleSetWork({ data, type });
   };
-  const handleCreateAccept = async (e: any) =>
-    handleRefresh(() => createWorkAccept({ e, type }));
-  const handleCreateDeny = async (e: any) =>
-    handleRefresh(() => createWorkDeny({ e, type }));
-  const handleUpdateStudy = async (e: any) =>
-    handleRefresh(() => updateWork({ e, type }));
+  const handleCreateAccept = (e: any) =>
+    handleRefresh(createWorkAccept({ e, type }));
+  const handleCreateDeny = (e: any) =>
+    handleRefresh(createWorkDeny({ e, type }));
+  const handleUpdateStudy = (e: any) => handleRefresh(updateWork({ e, type }));
 
   return (
     <Table>

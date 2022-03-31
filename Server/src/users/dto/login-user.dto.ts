@@ -54,6 +54,11 @@ export class LoginUserResponseDto extends BaseSuccessResponse {
             description: '유저 이름',
             example: '아무무',
           },
+          status: {
+            type: 'char',
+            description: '유저 상태: M: 관리자, N: 동아리원, L: 일반회원, Y: 탈퇴회원',
+            example: 'L',
+          }
         },
       },
     },

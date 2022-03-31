@@ -28,8 +28,8 @@ export class AuthsService {
       let authNum: string = '';
       let cacheKey: string = '';
       const userInfo = await User.findOne({ email: SendMailDto.email });
-      if (userInfo)
-        return new BaseSuccessResponse('이미 존재하는 이메일입니다.');
+      // if (userInfo)
+      //   return new BaseSuccessResponse('이미 존재하는 이메일입니다.');
 
       const chars: string =
         '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
@@ -42,6 +42,7 @@ export class AuthsService {
         to: SendMailDto.email, // list of receivers
         from: 'Do.IT.AJOU@gmail.com', // sender address
         subject: 'Do-It 인증 요청 메일입니다.', // Subject line
+        text: 'Do-It 인증 요청 메일입니다.',
         html: '6자리 인증 코드 : ' + `<b> ${authNum}</b>`, // HTML body content
       });
       await this.cacheManager.set(cacheKey, authNum, { ttl: 180 });
@@ -66,12 +67,14 @@ export class AuthsService {
     userIdx: number,
     userName: string,
     status: string,
+    departmentName: string,
   ) {
     const payload: {
       userIdx: number;
       userName: string;
       status: string;
-    } = { userIdx, userName, status };
+      departmentName: string,
+    } = { userIdx, userName, status, departmentName };
     const token = this.jwtService.sign(payload);
 
     return token;
@@ -84,6 +87,7 @@ export class AuthsService {
       userIdx: userInfo.userIdx,
       userName: userInfo.name,
       status: userInfo.status,
+      departmentName: userInfo.department.name,
     };
     return result;
   }

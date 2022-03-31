@@ -187,6 +187,7 @@ export class ProjectsService {
                 },
                 relations: [
                     "userProjects",
+                    "userProjects.user",
                     "projectTechStacks"
                 ]
             });
@@ -194,6 +195,22 @@ export class ProjectsService {
         } catch(error) {
             console.log(error);
             return new BaseFailResponse('프로젝트 불러오기를 실패했습니다.');
+        }
+    }
+
+    async findOneUserProject(userIdx: number, projectIdx: number) {
+        try {
+            const userProject: UserProject = await UserProject.findOne( 
+                { 
+                    where: {
+                        userIdx: userIdx,
+                        projectIdx: projectIdx
+                    },
+            });
+            return userProject;
+        } catch(error) {
+            console.log(error);
+            return new BaseFailResponse('유저 프로젝트 정보 불러오기를 실패했습니다.');
         }
     }
 

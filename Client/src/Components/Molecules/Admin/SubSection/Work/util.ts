@@ -20,11 +20,12 @@ import {
 import { BasicType } from "@Molecules/Content/type";
 import { checkStudy } from "@Molecules/Content/util";
 import { WORK_STATE } from "./Get";
+import { WorkType } from "./type";
 
 export const getWorkListType = ({ type }: BasicType) =>
   checkStudy({ type }) ? getStudyAllSelector : getProjectAllSelector;
 
-export const getDataIdx = ({ target }: { target: any }) =>
+export const getDataIdx = ({ target }: { target: any }): string =>
   target?.getAttribute("data-idx");
 
 export const getIdx = ({ target }: { target: any }) =>
@@ -46,44 +47,39 @@ export const WorkSearch = ({
   );
 };
 
-export const AcceptClick = async ({
-  target,
-  type,
-}: {
-  target: any;
-  type: string | undefined;
-}) => {
-  const data = getIdx({ target });
-  console.log(data);
-  const api = checkStudy({ type }) ? getStudyAccept : getProjectAccept;
-  const { message } = await API({ api, data });
-  message ? alert("성공") : alert("실패");
-  return message;
-};
+export const refreshFn =
+  (refresh: () => void) => async (fn: () => Promise<any>) => {
+    const res = await fn();
+    res ? refresh() : null;
+  };
 
-export const DenyClick = async ({
-  target,
-  type,
-}: {
-  target: any;
-  type: string | undefined;
-}) => {
-  const data = getIdx({ target });
-  const api = checkStudy({ type }) ? getStudyDeny : getProjectDeny;
-  const { message } = await API({ api, data });
-  message ? alert("성공") : alert("실패");
-  return message;
-};
+export const AcceptClick =
+  ({ target, type }: { target: any; type: string | undefined }) =>
+  async () => {
+    const data = getIdx({ target });
+    const api = checkStudy({ type }) ? getStudyAccept : getProjectAccept;
+    const { message } = await API({ api, data });
+    message ? alert("성공") : alert("실패");
+    return message;
+  };
+
+export const DenyClick =
+  ({ target, type }: { target: any; type: string | undefined }) =>
+  async () => {
+    const data = getIdx({ target });
+    const api = checkStudy({ type }) ? getStudyDeny : getProjectDeny;
+    const { message } = await API({ api, data });
+    message ? alert("성공") : alert("실패");
+    return message;
+  };
 
 export const workClick = async ({
-  currentTarget,
+  data,
   type,
 }: {
-  currentTarget: any;
+  data: string | number | undefined;
   type: string | undefined;
 }) => {
-  const data = getDataIdx({ target: currentTarget });
-
   const api = checkStudy({ type }) ? getStudyData : getProjectData;
   const { message, ...datas } = await API({ api, data });
   if (!message) {
@@ -92,6 +88,19 @@ export const workClick = async ({
   }
   return datas[Object.keys(datas)[0]];
 };
+
+export const handleWorkData =
+  (setter: (value: WorkType) => void) =>
+  async ({
+    data,
+    type,
+  }: {
+    data: string | number | undefined;
+    type: string | undefined;
+  }) => {
+    const res = await workClick({ data, type });
+    setter(res[0]);
+  };
 
 export const checkWaiting = ({ search }: { search: string }) =>
   search === "대기중";
@@ -108,47 +117,35 @@ const getDenyAPI = ({ type }: { type: string | undefined }) =>
 const getUpdateAPI = ({ type }: { type: string | undefined }) =>
   checkStudy({ type }) ? getStudyUpdate : getProjectUpdate;
 
-export const createWorkAccept = async ({
-  e,
-  type,
-}: {
-  e: any;
-  type: string | undefined;
-}) => {
-  e.stopPropagation();
-  const parentTarget = e.target.closest("#waitContainer");
-  const data = parentTarget.getAttribute("data-idx");
-  const api = getAcceptAPI({ type });
-  const { message } = await API({ api, data });
-  return message;
-};
+export const createWorkAccept =
+  ({ e, type }: { e: any; type: string | undefined }) =>
+  async () => {
+    e.stopPropagation();
+    const parentTarget = e.target.closest("#waitContainer");
+    const data = parentTarget.getAttribute("data-idx");
+    const api = getAcceptAPI({ type });
+    const { message } = await API({ api, data });
+    return message;
+  };
 
-export const createWorkDeny = async ({
-  e,
-  type,
-}: {
-  e: any;
-  type: string | undefined;
-}) => {
-  e.stopPropagation();
-  const parentTarget = e.target.closest("#waitContainer");
-  const data = parentTarget.getAttribute("data-idx");
-  const api = getDenyAPI({ type });
-  const { message } = await API({ api, data });
-  return message;
-};
+export const createWorkDeny =
+  ({ e, type }: { e: any; type: string | undefined }) =>
+  async () => {
+    e.stopPropagation();
+    const parentTarget = e.target.closest("#waitContainer");
+    const data = parentTarget.getAttribute("data-idx");
+    const api = getDenyAPI({ type });
+    const { message } = await API({ api, data });
+    return message;
+  };
 
-export const updateWork = async ({
-  e,
-  type,
-}: {
-  e: any;
-  type: string | undefined;
-}) => {
-  e.stopPropagation();
-  const parentTarget = e.target.closest("#container");
-  const data = parentTarget.getAttribute("data-idx");
-  const api = getUpdateAPI({ type });
-  const { message } = await API({ api, data });
-  return message;
-};
+export const updateWork =
+  ({ e, type }: { e: any; type: string | undefined }) =>
+  async () => {
+    e.stopPropagation();
+    const parentTarget = e.target.closest("#container");
+    const data = parentTarget.getAttribute("data-idx");
+    const api = getUpdateAPI({ type });
+    const { message } = await API({ api, data });
+    return message;
+  };

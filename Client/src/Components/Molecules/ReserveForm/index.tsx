@@ -3,11 +3,8 @@ import {
   DateContainer,
   InputDataContainer,
   ReserveBoxSmallText,
-  ReserveBoxText,
   ReserveBoxTitle,
   ReserveSmallInputType,
-  ReserveLargeInputType,
-  ReservorContainer,
   SpliteTimeSpan,
   TimerContainer,
   SpiltTimeSpanMobile,
@@ -17,23 +14,6 @@ import {
 export const ReserveBoxHeader = () => (
   <ReserveBoxTitle>신청하기</ReserveBoxTitle>
 );
-
-// export const ReserveBoxName = ({
-//   nameRef,
-// }: {
-//   nameRef: React.RefObject<HTMLInputElement> | undefined;
-// }) => (
-//   <ReservorContainer>
-//     <ReserveBoxText>신청자</ReserveBoxText>
-//     <ReserveInput
-//       {...ReserveLargeInputType}
-//       ref={nameRef}
-//       type="text"
-//       placeholder="이름"
-//     />
-//   </ReservorContainer>
-// );
-// React.RefObject<HTMLInputElement> | undefined;
 export const ReserveInputForm = ({
   sDateRef,
   eDateRef,

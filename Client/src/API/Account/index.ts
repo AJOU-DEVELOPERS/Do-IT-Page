@@ -14,7 +14,7 @@ import { LoginInfoType, RegisterInfoType } from "@Type/Account";
 import axios from "axios";
 
 export const getDepartment = async () => {
-  const { data } = await axios.get(GET_DEPARTMENT_DATA, API_GET_OPTION);
+  const { data } = await axios.get(GET_DEPARTMENT_DATA);
   return data;
 };
 
@@ -37,7 +37,10 @@ export const postRequestMail = async (body: { email: string }) => {
   return data;
 };
 
-export const postCheckMail = async (body: { cacheKey: string; authNum: string }) => {
+export const postCheckMail = async (body: {
+  cacheKey: string;
+  authNum: string;
+}) => {
   const { data } = await axios.post(POST_CHECK_MAIL, body);
   return data;
 };

@@ -1,4 +1,4 @@
-import { TABLET_WIDTH } from "@Constant/index";
+import { MOBILE_WIDTH, TABLET_WIDTH } from "@Constant/index";
 import { AlignCenterBetween, HoverPointer, MainItemHover } from "@Style/.";
 import styled from "styled-components";
 
@@ -10,26 +10,43 @@ const Container = styled.div`
   padding: 12px 17px;
   box-sizing: border;
   ${HoverPointer};
-  ${MainItemHover}
-  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+  ${MainItemHover};
+	justify-content: flex-start;
+  @media only screen and (max-width: ${MOBILE_WIDTH}px) {
     padding: 6px 9px;
     height: 45px;
+		flex-wrap: wrap;
+		justify-content: flex-end;
   }
 `;
 
 const Text = styled.p`
   font-size: 0.8rem;
+	margin-left: 0.5em;
   span {
     margin-right: 27px;
   }
-  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+  @media only screen and (max-width: ${MOBILE_WIDTH}px) {
     font-size: 0.75rem;
   }
 `;
 
-const Date = styled(Text)`
-  width: 50%;
-  text-align: right;
+const Title = styled(Text)`
+	width: 60%;
+	margin-left: 0;
+	@media only screen and (max-width: ${MOBILE_WIDTH}px) {
+    width: 100%;
+  }
 `;
 
-export { Container, Text, Date };
+const Date = styled(Text)`
+  width: auto;
+  text-align: right;
+
+	@media only screen and (max-width: ${MOBILE_WIDTH}px) {
+		width: auto;
+		margin-rigth: 5px;
+  }
+`;
+
+export { Container, Text, Date, Title };

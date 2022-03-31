@@ -12,6 +12,7 @@ import {
   JoinColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToOne,
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { InternalServerErrorException } from '@nestjs/common';
@@ -31,6 +32,7 @@ import {
   IsEmail,
   Matches,
   Max,
+  IsAlphanumeric,
 } from 'class-validator';
 import { ClubUser } from 'src/club/entities/club.entity';
 @Entity('User')
@@ -42,6 +44,7 @@ export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   userIdx: number;
   @IsNotEmpty()
+  @IsAlphanumeric()
   @MaxLength(45)
   @ApiProperty({
     description: '유저 아이디',
@@ -67,6 +70,12 @@ export class User extends BaseEntity {
   })
   @Column()
   studentId: number;
+  @ApiProperty({
+    description: '학과 인덱스',
+    example: 30,
+  })
+  @Column()
+  departmentIdx: number;
   @IsNotEmpty()
   @IsString()
   @MinLength(2)
@@ -104,11 +113,14 @@ export class User extends BaseEntity {
   status: string;
   // @OneToMany((_type) => UserTechStack, (_type) => _type.user)
   // userTechStacks: UserTechStack[];
-  @OneToMany(
-    (_type) => UserDepartment,
-    (userDepartments) => userDepartments.user,
-  )
-  userDepartments: UserDepartment[];
+  // @OneToMany(
+  //   (_type) => UserDepartment,
+  //   (userDepartment) => userDepartment.user,
+  // )
+  // userDepartment: UserDepartment;
+  @ManyToOne(() => Department, (department) => department.users)
+  @JoinColumn({ name: 'departmentIdx', referencedColumnName: 'departmentIdx' })
+  department: Department;
 
   @OneToMany((_type) => UserSocial, (_type) => _type.user)
   userSocials: UserSocial[];
@@ -138,7 +150,14 @@ export class User extends BaseEntity {
     return await bcrypt.compare(password, hashedPassword);
   }
   static async findByLogin(id: string, password: string) {
-    const user = await User.findOne({ id });
+    const user = await User.findOne({ 
+      where: {
+          id: id
+      },
+      relations: [
+        'department',
+      ] 
+});
     if (!user || !(await bcrypt.compare(password, user.password)))
       throw new ThrowFailResponse('아이디와 비밀번호를 다시 입력해주세요.');
     return user;
@@ -178,29 +197,29 @@ export class User extends BaseEntity {
 //   techStack: TechStack;
 // }
 
-@Entity()
-export class UserDepartment extends BaseEntity {
-  @ApiProperty()
-  @PrimaryGeneratedColumn()
-  userDepartmentIdx: number;
-  @ApiProperty()
-  @Column()
-  userIdx: number;
-  @ApiProperty()
-  @Column()
-  departmentIdx: number;
-  @ApiProperty()
-  @Column()
-  sort: string;
+// @Entity()
+// export class UserDepartment extends BaseEntity {
+//   @ApiProperty()
+//   @PrimaryGeneratedColumn()
+//   userDepartmentIdx: number;
+//   @ApiProperty()
+//   @Column()
+//   userIdx: number;
+//   @ApiProperty()
+//   @Column()
+//   departmentIdx: number;
+//   @ApiProperty()
+//   @Column()
+//   sort: string;
 
-  @ManyToOne(() => User, (user) => user.userDepartments)
-  @JoinColumn({ name: 'userIdx', referencedColumnName: 'userIdx' })
-  user: User;
+//   @ManyToOne(() => User, (user) => user.userDepartment)
+//   @JoinColumn({ name: 'userIdx', referencedColumnName: 'userIdx' })
+//   user: User;
 
-  @ManyToOne(() => Department, (department) => department.userDepartments)
-  @JoinColumn({ name: 'departmentIdx', referencedColumnName: 'departmentIdx' })
-  department: Department;
-}
+//   @ManyToOne(() => Department, (department) => department.userDepartments)
+//   @JoinColumn({ name: 'departmentIdx', referencedColumnName: 'departmentIdx' })
+//   department: Department;
+// }
 
 @Entity('UserStudy')
 export class UserStudy extends BaseEntity {

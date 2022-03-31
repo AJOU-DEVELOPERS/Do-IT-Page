@@ -1,4 +1,4 @@
-import { TABLET_WIDTH } from "@Constant/index";
+import { MOBILE_WIDTH, TABLET_WIDTH } from "@Constant/index";
 import { DefaultColor, AlignCenterBetween, textOverflowSafe } from "@Style/.";
 import styled from "styled-components";
 
@@ -23,7 +23,7 @@ export const Title = styled.p<Props>`
   font-size: ${({ type }) => (type === "small" ? "0.8rem" : "1.5rem")};
   font-weight: 700;
   ${textOverflowSafe};
-  @media only screen and (max-width: ${TABLET_WIDTH}px) {
+  @media only screen and (max-width: ${MOBILE_WIDTH}px) {
     font-size: 1.05rem;
   }
 `;
