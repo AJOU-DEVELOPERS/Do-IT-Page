@@ -67,12 +67,14 @@ export class AuthsService {
     userIdx: number,
     userName: string,
     status: string,
+    departmentName: string,
   ) {
     const payload: {
       userIdx: number;
       userName: string;
       status: string;
-    } = { userIdx, userName, status };
+      departmentName: string,
+    } = { userIdx, userName, status, departmentName };
     const token = this.jwtService.sign(payload);
 
     return token;
@@ -85,6 +87,7 @@ export class AuthsService {
       userIdx: userInfo.userIdx,
       userName: userInfo.name,
       status: userInfo.status,
+      departmentName: userInfo.department.name,
     };
     return result;
   }

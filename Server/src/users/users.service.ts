@@ -33,6 +33,7 @@ export class UsersService {
     user.password = createUserDto.password;
     user.email = createUserDto.email;
     user.id = createUserDto.id;
+    user.departmentIdx = createUserDto.departmentIdx;
     await queryRunner.connect();
     await queryRunner.startTransaction();
     try {
@@ -78,7 +79,9 @@ export class UsersService {
   // }
 
   async findById(id: string) {
-    const user = await User.findOne({ where: id });
+    const user = await User.findOne({ 
+      where: id 
+    });
     if (user) return new BaseSuccessResponse('이미 존재하는 아이디입니다.');
     return new BaseSuccessResponse();
   }
