@@ -23,7 +23,7 @@ export const getCheckLogin = async () => {
   return data;
 };
 export const postLoginInfo = async (body: LoginInfoType) => {
-  const { data } = await axios.post(POST_LOGIN_INFO, body, GET_HEADER_TOKEN());
+  const { data } = await axios.post(POST_LOGIN_INFO, body);
   return data;
 };
 
