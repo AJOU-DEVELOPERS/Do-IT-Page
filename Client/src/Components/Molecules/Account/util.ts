@@ -40,7 +40,7 @@ export const LoginClick = async ({
     data: { id: idValue, password: pwValue },
   });
 
-  if (!res?.message) {
+  if (res?.message === "동아리 회원이 아닙니다.") {
     alert("아이디 및 비밀번호를 확인해주세요");
     return;
   }
