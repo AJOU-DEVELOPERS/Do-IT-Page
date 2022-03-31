@@ -14,7 +14,7 @@ import { LoginInfoType, RegisterInfoType } from "@Type/Account";
 import axios from "axios";
 
 export const getDepartment = async () => {
-  const { data } = await axios.get(GET_DEPARTMENT_DATA, GET_HEADER_TOKEN());
+  const { data } = await axios.get(GET_DEPARTMENT_DATA);
   return data;
 };
 
