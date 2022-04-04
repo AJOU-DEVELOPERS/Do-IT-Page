@@ -1,3 +1,4 @@
+import { Department } from 'src/departments/entities/department.entity';
 import {
   Controller,
   Get,
@@ -88,6 +89,7 @@ export class UsersController {
       req.user.userIdx,
       req.user.userName,
       req.user.status,
+      req.user.departmentName,
     );
     res.cookie('access-token', cookie); //6h
     return new LoginUserResponseDto(req.user, cookie);

@@ -10,7 +10,6 @@ import {
   IsArray,
 } from 'class-validator';
 import { User } from '../entities/user.entity';
-import { SignupUserDepartmentDto } from './create-user.dto';
 
 export class UserDto extends User {
   constructor() {
@@ -18,6 +17,9 @@ export class UserDto extends User {
   }
   @IsNotEmpty()
   @IsArray()
-  @ApiProperty({ isArray: false, type: () => [SignupUserDepartmentDto] })
-  department: SignupUserDepartmentDto[];
+  @ApiProperty({
+    description: '학과 인덱스',
+    example: 30,
+  })
+  departmentIdx: number;
 }
